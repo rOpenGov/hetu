@@ -8,7 +8,7 @@ output:
   rmarkdown::md_vignette:
     toc: true    
 vignette: >
-  %\VignetteIndexEntry{hetu markdown vignette}
+  %\VignetteIndexEntry{Structural handling of Finnish identity numbers (hetu R package)}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
   %\VignetteDepends{Cairo}
