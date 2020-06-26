@@ -1,0 +1,26 @@
+Package: hetu
+Type: Package
+Title: Finnish Open Government Data Toolkit
+Version: 0.1.1
+Date: 2020-06-26
+Authors@R: c(
+  person("Leo", "Lahti", email = "leo.lahti@iki.fi", role = c("aut", "cre")),
+  person("Mans", "Magnusson", role = "aut"),
+  person("Jussi", "Paananen", role = "aut")  
+  )
+MailingList: rOpenGov <ropengov-forum@googlegroups.com>
+Description: Algorithms for Finnish open government data.
+License: BSD_2_clause + file LICENSE
+VignetteBuilder: knitr
+BugReports: https://github.com/ropengov/hetu/issues
+URL: https://github.com/ropengov/hetu
+Depends:
+    R (>= 4.0.0)
+Suggests:
+    Cairo,
+    checkmate,
+    lubridate,
+    dplyr,
+    knitr,
+    testthat
+RoxygenNote: 7.1.0

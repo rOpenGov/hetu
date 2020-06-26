@@ -1,0 +1,20 @@
+citHeader("Kindly cite the hetu R package as follows:")
+
+citEntry(entry="misc",
+         title = "hetu: Finnish personal ID number data toolkit for R",
+         author = personList(
+	   person(given ="Leo", family="Lahti", email = "leo.lahti@iki.fi"),
+	   person(given ="Mans", family="Magnusson"),	   
+	   person(given ="Jussi", family="Paananen")
+         ),
+	 doi = "",
+	 journal = "",
+	 year = "2020",
+         textVersion =
+         paste("(C) Leo Lahti, Mans Magnusson and Jussi Paananen (rOpenGov 2020). ",
+               "hetu: Finnish personal ID number data toolkit for R. ",
+	       "URL: http://github.com/rOpenGov/hetu",
+               sep=" ")
+         )
+
+citFooter("\nMany thanks for all contributors!")
