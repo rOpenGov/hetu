@@ -21,7 +21,7 @@ rpin(
 
 \item{p.male}{Proportion of males. Default is 0.3.}
 
-\item{p.temp}{Proportion of temporary identification numbers. Default is 0.1. Currently not implemented.}
+\item{p.temp}{Proportion of temporary identification numbers. Default is 0.1.}
 }
 \value{
 a vector of generated \code{hetu}-pins.
