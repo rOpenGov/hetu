@@ -147,7 +147,7 @@ hetu <- function(pin, extract=NULL) {
 
   # Create hetu-object
   object <- list(hetu = pin, gender=gender, 
-  	         personal.number=personal, 
+  	         personal.number=formatC(personal, width = 3, format = "d", flag = "0"), 
   	         checksum=check, date=date, day=day, month=month, 
 		 year=full.year, century.char=century)
   
