@@ -7,6 +7,7 @@
 #'    "\code{checksum}", "\code{date}", "\code{day}", "\code{month}", 
 #'    "\code{year}", "\code{century.char}".
 #'    If \code{NULL} (default), returns all information. 
+#' @param allow.temp Allow temporary PINs (personal numbers 900-999) or only regular PINs (personal numbers 002-899). Default is FALSE.
 #' @return Finnish personal identification number data.frame,
 #'         or if extract parameter is set, the requested part of the 
 #'	   information as a vector. Returns \code{NA} if the given character 
@@ -21,6 +22,7 @@
 #' \item{year}{Year of the birthdate.}
 #' \item{century.char}{Century character of the birthdate: 
 #'                     + (1800), - (1900) or A (2000). }
+#' \item{is.temp}{Is personal identification number intended for temporary use (TRUE or FALSE)}
 #' 
 #' @author Jussi Paananen \email{louhos@@googlegroups.com} 
 #' @seealso \code{\link{pin_ctrl}} For validating Finnish personal 
@@ -38,19 +40,19 @@
 #' # Process a vector of hetu's and extract gender information from each
 #' hetu(c("010101-0101", "111111-111C"), extract="gender")
 #' @export
-hetu <- function(pin, extract=NULL) {
+hetu <- function(pin, extract = NULL, allow.temp = FALSE) {
 
   if (!is.null(extract)) {
     if (!extract %in% c("hetu", "gender", "personal.number", "checksum", 
-       		        "date", "day", "month", "year", "century.char")) {
+       		        "date", "day", "month", "year", "century.char", "is.temp")) {
       stop("Trying to extract invalid part of hetu")
     }
   }
   
   # Check if the input parameter is a vector
-  if (length(pin) > 1) {
+  if (length(pin) > 1) { #jos vektorissa useampi kuin 1 solu, tarvitaan erilaisia temppuja
     if (is.null(extract)) {
-      res <- lapply(pin, FUN=hetu, extract=extract)
+      res <- lapply(pin, FUN=hetu, extract = extract, allow.temp = allow.temp)
       # Convert dates to characters to avoid conversion problems
       for (i in 1:length(res)) {res[[i]]$date <- as.character(res[[i]]$date)}
       # Convert list to data.frame
@@ -60,7 +62,7 @@ hetu <- function(pin, extract=NULL) {
       # Return
       return(res)
     } else {
-      return(unname(do.call("c", lapply(pin, FUN=hetu, extract=extract))))
+      return(unname(do.call("c", lapply(pin, FUN=hetu, extract=extract, allow.temp = allow.temp))))
     }    
   }
   
@@ -120,8 +122,14 @@ hetu <- function(pin, extract=NULL) {
   
   # Check personal identification number
   personal <- as.numeric(substr(pin, start=8, stop=10))
-  if (!((personal >= 2) && (personal <= 899))) {
-    return(NA)
+  if (allow.temp == TRUE) {
+    if (!((personal >= 2) && (personal <= 999))) {
+      return(NA)
+    }
+  } else {
+    if (!((personal >= 2) && (personal <= 899))) {
+      return(NA)
+    }
   }
   
   # Check checksum character validity
@@ -145,11 +153,18 @@ hetu <- function(pin, extract=NULL) {
     gender <- "Male"
   }
 
+  # Check if personal identification number is temporary
+  if ((personal >= 900)) {
+    is.temp <- TRUE
+  } else {
+    is.temp <- FALSE
+  }
+  
   # Create hetu-object
   object <- list(hetu = pin, gender=gender, 
   	         personal.number=formatC(personal, width = 3, format = "d", flag = "0"), 
   	         checksum=check, date=date, day=day, month=month, 
-		 year=full.year, century.char=century)
+		 year=full.year, century.char=century, is.temp=is.temp)
   
   # Return full object or only requested part
   if (is.null(extract)) {

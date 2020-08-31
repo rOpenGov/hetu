@@ -4,7 +4,7 @@
 \alias{hetu}
 \title{Finnish personal identification number extraction}
 \usage{
-hetu(pin, extract = NULL)
+hetu(pin, extract = NULL, allow.temp = FALSE)
 }
 \arguments{
 \item{pin}{Finnish personal identification number as a character vector, 
@@ -15,6 +15,8 @@ Valid values are "\code{hetu}", "\code{gender}", "\code{personal.number}",
 "\code{checksum}", "\code{date}", "\code{day}", "\code{month}", 
 "\code{year}", "\code{century.char}".
 If \code{NULL} (default), returns all information.}
+
+\item{allow.temp}{Allow temporary PINs (personal numbers 900-999) or only regular PINs (personal numbers 002-899). Default is FALSE.}
 }
 \value{
 Finnish personal identification number data.frame,
@@ -31,6 +33,7 @@ Finnish personal identification number data.frame,
 \item{year}{Year of the birthdate.}
 \item{century.char}{Century character of the birthdate: 
                     + (1800), - (1900) or A (2000). }
+\item{is.temp}{Is personal identification number intended for temporary use (TRUE or FALSE)}
 }
 \description{
 Extract information from Finnish personal identification numbers (hetu).
