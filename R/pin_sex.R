@@ -9,7 +9,7 @@
 #' @export 
 pin_sex <- function(pin) {
 
-    sex <- hetu(pin, extract = "gender", allow.temp = TRUE)
+    sex <- hetu(pin, extract = "sex", allow.temp = TRUE)
     output <- factor(sex, levels = c("Female", "Male"))
     return(output)
   

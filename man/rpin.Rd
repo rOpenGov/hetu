@@ -33,7 +33,7 @@ The generated \code{hetu} is uniformely distributed over the time period.
 \examples{
 x <- rpin(3)
 hetu(x)
-hetu(x, extract = "gender")
+hetu(x, extract = "sex")
 hetu(x, extract = "checksum")
 
 }

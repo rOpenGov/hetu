@@ -3,7 +3,7 @@
 #' @param pin Finnish personal identification number as a character vector, 
 #' 	  or vector of identification numbers as a character vectors
 #' @param extract Extract only selected part of the information. 
-#'    Valid values are "\code{hetu}", "\code{gender}", "\code{personal.number}",
+#'    Valid values are "\code{hetu}", "\code{sex}", "\code{personal.number}",
 #'    "\code{checksum}", "\code{date}", "\code{day}", "\code{month}", 
 #'    "\code{year}", "\code{century.char}".
 #'    If \code{NULL} (default), returns all information. 
@@ -13,7 +13,7 @@
 #'	   information as a vector. Returns \code{NA} if the given character 
 #'	   vector is not a valid Finnish personal identification number.
 #' \item{hetu}{Finnish personal identification number as a character vector.}
-#' \item{gender}{Gender of the person as a character vector ("Male" or "Female").}
+#' \item{sex}{sex of the person as a character vector ("Male" or "Female").}
 #' \item{personal.number}{Personal number part of the identification number.}
 #' \item{checksum}{Checksum for the personal identification number.}
 #' \item{date}{Birthdate.}
@@ -30,27 +30,27 @@
 #' @examples
 #' hetu("111111-111C")
 #' hetu("111111-111C")$date
-#' hetu("111111-111C")$gender
+#' hetu("111111-111C")$sex
 #' # Same as previous, but using extract argument
-#' hetu("111111-111C", extract="gender")
+#' hetu("111111-111C", extract="sex")
 #' 
 #' # Process a vector of hetu's
 #' hetu(c("010101-0101", "111111-111C"))
 #' 
-#' # Process a vector of hetu's and extract gender information from each
-#' hetu(c("010101-0101", "111111-111C"), extract="gender")
+#' # Process a vector of hetu's and extract sex information from each
+#' hetu(c("010101-0101", "111111-111C"), extract="sex")
 #' @export
 hetu <- function(pin, extract = NULL, allow.temp = FALSE) {
 
   if (!is.null(extract)) {
-    if (!extract %in% c("hetu", "gender", "personal.number", "checksum", 
+    if (!extract %in% c("hetu", "sex", "personal.number", "checksum", 
        		        "date", "day", "month", "year", "century.char", "is.temp")) {
       stop("Trying to extract invalid part of hetu")
     }
   }
   
   # Check if the input parameter is a vector
-  if (length(pin) > 1) { #jos vektorissa useampi kuin 1 solu, tarvitaan erilaisia temppuja
+  if (length(pin) > 1) {
     if (is.null(extract)) {
       res <- lapply(pin, FUN=hetu, extract = extract, allow.temp = allow.temp)
       # Convert dates to characters to avoid conversion problems
@@ -146,11 +146,11 @@ hetu <- function(pin, extract = NULL, allow.temp = FALSE) {
     return(NA)
   }
   
-  # Check gender
+  # Check sex
   if ((personal %% 2) == 0) {
-    gender <- "Female"
+    sex <- "Female"
   } else {
-    gender <- "Male"
+    sex <- "Male"
   }
 
   # Check if personal identification number is temporary
@@ -161,7 +161,7 @@ hetu <- function(pin, extract = NULL, allow.temp = FALSE) {
   }
   
   # Create hetu-object
-  object <- list(hetu = pin, gender=gender, 
+  object <- list(hetu = pin, sex=sex, 
   	         personal.number=formatC(personal, width = 3, format = "d", flag = "0"), 
   	         checksum=check, date=date, day=day, month=month, 
 		 year=full.year, century.char=century, is.temp=is.temp)

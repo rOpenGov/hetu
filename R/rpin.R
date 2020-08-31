@@ -15,7 +15,7 @@
 #' @examples 
 #' x <- rpin(3)
 #' hetu(x)
-#' hetu(x, extract = "gender")
+#' hetu(x, extract = "sex")
 #' hetu(x, extract = "checksum")
 #' 
 #' @export

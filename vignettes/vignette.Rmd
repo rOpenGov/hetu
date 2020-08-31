@@ -69,7 +69,7 @@ pin_ctrl("010101-0101") # TRUE/FALSE
 General field extraction from personal identification number.
 
 ```{r hetuextract, message=FALSE}
-hetu(example_pin, extract = "gender")
+hetu(example_pin, extract = "sex")
 ```
 
 Extracting sex:

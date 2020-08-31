@@ -11,7 +11,7 @@ hetu(pin, extract = NULL, allow.temp = FALSE)
 or vector of identification numbers as a character vectors}
 
 \item{extract}{Extract only selected part of the information. 
-Valid values are "\code{hetu}", "\code{gender}", "\code{personal.number}",
+Valid values are "\code{hetu}", "\code{sex}", "\code{personal.number}",
 "\code{checksum}", "\code{date}", "\code{day}", "\code{month}", 
 "\code{year}", "\code{century.char}".
 If \code{NULL} (default), returns all information.}
@@ -24,7 +24,7 @@ Finnish personal identification number data.frame,
    information as a vector. Returns \code{NA} if the given character 
    vector is not a valid Finnish personal identification number.
 \item{hetu}{Finnish personal identification number as a character vector.}
-\item{gender}{Gender of the person as a character vector ("Male" or "Female").}
+\item{sex}{sex of the person as a character vector ("Male" or "Female").}
 \item{personal.number}{Personal number part of the identification number.}
 \item{checksum}{Checksum for the personal identification number.}
 \item{date}{Birthdate.}
@@ -41,15 +41,15 @@ Extract information from Finnish personal identification numbers (hetu).
 \examples{
 hetu("111111-111C")
 hetu("111111-111C")$date
-hetu("111111-111C")$gender
+hetu("111111-111C")$sex
 # Same as previous, but using extract argument
-hetu("111111-111C", extract="gender")
+hetu("111111-111C", extract="sex")
 
 # Process a vector of hetu's
 hetu(c("010101-0101", "111111-111C"))
 
-# Process a vector of hetu's and extract gender information from each
-hetu(c("010101-0101", "111111-111C"), extract="gender")
+# Process a vector of hetu's and extract sex information from each
+hetu(c("010101-0101", "111111-111C"), extract="sex")
 }
 \seealso{
 \code{\link{pin_ctrl}} For validating Finnish personal 
