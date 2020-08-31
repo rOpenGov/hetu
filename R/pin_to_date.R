@@ -7,5 +7,5 @@
 #' 
 #' @export
 pin_to_date <- function(pin) {
-  lubridate::dmy(substr(pin,1,6))
+  lubridate::ymd(hetu(pin, extract = "date"))
 }
