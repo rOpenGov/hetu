@@ -8,8 +8,8 @@ rpin(
   n,
   start_date = as.Date("1895-01-01"),
   end_date = Sys.Date(),
-  p.male = 0.3,
-  p.temp = 0.1
+  p.male = 0.4,
+  p.temp = 0
 )
 }
 \arguments{
@@ -19,9 +19,9 @@ rpin(
 
 \item{end_date}{Upper limit of generated \code{hetu}. Default is the current date.}
 
-\item{p.male}{Proportion of males. Default is 0.3.}
+\item{p.male}{Proportion of males. Default is 0.4.}
 
-\item{p.temp}{Proportion of temporary identification numbers. Default is 0.1.}
+\item{p.temp}{Proportion of temporary identification numbers. Default is 0.0.}
 }
 \value{
 a vector of generated \code{hetu}-pins.

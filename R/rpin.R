@@ -7,8 +7,8 @@
 #' @param n number of observations.
 #' @param start_date Lower limit of generated \code{hetu} dates. Default is 1895-01-01.
 #' @param end_date Upper limit of generated \code{hetu}. Default is the current date.
-#' @param p.male Proportion of males. Default is 0.3.
-#' @param p.temp Proportion of temporary identification numbers. Default is 0.1.
+#' @param p.male Proportion of males. Default is 0.4.
+#' @param p.temp Proportion of temporary identification numbers. Default is 0.0.
 #' 
 #' @return a vector of generated \code{hetu}-pins.
 #' 
@@ -19,7 +19,7 @@
 #' hetu(x, extract = "checksum")
 #' 
 #' @export
-rpin <- function(n, start_date = as.Date("1895-01-01"), end_date = Sys.Date(), p.male = 0.3, p.temp = 0.1){
+rpin <- function(n, start_date = as.Date("1895-01-01"), end_date = Sys.Date(), p.male = 0.4, p.temp = 0.0){
   rdate <- sample(start_date:end_date, n, replace = TRUE)
   # origin date according to POSIX standard
   rdate <- as.Date(rdate, origin = "1970-01-01")
