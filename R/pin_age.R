@@ -36,7 +36,7 @@ pin_age <- function(pin, date=Sys.Date(), timespan = "years") {
   date <- lubridate::ymd(date)
 
   all_pins <- pin
-  all_pins[!pin_ctrl(pin)] <- NA
+  all_pins[!pin_ctrl(pin, allow.temp = TRUE)] <- NA
   if (length(date) > 1){
     valid_diff <- !is.na(all_pins) & !is.na(date)
   } else{
