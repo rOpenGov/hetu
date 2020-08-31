@@ -15,4 +15,14 @@ test_that("hetu works correctly", {
 
   expect_true(pin_ctrl("010101-0101"))
   expect_false(pin_ctrl("010101-010A"))
+  expect_true(pin_ctrl("010101-900R", allow.temp = TRUE))
+  expect_false(pin_ctrl("010101-900R", allow.temp = FALSE))
+  
+  expect_true(all((pin_to_date(c("010101-0101", "111111-111C")) == c("1901-01-01", "1911-11-11"))))
+  expect_true(all((pin_to_date(c("010101A0101", "111111A111C")) == c("2001-01-01", "2011-11-11"))))
+  
+  expect_true(pin_age("010101-0101", date = Sys.Date()) > 100)
+  
+  expect_true(is.na(pin_sex("010101-010A")))
+  expect_false(is.na(pin_sex("010101-0101")))
 })
