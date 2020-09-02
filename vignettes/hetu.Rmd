@@ -1,19 +1,24 @@
 ---
-title: "Structural handling of Finnish identity numbers (hetu R package)"
+title: "hetu : Structural handling of Finnish identity numbers"
 author: "Leo Lahti, Jussi Paananen, Mans Magnusson"
 date: "`r Sys.Date()`"
 output:
   rmarkdown::html_vignette:
     toc: true
   rmarkdown::md_vignette:
-    toc: true    
+    toc: true   
 vignette: >
-  %\VignetteIndexEntry{Structural handling of Finnish identity numbers (hetu R package)}
+  %\VignetteIndexEntry{hetu}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
-  %\VignetteDepends{Cairo}
-  \usepackage[utf8]{inputenc}  
 ---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
 
 The **hetu R package** provides tools to work with Finnish personal identity numbers.
 
@@ -83,7 +88,7 @@ Extracting age:
 
 ```{r example5, message=FALSE, eval=TRUE}
 pin_age(example_pin)
-pin_age(example_pin, date = "2020-01-01")
+pin_age(example_pin, date = "2012-01-01")
 ```
 
 
@@ -131,3 +136,4 @@ This vignette was created with
 ```{r sessioninfo, message=FALSE, warning=FALSE}
 sessionInfo()
 ```
+

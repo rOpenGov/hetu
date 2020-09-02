@@ -23,5 +23,6 @@ Suggests:
     lubridate,
     dplyr,
     knitr,
-    testthat
+    testthat,
+    rmarkdown
 RoxygenNote: 7.1.1

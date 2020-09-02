@@ -5,14 +5,17 @@
 #' @param extract Extract only selected part of the information. 
 #'    Valid values are "\code{hetu}", "\code{sex}", "\code{personal.number}",
 #'    "\code{checksum}", "\code{date}", "\code{day}", "\code{month}", 
-#'    "\code{year}", "\code{century.char}".
+#'    "\code{year}", "\code{century.char}", "\code{is.temp}".
 #'    If \code{NULL} (default), returns all information. 
-#' @param allow.temp Allow temporary PINs (personal numbers 900-999) or only regular PINs (personal numbers 002-899). Default is FALSE.
+#' @param allow.temp Allow artificial or temporary PINs (personal numbers 900-999). 
+#'    If \code{FALSE} (default), only PINs intended for official use (personal numbers 002-899) are allowed.
 #' @return Finnish personal identification number data.frame,
-#'         or if extract parameter is set, the requested part of the 
+#'     or if extract parameter is set, the requested part of the 
 #'	   information as a vector. Returns \code{NA} if the given character 
 #'	   vector is not a valid Finnish personal identification number.
-#' \item{hetu}{Finnish personal identification number as a character vector.}
+#' \item{hetu}{Finnish personal identification number as a character vector. 
+#'     A correct pin should be in the form DDMMYYCZZZQ, where DDMMYY stands for date, C for century sign, 
+#'     ZZZ for personal number and Q for checksum character.}
 #' \item{sex}{sex of the person as a character vector ("Male" or "Female").}
 #' \item{personal.number}{Personal number part of the identification number.}
 #' \item{checksum}{Checksum for the personal identification number.}
@@ -21,8 +24,8 @@
 #' \item{month}{Month of the birthdate.}
 #' \item{year}{Year of the birthdate.}
 #' \item{century.char}{Century character of the birthdate: 
-#'                     + (1800), - (1900) or A (2000). }
-#' \item{is.temp}{Is personal identification number intended for temporary use (TRUE or FALSE)}
+#'            + (1800), - (1900) or A (2000). }
+#' \item{is.temp}{Is the personal identification number an artificial number intended for temporary use: (\code{TRUE} or \code{FALSE})}
 #' 
 #' @author Jussi Paananen \email{louhos@@googlegroups.com} 
 #' @seealso \code{\link{pin_ctrl}} For validating Finnish personal 
