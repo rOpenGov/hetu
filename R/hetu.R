@@ -69,12 +69,6 @@ hetu <- function(pin, extract = NULL, allow.temp = FALSE) {
   # Convert to character vector if necessary
   if(!is.character(pin)) pin <- as.character(pin)
   
-  # Check general format
-  match <- regexpr("^[0-9]{6}[\\+-A][0-9]{3}[0123456789ABCDEFHJKLMNPRSTUVWXY]$", pin)
-  if (match == -1 ) {
-    return(NA)
-  }
-  
   # Check day
   day <- as.numeric(substr(pin, start=1, stop=2))
   if (!((day >= 1) && (day <= 31))) {
@@ -120,6 +114,14 @@ hetu <- function(pin, extract = NULL, allow.temp = FALSE) {
     return(NA)
   }
   
+  # Check checksum character validity
+  check <- substr(pin, start=11, stop=11)
+  checklist <- c("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", "H", "J", "K", "L", "M", "N", "P", "R", "S", "T", "U", "V", "W", "X", "Y")
+  names(checklist) <- 0:30
+  if (!check %in% checklist) {
+    return(NA)
+  }
+  
   # Check personal identification number
   personal <- as.numeric(substr(pin, start=8, stop=10))
   if (allow.temp == TRUE) {
@@ -132,13 +134,6 @@ hetu <- function(pin, extract = NULL, allow.temp = FALSE) {
     }
   }
   
-  # Check checksum character validity
-  check <- substr(pin, start=11, stop=11)
-  checklist <- c("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", "H", "J", "K", "L", "M", "N", "P", "R", "S", "T", "U", "V", "W", "X", "Y")
-  names(checklist) <- 0:30
-  if (!check %in% checklist) {
-    return(NA)
-  }
   # Check checksum character
   mod <- as.numeric(paste(substr(pin, start=1, stop=6), 
       	 		substr(pin, start=8, stop=10), sep="")) %% 31
