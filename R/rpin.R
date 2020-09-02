@@ -32,7 +32,6 @@ rpin <- function(n, start_date = as.Date("1895-01-01"), end_date = Sys.Date(), p
          "20" = "A",
          "19" = "-",
          "18" = "+",
-         stop("Invalid date input")
     )
   }
   
