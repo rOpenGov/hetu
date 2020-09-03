@@ -19,14 +19,15 @@
 #' hetu(x, extract = "checksum")
 #' 
 #' @export
-rpin <- function(n, start_date = as.Date("1895-01-01"), end_date = Sys.Date(), p.male = 0.4, p.temp = 0.0){
-  rdate <- sample(start_date:end_date, n, replace = TRUE)
+rpin <- function(n, start_date = as.Date("1895-01-01"), end_date = as.Date(Sys.Date()), p.male = 0.4, p.temp = 0.0){
+  rdate <- sample(as.Date(start_date):as.Date(end_date), n, replace = TRUE)
   # origin date according to POSIX standard
   rdate <- as.Date(rdate, origin = "1970-01-01")
   
+  # DDMMYY in DDMMYYCZZZQ
   ddmmyy <- format(rdate, "%d%m%y")
   
-  # determine the correct century marker
+  # Determine the correct century marker (C in DDMMYYCZZZQ)
   century <- function(x) {
     switch(substr(x, 1, 2),
          "20" = "A",
@@ -34,7 +35,7 @@ rpin <- function(n, start_date = as.Date("1895-01-01"), end_date = Sys.Date(), p
          "18" = "+",
     )
   }
-  
+  # Generate the personal number part of hetu (ZZZ in DDMMYYCZZZQ)
   test_zzz <- "000"
   while ("000" %in% test_zzz | "001" %in% test_zzz) {
     zz_norm <- sample(x = 0:89, replace = TRUE, size = round(n*(1-p.temp)))
@@ -49,12 +50,12 @@ rpin <- function(n, start_date = as.Date("1895-01-01"), end_date = Sys.Date(), p
     test_zzz <- paste0(zz,z)
   }
   
-  # characters used for determining the checksum of hetu
+  # Characters used for determining the checksum of hetu
   checklist <- c("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", 
                  "A", "B", "C", "D", "E", "F", "H", "J", "K", "L", 
                  "M", "N", "P", "R", "S", "T", "U", "V", "W", "X", "Y")
+  names(checklist) <- 0:30
+  checksum <- checklist[as.character(as.numeric(paste0(ddmmyy, zz, z)) %% 31)]
   
-  # "+ 1" is necessary as checklist[0] returns nothing
-  checksum <- checklist[as.numeric(paste0(ddmmyy, zz, z)) %% 31 + 1]
   paste0(ddmmyy, sapply(rdate, century), zz, z, checksum)
 }
