@@ -44,7 +44,7 @@ pin_age <- function(pin, date=Sys.Date(), timespan = "years") {
   }
   pin <- all_pins[valid_diff]
   
-  pin_dates <- pin_to_date(pin)
+  pin_dates <- pin_date(pin)
   
   diff <- lubridate::interval(pin_dates, date)
 
