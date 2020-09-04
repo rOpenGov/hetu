@@ -7,7 +7,7 @@
 rpin(
   n,
   start_date = as.Date("1895-01-01"),
-  end_date = Sys.Date(),
+  end_date = as.Date(Sys.Date()),
   p.male = 0.4,
   p.temp = 0
 )

@@ -16,15 +16,16 @@ Valid values are "\code{hetu}", "\code{sex}", "\code{personal.number}",
 "\code{year}", "\code{century.char}", "\code{is.temp}".
 If \code{NULL} (default), returns all information.}
 
-\item{allow.temp}{Allow temporary PINs (personal numbers 900-999). If \code{FALSE} (default), only regular PINs (personal numbers 002-899) are allowed.}
+\item{allow.temp}{Allow artificial or temporary PINs (personal numbers 900-999). 
+If \code{FALSE} (default), only PINs intended for official use (personal numbers 002-899) are allowed.}
 }
 \value{
 Finnish personal identification number data.frame,
-        or if extract parameter is set, the requested part of the 
+    or if extract parameter is set, the requested part of the 
    information as a vector. Returns \code{NA} if the given character 
    vector is not a valid Finnish personal identification number.
 \item{hetu}{Finnish personal identification number as a character vector. 
-    A correct pin should be in the form DDMMYYCZZZQ, where DDMMYY stands for date, C  for century sign, 
+    A correct pin should be in the form DDMMYYCZZZQ, where DDMMYY stands for date, C for century sign, 
     ZZZ for personal number and Q for checksum character.}
 \item{sex}{sex of the person as a character vector ("Male" or "Female").}
 \item{personal.number}{Personal number part of the identification number.}
@@ -34,8 +35,8 @@ Finnish personal identification number data.frame,
 \item{month}{Month of the birthdate.}
 \item{year}{Year of the birthdate.}
 \item{century.char}{Century character of the birthdate: 
-                    + (1800), - (1900) or A (2000). }
-\item{is.temp}{Is personal identification number intended for temporary use: (\code{TRUE} or \code{FALSE})}
+           + (1800), - (1900) or A (2000). }
+\item{is.temp}{Is the personal identification number an artificial number intended for temporary use: (\code{TRUE} or \code{FALSE})}
 }
 \description{
 Extract information from Finnish personal identification numbers (hetu).

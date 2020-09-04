@@ -35,6 +35,7 @@ rpin <- function(n, start_date = as.Date("1895-01-01"), end_date = as.Date(Sys.D
          "18" = "+",
     )
   }
+  
   # Generate the personal number part of hetu (ZZZ in DDMMYYCZZZQ)
   test_zzz <- "000"
   while ("000" %in% test_zzz | "001" %in% test_zzz) {
@@ -50,11 +51,13 @@ rpin <- function(n, start_date = as.Date("1895-01-01"), end_date = as.Date(Sys.D
     test_zzz <- paste0(zz,z)
   }
   
-  # Characters used for determining the checksum of hetu
+  # Allowed characters used for determining the checksum of hetu
   checklist <- c("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", 
                  "A", "B", "C", "D", "E", "F", "H", "J", "K", "L", 
                  "M", "N", "P", "R", "S", "T", "U", "V", "W", "X", "Y")
   names(checklist) <- 0:30
+  
+  # Determine the checksum part of hetu (Q in DDMMYYCZZZQ)
   checksum <- checklist[as.character(as.numeric(paste0(ddmmyy, zz, z)) %% 31)]
   
   paste0(ddmmyy, sapply(rdate, century), zz, z, checksum)
