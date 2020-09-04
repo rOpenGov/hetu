@@ -1,4 +1,4 @@
-#' @title Get birth date from hetu
+#' @title Get birthdate from hetu
 #' @description Calculates the date of birth in date format.
 #' @inheritParams hetu
 #' @return Date of birth as a vector in date format.
