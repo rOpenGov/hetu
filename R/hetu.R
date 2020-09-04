@@ -125,16 +125,12 @@ hetu <- function(pin, extract = NULL, allow.temp = FALSE) {
     return(NA)
   }
   
-  # Check personal identification number
+  # Get personal identification number
   personal <- as.numeric(substr(pin, start=8, stop=10))
-  if (allow.temp == TRUE) {
-    if (!((personal >= 2) && (personal <= 999))) {
-      return(NA)
-    }
-  } else {
-    if (!((personal >= 2) && (personal <= 899))) {
-      return(NA)
-    }
+  if (personal == 000) {
+    return(NA)
+  } else if (personal == 001) {
+    return(NA)
   }
   
   # Check checksum character
@@ -151,7 +147,7 @@ hetu <- function(pin, extract = NULL, allow.temp = FALSE) {
     sex <- "Male"
   }
 
-  # Check if personal identification number is temporary
+  # Check if personal identification number is artificial or temporary
   if ((personal >= 900)) {
     is.temp <- TRUE
   } else {
@@ -165,11 +161,23 @@ hetu <- function(pin, extract = NULL, allow.temp = FALSE) {
 		 year=full.year, century.char=century, is.temp=is.temp)
   
   # Return full object or only requested part
-  if (is.null(extract)) {
-    return (as.data.frame(object))
-  }
-  else {
-    return(unname(do.call("c", object[extract])))
+
+  if (allow.temp == FALSE) {
+    if (is.null(extract)) {
+      object <- subset(as.data.frame(object), is.temp == FALSE) #Remove temporary PINs
+        if (dim(object)[1] == 0) {return(NA)} #If all PINs were temporary, return NA
+        else {return(object)} #If there were at least some allowed pins, return data frame
+    } else {
+      object <- subset(unname(do.call("c", object[extract])), is.temp == FALSE)
+        if (dim(object)[1] == 0) {return(NA)}
+        else {return(object)}
+    }
+  } else if (allow.temp == TRUE) { #If temporary PINs are allowed, print the whole data frame normally
+    if (is.null(extract)) {
+      return (as.data.frame(object))
+    }
+    else {
+      return(unname(do.call("c", object[extract])))
+    }
   }
 }
-

@@ -19,7 +19,7 @@ pin_ctrl <- function(pin, allow.temp = FALSE) {
   # Try to create hetu-object from the given pin, check if created object 
   # is of the correct class 
   if (length(pin) > 1) {
-    return(sapply(pin, FUN=pin_ctrl))
+    return(sapply(pin, FUN=pin_ctrl, allow.temp = allow.temp))
   }
 
   return(class(hetu(pin, allow.temp = allow.temp)) == "data.frame")
