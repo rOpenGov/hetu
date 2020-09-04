@@ -32,7 +32,7 @@ test_that("pin_ctrl() works correctly", {
   expect_true(all(pin_ctrl(c("010101-0101", "111111-111C"))))
   expect_false(pin_ctrl("010101-010A"))
   expect_true(pin_ctrl("010101A900R", allow.temp = TRUE))
-  expect_true(pin_ctrl("010101A900R", allow.temp = FALSE))
+  expect_false(pin_ctrl("010101A900R", allow.temp = FALSE))
 })
   
 test_that("pin_to_date() works correctly", {

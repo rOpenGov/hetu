@@ -2,7 +2,7 @@
 % Please edit documentation in R/pin_date.R
 \name{pin_date}
 \alias{pin_date}
-\title{ID to Date.}
+\title{Get birthdate from hetu}
 \usage{
 pin_date(pin)
 }
