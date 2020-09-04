@@ -65,7 +65,7 @@ hetu <- function(pin, extract = NULL, allow.temp = FALSE) {
       # Return
       return(res)
     } else {
-      return(unname(do.call("c", lapply(pin, FUN=hetu, extract=extract, allow.temp = allow.temp))))
+      return(unname(do.call("c", lapply(pin, FUN=hetu, extract = extract, allow.temp = allow.temp))))
     }    
   }
   
@@ -161,6 +161,7 @@ hetu <- function(pin, extract = NULL, allow.temp = FALSE) {
 		 year=full.year, century.char=century, is.temp=is.temp)
   
   # Return full object or only requested part
+  # First produce a dataframe that leaves out temp pins if they are not explicitly allowed
 
   if (allow.temp == FALSE) {
     if (is.null(extract)) {
@@ -168,9 +169,9 @@ hetu <- function(pin, extract = NULL, allow.temp = FALSE) {
         if (dim(object)[1] == 0) {return(NA)} #If all PINs were temporary, return NA
         else {return(object)} #If there were at least some allowed pins, return data frame
     } else {
-      object <- subset(unname(do.call("c", object[extract])), is.temp == FALSE)
+      object <- subset(as.data.frame(object), is.temp == FALSE)
         if (dim(object)[1] == 0) {return(NA)}
-        else {return(object)}
+          else {return(unname(do.call("c", object[extract])))}
     }
   } else if (allow.temp == TRUE) { #If temporary PINs are allowed, print the whole data frame normally
     if (is.null(extract)) {
