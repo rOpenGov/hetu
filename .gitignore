@@ -10,3 +10,7 @@ vignettes/figure
 .Rproj.user
 *.Rproj
 .Rhistory
+doc
+Meta
+docs
+inst/doc

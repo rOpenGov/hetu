@@ -3,5 +3,7 @@
 export(hetu)
 export(pin_age)
 export(pin_ctrl)
+export(pin_date)
 export(pin_sex)
 export(pin_to_date)
+export(rpin)

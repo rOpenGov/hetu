@@ -11,9 +11,9 @@ inst/win-install*
 
 # Vignette sources
 # vignettes/sorvi_tutorial.Rmd
-vignettes/main.R
-vignettes/figure
-cran-comments.md
+# vignettes/main.R
+# vignettes/figure
+# cran-comments.md
 
 # Git related
 .git*
@@ -28,3 +28,8 @@ cran-comments.md
 ^\.travis\.yml$
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^doc$
+^Meta$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$

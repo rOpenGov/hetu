@@ -3,16 +3,20 @@
 #' @param pin Finnish personal identification number as a character vector, 
 #' 	  or vector of identification numbers as a character vectors
 #' @param extract Extract only selected part of the information. 
-#'    Valid values are "\code{hetu}", "\code{gender}", "\code{personal.number}",
+#'    Valid values are "\code{hetu}", "\code{sex}", "\code{personal.number}",
 #'    "\code{checksum}", "\code{date}", "\code{day}", "\code{month}", 
-#'    "\code{year}", "\code{century.char}".
+#'    "\code{year}", "\code{century.char}", "\code{is.temp}".
 #'    If \code{NULL} (default), returns all information. 
+#' @param allow.temp Allow artificial or temporary PINs (personal numbers 900-999). 
+#'    If \code{FALSE} (default), only PINs intended for official use (personal numbers 002-899) are allowed.
 #' @return Finnish personal identification number data.frame,
-#'         or if extract parameter is set, the requested part of the 
+#'     or if extract parameter is set, the requested part of the 
 #'	   information as a vector. Returns \code{NA} if the given character 
 #'	   vector is not a valid Finnish personal identification number.
-#' \item{hetu}{Finnish personal identification number as a character vector.}
-#' \item{gender}{Gender of the person as a character vector ("Male" or "Female").}
+#' \item{hetu}{Finnish personal identification number as a character vector. 
+#'     A correct pin should be in the form DDMMYYCZZZQ, where DDMMYY stands for date, C for century sign, 
+#'     ZZZ for personal number and Q for checksum character.}
+#' \item{sex}{sex of the person as a character vector ("Male" or "Female").}
 #' \item{personal.number}{Personal number part of the identification number.}
 #' \item{checksum}{Checksum for the personal identification number.}
 #' \item{date}{Birthdate.}
@@ -20,7 +24,8 @@
 #' \item{month}{Month of the birthdate.}
 #' \item{year}{Year of the birthdate.}
 #' \item{century.char}{Century character of the birthdate: 
-#'                     + (1800), - (1900) or A (2000). }
+#'            + (1800), - (1900) or A (2000). }
+#' \item{is.temp}{Is the personal identification number an artificial number intended for temporary use: (\code{TRUE} or \code{FALSE})}
 #' 
 #' @author Jussi Paananen \email{louhos@@googlegroups.com} 
 #' @seealso \code{\link{pin_ctrl}} For validating Finnish personal 
@@ -28,21 +33,21 @@
 #' @examples
 #' hetu("111111-111C")
 #' hetu("111111-111C")$date
-#' hetu("111111-111C")$gender
+#' hetu("111111-111C")$sex
 #' # Same as previous, but using extract argument
-#' hetu("111111-111C", extract="gender")
+#' hetu("111111-111C", extract="sex")
 #' 
 #' # Process a vector of hetu's
 #' hetu(c("010101-0101", "111111-111C"))
 #' 
-#' # Process a vector of hetu's and extract gender information from each
-#' hetu(c("010101-0101", "111111-111C"), extract="gender")
+#' # Process a vector of hetu's and extract sex information from each
+#' hetu(c("010101-0101", "111111-111C"), extract="sex")
 #' @export
-hetu <- function(pin, extract=NULL) {
+hetu <- function(pin, extract = NULL, allow.temp = FALSE) {
 
   if (!is.null(extract)) {
-    if (!extract %in% c("hetu", "gender", "personal.number", "checksum", 
-       		        "date", "day", "month", "year", "century.char")) {
+    if (!extract %in% c("hetu", "sex", "personal.number", "checksum", 
+       		        "date", "day", "month", "year", "century.char", "is.temp")) {
       stop("Trying to extract invalid part of hetu")
     }
   }
@@ -50,7 +55,7 @@ hetu <- function(pin, extract=NULL) {
   # Check if the input parameter is a vector
   if (length(pin) > 1) {
     if (is.null(extract)) {
-      res <- lapply(pin, FUN=hetu, extract=extract)
+      res <- lapply(pin, FUN=hetu, extract = extract, allow.temp = allow.temp)
       # Convert dates to characters to avoid conversion problems
       for (i in 1:length(res)) {res[[i]]$date <- as.character(res[[i]]$date)}
       # Convert list to data.frame
@@ -60,18 +65,12 @@ hetu <- function(pin, extract=NULL) {
       # Return
       return(res)
     } else {
-      return(unname(do.call("c", lapply(pin, FUN=hetu, extract=extract))))
+      return(unname(do.call("c", lapply(pin, FUN=hetu, extract = extract, allow.temp = allow.temp))))
     }    
   }
   
   # Convert to character vector if necessary
   if(!is.character(pin)) pin <- as.character(pin)
-  
-  # Check general format
-  match <- regexpr("^[0-9]{6}[\\+-A][0-9]{3}[0123456789ABCDEFHJKLMNPRSTUVWXY]$", pin)
-  if (match == -1 ) {
-    return(NA)
-  }
   
   # Check day
   day <- as.numeric(substr(pin, start=1, stop=2))
@@ -118,12 +117,6 @@ hetu <- function(pin, extract=NULL) {
     return(NA)
   }
   
-  # Check personal identification number
-  personal <- as.numeric(substr(pin, start=8, stop=10))
-  if (!((personal >= 2) && (personal <= 899))) {
-    return(NA)
-  }
-  
   # Check checksum character validity
   check <- substr(pin, start=11, stop=11)
   checklist <- c("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", "H", "J", "K", "L", "M", "N", "P", "R", "S", "T", "U", "V", "W", "X", "Y")
@@ -131,6 +124,15 @@ hetu <- function(pin, extract=NULL) {
   if (!check %in% checklist) {
     return(NA)
   }
+  
+  # Get personal identification number
+  personal <- as.numeric(substr(pin, start=8, stop=10))
+  if (personal == 000) {
+    return(NA)
+  } else if (personal == 001) {
+    return(NA)
+  }
+  
   # Check checksum character
   mod <- as.numeric(paste(substr(pin, start=1, stop=6), 
       	 		substr(pin, start=8, stop=10), sep="")) %% 31
@@ -138,25 +140,45 @@ hetu <- function(pin, extract=NULL) {
     return(NA)
   }
   
-  # Check gender
+  # Check sex
   if ((personal %% 2) == 0) {
-    gender <- "Female"
+    sex <- "Female"
   } else {
-    gender <- "Male"
+    sex <- "Male"
   }
 
+  # Check if personal identification number is artificial or temporary
+  if ((personal >= 900)) {
+    is.temp <- TRUE
+  } else {
+    is.temp <- FALSE
+  }
+  
   # Create hetu-object
-  object <- list(hetu = pin, gender=gender, 
-  	         personal.number=personal, 
+  object <- list(hetu = pin, sex=sex, 
+  	         personal.number=formatC(personal, width = 3, format = "d", flag = "0"), 
   	         checksum=check, date=date, day=day, month=month, 
-		 year=full.year, century.char=century)
+		 year=full.year, century.char=century, is.temp=is.temp)
   
   # Return full object or only requested part
-  if (is.null(extract)) {
-    return (as.data.frame(object))
-  }
-  else {
-    return(unname(do.call("c", object[extract])))
+  # First produce a dataframe that leaves out temp pins if they are not explicitly allowed
+
+  if (allow.temp == FALSE) {
+    if (is.null(extract)) {
+      object <- subset(as.data.frame(object), is.temp == FALSE) #Remove temporary PINs
+        if (dim(object)[1] == 0) {return(NA)} #If all PINs were temporary, return NA
+        else {return(object)} #If there were at least some allowed pins, return data frame
+    } else {
+      object <- subset(as.data.frame(object), is.temp == FALSE)
+        if (dim(object)[1] == 0) {return(NA)}
+          else {return(unname(do.call("c", object[extract])))}
+    }
+  } else if (allow.temp == TRUE) { #If temporary PINs are allowed, print the whole data frame normally
+    if (is.null(extract)) {
+      return (as.data.frame(object))
+    }
+    else {
+      return(unname(do.call("c", object[extract])))
+    }
   }
 }
-

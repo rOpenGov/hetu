@@ -1,12 +1,14 @@
 Package: hetu
 Type: Package
-Title: Finnish Open Government Data Toolkit
-Version: 0.1.1
-Date: 2020-06-26
+Title: Structural handling of Finnish personal identity numbers
+Version: 0.2.0
+Encoding: UTF-8
+Date: 2020-09-03
 Authors@R: c(
-  person("Leo", "Lahti", email = "leo.lahti@iki.fi", role = c("aut", "cre")),
+  person("Pyry", "Kantanen", email = "pyry.kantanen@gmail.com", role = c("aut", "cre")),
   person("Mans", "Magnusson", role = "aut"),
-  person("Jussi", "Paananen", role = "aut")  
+  person("Jussi", "Paananen", role = "aut"),
+  person("Leo", "Lahti", role = "aut")
   )
 MailingList: rOpenGov <ropengov-forum@googlegroups.com>
 Description: Algorithms for Finnish open government data.
@@ -22,5 +24,6 @@ Suggests:
     lubridate,
     dplyr,
     knitr,
-    testthat
-RoxygenNote: 7.1.0
+    testthat,
+    rmarkdown
+RoxygenNote: 7.1.1
