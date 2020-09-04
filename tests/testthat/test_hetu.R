@@ -24,18 +24,25 @@ test_that("hetu() works correctly", {
   expect_equal(as.character(hetu("010101A0101")$century.char), "A")
   expect_true(is.na(hetu("010101-000G"))) #Check checksum character validity
   expect_true(is.na(hetu("010101-000P", allow.temp = TRUE))) #Check personal identification number
+  expect_true(is.na(hetu("010101-001R", allow.temp = TRUE))) #Check personal identification number
+  expect_true(!is.null(hetu("010101A900R", allow.temp = TRUE)))
 })
 
 test_that("pin_ctrl() works correctly", {
   expect_true(all(pin_ctrl(c("010101-0101", "111111-111C"))))
   expect_false(pin_ctrl("010101-010A"))
   expect_true(pin_ctrl("010101A900R", allow.temp = TRUE))
-  expect_false(pin_ctrl("010101A900R", allow.temp = FALSE))
+  expect_true(pin_ctrl("010101A900R", allow.temp = FALSE))
 })
   
 test_that("pin_to_date() works correctly", {
   expect_true(all((pin_to_date(c("010101-0101", "111111-111C")) == c("1901-01-01", "1911-11-11"))))
   expect_true(all((pin_to_date(c("010101A0101", "111111A111C")) == c("2001-01-01", "2011-11-11"))))
+})
+
+test_that("pin_date() works correctly", {
+  expect_true(all((pin_date(c("010101-0101", "111111-111C")) == c("1901-01-01", "1911-11-11"))))
+  expect_true(all((pin_date(c("010101A0101", "111111A111C")) == c("2001-01-01", "2011-11-11"))))
 })
  
 test_that("pin_age() works correctly", { 
