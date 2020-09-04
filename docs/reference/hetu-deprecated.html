@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Sex from ID — pin_sex • hetu</title>
+<title>Deprecated functions in package <span class="pkg">hetu</span>. — hetu-deprecated • hetu</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,11 @@
 
 
 
-<meta property="og:title" content="Sex from ID — pin_sex" />
-<meta property="og:description" content="Extract sex from Finnish personal identification number." />
+<meta property="og:title" content="Deprecated functions in package <span class="pkg">hetu</span>. — hetu-deprecated" />
+<meta property="og:description" content="The functions listed below are deprecated and will be defunct in
+  the near future. When possible, alternative functions with similar
+  functionality are also mentioned. Help pages for deprecated functions are
+  available at help(&quot;-deprecated&quot;)." />
 
 
 
@@ -114,37 +117,27 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Sex from ID</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ropengov/hetu/blob/master/R/pin_sex.R'><code>R/pin_sex.R</code></a></small>
-    <div class="hidden name"><code>pin_sex.Rd</code></div>
+    <h1>Deprecated functions in package <span class="pkg">hetu</span>.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ropengov/hetu/blob/master/R/hetu-deprecated.R'><code>R/hetu-deprecated.R</code></a>, <a href='https://github.com/ropengov/hetu/blob/master/R/pin_to_date.R'><code>R/pin_to_date.R</code></a></small>
+    <div class="hidden name"><code>hetu-deprecated.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Extract sex from Finnish personal identification number.</p>
+    <p>The functions listed below are deprecated and will be defunct in
+  the near future. When possible, alternative functions with similar
+  functionality are also mentioned. Help pages for deprecated functions are
+  available at <code>help("-deprecated")</code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>pin_sex</span>(<span class='no'>pin</span>)</pre>
+    <pre class="usage"><span class='fu'>pin_to_date</span>(<span class='no'>pin</span>)</pre>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>pin</th>
-      <td><p>Finnish personal identification number as a character vector, 
-or vector of identification numbers as a character vectors</p></td>
-    </tr>
-    </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+    <h2 class="hasAnchor" id="pin-to-date"><a class="anchor" href="#pin-to-date"></a><code>pin_to_date</code></h2>
 
-    <p>Factor with label 'Male' and 'Female'.</p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+    
 
-    <div class='dont-index'><p><code><a href='hetu.html'>hetu</a></code> For general information extraction</p></div>
+<p>For <code>pin_to_date</code>, use <code><a href='pin_date.html'>pin_date</a></code>.</p>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>pin_sex</span>(<span class='st'>"010101-010A"</span>)</div><div class='output co'>#&gt; [1] &lt;NA&gt;
-#&gt; Levels: Female Male</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

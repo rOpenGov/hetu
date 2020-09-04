@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">hetu</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1</span>
       </span>
     </div>
 
@@ -85,19 +85,10 @@
   </a>
 </li>
 <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="../articles/hetu.html">Get started</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/vignette.html">Structural handling of Finnish identity numbers (hetu R package)</a>
-    </li>
-  </ul>
+<li>
+  <a href="../reference/index.html">Reference</a>
 </li>
 <li>
   <a href="../news/index.html">Changelog</a>
@@ -132,7 +123,7 @@
     <p>Extract information from Finnish personal identification numbers (hetu).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>hetu</span>(<span class='no'>pin</span>, <span class='kw'>extract</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>hetu</span>(<span class='no'>pin</span>, <span class='kw'>extract</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>allow.temp</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -145,21 +136,28 @@ or vector of identification numbers as a character vectors</p></td>
     <tr>
       <th>extract</th>
       <td><p>Extract only selected part of the information. 
-Valid values are "<code>hetu</code>", "<code>gender</code>", "<code>personal.number</code>",
+Valid values are "<code>hetu</code>", "<code>sex</code>", "<code>personal.number</code>",
 "<code>checksum</code>", "<code>date</code>", "<code>day</code>", "<code>month</code>", 
-"<code>year</code>", "<code>century.char</code>".
+"<code>year</code>", "<code>century.char</code>", "<code>is.temp</code>".
 If <code>NULL</code> (default), returns all information.</p></td>
+    </tr>
+    <tr>
+      <th>allow.temp</th>
+      <td><p>Allow artificial or temporary PINs (personal numbers 900-999). 
+If <code>FALSE</code> (default), only PINs intended for official use (personal numbers 002-899) are allowed.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>Finnish personal identification number data.frame,
-        or if extract parameter is set, the requested part of the 
+    or if extract parameter is set, the requested part of the 
    information as a vector. Returns <code>NA</code> if the given character 
    vector is not a valid Finnish personal identification number.</p>
-<dt>hetu</dt><dd><p>Finnish personal identification number as a character vector.</p></dd>
-<dt>gender</dt><dd><p>Gender of the person as a character vector ("Male" or "Female").</p></dd>
+<dt>hetu</dt><dd><p>Finnish personal identification number as a character vector. 
+    A correct pin should be in the form DDMMYYCZZZQ, where DDMMYY stands for date, C for century sign, 
+    ZZZ for personal number and Q for checksum character.</p></dd>
+<dt>sex</dt><dd><p>sex of the person as a character vector ("Male" or "Female").</p></dd>
 <dt>personal.number</dt><dd><p>Personal number part of the identification number.</p></dd>
 <dt>checksum</dt><dd><p>Checksum for the personal identification number.</p></dd>
 <dt>date</dt><dd><p>Birthdate.</p></dd>
@@ -167,7 +165,8 @@ If <code>NULL</code> (default), returns all information.</p></td>
 <dt>month</dt><dd><p>Month of the birthdate.</p></dd>
 <dt>year</dt><dd><p>Year of the birthdate.</p></dd>
 <dt>century.char</dt><dd><p>Century character of the birthdate: 
-                    + (1800), - (1900) or A (2000).</p></dd>
+           + (1800), - (1900) or A (2000).</p></dd>
+<dt>is.temp</dt><dd><p>Is the personal identification number an artificial number intended for temporary use: (<code>TRUE</code> or <code>FALSE</code>)</p></dd>
 
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -175,20 +174,20 @@ If <code>NULL</code> (default), returns all information.</p></td>
 	    identification numbers.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>hetu</span>(<span class='st'>"111111-111C"</span>)</div><div class='output co'>#&gt;          hetu gender personal.number checksum       date day month year
-#&gt; 1 111111-111C   Male             111        C 1911-11-11  11    11 1911
-#&gt;   century.char
-#&gt; 1            -</div><div class='input'><span class='fu'>hetu</span>(<span class='st'>"111111-111C"</span>)$<span class='no'>date</span></div><div class='output co'>#&gt; [1] "1911-11-11"</div><div class='input'><span class='fu'>hetu</span>(<span class='st'>"111111-111C"</span>)$<span class='no'>gender</span></div><div class='output co'>#&gt; [1] "Male"</div><div class='input'><span class='co'># Same as previous, but using extract argument</span>
-<span class='fu'>hetu</span>(<span class='st'>"111111-111C"</span>, <span class='kw'>extract</span><span class='kw'>=</span><span class='st'>"gender"</span>)</div><div class='output co'>#&gt; [1] "Male"</div><div class='input'>
+    <pre class="examples"><div class='input'><span class='fu'>hetu</span>(<span class='st'>"111111-111C"</span>)</div><div class='output co'>#&gt;          hetu  sex personal.number checksum       date day month year
+#&gt; 1 111111-111C Male             111        C 1911-11-11  11    11 1911
+#&gt;   century.char is.temp
+#&gt; 1            -   FALSE</div><div class='input'><span class='fu'>hetu</span>(<span class='st'>"111111-111C"</span>)$<span class='no'>date</span></div><div class='output co'>#&gt; [1] "1911-11-11"</div><div class='input'><span class='fu'>hetu</span>(<span class='st'>"111111-111C"</span>)$<span class='no'>sex</span></div><div class='output co'>#&gt; [1] "Male"</div><div class='input'><span class='co'># Same as previous, but using extract argument</span>
+<span class='fu'>hetu</span>(<span class='st'>"111111-111C"</span>, <span class='kw'>extract</span><span class='kw'>=</span><span class='st'>"sex"</span>)</div><div class='output co'>#&gt; [1] "Male"</div><div class='input'>
 <span class='co'># Process a vector of hetu's</span>
-<span class='fu'>hetu</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"010101-0101"</span>, <span class='st'>"111111-111C"</span>))</div><div class='output co'>#&gt;          hetu gender personal.number checksum       date day month year
-#&gt; 1 010101-0101 Female              10        1 1901-01-01   1     1 1901
+<span class='fu'>hetu</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"010101-0101"</span>, <span class='st'>"111111-111C"</span>))</div><div class='output co'>#&gt;          hetu    sex personal.number checksum       date day month year
+#&gt; 1 010101-0101 Female             010        1 1901-01-01   1     1 1901
 #&gt; 2 111111-111C   Male             111        C 1911-11-11  11    11 1911
-#&gt;   century.char
-#&gt; 1            -
-#&gt; 2            -</div><div class='input'>
-<span class='co'># Process a vector of hetu's and extract gender information from each</span>
-<span class='fu'>hetu</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"010101-0101"</span>, <span class='st'>"111111-111C"</span>), <span class='kw'>extract</span><span class='kw'>=</span><span class='st'>"gender"</span>)</div><div class='output co'>#&gt; [1] "Female" "Male"  </div></pre>
+#&gt;   century.char is.temp
+#&gt; 1            -   FALSE
+#&gt; 2            -   FALSE</div><div class='input'>
+<span class='co'># Process a vector of hetu's and extract sex information from each</span>
+<span class='fu'>hetu</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"010101-0101"</span>, <span class='st'>"111111-111C"</span>), <span class='kw'>extract</span><span class='kw'>=</span><span class='st'>"sex"</span>)</div><div class='output co'>#&gt; [1] "Female" "Male"  </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -200,7 +199,7 @@ If <code>NULL</code> (default), returns all information.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Leo Lahti, Mans Magnusson, Jussi Paananen.</p>
+  <p>Developed by Pyry Kantanen, Mans Magnusson, Jussi Paananen, Leo Lahti.</p>
 </div>
 
 <div class="pkgdown">

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Sex from ID — pin_sex • hetu</title>
+<title>Generate a vector of random <code>hetu</code> — rpin • hetu</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,9 @@
 
 
 
-<meta property="og:title" content="Sex from ID — pin_sex" />
-<meta property="og:description" content="Extract sex from Finnish personal identification number." />
+<meta property="og:title" content="Generate a vector of random <code>hetu</code> — rpin" />
+<meta property="og:description" content="A function that generates random hetu-pins. 
+The generated hetu is uniformely distributed over the time period." />
 
 
 
@@ -114,37 +115,64 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Sex from ID</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ropengov/hetu/blob/master/R/pin_sex.R'><code>R/pin_sex.R</code></a></small>
-    <div class="hidden name"><code>pin_sex.Rd</code></div>
+    <h1>Generate a vector of random <code>hetu</code></h1>
+    <small class="dont-index">Source: <a href='https://github.com/ropengov/hetu/blob/master/R/rpin.R'><code>R/rpin.R</code></a></small>
+    <div class="hidden name"><code>rpin.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Extract sex from Finnish personal identification number.</p>
+    <p>A function that generates random <code>hetu</code>-pins. 
+The generated <code>hetu</code> is uniformely distributed over the time period.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>pin_sex</span>(<span class='no'>pin</span>)</pre>
+    <pre class="usage"><span class='fu'>rpin</span>(
+  <span class='no'>n</span>,
+  <span class='kw'>start_date</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span>(<span class='st'>"1895-01-01"</span>),
+  <span class='kw'>end_date</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.Date</a></span>()),
+  <span class='kw'>p.male</span> <span class='kw'>=</span> <span class='fl'>0.4</span>,
+  <span class='kw'>p.temp</span> <span class='kw'>=</span> <span class='fl'>0</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>pin</th>
-      <td><p>Finnish personal identification number as a character vector, 
-or vector of identification numbers as a character vectors</p></td>
+      <th>n</th>
+      <td><p>number of observations.</p></td>
+    </tr>
+    <tr>
+      <th>start_date</th>
+      <td><p>Lower limit of generated <code>hetu</code> dates. Default is 1895-01-01.</p></td>
+    </tr>
+    <tr>
+      <th>end_date</th>
+      <td><p>Upper limit of generated <code>hetu</code>. Default is the current date.</p></td>
+    </tr>
+    <tr>
+      <th>p.male</th>
+      <td><p>Proportion of males. Default is 0.4.</p></td>
+    </tr>
+    <tr>
+      <th>p.temp</th>
+      <td><p>Proportion of temporary identification numbers. Default is 0.0.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Factor with label 'Male' and 'Female'.</p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p><code><a href='hetu.html'>hetu</a></code> For general information extraction</p></div>
+    <p>a vector of generated <code>hetu</code>-pins.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>pin_sex</span>(<span class='st'>"010101-010A"</span>)</div><div class='output co'>#&gt; [1] &lt;NA&gt;
-#&gt; Levels: Female Male</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>rpin</span>(<span class='fl'>3</span>)
+<span class='fu'><a href='hetu.html'>hetu</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt;          hetu    sex personal.number checksum       date day month year
+#&gt; 1 180323-306U Female             306        U 1923-03-18  18     3 1923
+#&gt; 2 080978-7281 Female             728        1 1978-09-08   8     9 1978
+#&gt; 3 301246-672K Female             672        K 1946-12-30  30    12 1946
+#&gt;   century.char is.temp
+#&gt; 1            -   FALSE
+#&gt; 2            -   FALSE
+#&gt; 3            -   FALSE</div><div class='input'><span class='fu'><a href='hetu.html'>hetu</a></span>(<span class='no'>x</span>, <span class='kw'>extract</span> <span class='kw'>=</span> <span class='st'>"sex"</span>)</div><div class='output co'>#&gt; [1] "Female" "Female" "Female"</div><div class='input'><span class='fu'><a href='hetu.html'>hetu</a></span>(<span class='no'>x</span>, <span class='kw'>extract</span> <span class='kw'>=</span> <span class='st'>"checksum"</span>)</div><div class='output co'>#&gt; [1] "U" "1" "K"</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
