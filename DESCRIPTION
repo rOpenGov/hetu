@@ -1,7 +1,7 @@
 Package: hetu
 Type: Package
 Title: Structural handling of Finnish personal identity numbers
-Version: 0.1.1
+Version: 0.2.0
 Encoding: UTF-8
 Date: 2020-09-03
 Authors@R: c(
