@@ -12,10 +12,6 @@ Date of birth as a vector in date format.
 \description{
 Calculates the date of birth in date format.
 }
-\examples{
-pin_to_date(c("010101-0101", "111111-111C"))
-
-}
 \seealso{
 \code{\link{hetu-deprecated}}
 }

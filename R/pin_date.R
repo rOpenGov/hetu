@@ -3,7 +3,7 @@
 #' @inheritParams hetu
 #' @return Date of birth as a vector in date format.
 #' @examples
-#' pin_to_date(c("010101-0101", "111111-111C"))
+#' pin_date(c("010101-0101", "111111-111C"))
 #' 
 #' @export
 pin_date <- function(pin) {
