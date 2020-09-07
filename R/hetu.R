@@ -56,6 +56,10 @@ hetu <- function(pin, extract = NULL, allow.temp = FALSE) {
   if (length(pin) > 1) {
     if (is.null(extract)) {
       res <- lapply(pin, FUN=hetu, extract = extract, allow.temp = allow.temp)
+      # Remove possible NAs
+      res <- res[!is.na(res)]
+      # Prevent using 0 length vector
+      if (length(res) == 0) {stop("Input valid PINs or change allow.temp = TRUE")}
       # Convert dates to characters to avoid conversion problems
       for (i in 1:length(res)) {res[[i]]$date <- as.character(res[[i]]$date)}
       # Convert list to data.frame
@@ -171,7 +175,7 @@ hetu <- function(pin, extract = NULL, allow.temp = FALSE) {
     } else {
       object <- subset(as.data.frame(object), is.temp == FALSE)
         if (dim(object)[1] == 0) {return(NA)}
-          else {return(unname(do.call("c", object[extract])))}
+        else {return(unname(do.call("c", object[extract])))}
     }
   } else if (allow.temp == TRUE) { #If temporary PINs are allowed, print the whole data frame normally
     if (is.null(extract)) {

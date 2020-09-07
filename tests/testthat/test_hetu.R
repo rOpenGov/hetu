@@ -27,6 +27,7 @@ test_that("hetu() works correctly", {
   expect_true(is.na(hetu("010101-000P", allow.temp = TRUE))) #Check personal identification number
   expect_true(is.na(hetu("010101-001R", allow.temp = TRUE))) #Check personal identification number
   expect_true(!is.null(hetu("010101A900R", allow.temp = TRUE)))
+  expect_error(hetu(c("010101A900R", "010101A900R"))) #Test for 0 length vectors
 })
 
 test_that("pin_ctrl() works correctly", {
