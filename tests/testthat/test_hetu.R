@@ -37,8 +37,8 @@ test_that("pin_ctrl() works correctly", {
 })
   
 test_that("pin_to_date() works correctly", {
-  expect_true(all((pin_to_date(c("010101-0101", "111111-111C")) == c("1901-01-01", "1911-11-11"))))
-  expect_true(all((pin_to_date(c("010101A0101", "111111A111C")) == c("2001-01-01", "2011-11-11"))))
+  expect_warning(all((pin_to_date(c("010101-0101", "111111-111C")) == c("1901-01-01", "1911-11-11"))))
+  expect_warning(all((pin_to_date(c("010101A0101", "111111A111C")) == c("2001-01-01", "2011-11-11"))))
 })
 
 test_that("pin_date() works correctly", {
