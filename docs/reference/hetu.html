@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">hetu</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.3</span>
       </span>
     </div>
 
@@ -138,7 +138,7 @@ or vector of identification numbers as a character vectors</p></td>
       <td><p>Extract only selected part of the information. 
 Valid values are "<code>hetu</code>", "<code>sex</code>", "<code>personal.number</code>",
 "<code>checksum</code>", "<code>date</code>", "<code>day</code>", "<code>month</code>", 
-"<code>year</code>", "<code>century.char</code>", "<code>is.temp</code>".
+"<code>year</code>", "<code>century</code>", "<code>is.temp</code>".
 If <code>NULL</code> (default), returns all information.</p></td>
     </tr>
     <tr>
@@ -164,7 +164,7 @@ If <code>FALSE</code> (default), only PINs intended for official use (personal n
 <dt>day</dt><dd><p>Day of the birthdate.</p></dd>
 <dt>month</dt><dd><p>Month of the birthdate.</p></dd>
 <dt>year</dt><dd><p>Year of the birthdate.</p></dd>
-<dt>century.char</dt><dd><p>Century character of the birthdate: 
+<dt>century</dt><dd><p>Century character of the birthdate: 
            + (1800), - (1900) or A (2000).</p></dd>
 <dt>is.temp</dt><dd><p>Is the personal identification number an artificial number intended for temporary use: (<code>TRUE</code> or <code>FALSE</code>)</p></dd>
 
@@ -174,18 +174,18 @@ If <code>FALSE</code> (default), only PINs intended for official use (personal n
 	    identification numbers.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>hetu</span>(<span class='st'>"111111-111C"</span>)</div><div class='output co'>#&gt;          hetu  sex personal.number checksum       date day month year
-#&gt; 1 111111-111C Male             111        C 1911-11-11  11    11 1911
-#&gt;   century.char is.temp
-#&gt; 1            -   FALSE</div><div class='input'><span class='fu'>hetu</span>(<span class='st'>"111111-111C"</span>)$<span class='no'>date</span></div><div class='output co'>#&gt; [1] "1911-11-11"</div><div class='input'><span class='fu'>hetu</span>(<span class='st'>"111111-111C"</span>)$<span class='no'>sex</span></div><div class='output co'>#&gt; [1] "Male"</div><div class='input'><span class='co'># Same as previous, but using extract argument</span>
+    <pre class="examples"><div class='input'><span class='fu'>hetu</span>(<span class='st'>"111111-111C"</span>)</div><div class='output co'>#&gt;          hetu  sex personal.number checksum       date day month year century
+#&gt; 1 111111-111C Male             111        C 1911-11-11  11    11 1911       -
+#&gt;   is.temp
+#&gt; 1   FALSE</div><div class='input'><span class='fu'>hetu</span>(<span class='st'>"111111-111C"</span>)$<span class='no'>date</span></div><div class='output co'>#&gt; [1] "1911-11-11"</div><div class='input'><span class='fu'>hetu</span>(<span class='st'>"111111-111C"</span>)$<span class='no'>sex</span></div><div class='output co'>#&gt; [1] "Male"</div><div class='input'><span class='co'># Same as previous, but using extract argument</span>
 <span class='fu'>hetu</span>(<span class='st'>"111111-111C"</span>, <span class='kw'>extract</span><span class='kw'>=</span><span class='st'>"sex"</span>)</div><div class='output co'>#&gt; [1] "Male"</div><div class='input'>
 <span class='co'># Process a vector of hetu's</span>
-<span class='fu'>hetu</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"010101-0101"</span>, <span class='st'>"111111-111C"</span>))</div><div class='output co'>#&gt;          hetu    sex personal.number checksum       date day month year
-#&gt; 1 010101-0101 Female             010        1 1901-01-01   1     1 1901
-#&gt; 2 111111-111C   Male             111        C 1911-11-11  11    11 1911
-#&gt;   century.char is.temp
-#&gt; 1            -   FALSE
-#&gt; 2            -   FALSE</div><div class='input'>
+<span class='fu'>hetu</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"010101-0101"</span>, <span class='st'>"111111-111C"</span>))</div><div class='output co'>#&gt;          hetu    sex personal.number checksum       date day month year century
+#&gt; 1 010101-0101 Female             010        1 1901-01-01   1     1 1901       -
+#&gt; 2 111111-111C   Male             111        C 1911-11-11  11    11 1911       -
+#&gt;   is.temp
+#&gt; 1   FALSE
+#&gt; 2   FALSE</div><div class='input'>
 <span class='co'># Process a vector of hetu's and extract sex information from each</span>
 <span class='fu'>hetu</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"010101-0101"</span>, <span class='st'>"111111-111C"</span>), <span class='kw'>extract</span><span class='kw'>=</span><span class='st'>"sex"</span>)</div><div class='output co'>#&gt; [1] "Female" "Male"  </div></pre>
   </div>
@@ -203,7 +203,7 @@ If <code>FALSE</code> (default), only PINs intended for official use (personal n
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>
