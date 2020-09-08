@@ -99,7 +99,7 @@ hetu <- function(pin, extract = NULL, allow.temp = FALSE) {
   # Check century
   century <- substr(pin, start=7, stop=7)
   if (!century %in% c("+", "-", "A")) {
-    warning(paste0("Invalid century character '", century, "' in hetu", hetu))
+    warning(paste0("Invalid century character '", century, "' in hetu", pin))
     return(NA)
   }
   
