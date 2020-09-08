@@ -13,7 +13,7 @@ or vector of identification numbers as a character vectors}
 \item{extract}{Extract only selected part of the information. 
 Valid values are "\code{hetu}", "\code{sex}", "\code{personal.number}",
 "\code{checksum}", "\code{date}", "\code{day}", "\code{month}", 
-"\code{year}", "\code{century.char}", "\code{is.temp}".
+"\code{year}", "\code{century}", "\code{is.temp}".
 If \code{NULL} (default), returns all information.}
 
 \item{allow.temp}{Allow artificial or temporary PINs (personal numbers 900-999). 
@@ -34,7 +34,7 @@ Finnish personal identification number data.frame,
 \item{day}{Day of the birthdate.}
 \item{month}{Month of the birthdate.}
 \item{year}{Year of the birthdate.}
-\item{century.char}{Century character of the birthdate: 
+\item{century}{Century character of the birthdate: 
            + (1800), - (1900) or A (2000). }
 \item{is.temp}{Is the personal identification number an artificial number intended for temporary use: (\code{TRUE} or \code{FALSE})}
 }

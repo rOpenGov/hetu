@@ -48,7 +48,7 @@ Sys.setlocale(locale="UTF-8")
 
 ## Personal identification number (HETU)
 
-At simplest, we can use the basic hetu function to view information from a single Finnish personal identification number. The data is outputted as a data frame.
+The basic hetu function can be used to view information from a Finnish personal identification number. The data is outputted as a data frame.
 
 ```{r hetu_example1, message=FALSE}
 example_pin <- "111111-111C"
@@ -61,16 +61,18 @@ The output can be made prettier, for example by using knitr:
 knitr::kable(hetu(example_pin))
 ```
 
-The hetu function also accepts vectors as input:
+The hetu function also accepts vectors with several identification numbers as input:
 
 ```{r hetu_example3, message=FALSE}
 example_pins <- c("010101-0101", "111111-111C")
 knitr::kable(hetu(example_pins))
 ```
 
-Validating Finnish personal identification number:
+If the input contains only invalid pins, the hetu function produces an error 
 
-```{r hetu2, fig.message=FALSE}
+The validity of the input Finnish personal identification number:
+
+```{r pin_ctrl_example1, fig.message=FALSE}
 pin_ctrl("010101-0101") # TRUE/FALSE 
 pin_ctrl("010101-1010") # FALSE
 ```

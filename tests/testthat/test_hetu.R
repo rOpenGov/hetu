@@ -18,16 +18,17 @@ test_that("hetu() works correctly", {
   expect_true(is.na(hetu("320101-010A"))) #Check day
   expect_true(is.na(hetu("011301-010P"))) #Check month
   expect_true(is.na(hetu("0101-1-0101"))) #Check year
-  expect_true(is.na(hetu("010101B0101"))) #Check century
+  expect_warning(hetu("010101B0101")) #Check century
   expect_true(is.na(hetu("290201-010A"))) #Check if date exists
-  expect_equal(as.character(hetu("010199+010A")$century.char), "+")
-  expect_equal(as.character(hetu("010101-0101")$century.char), "-")
-  expect_equal(as.character(hetu("010101A0101")$century.char), "A")
-  expect_true(is.na(hetu("010101-000G"))) #Check checksum character validity
+  expect_equal(as.character(hetu("010199+010A")$century), "+")
+  expect_equal(as.character(hetu("010101-0101")$century), "-")
+  expect_equal(as.character(hetu("010101A0101")$century), "A")
+  expect_warning(hetu("010101-000G")) #Check checksum character validity
   expect_true(is.na(hetu("010101-000P", allow.temp = TRUE))) #Check personal identification number
   expect_true(is.na(hetu("010101-001R", allow.temp = TRUE))) #Check personal identification number
   expect_true(!is.null(hetu("010101A900R", allow.temp = TRUE)))
   expect_error(hetu(c("010101A900R", "010101A900R"))) #Test for 0 length vectors
+  expect_warning(hetu("010101-01013"))
 })
 
 test_that("pin_ctrl() works correctly", {
