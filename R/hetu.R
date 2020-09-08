@@ -5,7 +5,7 @@
 #' @param extract Extract only selected part of the information. 
 #'    Valid values are "\code{hetu}", "\code{sex}", "\code{personal.number}",
 #'    "\code{checksum}", "\code{date}", "\code{day}", "\code{month}", 
-#'    "\code{year}", "\code{century.char}", "\code{is.temp}".
+#'    "\code{year}", "\code{century}", "\code{is.temp}".
 #'    If \code{NULL} (default), returns all information. 
 #' @param allow.temp Allow artificial or temporary PINs (personal numbers 900-999). 
 #'    If \code{FALSE} (default), only PINs intended for official use (personal numbers 002-899) are allowed.
@@ -23,7 +23,7 @@
 #' \item{day}{Day of the birthdate.}
 #' \item{month}{Month of the birthdate.}
 #' \item{year}{Year of the birthdate.}
-#' \item{century.char}{Century character of the birthdate: 
+#' \item{century}{Century character of the birthdate: 
 #'            + (1800), - (1900) or A (2000). }
 #' \item{is.temp}{Is the personal identification number an artificial number intended for temporary use: (\code{TRUE} or \code{FALSE})}
 #' 
@@ -47,7 +47,7 @@ hetu <- function(pin, extract = NULL, allow.temp = FALSE) {
 
   if (!is.null(extract)) {
     if (!extract %in% c("hetu", "sex", "personal.number", "checksum", 
-       		        "date", "day", "month", "year", "century.char", "is.temp")) {
+       		        "date", "day", "month", "year", "century", "is.temp")) {
       stop("Trying to extract invalid part of hetu")
     }
   }
@@ -79,12 +79,14 @@ hetu <- function(pin, extract = NULL, allow.temp = FALSE) {
   # Check day
   day <- as.numeric(substr(pin, start=1, stop=2))
   if (!((day >= 1) && (day <= 31))) {
+    warning(paste("Invalid day in hetu", pin))
     return(NA)
   }
   
   # Check month
   month <- as.numeric(substr(pin, start=3, stop=4))
   if (!((month >= 1) && (month <= 12))) {
+    warning(paste("Invalid month in hetu", pin))
     return(NA)
   }
   
@@ -97,6 +99,7 @@ hetu <- function(pin, extract = NULL, allow.temp = FALSE) {
   # Check century
   century <- substr(pin, start=7, stop=7)
   if (!century %in% c("+", "-", "A")) {
+    warning(paste0("Invalid century character '", century, "' in hetu", pin))
     return(NA)
   }
   
@@ -121,26 +124,30 @@ hetu <- function(pin, extract = NULL, allow.temp = FALSE) {
     return(NA)
   }
   
-  # Check checksum character validity
+  # Check if checksum character is valid
   check <- substr(pin, start=11, stop=11)
   checklist <- c("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", "H", "J", "K", "L", "M", "N", "P", "R", "S", "T", "U", "V", "W", "X", "Y")
   names(checklist) <- 0:30
   if (!check %in% checklist) {
+    warning(paste0("Invalid checksum character '", check, "' in hetu ", pin))
     return(NA)
   }
   
   # Get personal identification number
   personal <- as.numeric(substr(pin, start=8, stop=10))
   if (personal == 000) {
+    warning(paste("Invalid individual number 000 in hetu", pin))
     return(NA)
   } else if (personal == 001) {
+    warning(paste("Invalid individual number 001 in hetu", pin))
     return(NA)
   }
   
-  # Check checksum character
+  # Check if checksum character is correct
   mod <- as.numeric(paste(substr(pin, start=1, stop=6), 
       	 		substr(pin, start=8, stop=10), sep="")) %% 31
   if (check != checklist[as.character(mod)]) {
+    warning(paste0("Incorrect checksum character '", check, "' in hetu ", pin))
     return(NA)
   }
   
@@ -158,11 +165,17 @@ hetu <- function(pin, extract = NULL, allow.temp = FALSE) {
     is.temp <- FALSE
   }
   
+  # Check pin number of characters
+  if (nchar(pin) != 11) {
+    warning(paste("Invalid number of character in hetu", pin))
+    return(NA)
+  }
+  
   # Create hetu-object
   object <- list(hetu = pin, sex=sex, 
   	         personal.number=formatC(personal, width = 3, format = "d", flag = "0"), 
   	         checksum=check, date=date, day=day, month=month, 
-		 year=full.year, century.char=century, is.temp=is.temp)
+		 year=full.year, century=century, is.temp=is.temp)
   
   # Return full object or only requested part
   # First produce a dataframe that leaves out temp pins if they are not explicitly allowed

@@ -48,7 +48,7 @@ Sys.setlocale(locale="UTF-8")
 
 ## Personal identification number (HETU)
 
-At simplest, we can use the basic hetu function to view information from a single Finnish personal identification number. The data is outputted as a data frame.
+The basic hetu function can be used to view information from a Finnish personal identification number. The data is outputted as a data frame.
 
 ```{r hetu_example1, message=FALSE}
 example_pin <- "111111-111C"
@@ -61,68 +61,86 @@ The output can be made prettier, for example by using knitr:
 knitr::kable(hetu(example_pin))
 ```
 
-The hetu function also accepts vectors as input:
+The hetu function also accepts vectors with several identification numbers as input:
 
 ```{r hetu_example3, message=FALSE}
 example_pins <- c("010101-0101", "111111-111C")
 knitr::kable(hetu(example_pins))
 ```
 
-Validating Finnish personal identification number:
+The hetu function prints warning messages to the user if input vector contains invalid PINs.
 
-```{r hetu2, fig.message=FALSE}
+```{r hetu_example4, error = TRUE, purl = FALSE}
+hetu(c("010101-0102", "111311-111C", "010101-0101"))
+```
+
+The validity of the PINs can also be determined by using the pin_ctrl function:
+
+```{r pin_ctrl_example1, fig.message=FALSE}
 pin_ctrl("010101-0101") # TRUE/FALSE 
 pin_ctrl("010101-1010") # FALSE
 ```
 
-### Extracting specific fields
+### Extracting specific information
 
-General field extraction from personal identification number.
+Information contained in the PIN can be extracted with a generic extract parameter. Valid values for extraction are *hetu*, *sex*, *personal.number*, *checksum*, *date*, *day*, *month*, *year*, *century* and *is.temp*.
 
-```{r hetuextract, message=FALSE}
+```{r hetuextract1, message=FALSE}
 hetu(example_pins, extract = "sex")
 hetu(example_pins, extract = "checksum")
 ```
 
-Extracting sex with a specific function:
+Some fields can be extracted with specialized functions. Extracting sex with pin_sex function:
 
-```{r example4, message=FALSE, eval=TRUE}
+```{r hetuextract2, message=FALSE, eval=TRUE}
 pin_sex(example_pins)
 ```
 
-Extracting age at current date and at a given date:
+Extracting age at current date and at a given date with pin_age function:
 
-```{r example5, message=FALSE, eval=TRUE}
+```{r hetuextract3, message=FALSE, eval=TRUE}
 pin_age(example_pins)
 pin_age(example_pins, date = "2012-01-01")
 ```
 
+Dates (birth dates) also have their own function, pin_date.
+
+```{r hetuextract4, message=FALSE, eval=TRUE}
+pin_date(example_pins)
+```
+
 ### Artificial and temporary personal identification numbers
 
-The package functions have the option to accept artificial or temporary personal identification numbers. These numbers are sometimes used internally in different organizations, such as insurance companies or hospitals, if the exact identity of the individual is not known. Artificial or temporary PINs are not intended for continuous or external use and are not usually accepted by validity checking algorithms.
+The package functions can be made to accept artificial or temporary personal identification numbers. These temporary PINs are sometimes used in different organizations, such as insurance companies or hospitals, if the exact identity of the individual is not known. Artificial or temporary PINs are not intended for continuous, long term use and they are not usually accepted by PIN validity checking algorithms.
 
-However, even temporary PINs provide similar information about individual's birthdate or sex as regular PINs. Temporary PINs can also be safely used for testing purposes.
+Temporary PINs provide similar information about individual's birthdate or sex as regular PINs. Temporary PINs can also be safely used for testing purposes, as such a number cannot be any person's PIN.
 
-If artificial and temporary pins are not explicitly allowed, no information can 
+Artificial and temporary PINs can be used normally by allowing them through allow.temp parameter.
 
 ```{r hetu_temp1, message=FALSE}
 example_temp_pin <- "010101A900R"
-hetu(example_temp_pin) #NA
 knitr::kable(hetu(example_temp_pin, allow.temp = TRUE))
 ```
 
-Even one temporary pin can cause the functions to produce an error. 
+A vector with regular and temporary PINs mixed together prints only regular PINs, if allow.temp is not set to TRUE. Automatic omitting of temporary PINs does not produce a visible error message and therefore users need to be cautious if they want to use temporary PINs.
+
+If temporary PINs are not explicitly allowed and the input vector consists of temporary PINs only, the function will return an error.
 
 ```{r hetu_temp2, error = TRUE, purl = FALSE}
 example_temp_pins <- c("010101A900R", "010101-0101")
-hetu(example_temp_pin) #Error
+knitr::kable(hetu(example_temp_pins))
+```
+
+When allow.temp is set to TRUE, all PINs are handled as if they were regular PINs.
+
+```{r hetu_temp3, message=FALSE}
 knitr::kable(hetu(example_temp_pins, allow.temp = TRUE))
 ```
 
-Validation function pin_ctrl produces a FALSE for every artificial / temporary pin, if they are not explicitly allowed.
+Validation function pin_ctrl produces a FALSE for every artificial / temporary PIN, if they are not explicitly allowed.
 
-```{r hetu_temp3, error = TRUE, purl = FALSE}
-hetu(example_temp_pins) #Error
+```{r hetu_temp4, error = TRUE, purl = FALSE}
+hetu(example_temp_pins) #FALSE TRUE
 knitr::kable(hetu(example_temp_pins, allow.temp = TRUE)) #TRUE TRUE
 ```
 
@@ -135,18 +153,36 @@ rpin(n = 4)
 rpin(n = 4, start_date = "1990-01-01", end_date = "2005-01-01")
 ```
 
-The number of males in the generated sample can be changed with parameter p.male.
+The number of males in the generated sample can be changed with parameter p.male. Default is 0.4.
 
 ```{r rpin2, message=FALSE}
 random_sample <- rpin(n = 4, p.male = 0.8)
 table(random_sample)
 ```
 
-The default proportion of artificial / temporary pins is 0, meaning that no artificial / temporary PINs are generated at default.
+The default proportion of artificial / temporary PINs is 0.0, meaning that no artificial / temporary PINs are generated by default.
 
 ```{r rpin3, message=FALSE}
 temp_sample <- rpin(n = 4, p.temp = 0.5)
 table(hetu(temp_sample, allow.temp = TRUE, extract = "is.temp"))
+```
+
+## Various examples
+
+A simple example on how to use hetu package in tidyverse/dplyr manner to extract information to tibble format.
+
+```{r hetu_tibbles, eval = FALSE}
+library(hetu)
+library(tidyverse)
+library(dplyr)
+
+# Generate data for this example
+hdat<-tibble(pin=rpin(n = 4, start_date = "1990-01-01", end_date = "2005-01-01"))
+
+# Extract all the hetu information to tibble format
+hdat<-hdat %>%
+  mutate(result=map(.x=pin,.f=hetu::hetu)) %>% unnest(cols=c(result))
+hdat
 ```
 
 ```{r example2, message=FALSE, echo=FALSE, eval=FALSE}
