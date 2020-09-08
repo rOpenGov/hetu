@@ -140,7 +140,7 @@ knitr::kable(hetu(example_temp_pins, allow.temp = TRUE))
 Validation function pin_ctrl produces a FALSE for every artificial / temporary PIN, if they are not explicitly allowed.
 
 ```{r hetu_temp4, error = TRUE, purl = FALSE}
-hetu(example_temp_pins) #FALSE TRUE
+knitr::kable(hetu(example_temp_pins)) #FALSE TRUE
 knitr::kable(hetu(example_temp_pins, allow.temp = TRUE)) #TRUE TRUE
 ```
 
