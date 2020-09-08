@@ -79,12 +79,14 @@ hetu <- function(pin, extract = NULL, allow.temp = FALSE) {
   # Check day
   day <- as.numeric(substr(pin, start=1, stop=2))
   if (!((day >= 1) && (day <= 31))) {
+    warning(paste("Invalid day in hetu", pin))
     return(NA)
   }
   
   # Check month
   month <- as.numeric(substr(pin, start=3, stop=4))
   if (!((month >= 1) && (month <= 12))) {
+    warning(paste("Invalid month in hetu", pin))
     return(NA)
   }
   
@@ -134,8 +136,10 @@ hetu <- function(pin, extract = NULL, allow.temp = FALSE) {
   # Get personal identification number
   personal <- as.numeric(substr(pin, start=8, stop=10))
   if (personal == 000) {
+    warning(paste("Impossible individual number 000 in hetu", pin))
     return(NA)
   } else if (personal == 001) {
+    warning(paste("Impossible individual number 001 in hetu", pin))
     return(NA)
   }
   

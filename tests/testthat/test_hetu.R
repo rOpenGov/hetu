@@ -4,7 +4,7 @@ test_that("hetu() works correctly", {
   expect_error(hetu("010101-0101", extract = ""))
   expect_equal(hetu(c("010101-0101", "111111-111C"), extract = "sex"), c("Female", "Male"))
   expect_true(typeof(hetu(c("010101-0101", "111111-111C"), extract = NULL)) == "list")
-  expect_true(is.na(hetu(010101-0101))) #convert to character vector, check general format
+  expect_warning(hetu(010101-0101)) #convert to character vector, check general format
   expect_true(is.na(hetu("010101-900R", extract = "sex")))
   expect_equal(hetu(c("111111-111C"), extract = "sex"), "Male")
   expect_equal(as.character(hetu("010101-0101")$hetu), "010101-0101")
@@ -15,8 +15,8 @@ test_that("hetu() works correctly", {
   expect_equal(hetu("010101-0101")$day, 1)
   expect_equal(hetu("010101-0101")$month, 1)
   expect_equal(hetu("010101-0101")$year, 1901)
-  expect_true(is.na(hetu("320101-010A"))) #Check day
-  expect_true(is.na(hetu("011301-010P"))) #Check month
+  expect_warning(hetu("320101-010A")) #Check day warning
+  expect_warning(hetu("011301-010P")) #Check month warning
   expect_true(is.na(hetu("0101-1-0101"))) #Check year
   expect_warning(hetu("010101B0101")) #Check century
   expect_true(is.na(hetu("290201-010A"))) #Check if date exists
@@ -24,8 +24,8 @@ test_that("hetu() works correctly", {
   expect_equal(as.character(hetu("010101-0101")$century), "-")
   expect_equal(as.character(hetu("010101A0101")$century), "A")
   expect_warning(hetu("010101-000G")) #Check checksum character validity
-  expect_true(is.na(hetu("010101-000P", allow.temp = TRUE))) #Check personal identification number
-  expect_true(is.na(hetu("010101-001R", allow.temp = TRUE))) #Check personal identification number
+  expect_warning(hetu("010101-000P", allow.temp = TRUE)) #Check personal identification number
+  expect_warning(hetu("010101-001R", allow.temp = TRUE)) #Check personal identification number
   expect_true(!is.null(hetu("010101A900R", allow.temp = TRUE)))
   expect_error(hetu(c("010101A900R", "010101A900R"))) #Test for 0 length vectors
   expect_warning(hetu("010101-01013"))
