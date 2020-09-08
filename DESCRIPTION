@@ -25,5 +25,6 @@ Suggests:
     dplyr,
     knitr,
     testthat,
-    rmarkdown
+    rmarkdown,
+    covr
 RoxygenNote: 7.1.1

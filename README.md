@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/rOpenGov/hetu.svg?branch=master)](https://travis-ci.org/rOpenGov/hetu)
-
+[![codecov](https://codecov.io/gh/rOpenGov/hetu/branch/master/graph/badge.svg)](https://codecov.io/gh/rOpenGov/hetu)
 <!--[![Coverage Status](https://coveralls.io/repos/github/rOpenGov/hetu/badge.svg?branch=master)](https://coveralls.io/github/rOpenGov/hetu?branch=master)-->
 
 <!--[![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/grand-total/hetu)](https://github.com/metacran/cranlogs.app)-->
