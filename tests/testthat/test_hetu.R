@@ -23,9 +23,10 @@ test_that("hetu() works correctly", {
   expect_equal(as.character(hetu("010199+010A")$century), "+")
   expect_equal(as.character(hetu("010101-0101")$century), "-")
   expect_equal(as.character(hetu("010101A0101")$century), "A")
-  expect_warning(hetu("010101-000G")) #Check checksum character validity
+  expect_warning(hetu("010101-000G")) #Checksum character validity (allowed characters)
   expect_warning(hetu("010101-000P", allow.temp = TRUE)) #Check personal identification number
   expect_warning(hetu("010101-001R", allow.temp = TRUE)) #Check personal identification number
+  expect_warning(hetu("010101-0102")) #Checksum character validity (correct character)
   expect_true(!is.null(hetu("010101A900R", allow.temp = TRUE)))
   expect_error(hetu(c("010101A900R", "010101A900R"))) #Test for 0 length vectors
   expect_warning(hetu("010101-01013"))

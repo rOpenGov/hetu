@@ -99,7 +99,7 @@ hetu <- function(pin, extract = NULL, allow.temp = FALSE) {
   # Check century
   century <- substr(pin, start=7, stop=7)
   if (!century %in% c("+", "-", "A")) {
-    warning(paste("hetu", pin, "contains invalid century character", substr(pin, start=7, stop=7)))
+    warning(paste0("Invalid century character '", century, "' in hetu", hetu))
     return(NA)
   }
   
@@ -124,29 +124,30 @@ hetu <- function(pin, extract = NULL, allow.temp = FALSE) {
     return(NA)
   }
   
-  # Check checksum character validity
+  # Check if checksum character is valid
   check <- substr(pin, start=11, stop=11)
   checklist <- c("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", "H", "J", "K", "L", "M", "N", "P", "R", "S", "T", "U", "V", "W", "X", "Y")
   names(checklist) <- 0:30
   if (!check %in% checklist) {
-    warning(paste("hetu", pin, "contains invalid checksum character", check))
+    warning(paste0("Invalid checksum character '", check, "' in hetu ", pin))
     return(NA)
   }
   
   # Get personal identification number
   personal <- as.numeric(substr(pin, start=8, stop=10))
   if (personal == 000) {
-    warning(paste("Impossible individual number 000 in hetu", pin))
+    warning(paste("Invalid individual number 000 in hetu", pin))
     return(NA)
   } else if (personal == 001) {
-    warning(paste("Impossible individual number 001 in hetu", pin))
+    warning(paste("Invalid individual number 001 in hetu", pin))
     return(NA)
   }
   
-  # Check checksum character
+  # Check if checksum character is correct
   mod <- as.numeric(paste(substr(pin, start=1, stop=6), 
       	 		substr(pin, start=8, stop=10), sep="")) %% 31
   if (check != checklist[as.character(mod)]) {
+    warning(paste0("Incorrect checksum character '", check, "' in hetu ", pin))
     return(NA)
   }
   
@@ -166,7 +167,7 @@ hetu <- function(pin, extract = NULL, allow.temp = FALSE) {
   
   # Check pin number of characters
   if (nchar(pin) != 11) {
-    warning(paste("hetu", pin, "has invalid number of characters"))
+    warning(paste("Invalid number of character in hetu", pin))
     return(NA)
   }
   
