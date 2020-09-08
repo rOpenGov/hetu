@@ -68,7 +68,7 @@ example_pins <- c("010101-0101", "111111-111C")
 knitr::kable(hetu(example_pins))
 ```
 
-The hetu function prints warning messages for invalid PINs. 
+The hetu function prints warning messages to the user if input vector contains invalid PINs.
 
 ```{r hetu_example4, error = TRUE, purl = FALSE}
 hetu(c("010101-0102", "111311-111C", "010101-0101"))
