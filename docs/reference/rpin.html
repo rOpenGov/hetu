@@ -73,7 +73,7 @@ The generated hetu is uniformely distributed over the time period." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">hetu</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.3</span>
       </span>
     </div>
 
@@ -164,14 +164,14 @@ The generated <code>hetu</code> is uniformely distributed over the time period.<
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>rpin</span>(<span class='fl'>3</span>)
-<span class='fu'><a href='hetu.html'>hetu</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt;          hetu    sex personal.number checksum       date day month year
-#&gt; 1 180323-306U Female             306        U 1923-03-18  18     3 1923
-#&gt; 2 080978-7281 Female             728        1 1978-09-08   8     9 1978
-#&gt; 3 301246-672K Female             672        K 1946-12-30  30    12 1946
-#&gt;   century.char is.temp
-#&gt; 1            -   FALSE
-#&gt; 2            -   FALSE
-#&gt; 3            -   FALSE</div><div class='input'><span class='fu'><a href='hetu.html'>hetu</a></span>(<span class='no'>x</span>, <span class='kw'>extract</span> <span class='kw'>=</span> <span class='st'>"sex"</span>)</div><div class='output co'>#&gt; [1] "Female" "Female" "Female"</div><div class='input'><span class='fu'><a href='hetu.html'>hetu</a></span>(<span class='no'>x</span>, <span class='kw'>extract</span> <span class='kw'>=</span> <span class='st'>"checksum"</span>)</div><div class='output co'>#&gt; [1] "U" "1" "K"</div><div class='input'>
+<span class='fu'><a href='hetu.html'>hetu</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt;          hetu    sex personal.number checksum       date day month year century
+#&gt; 1 180323-306U Female             306        U 1923-03-18  18     3 1923       -
+#&gt; 2 080978-7281 Female             728        1 1978-09-08   8     9 1978       -
+#&gt; 3 301246-672K Female             672        K 1946-12-30  30    12 1946       -
+#&gt;   is.temp
+#&gt; 1   FALSE
+#&gt; 2   FALSE
+#&gt; 3   FALSE</div><div class='input'><span class='fu'><a href='hetu.html'>hetu</a></span>(<span class='no'>x</span>, <span class='kw'>extract</span> <span class='kw'>=</span> <span class='st'>"sex"</span>)</div><div class='output co'>#&gt; [1] "Female" "Female" "Female"</div><div class='input'><span class='fu'><a href='hetu.html'>hetu</a></span>(<span class='no'>x</span>, <span class='kw'>extract</span> <span class='kw'>=</span> <span class='st'>"checksum"</span>)</div><div class='output co'>#&gt; [1] "U" "1" "K"</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -188,7 +188,7 @@ The generated <code>hetu</code> is uniformely distributed over the time period.<
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>
