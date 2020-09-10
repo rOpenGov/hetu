@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">hetu</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.4</span>
       </span>
     </div>
 
@@ -123,7 +123,7 @@
     <p>Extract information from Finnish personal identification numbers (hetu).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>hetu</span>(<span class='no'>pin</span>, <span class='kw'>extract</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>allow.temp</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>hetu</span>(<span class='no'>pin</span>, <span class='kw'>extract</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>allow.temp</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>diagnostic</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -146,13 +146,20 @@ If <code>NULL</code> (default), returns all information.</p></td>
       <td><p>Allow artificial or temporary PINs (personal numbers 900-999). 
 If <code>FALSE</code> (default), only PINs intended for official use (personal numbers 002-899) are allowed.</p></td>
     </tr>
+    <tr>
+      <th>diagnostic</th>
+      <td><p>Print additional information about possible problems in PINs. The checks are 
+ "<code>invalid.personal.number</code>", "<code>invalid.checksum</code>", "<code>incorrect.checksum</code>" 
+ "<code>invalid.date</code>", "<code>invalid.day</code>", "<code>invalid.month</code>, "<code>invalid.length</code>, 
+"<code>invalid.century</code>". Default is <code>FALSE</code> which returns no diagnostic information.</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>Finnish personal identification number data.frame,
     or if extract parameter is set, the requested part of the 
-   information as a vector. Returns <code>NA</code> if the given character 
+   information as a vector. Returns an error or <code>NA</code> if the given character 
    vector is not a valid Finnish personal identification number.</p>
 <dt>hetu</dt><dd><p>Finnish personal identification number as a character vector. 
     A correct pin should be in the form DDMMYYCZZZQ, where DDMMYY stands for date, C for century sign, 

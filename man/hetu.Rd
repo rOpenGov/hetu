@@ -4,7 +4,7 @@
 \alias{hetu}
 \title{Finnish personal identification number extraction}
 \usage{
-hetu(pin, extract = NULL, allow.temp = FALSE)
+hetu(pin, extract = NULL, allow.temp = FALSE, diagnostic = FALSE)
 }
 \arguments{
 \item{pin}{Finnish personal identification number as a character vector, 
@@ -18,11 +18,16 @@ If \code{NULL} (default), returns all information.}
 
 \item{allow.temp}{Allow artificial or temporary PINs (personal numbers 900-999). 
 If \code{FALSE} (default), only PINs intended for official use (personal numbers 002-899) are allowed.}
+
+\item{diagnostic}{Print additional information about possible problems in PINs. The checks are 
+ "\code{invalid.personal.number}", "\code{invalid.checksum}", "\code{incorrect.checksum}" 
+ "\code{invalid.date}", "\code{invalid.day}", "\code{invalid.month}, "\code{invalid.length}, 
+"\code{invalid.century}". Default is \code{FALSE} which returns no diagnostic information.}
 }
 \value{
 Finnish personal identification number data.frame,
     or if extract parameter is set, the requested part of the 
-   information as a vector. Returns \code{NA} if the given character 
+   information as a vector. Returns an error or \code{NA} if the given character 
    vector is not a valid Finnish personal identification number.
 \item{hetu}{Finnish personal identification number as a character vector. 
     A correct pin should be in the form DDMMYYCZZZQ, where DDMMYY stands for date, C for century sign, 
@@ -59,5 +64,5 @@ hetu(c("010101-0101", "111111-111C"), extract="sex")
 	    identification numbers.
 }
 \author{
-Jussi Paananen \email{louhos@googlegroups.com}
+Jussi Paananen
 }

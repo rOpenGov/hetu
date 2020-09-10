@@ -2,7 +2,7 @@
 % Please edit documentation in R/pin_sex.R
 \name{pin_sex}
 \alias{pin_sex}
-\title{Sex from ID}
+\title{Sex From ID}
 \usage{
 pin_sex(pin)
 }
@@ -23,5 +23,5 @@ pin_sex("010101-010A")
 \code{\link{hetu}} For general information extraction
 }
 \author{
-Leo Lahti \email{leo.lahti@iki.fi}
+Leo Lahti, Pyry Kantanen
 }

@@ -4,7 +4,7 @@ test_that("hetu() works correctly", {
   expect_error(hetu("010101-0101", extract = ""))
   expect_equal(hetu(c("010101-0101", "111111-111C"), extract = "sex"), c("Female", "Male"))
   expect_true(typeof(hetu(c("010101-0101", "111111-111C"), extract = NULL)) == "list")
-  expect_warning(hetu(010101-0101)) #convert to character vector, check general format
+  expect_error(suppressWarnings(hetu(010101-0101))) #convert to character vector, check general format
   expect_true(is.na(hetu("010101-900R", extract = "sex")))
   expect_equal(hetu(c("111111-111C"), extract = "sex"), "Male")
   expect_equal(as.character(hetu("010101-0101")$hetu), "010101-0101")
@@ -19,7 +19,7 @@ test_that("hetu() works correctly", {
   expect_warning(hetu("011301-010P")) #Check month warning
   expect_true(is.na(hetu("0101-1-0101"))) #Check year
   expect_warning(hetu("010101B0101")) #Check century
-  expect_true(is.na(hetu("290201-010A"))) #Check if date exists
+  expect_true(is.na(suppressWarnings(hetu("290201-010A")))) #Check if date exists
   expect_equal(as.character(hetu("010199+010A")$century), "+")
   expect_equal(as.character(hetu("010101-0101")$century), "-")
   expect_equal(as.character(hetu("010101A0101")$century), "A")
@@ -30,6 +30,7 @@ test_that("hetu() works correctly", {
   expect_true(!is.null(hetu("010101A900R", allow.temp = TRUE)))
   expect_error(hetu(c("010101A900R", "010101A900R"))) #Test for 0 length vectors
   expect_warning(hetu("010101-01013"))
+  expect_true(!is.null(hetu("010101-0101", diagnostic = TRUE)))
 })
 
 test_that("pin_ctrl() works correctly", {
@@ -65,5 +66,11 @@ test_that("pin_sex() works correctly", {
 test_that("rpin() works correctly", {
   expect_equal(length(rpin(100)), 100)
   expect_equal(length(rpin(100, p.temp = 0.1)), 100)
-  
+})
+
+test_that("hetu_diagnostic works correctly", {
+  expect_error(hetu_diagnostic("010101-0101", extract = "incorrect_diagnostic"))
+  expect_warning(hetu_diagnostic("010101-0102"), extract = NULL)
+  expect_warning(hetu_diagnostic("010101-01010", subsetting = TRUE, extract = "invalid.length"))
+  expect_warning(hetu_diagnostic("010101-01010", subsetting = FALSE, extract = "invalid.length"))
 })

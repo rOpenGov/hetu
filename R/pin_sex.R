@@ -1,8 +1,8 @@
-#' @title Sex from ID
+#' @title Sex From ID
 #' @description Extract sex from Finnish personal identification number.
 #' @inheritParams hetu 
 #' @return Factor with label 'Male' and 'Female'.
-#' @author Leo Lahti \email{leo.lahti@iki.fi}
+#' @author Leo Lahti, Pyry Kantanen
 #' @seealso \code{\link{hetu}} For general information extraction
 #' @examples
 #' pin_sex("010101-010A") 

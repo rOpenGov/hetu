@@ -2,7 +2,7 @@
 % Please edit documentation in R/pin_ctrl.R
 \name{pin_ctrl}
 \alias{pin_ctrl}
-\title{Finnish personal identification number validator}
+\title{Finnish Personal Identification Number Validator}
 \usage{
 pin_ctrl(pin, allow.temp = FALSE)
 }
@@ -10,12 +10,12 @@ pin_ctrl(pin, allow.temp = FALSE)
 \item{pin}{Finnish personal identification number as a character vector, or
 vector of identification numbers as a character vectors.}
 
-\item{allow.temp}{Allow temporary PINs (personal numbers 900-999) or only
-regular PINs (personal numbers 002-899). Default is \code{FALSE}.}
+\item{allow.temp}{If TRUE, temporary PINs (personal numbers 900-999) are handled
+similarly to regular PINs (personal numbers 002-899), meaning that otherwise valid
+temporary PIN will return a TRUE. Default is \code{FALSE}.}
 }
 \value{
-Is the given string a valid Finnish personal identification number,
-  \code{TRUE} or \code{FALSE}.
+Logical indicating whether the input string is a valid Finnish personal identification number,
 }
 \description{
 Validate Finnish personal identification numbers (hetu).

@@ -6,11 +6,11 @@ output:
   rmarkdown::html_vignette:
     toc: true
   rmarkdown::md_vignette:
-    toc: true   
+    toc: true
 vignette: >
   %\VignetteIndexEntry{Finnish personal ID number data toolkit for R (hetu)}
-  %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
 ---
 
 ```{r, include = FALSE}
@@ -45,6 +45,16 @@ We also recommend setting the UTF-8 encoding:
 ```{r locale, eval=FALSE}
 Sys.setlocale(locale="UTF-8") 
 ```
+
+## Basic information
+
+Finnish personal identification numbers (Finnish: henkilötunnus, hetu in short), are used to identify citizens. Hetu PIN consists of eleven characters: DDMMYYCZZZQ, where DDMMYY is the day, month and year of birth, C is the century marker, ZZZ is the individual number and Q is the control character. 
+
+Males have odd and females have even individual number. The control character is determined by dividing DDMMYYZZZ by 31 and using the remainder (modulo 31) to pick up the corresponding character from the string "0123456789ABCDEFHJKLMNPRSTUVWXY". For example, if the remainder is 0, the control character is 0 and if the remainder is 12, the control character is C.
+
+A valid individual number is between 002-899. Individual numbers 900-999 are not in normal use and are used only for temporary or artificial PINs. These temporary PINs are sometimes used in different organizations, such as insurance companies or hospitals, if the individual is not a Finnish citizen, a permanent resident or if the exact identity of the individual cannot be determined at the time. Artificial or temporary PINs are not intended for continuous, long term use and they are not usually accepted by PIN validity checking algorithms.
+
+Temporary PINs provide similar information about individual's birth date or sex as regular PINs. Temporary PINs can also be safely used for testing purposes, as such a number cannot be linked to any real person.
 
 ## Personal identification number (HETU)
 
@@ -111,11 +121,7 @@ pin_date(example_pins)
 
 ### Artificial and temporary personal identification numbers
 
-The package functions can be made to accept artificial or temporary personal identification numbers. These temporary PINs are sometimes used in different organizations, such as insurance companies or hospitals, if the exact identity of the individual is not known. Artificial or temporary PINs are not intended for continuous, long term use and they are not usually accepted by PIN validity checking algorithms.
-
-Temporary PINs provide similar information about individual's birthdate or sex as regular PINs. Temporary PINs can also be safely used for testing purposes, as such a number cannot be any person's PIN.
-
-Artificial and temporary PINs can be used normally by allowing them through allow.temp parameter.
+The package functions can be made to accept artificial or temporary personal identification numbers.Artificial and temporary PINs can be used normally by allowing them through allow.temp parameter.
 
 ```{r hetu_temp1, message=FALSE}
 example_temp_pin <- "010101A900R"
@@ -165,6 +171,35 @@ The default proportion of artificial / temporary PINs is 0.0, meaning that no ar
 ```{r rpin3, message=FALSE}
 temp_sample <- rpin(n = 4, p.temp = 0.5)
 table(hetu(temp_sample, allow.temp = TRUE, extract = "is.temp"))
+```
+
+## Diagnostics
+
+In addition to information mentioned in the section [Extracting specific information](#extracting-specific-information), the user can choose to print additional columns containing information about checks done on PINs. The diagnostic checks produce a TRUE or FALSE for the following categories: *invalid.personal.number*, *invalid.checksum*, *incorrect.checksum*, *invalid.date*, *invalid.day*, *invalid.month*, *invalid.length* and *invalid.century*. TRUE means that a problem exists.
+
+```{r example_diagnostics1, error = TRUE, purl = FALSE, warning = FALSE}
+diagnosis_example <- c("010101-0102", "111111-111Q", 
+"010101B0101", "320101-0101", "011301-0101", 
+"010101-01010", "010101-0011")
+head(hetu(diagnosis_example, diagnostic = TRUE), 3)
+```
+
+Diagnostic information can be examined more closely by using subset or by using a separate hetu_diagnostics function. The user can print all diagnostic information for all PINs in the dataset:
+
+```{r example_diagnostics2, error = TRUE, purl = FALSE, warning = FALSE}
+head(hetu_diagnostic(diagnosis_example), 3)
+```
+
+By using extract, the user can limit the printed columns to only those which have TRUE values.
+
+```{r example_diagnostics3, error = TRUE, purl = FALSE, warning = FALSE}
+hetu_diagnostic(diagnosis_example, extract = c("invalid.century", "incorrect.checksum"))
+```
+
+When subsetting is set to TRUE, the function prints only rows with TRUE value in the extracted test.
+
+```{r example_diagnostics4, error = TRUE, purl = FALSE, warning = FALSE}
+hetu_diagnostic(diagnosis_example, subsetting = TRUE, extract = "invalid.century")
 ```
 
 ## Various examples

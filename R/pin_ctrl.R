@@ -1,18 +1,17 @@
-#' @title Finnish personal identification number validator
+#' @title Finnish Personal Identification Number Validator
 #' @description Validate Finnish personal identification numbers (hetu).
 #' @param pin Finnish personal identification number as a character vector, or
 #'   vector of identification numbers as a character vectors.
-#' @param allow.temp Allow temporary PINs (personal numbers 900-999) or only
-#'   regular PINs (personal numbers 002-899). Default is \code{FALSE}.
-#' @return Is the given string a valid Finnish personal identification number,
-#'   \code{TRUE} or \code{FALSE}.
+#' @param allow.temp If TRUE, temporary PINs (personal numbers 900-999) are handled
+#'  similarly to regular PINs (personal numbers 002-899), meaning that otherwise valid
+#'  temporary PIN will return a TRUE. Default is \code{FALSE}.
+#' @return Logical indicating whether the input string is a valid Finnish personal identification number,
 #' @author Jussi Paananen
 #' @seealso \code{\link{hetu}} For extracting information from Finnish personal
 #'   identification numbers.
 #' @examples
 #' pin_ctrl("010101-0101") # TRUE
 #' pin_ctrl("010101-010A") # FALSE
-#' @aliases pin_ctrl
 #' @export
 pin_ctrl <- function(pin, allow.temp = FALSE) {
 

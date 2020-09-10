@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Finnish personal identification number validator — pin_ctrl • hetu</title>
+<title>Finnish Personal Identification Number Validator — pin_ctrl • hetu</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,7 @@
 
 
 
-<meta property="og:title" content="Finnish personal identification number validator — pin_ctrl" />
+<meta property="og:title" content="Finnish Personal Identification Number Validator — pin_ctrl" />
 <meta property="og:description" content="Validate Finnish personal identification numbers (hetu)." />
 
 
@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">hetu</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.4</span>
       </span>
     </div>
 
@@ -114,7 +114,7 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Finnish personal identification number validator</h1>
+    <h1>Finnish Personal Identification Number Validator</h1>
     <small class="dont-index">Source: <a href='https://github.com/ropengov/hetu/blob/master/R/pin_ctrl.R'><code>R/pin_ctrl.R</code></a></small>
     <div class="hidden name"><code>pin_ctrl.Rd</code></div>
     </div>
@@ -135,15 +135,15 @@ vector of identification numbers as a character vectors.</p></td>
     </tr>
     <tr>
       <th>allow.temp</th>
-      <td><p>Allow temporary PINs (personal numbers 900-999) or only
-regular PINs (personal numbers 002-899). Default is <code>FALSE</code>.</p></td>
+      <td><p>If TRUE, temporary PINs (personal numbers 900-999) are handled
+similarly to regular PINs (personal numbers 002-899), meaning that otherwise valid
+temporary PIN will return a TRUE. Default is <code>FALSE</code>.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Is the given string a valid Finnish personal identification number,
-  <code>TRUE</code> or <code>FALSE</code>.</p>
+    <p>Logical indicating whether the input string is a valid Finnish personal identification number,</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='hetu.html'>hetu</a></code> For extracting information from Finnish personal
