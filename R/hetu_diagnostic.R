@@ -23,7 +23,7 @@
 #' suppressWarnings(hetu_diagnostic(diagnosis_example, subsetting = TRUE, extract = "invalid.checksum")) 
 #'
 #' @export
-hetu_diagnostic <- function(pin, extract = NULL, subsetting = FALSE, warnings = FALSE) {
+hetu_diagnostic <- function(pin, extract = NULL, subsetting = FALSE, show.warnings = FALSE) {
   
   diagnostic_params <- c("hetu", "is.temp", "invalid.personal.number", "invalid.checksum", 
             "incorrect.checksum", "invalid.date", "invalid.day", "invalid.month", 

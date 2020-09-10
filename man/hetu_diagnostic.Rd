@@ -4,7 +4,7 @@
 \alias{hetu_diagnostic}
 \title{Diagnostics Tool for HETU}
 \usage{
-hetu_diagnostic(pin, extract = NULL, subsetting = FALSE, warnings = FALSE)
+hetu_diagnostic(pin, extract = NULL, subsetting = FALSE, show.warnings = FALSE)
 }
 \arguments{
 \item{pin}{Finnish personal identification number as a character vector, 
