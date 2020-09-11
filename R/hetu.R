@@ -84,17 +84,15 @@ hetu <- function(pin, extract = NULL, allow.temp = FALSE, diagnostic = FALSE) {
   day <- as.numeric(substr(pin, start=1, stop=2))
   if (!((day >= 1) && (day <= 31))) {
     warning(paste("Invalid day in hetu", pin))
-    invalid.day <- TRUE
-    # return(NA)
-  } else {invalid.day <- FALSE}
+    valid.day <- FALSE
+  } else {valid.day <- TRUE}
   
   # Check month
   month <- as.numeric(substr(pin, start=3, stop=4))
   if (!((month >= 1) && (month <= 12))) {
     warning(paste("Invalid month in hetu", pin))
-    invalid.month <- TRUE
-    # return(NA)
-  } else {invalid.month <- FALSE}
+    valid.month <- FALSE
+  } else {valid.month <- TRUE}
   
   # Check year
   year <- as.numeric(substr(pin, start=5, stop=6))
@@ -106,12 +104,10 @@ hetu <- function(pin, extract = NULL, allow.temp = FALSE, diagnostic = FALSE) {
   century <- substr(pin, start=7, stop=7)
   if (!century %in% c("+", "-", "A")) {
     warning(paste0("Invalid century character '", century, "' in hetu ", pin))
-    invalid.century <- TRUE
-    # return(NA)
-  } else {invalid.century <- FALSE}
+    valid.century <- FALSE
+  } else {valid.century <- TRUE}
   
   # Construct complete year from century character and 2-digit year
-  
   ## Pad leading zero to a 2-digit year if needed
   year <- formatC(year, flag=0, width=2) 
   
@@ -132,9 +128,8 @@ hetu <- function(pin, extract = NULL, allow.temp = FALSE, diagnostic = FALSE) {
   # Check if date exists
   date <- as.Date(paste(day, "/", month, "/", full.year, sep=""), "%d/%m/%Y")
   if (is.na(date)) {
-    invalid.date <- TRUE
-   #  return(NA)
-  } else {invalid.date <- FALSE}
+    valid.date <- FALSE
+  } else {valid.date <- TRUE}
   
   # Check if checksum character is valid
   check <- substr(pin, start=11, stop=11)
@@ -142,30 +137,26 @@ hetu <- function(pin, extract = NULL, allow.temp = FALSE, diagnostic = FALSE) {
   names(checklist) <- 0:30
   if (!check %in% checklist) {
     warning(paste0("Invalid checksum character '", check, "' in hetu ", pin))
-    invalid.checksum <- TRUE
-    # return(NA)
-  } else {invalid.checksum <- FALSE}
+    valid.checksum <- FALSE
+  } else {valid.checksum <- TRUE}
   
   # Get personal identification number
   personal <- as.numeric(substr(pin, start=8, stop=10))
   if (personal == 000) {
     warning(paste("Invalid individual number 000 in hetu", pin))
-    invalid.personal.number <- TRUE
-    # return(NA)
+    valid.personal.number <- FALSE
   } else if (personal == 001) {
     warning(paste("Invalid individual number 001 in hetu", pin))
-    invalid.personal.number <- TRUE
-    # return(NA)
-  } else {invalid.personal.number <- FALSE}
+    valid.personal.number <- FALSE
+  } else {valid.personal.number <- TRUE}
   
   # Check if checksum character is correct
   mod <- as.numeric(paste(substr(pin, start=1, stop=6), 
       	 		substr(pin, start=8, stop=10), sep="")) %% 31
   if (check != checklist[as.character(mod)]) {
     warning(paste0("Incorrect checksum character '", check, "' in hetu ", pin))
-    incorrect.checksum <- TRUE
-    # return(NA)
-  } else {incorrect.checksum <- FALSE}
+    correct.checksum <- FALSE
+  } else {correct.checksum <- TRUE}
   
   # Check sex
   if ((personal %% 2) == 0) {
@@ -184,13 +175,12 @@ hetu <- function(pin, extract = NULL, allow.temp = FALSE, diagnostic = FALSE) {
   # Check pin number of characters
   if (nchar(pin) != 11) {
     warning(paste("Invalid number of characters in hetu", pin))
-    invalid.length <- TRUE
-    # return(NA)
-  } else {invalid.length <- FALSE}
+    valid.length <- FALSE
+  } else {valid.length <- TRUE}
   
   if (diagnostic == FALSE){
-    if (any(c(invalid.personal.number, invalid.checksum, incorrect.checksum,
-              invalid.date, invalid.day, invalid.month, invalid.length, invalid.century)) == TRUE) {
+    if (all(c(valid.personal.number, valid.checksum, correct.checksum,
+              valid.date, valid.day, valid.month, valid.length, valid.century)) == FALSE) {
       return(NA)
     }
   }
@@ -203,10 +193,10 @@ hetu <- function(pin, extract = NULL, allow.temp = FALSE, diagnostic = FALSE) {
   
   if (diagnostic == TRUE) {
     # create hetu-object with diagnostics
-    diagnostics <- list(invalid.personal.number = invalid.personal.number, 
-                        invalid.checksum=invalid.checksum, incorrect.checksum=incorrect.checksum, 
-                        invalid.date=invalid.date, invalid.day=invalid.day, invalid.month=invalid.month, 
-                        invalid.length=invalid.length, invalid.century=invalid.century)
+    diagnostics <- list(valid.personal.number = valid.personal.number, 
+                        valid.checksum=valid.checksum, correct.checksum=correct.checksum, 
+                        valid.date=valid.date, valid.day=valid.day, valid.month=valid.month, 
+                        valid.length=valid.length, valid.century=valid.century)
     object <- append(object, diagnostics)
   }
   # Return full object or only requested part
@@ -231,3 +221,4 @@ hetu <- function(pin, extract = NULL, allow.temp = FALSE, diagnostic = FALSE) {
     }
   }
 }
+

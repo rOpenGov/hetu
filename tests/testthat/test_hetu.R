@@ -71,7 +71,7 @@ test_that("rpin() works correctly", {
 test_that("hetu_diagnostic works correctly", {
   expect_error(hetu_diagnostic("010101-0101", extract = "incorrect_diagnostic"))
   expect_warning(hetu_diagnostic("010101-0102"), extract = NULL)
-  expect_warning(hetu_diagnostic("010101-01010", subsetting = TRUE, extract = "invalid.length"))
-  expect_warning(hetu_diagnostic("010101-01010", subsetting = FALSE, extract = "invalid.length"))
-  expect_warning(hetu_diagnostic("010101-01010", subsetting = FALSE, extract = "invalid.length", show.warnings = TRUE))
+  expect_warning(hetu_diagnostic("010101-01010", subsetting = TRUE, extract = "valid.length"))
+  expect_warning(hetu_diagnostic("010101-01010", subsetting = FALSE, extract = "valid.length"))
+  expect_warning(hetu_diagnostic("010101-01010", subsetting = FALSE, extract = "valid.length"))
 })
