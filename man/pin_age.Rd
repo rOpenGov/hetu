@@ -2,9 +2,12 @@
 % Please edit documentation in R/pin_age.R
 \name{pin_age}
 \alias{pin_age}
+\alias{hetu_age}
 \title{Age from ID}
 \usage{
 pin_age(pin, date = Sys.Date(), timespan = "years")
+
+hetu_age(pin, date = Sys.Date(), timespan = "years")
 }
 \arguments{
 \item{pin}{Finnish personal identification number as a character vector, 
@@ -31,4 +34,6 @@ Calculate the age in full years for a given date.
 ex_pin <- c("010101-0101", "111111-111C")
 pin_age(ex_pin, date = "2012-01-01")
 
+ex_pin <- c("010101-0101", "111111-111C")
+hetu_age(ex_pin, date = "2012-01-01")
 }

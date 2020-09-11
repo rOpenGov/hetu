@@ -2,9 +2,18 @@
 % Please edit documentation in R/rpin.R
 \name{rpin}
 \alias{rpin}
+\alias{rhetu}
 \title{Generate a vector of random \code{hetu}}
 \usage{
 rpin(
+  n,
+  start_date = as.Date("1895-01-01"),
+  end_date = as.Date(Sys.Date()),
+  p.male = 0.4,
+  p.temp = 0
+)
+
+rhetu(
   n,
   start_date = as.Date("1895-01-01"),
   end_date = as.Date(Sys.Date()),
@@ -36,4 +45,6 @@ hetu(x)
 hetu(x, extract = "sex")
 hetu(x, extract = "checksum")
 
+x <- rhetu(3)
+x
 }

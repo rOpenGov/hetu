@@ -62,3 +62,10 @@ rpin <- function(n, start_date = as.Date("1895-01-01"), end_date = as.Date(Sys.D
   
   paste0(ddmmyy, sapply(rdate, century), zz, z, checksum)
 }
+
+#' @rdname rpin
+#' @examples 
+#' x <- rhetu(3)
+#' x
+#' @export
+rhetu <- rpin

@@ -24,4 +24,9 @@ pin_ctrl <- function(pin, allow.temp = FALSE) {
   return(class(hetu(pin, allow.temp = allow.temp)) == "data.frame")
 }
 
-
+#' @rdname pin_ctrl
+#' @examples
+#' hetu_ctrl("010101-0101") # TRUE
+#' hetu_ctrl("010101-010A") # FALSE
+#' @export
+hetu_ctrl <- pin_ctrl

@@ -2,9 +2,12 @@
 % Please edit documentation in R/pin_ctrl.R
 \name{pin_ctrl}
 \alias{pin_ctrl}
+\alias{hetu_ctrl}
 \title{Finnish Personal Identification Number Validator}
 \usage{
 pin_ctrl(pin, allow.temp = FALSE)
+
+hetu_ctrl(pin, allow.temp = FALSE)
 }
 \arguments{
 \item{pin}{Finnish personal identification number as a character vector, or
@@ -23,6 +26,8 @@ Validate Finnish personal identification numbers (hetu).
 \examples{
 pin_ctrl("010101-0101") # TRUE
 pin_ctrl("010101-010A") # FALSE
+hetu_ctrl("010101-0101") # TRUE
+hetu_ctrl("010101-010A") # FALSE
 }
 \seealso{
 \code{\link{hetu}} For extracting information from Finnish personal

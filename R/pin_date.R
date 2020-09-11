@@ -9,3 +9,9 @@
 pin_date <- function(pin) {
   lubridate::ymd(hetu(pin, extract = "date", allow.temp = TRUE))
 }
+
+#' @rdname pin_date
+#' @examples
+#' hetu_date(c("010101-0101", "111111-111C"))
+#' @export
+hetu_date <- pin_date

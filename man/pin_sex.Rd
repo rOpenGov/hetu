@@ -2,9 +2,12 @@
 % Please edit documentation in R/pin_sex.R
 \name{pin_sex}
 \alias{pin_sex}
+\alias{hetu_sex}
 \title{Sex From ID}
 \usage{
 pin_sex(pin)
+
+hetu_sex(pin)
 }
 \arguments{
 \item{pin}{Finnish personal identification number as a character vector, 
@@ -18,6 +21,7 @@ Extract sex from Finnish personal identification number.
 }
 \examples{
 pin_sex("010101-010A") 
+hetu_sex("010101-010A") 
 }
 \seealso{
 \code{\link{hetu}} For general information extraction

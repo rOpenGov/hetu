@@ -10,7 +10,7 @@
 #'   \item \code{weeks}
 #'   \item \code{days}
 #' }
-#'
+#' @aliases hetu_age 
 #' @return Age as an integer vector.
 #'
 #' @examples
@@ -64,3 +64,9 @@ pin_age <- function(pin, date=Sys.Date(), timespan = "years") {
   
 }
 
+#' @rdname pin_age
+#' @examples
+#' ex_pin <- c("010101-0101", "111111-111C")
+#' hetu_age(ex_pin, date = "2012-01-01")
+#' @export
+hetu_age <- pin_age

@@ -2,9 +2,12 @@
 % Please edit documentation in R/pin_date.R
 \name{pin_date}
 \alias{pin_date}
+\alias{hetu_date}
 \title{Get Birth date from PIN}
 \usage{
 pin_date(pin)
+
+hetu_date(pin)
 }
 \arguments{
 \item{pin}{Finnish personal identification number as a character vector, 
@@ -19,4 +22,5 @@ Calculates the date of birth in date format.
 \examples{
 pin_date(c("010101-0101", "111111-111C"))
 
+hetu_date(c("010101-0101", "111111-111C"))
 }

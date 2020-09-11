@@ -15,5 +15,9 @@ pin_sex <- function(pin) {
   
 }
 
-
+#' @rdname pin_sex
+#' @examples
+#' hetu_sex("010101-010A") 
+#' @export
+hetu_sex <- pin_sex
 
