@@ -2,6 +2,9 @@
   [![Build Status](https://travis-ci.org/rOpenGov/hetu.svg?branch=master)](https://travis-ci.org/rOpenGov/hetu)
   [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/rOpenGov/hetu?branch=master&svg=true)](https://ci.appveyor.com/project/rOpenGov/hetu)
   [![codecov](https://codecov.io/gh/rOpenGov/hetu/branch/master/graph/badge.svg)](https://codecov.io/gh/rOpenGov/hetu)
+  [![Watch on GitHub][github-watch-badge]][github-watch]
+  [![Star on GitHub][github-star-badge]][github-star]
+  [![Follow](https://img.shields.io/twitter/follow/ropengov.svg?style=social)](https://twitter.com/intent/follow?screen_name=ropengov)
   <!-- badges: end -->
 
 <!--[![Coverage Status](https://coveralls.io/repos/github/rOpenGov/hetu/badge.svg?branch=master)](https://coveralls.io/github/rOpenGov/hetu?branch=master)-->
@@ -47,3 +50,8 @@ IMPORTANT: When submitting a bug, you can make the lives of the developers easie
 - The output of `sessionInfo()`
 - The output of `packageVersion("hetu")`
 
+
+[github-watch-badge]: https://img.shields.io/github/watchers/ropengov/hetu.svg?style=social
+[github-watch]: https://github.com/ropengov/hetu/watchers
+[github-star-badge]: https://img.shields.io/github/stars/ropengov/hetu.svg?style=social
+[github-star]: https://github.com/ropengov/hetu/stargazers
