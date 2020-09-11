@@ -123,7 +123,9 @@
     <p>Calculate the age in full years for a given date.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>pin_age</span>(<span class='no'>pin</span>, <span class='kw'>date</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.Date</a></span>(), <span class='kw'>timespan</span> <span class='kw'>=</span> <span class='st'>"years"</span>)</pre>
+    <pre class="usage"><span class='fu'>pin_age</span>(<span class='no'>pin</span>, <span class='kw'>date</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.Date</a></span>(), <span class='kw'>timespan</span> <span class='kw'>=</span> <span class='st'>"years"</span>)
+
+<span class='fu'>hetu_age</span>(<span class='no'>pin</span>, <span class='kw'>date</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.Date</a></span>(), <span class='kw'>timespan</span> <span class='kw'>=</span> <span class='st'>"years"</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -156,7 +158,8 @@ of the same length as the <code>pin</code> argument.</p></td>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>ex_pin</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"010101-0101"</span>, <span class='st'>"111111-111C"</span>)
 <span class='fu'>pin_age</span>(<span class='no'>ex_pin</span>, <span class='kw'>date</span> <span class='kw'>=</span> <span class='st'>"2012-01-01"</span>)</div><div class='output co'>#&gt; <span class='message'>The age has been calculated at 2012-01-01.</span></div><div class='output co'>#&gt; [1] 111 100</div><div class='input'>
-</div></pre>
+<span class='no'>ex_pin</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"010101-0101"</span>, <span class='st'>"111111-111C"</span>)
+<span class='fu'>hetu_age</span>(<span class='no'>ex_pin</span>, <span class='kw'>date</span> <span class='kw'>=</span> <span class='st'>"2012-01-01"</span>)</div><div class='output co'>#&gt; <span class='message'>The age has been calculated at 2012-01-01.</span></div><div class='output co'>#&gt; [1] 111 100</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

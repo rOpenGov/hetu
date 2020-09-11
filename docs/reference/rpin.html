@@ -131,6 +131,14 @@ The generated <code>hetu</code> is uniformely distributed over the time period.<
   <span class='kw'>end_date</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.Date</a></span>()),
   <span class='kw'>p.male</span> <span class='kw'>=</span> <span class='fl'>0.4</span>,
   <span class='kw'>p.temp</span> <span class='kw'>=</span> <span class='fl'>0</span>
+)
+
+<span class='fu'>rhetu</span>(
+  <span class='no'>n</span>,
+  <span class='kw'>start_date</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span>(<span class='st'>"1895-01-01"</span>),
+  <span class='kw'>end_date</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.Date</a></span>()),
+  <span class='kw'>p.male</span> <span class='kw'>=</span> <span class='fl'>0.4</span>,
+  <span class='kw'>p.temp</span> <span class='kw'>=</span> <span class='fl'>0</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -172,7 +180,8 @@ The generated <code>hetu</code> is uniformely distributed over the time period.<
 #&gt; 1   FALSE
 #&gt; 2   FALSE
 #&gt; 3   FALSE</div><div class='input'><span class='fu'><a href='hetu.html'>hetu</a></span>(<span class='no'>x</span>, <span class='kw'>extract</span> <span class='kw'>=</span> <span class='st'>"sex"</span>)</div><div class='output co'>#&gt; [1] "Female" "Female" "Female"</div><div class='input'><span class='fu'><a href='hetu.html'>hetu</a></span>(<span class='no'>x</span>, <span class='kw'>extract</span> <span class='kw'>=</span> <span class='st'>"checksum"</span>)</div><div class='output co'>#&gt; [1] "U" "1" "K"</div><div class='input'>
-</div></pre>
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>rhetu</span>(<span class='fl'>3</span>)
+<span class='no'>x</span></div><div class='output co'>#&gt; [1] "210916A695B" "010330-336M" "200290-626X"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

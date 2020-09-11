@@ -4,21 +4,19 @@
 \alias{hetu_diagnostic}
 \title{Diagnostics Tool for HETU}
 \usage{
-hetu_diagnostic(pin, extract = NULL, subsetting = FALSE, show.warnings = FALSE)
+hetu_diagnostic(pin, extract = NULL, subsetting = FALSE)
 }
 \arguments{
 \item{pin}{Finnish personal identification number as a character vector, 
 or vector of identification numbers as a character vectors}
 
 \item{extract}{Extract only selected part of the diagnostic information.
- Valid values are "\code{hetu}", "\code{is.temp}", "\code{invalid.personal.number}",
- "\code{invalid.checksum}", "\code{incorrect.checksum}", "\code{invalid.date}",
- "\code{invalid.day}", "\code{invalid.month}", "\code{invalid.length}", 
-"\code{invalid.century}". If \code{NULL} (default), returns all information.}
+ Valid values are "\code{hetu}", "\code{is.temp}", "\code{valid.personal.number}",
+ "\code{valid.checksum}", "\code{correct.checksum}", "\code{valid.date}",
+ "\code{valid.day}", "\code{valid.month}", "\code{valid.length}", 
+"\code{valid.century}". If \code{NULL} (default), returns all information.}
 
-\item{subsetting}{Print only PINs where extracted information is \code{TRUE}.}
-
-\item{show.warnings}{If TRUE, print warnings normally. Default is FALSE, suppressing warnings.}
+\item{subsetting}{Print only PINs where validity checks return \code{FALSE}.}
 }
 \value{
 A data.frame containing PINs that have invalid parts.
@@ -33,8 +31,8 @@ diagnosis_example <- c("010101-0102", "111111-111Q",
 ## Print all diagnoses
 suppressWarnings(hetu_diagnostic(diagnosis_example))
 # Extract century-related checks
-suppressWarnings(hetu_diagnostic(diagnosis_example, extract = "invalid.century"))
+suppressWarnings(hetu_diagnostic(diagnosis_example, extract = "valid.century"))
 # Extract only rows where invalid.checksum = TRUE
-suppressWarnings(hetu_diagnostic(diagnosis_example, subsetting = TRUE, extract = "invalid.checksum")) 
+suppressWarnings(hetu_diagnostic(diagnosis_example, subsetting = TRUE, extract = "valid.checksum")) 
 
 }

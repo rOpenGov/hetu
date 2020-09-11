@@ -123,7 +123,9 @@
     <p>Extract sex from Finnish personal identification number.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>pin_sex</span>(<span class='no'>pin</span>)</pre>
+    <pre class="usage"><span class='fu'>pin_sex</span>(<span class='no'>pin</span>)
+
+<span class='fu'>hetu_sex</span>(<span class='no'>pin</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -143,7 +145,8 @@ or vector of identification numbers as a character vectors</p></td>
     <div class='dont-index'><p><code><a href='hetu.html'>hetu</a></code> For general information extraction</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>pin_sex</span>(<span class='st'>"010101-010A"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Incorrect checksum character 'A' in hetu 010101-010A</span></div><div class='output co'>#&gt; [1] &lt;NA&gt;
+    <pre class="examples"><div class='input'><span class='fu'>pin_sex</span>(<span class='st'>"010101-010A"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Incorrect checksum character 'A' in hetu 010101-010A</span></div><div class='output co'>#&gt; [1] Female
+#&gt; Levels: Female Male</div><div class='input'><span class='fu'>hetu_sex</span>(<span class='st'>"010101-010A"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Incorrect checksum character 'A' in hetu 010101-010A</span></div><div class='output co'>#&gt; [1] Female
 #&gt; Levels: Female Male</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
