@@ -34,3 +34,4 @@ inst/win-install*
 ^docs$
 ^pkgdown$
 ^codecov\.yml$
+^appveyor\.yml$
