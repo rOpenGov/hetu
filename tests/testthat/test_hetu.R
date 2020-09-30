@@ -1,4 +1,4 @@
-context("Hetu (personal identification number in Finland")
+context("Hetu (personal identification number in Finland)")
 
 test_that("hetu() works correctly", {
   expect_error(hetu("010101-0101", extract = ""))

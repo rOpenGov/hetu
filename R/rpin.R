@@ -21,6 +21,7 @@
 #' @export
 rpin <- function(n, start_date = as.Date("1895-01-01"), end_date = as.Date(Sys.Date()), p.male = 0.4, p.temp = 0.0){
   rdate <- sample(as.Date(start_date):as.Date(end_date), n, replace = TRUE)
+  
   # origin date according to POSIX standard
   rdate <- as.Date(rdate, origin = "1970-01-01")
   
@@ -35,22 +36,21 @@ rpin <- function(n, start_date = as.Date("1895-01-01"), end_date = as.Date(Sys.D
          "18" = "+",
     )
   }
+  century.char <- sapply(rdate, century, USE.NAMES = FALSE)
   
   # Generate the personal number part of hetu (ZZZ in DDMMYYCZZZQ)
-  test_zzz <- "000"
-  while ("000" %in% test_zzz | "001" %in% test_zzz) {
-    zz_norm <- sample(x = 0:89, replace = TRUE, size = round(n*(1-p.temp)))
-    zz_temp <- sample(x = 90:99, replace = TRUE, size = round(n*p.temp))
-    zz <- append(zz_norm, zz_temp)
-    #randomize order of pins to make the vector seem more natural
-    zz <- sample(zz)
-    zz <- formatC(zz, width = 2, format = "d", flag = "0")
-    z <- sample(x = as.character(c(0, 2, 4, 6, 8, 1, 3, 5, 7, 9)), 
-                prob = c(rep(1 - p.male, 5), rep(p.male, 5)), replace = TRUE, 
-                size = n)
-    test_zzz <- paste0(zz,z)
-  }
-  
+  zz_norm <- sample(x = 0:89, replace = TRUE, size = round(n*(1-p.temp)))
+  zz_temp <- sample(x = 90:99, replace = TRUE, size = round(n*p.temp))
+  zz <- append(zz_norm, zz_temp)
+  #randomize order of pins to make the vector seem more natural
+  zz <- sample(zz)
+  zz <- formatC(zz, width = 2, format = "d", flag = "0")
+  z <- sample(x = as.character(c(0, 2, 4, 6, 8, 1, 3, 5, 7, 9)), 
+              prob = c(rep(1 - p.male, 5), 
+              rep(p.male, 5)), 
+              replace = TRUE, 
+              size = n)
+
   # Allowed characters used for determining the checksum of hetu
   checklist <- c("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", 
                  "A", "B", "C", "D", "E", "F", "H", "J", "K", "L", 
@@ -60,7 +60,16 @@ rpin <- function(n, start_date = as.Date("1895-01-01"), end_date = as.Date(Sys.D
   # Determine the checksum part of hetu (Q in DDMMYYCZZZQ)
   checksum <- checklist[as.character(as.numeric(paste0(ddmmyy, zz, z)) %% 31)]
   
-  paste0(ddmmyy, sapply(rdate, century), zz, z, checksum)
+  pins <- paste0(ddmmyy, century.char, zz, z, checksum)
+  # Remove duplicates
+  pins <- pins[!duplicated(pins)]
+  
+  # Remove pins with 000 and 001 in personal number
+  pins <- pins[!substr(pins, 8, 10) == "000"]
+  pins <- pins[!substr(pins, 8, 10) == "001"]
+  
+  # Final product
+  pins
 }
 
 #' @rdname rpin
