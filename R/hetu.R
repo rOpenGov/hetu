@@ -65,7 +65,7 @@ hetu <- function(pin, extract = NULL, allow.temp = FALSE, diagnostic = FALSE) {
       # Prevent using 0 length vector
       if (length(res) == 0) {stop("Input valid PINs or change allow.temp = TRUE")}
       # Convert dates to characters to avoid conversion problems
-      for (i in 1:length(res)) {res[[i]]$date <- as.character(res[[i]]$date)}
+      res$date <- as.character(res$date)
       # Convert list to data.frame
       res <- do.call(rbind.data.frame, res) 
       # dates back to dates
@@ -78,7 +78,7 @@ hetu <- function(pin, extract = NULL, allow.temp = FALSE, diagnostic = FALSE) {
   }
   
   # Convert to character vector if necessary
-  if(!is.character(pin)) pin <- as.character(pin)
+  if(!is.character(pin)) {pin <- as.character(pin)}
   
   # Check day
   day <- as.numeric(substr(pin, start=1, stop=2))
@@ -151,8 +151,8 @@ hetu <- function(pin, extract = NULL, allow.temp = FALSE, diagnostic = FALSE) {
   } else {valid.personal.number <- TRUE}
   
   # Check if checksum character is correct
-  mod <- as.numeric(paste(substr(pin, start=1, stop=6), 
-      	 		substr(pin, start=8, stop=10), sep="")) %% 31
+  mod <- as.numeric(paste0(substr(pin, start=1, stop=6), 
+      	 		substr(pin, start=8, stop=10))) %% 31
   if (check != checklist[as.character(mod)]) {
     warning(paste0("Incorrect checksum character '", check, "' in hetu ", pin))
     correct.checksum <- FALSE
