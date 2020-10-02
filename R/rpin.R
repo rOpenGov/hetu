@@ -20,7 +20,10 @@
 #' 
 #' @export
 rpin <- function(n, start_date = as.Date("1895-01-01"), end_date = as.Date(Sys.Date()), p.male = 0.4, p.temp = 0.0){
-  rdate <- sample(as.Date(start_date):as.Date(end_date), n, replace = TRUE)
+  # Oversample a bit to make up for filtered pins (duplicates, pins with inadequate personal numbers) 
+  n_sample <- n * 1.1
+  
+  rdate <- sample(as.Date(start_date):as.Date(end_date), n_sample, replace = TRUE)
   
   # origin date according to POSIX standard
   rdate <- as.Date(rdate, origin = "1970-01-01")
@@ -39,17 +42,17 @@ rpin <- function(n, start_date = as.Date("1895-01-01"), end_date = as.Date(Sys.D
   century.char <- sapply(rdate, century, USE.NAMES = FALSE)
   
   # Generate the personal number part of hetu (ZZZ in DDMMYYCZZZQ)
-  zz_norm <- sample(x = 0:89, replace = TRUE, size = round(n*(1-p.temp)))
-  zz_temp <- sample(x = 90:99, replace = TRUE, size = round(n*p.temp))
+  zz_norm <- sample(x = 0:89, replace = TRUE, size = round(n_sample*(1-p.temp)))
+  zz_temp <- sample(x = 90:99, replace = TRUE, size = round(n_sample*p.temp))
   zz <- append(zz_norm, zz_temp)
   #randomize order of pins to make the vector seem more natural
-  zz <- sample(zz)
+  # zz <- sample(zz)
   zz <- formatC(zz, width = 2, format = "d", flag = "0")
   z <- sample(x = as.character(c(0, 2, 4, 6, 8, 1, 3, 5, 7, 9)), 
               prob = c(rep(1 - p.male, 5), 
               rep(p.male, 5)), 
               replace = TRUE, 
-              size = n)
+              size = n_sample)
 
   # Allowed characters used for determining the checksum of hetu
   checklist <- c("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", 
@@ -69,6 +72,7 @@ rpin <- function(n, start_date = as.Date("1895-01-01"), end_date = as.Date(Sys.D
   pins <- pins[!substr(pins, 8, 10) == "001"]
   
   # Final product
+  pins <- sample(pins, n)
   pins
 }
 
