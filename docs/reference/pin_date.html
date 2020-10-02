@@ -123,9 +123,9 @@
     <p>Calculates the date of birth in date format.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>pin_date</span>(<span class='no'>pin</span>)
+    <pre class="usage"><span class='fu'>pin_date</span><span class='op'>(</span><span class='va'>pin</span><span class='op'>)</span>
 
-<span class='fu'>hetu_date</span>(<span class='no'>pin</span>)</pre>
+<span class='fu'>hetu_date</span><span class='op'>(</span><span class='va'>pin</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -142,8 +142,10 @@ or vector of identification numbers as a character vectors</p></td>
     <p>Date of birth as a vector in date format.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>pin_date</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"010101-0101"</span>, <span class='st'>"111111-111C"</span>))</div><div class='output co'>#&gt; [1] "1901-01-01" "1911-11-11"</div><div class='input'>
-<span class='fu'>hetu_date</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"010101-0101"</span>, <span class='st'>"111111-111C"</span>))</div><div class='output co'>#&gt; [1] "1901-01-01" "1911-11-11"</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>pin_date</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"010101-0101"</span>, <span class='st'>"111111-111C"</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "1901-01-01" "1911-11-11"</div><div class='input'>
+<span class='fu'>hetu_date</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"010101-0101"</span>, <span class='st'>"111111-111C"</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "1901-01-01" "1911-11-11"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -159,7 +161,7 @@ or vector of identification numbers as a character vectors</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
