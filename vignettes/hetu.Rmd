@@ -247,7 +247,7 @@ hdat
 
 ## Licensing and Citations
 
-This work can be freely used, modified and distributed under the open license specified in the [DESCRIPTION file](https://github.com/MansMeg/hetu/blob/master/DESCRIPTION).
+This work can be freely used, modified and distributed under the open license specified in the [DESCRIPTION file](https://github.com/rOpenGov/hetu/blob/master/DESCRIPTION).
 
 Kindly cite the work as follows
 
@@ -258,8 +258,8 @@ citation("hetu")
 ## References
 
 - [The personal identity code](https://dvv.fi/en/personal-identity-code). Digital and population data services agency.
-- [Valtioneuvoston asetus väestötietojärjestelmästä (128/2010)](https://www.finlex.fi/fi/laki/ajantasa/2010/20100128). Valtiovarainministeriö.
-- [HETU-uudistuksen loppuraportti](http://urn.fi/URN:ISBN:978-952-367-296-3). Valtiovarainministeriön julkaisuja 2020:20.
+- [Valtioneuvoston asetus väestötietojärjestelmästä (128/2010)](https://www.finlex.fi/fi/laki/ajantasa/2010/20100128) (In Finnish). Valtiovarainministeriö.
+- [HETU-uudistuksen loppuraportti](http://urn.fi/URN:ISBN:978-952-367-296-3) (In Finnish. Valtiovarainministeriön julkaisuja 2020:20.
 
 ## Session info
 

@@ -15,11 +15,11 @@
 #' "010101B0101", "320101-0101", "011301-0101", 
 #' "010101-01010", "010101-0011")
 #' ## Print all diagnoses
-#' suppressWarnings(hetu_diagnostic(diagnosis_example))
+#' hetu_diagnostic(diagnosis_example)
 #' # Extract century-related checks
-#' suppressWarnings(hetu_diagnostic(diagnosis_example, extract = "valid.century"))
+#' hetu_diagnostic(diagnosis_example, extract = "valid.century")
 #' # Extract only rows where invalid.checksum = TRUE
-#' suppressWarnings(hetu_diagnostic(diagnosis_example, subsetting = TRUE, extract = "valid.checksum")) 
+#' hetu_diagnostic(diagnosis_example, subsetting = TRUE, extract = "valid.checksum") 
 #'
 #' @export
 hetu_diagnostic <- function(pin, extract = NULL, subsetting = FALSE) {

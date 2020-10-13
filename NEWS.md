@@ -5,6 +5,7 @@
 
 * Optimized functions: generating and handling a large amount of PINs is now much faster (tested with 5.5 million PINs)
 * new bid_ctrl function for checking the validity of Finnish Business IDs
+* personal.number changed to shorter p.num
 
 # hetu 0.2.4 (2020-09-10)
 
