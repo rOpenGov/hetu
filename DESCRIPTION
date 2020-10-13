@@ -3,7 +3,7 @@ Type: Package
 Title: Structural Handling of Finnish Personal Identity Numbers
 Version: 0.3.0
 Encoding: UTF-8
-Date: 2020-09-04
+Date: 2020-10-13
 Authors@R: c(
   person("Pyry", "Kantanen", email = "pyry.kantanen@gmail.com", role = c("aut", "cre")),
   person("Mans", "Magnusson", role = "aut"),
