@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">hetu</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0</span>
       </span>
     </div>
 
@@ -123,9 +123,9 @@
     <p>Calculate the age in full years for a given date.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>pin_age</span><span class='op'>(</span><span class='va'>pin</span>, date <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.Date</a></span><span class='op'>(</span><span class='op'>)</span>, timespan <span class='op'>=</span> <span class='st'>"years"</span><span class='op'>)</span>
+    <pre class="usage"><span class='fu'>pin_age</span><span class='op'>(</span><span class='va'>pin</span>, date <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.Date</a></span><span class='op'>(</span><span class='op'>)</span>, timespan <span class='op'>=</span> <span class='st'>"years"</span>, allow.temp <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
 
-<span class='fu'>hetu_age</span><span class='op'>(</span><span class='va'>pin</span>, date <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.Date</a></span><span class='op'>(</span><span class='op'>)</span>, timespan <span class='op'>=</span> <span class='st'>"years"</span><span class='op'>)</span></pre>
+<span class='fu'>hetu_age</span><span class='op'>(</span><span class='va'>pin</span>, date <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.Date</a></span><span class='op'>(</span><span class='op'>)</span>, timespan <span class='op'>=</span> <span class='st'>"years"</span>, allow.temp <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -149,6 +149,11 @@ of the same length as the <code>pin</code> argument.</p></td>
 <li><p><code>days</code></p></li>
 </ul></td>
     </tr>
+    <tr>
+      <th>allow.temp</th>
+      <td><p>Allow artificial or temporary PINs (personal numbers 900-999). 
+If <code>FALSE</code> (default), only PINs intended for official use (personal numbers 002-899) are allowed.</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -158,10 +163,10 @@ of the same length as the <code>pin</code> argument.</p></td>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='va'>ex_pin</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"010101-0101"</span>, <span class='st'>"111111-111C"</span><span class='op'>)</span>
 <span class='fu'>pin_age</span><span class='op'>(</span><span class='va'>ex_pin</span>, date <span class='op'>=</span> <span class='st'>"2012-01-01"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>The age has been calculated at 2012-01-01.</span></div><div class='output co'>#&gt; [1] 111 100</div><div class='input'>
+</div><div class='output co'>#&gt; <span class='message'>The age in years has been calculated at 2012-01-01.</span></div><div class='output co'>#&gt; [1] 111 100</div><div class='input'>
 <span class='va'>ex_pin</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"010101-0101"</span>, <span class='st'>"111111-111C"</span><span class='op'>)</span>
 <span class='fu'>hetu_age</span><span class='op'>(</span><span class='va'>ex_pin</span>, date <span class='op'>=</span> <span class='st'>"2012-01-01"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>The age has been calculated at 2012-01-01.</span></div><div class='output co'>#&gt; [1] 111 100</div></pre>
+</div><div class='output co'>#&gt; <span class='message'>The age in years has been calculated at 2012-01-01.</span></div><div class='output co'>#&gt; [1] 111 100</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

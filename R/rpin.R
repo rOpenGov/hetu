@@ -1,4 +1,4 @@
-#' Generate a vector of random \code{hetu}
+#' @title Generate a vector of random \code{hetu}
 #'
 #' @description 
 #' A function that generates random \code{hetu}-pins. 
@@ -12,6 +12,8 @@
 #' 
 #' @return a vector of generated \code{hetu}-pins.
 #' 
+#' @author Pyry Kantanen, Jussi Paananen
+#' 
 #' @examples 
 #' x <- rpin(3)
 #' hetu(x)
@@ -20,7 +22,7 @@
 #' 
 #' @export
 rpin <- function(n, start_date = as.Date("1895-01-01"), end_date = as.Date(Sys.Date()), p.male = 0.4, p.temp = 0.0){
-  # Oversample a bit to make up for filtered pins (duplicates, pins with inadequate personal numbers) 
+  # Oversample a bit to make up for filtered PINs (duplicates, PINs with inadequate personal numbers) 
   n_sample <- n * 1.1
   
   rdate <- sample(as.Date(start_date):as.Date(end_date), n_sample, replace = TRUE)
@@ -72,6 +74,7 @@ rpin <- function(n, start_date = as.Date("1895-01-01"), end_date = as.Date(Sys.D
   pins <- pins[!substr(pins, 8, 10) == "001"]
   
   # Final product
+  # Select a subsample of desired size from a slightly larger sample 
   pins <- sample(pins, n)
   pins
 }

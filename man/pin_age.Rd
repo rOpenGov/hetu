@@ -5,9 +5,9 @@
 \alias{hetu_age}
 \title{Age from ID}
 \usage{
-pin_age(pin, date = Sys.Date(), timespan = "years")
+pin_age(pin, date = Sys.Date(), timespan = "years", allow.temp = FALSE)
 
-hetu_age(pin, date = Sys.Date(), timespan = "years")
+hetu_age(pin, date = Sys.Date(), timespan = "years", allow.temp = FALSE)
 }
 \arguments{
 \item{pin}{Finnish personal identification number as a character vector, 
@@ -23,6 +23,9 @@ of the same length as the \code{pin} argument.}
   \item \code{weeks}
   \item \code{days}
 }}
+
+\item{allow.temp}{Allow artificial or temporary PINs (personal numbers 900-999). 
+If \code{FALSE} (default), only PINs intended for official use (personal numbers 002-899) are allowed.}
 }
 \value{
 Age as an integer vector.

@@ -11,7 +11,7 @@ hetu(pin, extract = NULL, allow.temp = FALSE, diagnostic = FALSE)
 or vector of identification numbers as a character vectors}
 
 \item{extract}{Extract only selected part of the information. 
-Valid values are "\code{hetu}", "\code{sex}", "\code{personal.number}",
+Valid values are "\code{hetu}", "\code{sex}", "\code{p.num}",
 "\code{checksum}", "\code{date}", "\code{day}", "\code{month}", 
 "\code{year}", "\code{century}", "\code{is.temp}".
 If \code{NULL} (default), returns all information.}
@@ -20,7 +20,7 @@ If \code{NULL} (default), returns all information.}
 If \code{FALSE} (default), only PINs intended for official use (personal numbers 002-899) are allowed.}
 
 \item{diagnostic}{Print additional information about possible problems in PINs. The checks are 
- "\code{invalid.personal.number}", "\code{invalid.checksum}", "\code{incorrect.checksum}" 
+ "\code{invalid.p.num}", "\code{invalid.checksum}", "\code{incorrect.checksum}" 
  "\code{invalid.date}", "\code{invalid.day}", "\code{invalid.month}, "\code{invalid.length}, 
 "\code{invalid.century}". Default is \code{FALSE} which returns no diagnostic information.}
 }
@@ -33,7 +33,7 @@ Finnish personal identification number data.frame,
     A correct pin should be in the form DDMMYYCZZZQ, where DDMMYY stands for date, C for century sign, 
     ZZZ for personal number and Q for checksum character.}
 \item{sex}{sex of the person as a character vector ("Male" or "Female").}
-\item{personal.number}{Personal number part of the identification number.}
+\item{p.num}{Personal number part of the identification number.}
 \item{checksum}{Checksum for the personal identification number.}
 \item{date}{Birthdate.}
 \item{day}{Day of the birthdate.}
@@ -64,5 +64,5 @@ hetu(c("010101-0101", "111111-111C"), extract="sex")
 	    identification numbers.
 }
 \author{
-Jussi Paananen
+Pyry Kantanen, Jussi Paananen
 }

@@ -48,3 +48,6 @@ hetu(x, extract = "checksum")
 x <- rhetu(3)
 x
 }
+\author{
+Pyry Kantanen, Jussi Paananen
+}

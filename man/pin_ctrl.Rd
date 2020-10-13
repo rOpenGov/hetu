@@ -34,5 +34,5 @@ hetu_ctrl("010101-010A") # FALSE
   identification numbers.
 }
 \author{
-Jussi Paananen
+Pyry Kantanen
 }

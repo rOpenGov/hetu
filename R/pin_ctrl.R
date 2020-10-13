@@ -6,7 +6,7 @@
 #'  similarly to regular PINs (personal numbers 002-899), meaning that otherwise valid
 #'  temporary PIN will return a TRUE. Default is \code{FALSE}.
 #' @return Logical indicating whether the input string is a valid Finnish personal identification number,
-#' @author Jussi Paananen
+#' @author Pyry Kantanen
 #' @seealso \code{\link{hetu}} For extracting information from Finnish personal
 #'   identification numbers.
 #' @examples
@@ -15,13 +15,8 @@
 #' @export
 pin_ctrl <- function(pin, allow.temp = FALSE) {
 
-  # Try to create hetu-object from the given pin, check if created object 
-  # is of the correct class 
-  if (length(pin) > 1) {
-    return(sapply(pin, FUN=pin_ctrl, allow.temp = allow.temp, USE.NAMES = FALSE))
-  }
-
-  return(class(hetu(pin, allow.temp = allow.temp)) == "data.frame")
+  return(hetu(pin, extract = "valid.pin", allow.temp = allow.temp))
+  
 }
 
 #' @rdname pin_ctrl

@@ -11,15 +11,15 @@ hetu_diagnostic(pin, extract = NULL, subsetting = FALSE)
 or vector of identification numbers as a character vectors}
 
 \item{extract}{Extract only selected part of the diagnostic information.
- Valid values are "\code{hetu}", "\code{is.temp}", "\code{valid.personal.number}",
+ Valid values are "\code{hetu}", "\code{is.temp}", "\code{valid.p.num}",
  "\code{valid.checksum}", "\code{correct.checksum}", "\code{valid.date}",
  "\code{valid.day}", "\code{valid.month}", "\code{valid.length}", 
 "\code{valid.century}". If \code{NULL} (default), returns all information.}
 
-\item{subsetting}{Print only PINs where validity checks return \code{FALSE}.}
+\item{subsetting}{Print only PINs where the validity check chosen in \code{extract} returns \code{FALSE}.}
 }
 \value{
-A data.frame containing PINs that have invalid parts.
+A data.frame containing diagnostic checks about PINs.
 }
 \description{
 Produce a data frame of PINs that may require closer scrutiny.
