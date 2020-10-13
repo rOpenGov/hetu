@@ -26,7 +26,7 @@ pin_ctrl <- function(pin, allow.temp = FALSE) {
 #' @export
 hetu_ctrl <- pin_ctrl
 
-#' Check Finnish Business ID (y-tunnus) validity
+#' @title Check Finnish Business ID (y-tunnus) validity
 #' 
 #' @description 
 #' A function that checks whether a \code{bid} (Finnish Business ID) is valid. 
