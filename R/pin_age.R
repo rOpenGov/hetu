@@ -18,25 +18,25 @@
 #' pin_age(ex_pin, date = "2012-01-01")
 #'
 #' @export
-pin_age <- function(pin, date=Sys.Date(), timespan = "years") {
+pin_age <- function(pin, date=Sys.Date(), timespan = "years", allow.temp = FALSE) {
 
   date <- as.Date(date)
   checkmate::assert_date(date, any.missing = FALSE)
   checkmate::assert_choice(timespan, choices = c("years", "months", "weeks", "days"))
   
   if (length(date) == 1) {
-    message("The age has been calculated at ", as.character(date), 
+    message("The age in ", timespan, " has been calculated at ", as.character(date), 
             ".")
   } else if (length(date) == length(pin)){
     message("The age is calculated relative to the '", deparse(substitute(date)), "' date")
   } else {
     stop("Multiple dates used.")
   }
-  
+  hetuframe <- hetu(pin)
   date <- lubridate::ymd(date)
 
   all_pins <- pin
-  all_pins[!pin_ctrl(pin, allow.temp = TRUE)] <- NA
+  all_pins[!hetuframe$valid.pin] <- NA
   if (length(date) > 1){
     valid_diff <- !is.na(all_pins) & !is.na(date)
   } else{
@@ -44,7 +44,7 @@ pin_age <- function(pin, date=Sys.Date(), timespan = "years") {
   }
   pin <- all_pins[valid_diff]
   
-  pin_dates <- pin_date(pin)
+  pin_dates <- as.Date(hetuframe$date[valid_diff])
   
   diff <- lubridate::interval(pin_dates, date)
 

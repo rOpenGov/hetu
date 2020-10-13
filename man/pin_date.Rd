@@ -5,13 +5,16 @@
 \alias{hetu_date}
 \title{Get Birth date from PIN}
 \usage{
-pin_date(pin)
+pin_date(pin, allow.temp = FALSE)
 
-hetu_date(pin)
+hetu_date(pin, allow.temp = FALSE)
 }
 \arguments{
 \item{pin}{Finnish personal identification number as a character vector, 
 or vector of identification numbers as a character vectors}
+
+\item{allow.temp}{Allow artificial or temporary PINs (personal numbers 900-999). 
+If \code{FALSE} (default), only PINs intended for official use (personal numbers 002-899) are allowed.}
 }
 \value{
 Date of birth as a vector in date format.

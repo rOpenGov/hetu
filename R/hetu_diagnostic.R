@@ -4,12 +4,12 @@
 #' @param pin Finnish personal identification number as a character vector, 
 #' 	  or vector of identification numbers as a character vectors
 #' @param extract Extract only selected part of the diagnostic information.
-#'   Valid values are "\code{hetu}", "\code{is.temp}", "\code{valid.personal.number}",
+#'   Valid values are "\code{hetu}", "\code{is.temp}", "\code{valid.p.num}",
 #'   "\code{valid.checksum}", "\code{correct.checksum}", "\code{valid.date}",
 #'   "\code{valid.day}", "\code{valid.month}", "\code{valid.length}", 
 #'  "\code{valid.century}". If \code{NULL} (default), returns all information.
-#' @param subsetting Print only PINs where validity checks return \code{FALSE}.
-#' @return A data.frame containing PINs that have invalid parts.
+#' @param subsetting Print only PINs where the validity check chosen in \code{extract} returns \code{FALSE}.
+#' @return A data.frame containing diagnostic checks about PINs.
 #' @examples
 #' diagnosis_example <- c("010101-0102", "111111-111Q", 
 #' "010101B0101", "320101-0101", "011301-0101", 
@@ -24,9 +24,9 @@
 #' @export
 hetu_diagnostic <- function(pin, extract = NULL, subsetting = FALSE) {
   
-  diagnostic_params <- c("hetu", "is.temp", "valid.personal.number", "valid.checksum", 
+  diagnostic_params <- c("hetu", "is.temp", "valid.p.num", "valid.checksum", 
             "correct.checksum", "valid.date", "valid.day", "valid.month", 
-            "valid.length", "valid.century")
+            "valid.year", "valid.length", "valid.century")
   
   if (!is.null(extract)) {
     if (!extract %in% diagnostic_params) {

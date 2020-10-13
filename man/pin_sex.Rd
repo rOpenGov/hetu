@@ -5,13 +5,16 @@
 \alias{hetu_sex}
 \title{Sex From ID}
 \usage{
-pin_sex(pin)
+pin_sex(pin, allow.temp = TRUE)
 
-hetu_sex(pin)
+hetu_sex(pin, allow.temp = TRUE)
 }
 \arguments{
 \item{pin}{Finnish personal identification number as a character vector, 
 or vector of identification numbers as a character vectors}
+
+\item{allow.temp}{Allow artificial or temporary PINs (personal numbers 900-999). 
+If \code{FALSE} (default), only PINs intended for official use (personal numbers 002-899) are allowed.}
 }
 \value{
 Factor with label 'Male' and 'Female'.
@@ -27,5 +30,5 @@ hetu_sex("010101-010A")
 \code{\link{hetu}} For general information extraction
 }
 \author{
-Leo Lahti, Pyry Kantanen
+Pyry Kantanen, Leo Lahti
 }

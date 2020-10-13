@@ -73,7 +73,7 @@ The generated hetu is uniformely distributed over the time period." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">hetu</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0</span>
       </span>
     </div>
 
@@ -169,18 +169,17 @@ The generated <code>hetu</code> is uniformely distributed over the time period.<
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>a vector of generated <code>hetu</code>-pins.</p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Pyry Kantanen, Jussi Paananen</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'>rpin</span><span class='op'>(</span><span class='fl'>3</span><span class='op'>)</span>
 <span class='fu'><a href='hetu.html'>hetu</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;          hetu    sex personal.number checksum       date day month year century
-#&gt; 1 301246-728C Female             728        C 1946-12-30  30    12 1946       -
-#&gt; 2 180323-302P Female             302        P 1923-03-18  18     3 1923       -
-#&gt; 3 080978-6705 Female             670        5 1978-09-08   8     9 1978       -
-#&gt;   is.temp
-#&gt; 1   FALSE
-#&gt; 2   FALSE
-#&gt; 3   FALSE</div><div class='input'><span class='fu'><a href='hetu.html'>hetu</a></span><span class='op'>(</span><span class='va'>x</span>, extract <span class='op'>=</span> <span class='st'>"sex"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;          hetu    sex p.num checksum       date day month year century valid.pin
+#&gt; 1 301246-728C Female   728        C 1946-12-30  30    12 1946       -      TRUE
+#&gt; 2 180323-302P Female   302        P 1923-03-18  18     3 1923       -      TRUE
+#&gt; 3 080978-6705 Female   670        5 1978-09-08   8     9 1978       -      TRUE</div><div class='input'><span class='fu'><a href='hetu.html'>hetu</a></span><span class='op'>(</span><span class='va'>x</span>, extract <span class='op'>=</span> <span class='st'>"sex"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] "Female" "Female" "Female"</div><div class='input'><span class='fu'><a href='hetu.html'>hetu</a></span><span class='op'>(</span><span class='va'>x</span>, extract <span class='op'>=</span> <span class='st'>"checksum"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] "C" "P" "5"</div><div class='input'>
 <span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'>rhetu</span><span class='op'>(</span><span class='fl'>3</span><span class='op'>)</span>
