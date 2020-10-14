@@ -23,8 +23,6 @@ inst/win-install*
 
 # Misc
 .*~
-NEWS.md
-README.md
 
 ^\.travis\.yml$
 ^.*\.Rproj$

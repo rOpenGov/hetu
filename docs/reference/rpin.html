@@ -40,8 +40,7 @@
 
 
 <meta property="og:title" content="Generate a vector of random hetu — rpin" />
-<meta property="og:description" content="A function that generates random hetu-pins. 
-The generated hetu is uniformely distributed over the time period." />
+<meta property="og:description" content="A function that generates random hetu-pins." />
 
 
 
@@ -73,7 +72,7 @@ The generated hetu is uniformely distributed over the time period." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">hetu</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.1</span>
       </span>
     </div>
 
@@ -121,8 +120,7 @@ The generated hetu is uniformely distributed over the time period." />
     </div>
 
     <div class="ref-description">
-    <p>A function that generates random <code>hetu</code>-pins. 
-The generated <code>hetu</code> is uniformely distributed over the time period.</p>
+    <p>A function that generates random <code>hetu</code>-pins.</p>
     </div>
 
     <pre class="usage"><span class='fu'>rpin</span><span class='op'>(</span>
@@ -146,7 +144,7 @@ The generated <code>hetu</code> is uniformely distributed over the time period.<
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>n</th>
-      <td><p>number of observations.</p></td>
+      <td><p>number of generated <code>hetu</code>-pins</p></td>
     </tr>
     <tr>
       <th>start_date</th>
@@ -177,14 +175,14 @@ The generated <code>hetu</code> is uniformely distributed over the time period.<
     <pre class="examples"><div class='input'><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'>rpin</span><span class='op'>(</span><span class='fl'>3</span><span class='op'>)</span>
 <span class='fu'><a href='hetu.html'>hetu</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;          hetu    sex p.num checksum       date day month year century valid.pin
-#&gt; 1 301246-728C Female   728        C 1946-12-30  30    12 1946       -      TRUE
-#&gt; 2 180323-302P Female   302        P 1923-03-18  18     3 1923       -      TRUE
-#&gt; 3 080978-6705 Female   670        5 1978-09-08   8     9 1978       -      TRUE</div><div class='input'><span class='fu'><a href='hetu.html'>hetu</a></span><span class='op'>(</span><span class='va'>x</span>, extract <span class='op'>=</span> <span class='st'>"sex"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "Female" "Female" "Female"</div><div class='input'><span class='fu'><a href='hetu.html'>hetu</a></span><span class='op'>(</span><span class='va'>x</span>, extract <span class='op'>=</span> <span class='st'>"checksum"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "C" "P" "5"</div><div class='input'>
+#&gt; 1 200992-744W Female   744        W 1992-09-20  20     9 1992       -      TRUE
+#&gt; 2 271201A478S Female   478        S 2001-12-27  27    12 2001       A      TRUE
+#&gt; 3 260275-897N   Male   897        N 1975-02-26  26     2 1975       -      TRUE</div><div class='input'><span class='fu'><a href='hetu.html'>hetu</a></span><span class='op'>(</span><span class='va'>x</span>, extract <span class='op'>=</span> <span class='st'>"sex"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "Female" "Female" "Male"  </div><div class='input'><span class='fu'><a href='hetu.html'>hetu</a></span><span class='op'>(</span><span class='va'>x</span>, extract <span class='op'>=</span> <span class='st'>"checksum"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "W" "S" "N"</div><div class='input'>
 <span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'>rhetu</span><span class='op'>(</span><span class='fl'>3</span><span class='op'>)</span>
 <span class='va'>x</span>
-</div><div class='output co'>#&gt; [1] "070147-693T" "260304-628F" "081119A0385"</div></pre>
+</div><div class='output co'>#&gt; [1] "020433-272T" "090705-708K" "290921-1197"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

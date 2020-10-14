@@ -2,9 +2,8 @@
 #'
 #' @description 
 #' A function that generates random \code{hetu}-pins. 
-#' The generated \code{hetu} is uniformely distributed over the time period.
 #'
-#' @param n number of observations.
+#' @param n number of generated \code{hetu}-pins
 #' @param start_date Lower limit of generated \code{hetu} dates. Default is 1895-01-01.
 #' @param end_date Upper limit of generated \code{hetu}. Default is the current date.
 #' @param p.male Proportion of males. Default is 0.4.
@@ -23,7 +22,7 @@
 #' @export
 rpin <- function(n, start_date = as.Date("1895-01-01"), end_date = as.Date(Sys.Date()), p.male = 0.4, p.temp = 0.0){
   # Oversample a bit to make up for filtered PINs (duplicates, PINs with inadequate personal numbers) 
-  n_sample <- n * 1.1
+  n_sample <- ceiling(n * 1.1)
   
   rdate <- sample(as.Date(start_date):as.Date(end_date), n_sample, replace = TRUE)
   
@@ -85,3 +84,50 @@ rpin <- function(n, start_date = as.Date("1895-01-01"), end_date = as.Date(Sys.D
 #' x
 #' @export
 rhetu <- rpin
+
+#' @title Generate a vector of random Finnish Business ID's (y-tunnus)
+#' 
+#' @description 
+#' A function that generates random Finnish Business ID's, \code{bid}-numbers (Y-tunnus). 
+#' 
+#' @param 
+#' n number of generated BIDs
+#' 
+#' @return a vector of generated \code{BID}-numbers.
+#' 
+#' @examples 
+#' x <- rbid(3)
+#' bid_ctrl(x)
+#' @export
+rbid <- function(n) {
+  
+  x <- ceiling(n * 1.4)
+  
+  numbers <- sample(0:9, size = x * 7, replace = TRUE)
+  
+  matrix <- matrix(numbers, ncol = 7, byrow = TRUE)
+  
+  bid_frame <- as.data.frame(matrix)
+  
+  bid_frame$check <- rowSums(t(t(bid_frame) * c(7,9,10,5,8,4,2))) %% 11
+  
+  bid_frame$check <- ifelse(test = bid_frame$check %in% c(2:10), 
+         yes = (11 - bid_frame$check), 
+         no = bid_frame$check)
+  
+  bid_frame$valid.bid <- ifelse(bid_frame$check == 1, FALSE, TRUE)
+  
+  # choose only BIDs with valid checksum
+  bid_frame <- bid_frame[bid_frame$valid.bid,]
+  
+  bids <- rep(NA, nrow(bid_frame))
+  for (i in 1:nrow(bid_frame)) {
+    bids[i] <- paste0(paste(bid_frame[i,1:7], collapse = ''), "-", paste0(bid_frame[i,8], collapse = ''))
+    next
+  }
+  
+  sample(bids, size = n, replace = FALSE)
+}
+  
+  
+  

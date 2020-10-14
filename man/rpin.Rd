@@ -22,7 +22,7 @@ rhetu(
 )
 }
 \arguments{
-\item{n}{number of observations.}
+\item{n}{number of generated \code{hetu}-pins}
 
 \item{start_date}{Lower limit of generated \code{hetu} dates. Default is 1895-01-01.}
 
@@ -36,8 +36,7 @@ rhetu(
 a vector of generated \code{hetu}-pins.
 }
 \description{
-A function that generates random \code{hetu}-pins. 
-The generated \code{hetu} is uniformely distributed over the time period.
+A function that generates random \code{hetu}-pins.
 }
 \examples{
 x <- rpin(3)

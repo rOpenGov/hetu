@@ -2,9 +2,12 @@
 % Please edit documentation in R/hetu_diagnostic.R
 \name{hetu_diagnostic}
 \alias{hetu_diagnostic}
+\alias{pin_diagnostic}
 \title{Diagnostics Tool for HETU}
 \usage{
 hetu_diagnostic(pin, extract = NULL, subsetting = FALSE)
+
+pin_diagnostic(pin, extract = NULL, subsetting = FALSE)
 }
 \arguments{
 \item{pin}{Finnish personal identification number as a character vector, 
@@ -35,4 +38,9 @@ hetu_diagnostic(diagnosis_example, extract = "valid.century")
 # Extract only rows where invalid.checksum = TRUE
 hetu_diagnostic(diagnosis_example, subsetting = TRUE, extract = "valid.checksum") 
 
+diagnosis_example <- c("010101-0102", "111111-111Q", 
+"010101B0101", "320101-0101", "011301-0101", 
+"010101-01010", "010101-0011")
+## Print all diagnoses
+pin_diagnostic(diagnosis_example)
 }
