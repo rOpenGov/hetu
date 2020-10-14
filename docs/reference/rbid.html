@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get Birth date from PIN — pin_date • hetu</title>
+<title>Generate a vector of random Finnish Business ID's (y-tunnus) — rbid • hetu</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Get Birth date from PIN — pin_date" />
-<meta property="og:description" content="Calculates the date of birth in date format." />
+<meta property="og:title" content="Generate a vector of random Finnish Business ID's (y-tunnus) — rbid" />
+<meta property="og:description" content="A function that generates random Finnish Business ID's, bid-numbers (Y-tunnus)." />
 
 
 
@@ -114,43 +114,34 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get Birth date from PIN</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ropengov/hetu/blob/master/R/pin_date.R'><code>R/pin_date.R</code></a></small>
-    <div class="hidden name"><code>pin_date.Rd</code></div>
+    <h1>Generate a vector of random Finnish Business ID's (y-tunnus)</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ropengov/hetu/blob/master/R/rpin.R'><code>R/rpin.R</code></a></small>
+    <div class="hidden name"><code>rbid.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Calculates the date of birth in date format.</p>
+    <p>A function that generates random Finnish Business ID's, <code>bid</code>-numbers (Y-tunnus).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>pin_date</span><span class='op'>(</span><span class='va'>pin</span>, allow.temp <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
-
-<span class='fu'>hetu_date</span><span class='op'>(</span><span class='va'>pin</span>, allow.temp <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>rbid</span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>pin</th>
-      <td><p>Finnish personal identification number as a character vector, 
-or vector of identification numbers as a character vectors</p></td>
-    </tr>
-    <tr>
-      <th>allow.temp</th>
-      <td><p>Allow artificial or temporary PINs (personal numbers 900-999). 
-If <code>FALSE</code> (default), only PINs intended for official use (personal numbers 002-899) are allowed.</p></td>
+      <th>n</th>
+      <td><p>number of generated BIDs</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Date of birth as a vector in date format.</p>
+    <p>a vector of generated <code>BID</code>-numbers.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>pin_date</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"010101-0101"</span>, <span class='st'>"111111-111C"</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "1901-01-01" "1911-11-11"</div><div class='input'>
-<span class='fu'>hetu_date</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"010101-0101"</span>, <span class='st'>"111111-111C"</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "1901-01-01" "1911-11-11"</div></pre>
+    <pre class="examples"><div class='input'><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'>rbid</span><span class='op'>(</span><span class='fl'>3</span><span class='op'>)</span>
+<span class='fu'><a href='bid_ctrl.html'>bid_ctrl</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] TRUE TRUE TRUE</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

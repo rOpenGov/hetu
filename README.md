@@ -18,7 +18,7 @@ hetu
 
 ## Introduction
 
-`hetu` is an R package for structural handling of identity numbers used in the Finnish administration, in particular the personal identity numbers (henkilötunnus). 
+`hetu` is an R package for structural handling of identity numbers used in the Finnish administration, in particular the personal identity numbers (henkilötunnus). Some functions can also be used with Finnish Business ID numbers (y-tunnus).
 
 The syntax in this package is unified with the similar package for Swedish ID numbers, the [sweidnumbr](https://github.com/rOpenGov/sweidnumbr).
 

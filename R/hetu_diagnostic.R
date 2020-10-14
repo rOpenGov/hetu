@@ -47,3 +47,13 @@ hetu_diagnostic <- function(pin, extract = NULL, subsetting = FALSE) {
   }
   return(output)
 }
+
+#' @rdname hetu_diagnostic
+#' @examples
+#' diagnosis_example <- c("010101-0102", "111111-111Q", 
+#' "010101B0101", "320101-0101", "011301-0101", 
+#' "010101-01010", "010101-0011")
+#' ## Print all diagnoses
+#' pin_diagnostic(diagnosis_example)
+#' @export
+pin_diagnostic <- hetu_diagnostic

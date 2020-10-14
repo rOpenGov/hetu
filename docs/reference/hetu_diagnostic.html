@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">hetu</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.1</span>
       </span>
     </div>
 
@@ -123,7 +123,9 @@
     <p>Produce a data frame of PINs that may require closer scrutiny.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>hetu_diagnostic</span><span class='op'>(</span><span class='va'>pin</span>, extract <span class='op'>=</span> <span class='cn'>NULL</span>, subsetting <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>hetu_diagnostic</span><span class='op'>(</span><span class='va'>pin</span>, extract <span class='op'>=</span> <span class='cn'>NULL</span>, subsetting <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+
+<span class='fu'>pin_diagnostic</span><span class='op'>(</span><span class='va'>pin</span>, extract <span class='op'>=</span> <span class='cn'>NULL</span>, subsetting <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -189,7 +191,27 @@ or vector of identification numbers as a character vectors</p></td>
 #&gt; 1        TRUE          FALSE            FALSE       TRUE      TRUE        TRUE
 #&gt;   valid.year valid.length valid.century is.temp
 #&gt; 1       TRUE         TRUE          TRUE   FALSE</div><div class='input'>
-</div></pre>
+<span class='va'>diagnosis_example</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"010101-0102"</span>, <span class='st'>"111111-111Q"</span>, 
+<span class='st'>"010101B0101"</span>, <span class='st'>"320101-0101"</span>, <span class='st'>"011301-0101"</span>, 
+<span class='st'>"010101-01010"</span>, <span class='st'>"010101-0011"</span><span class='op'>)</span>
+<span class='co'>## Print all diagnoses</span>
+<span class='fu'>pin_diagnostic</span><span class='op'>(</span><span class='va'>diagnosis_example</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;           hetu is.temp valid.p.num valid.checksum correct.checksum valid.date
+#&gt; 1  010101-0102   FALSE        TRUE           TRUE            FALSE       TRUE
+#&gt; 2  111111-111Q   FALSE        TRUE          FALSE            FALSE       TRUE
+#&gt; 3  010101B0101   FALSE        TRUE           TRUE             TRUE      FALSE
+#&gt; 4  320101-0101   FALSE        TRUE           TRUE             TRUE      FALSE
+#&gt; 5  011301-0101   FALSE        TRUE           TRUE            FALSE      FALSE
+#&gt; 6 010101-01010   FALSE        TRUE           TRUE             TRUE       TRUE
+#&gt; 7  010101-0011   FALSE       FALSE           TRUE            FALSE       TRUE
+#&gt;   valid.day valid.month valid.year valid.length valid.century
+#&gt; 1      TRUE        TRUE       TRUE         TRUE          TRUE
+#&gt; 2      TRUE        TRUE       TRUE         TRUE          TRUE
+#&gt; 3      TRUE        TRUE       TRUE         TRUE         FALSE
+#&gt; 4     FALSE        TRUE       TRUE         TRUE          TRUE
+#&gt; 5      TRUE       FALSE       TRUE         TRUE          TRUE
+#&gt; 6      TRUE        TRUE       TRUE        FALSE          TRUE
+#&gt; 7      TRUE        TRUE       TRUE         TRUE          TRUE</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

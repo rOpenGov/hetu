@@ -1,6 +1,12 @@
 # *News*
 ==========
 
+# hetu 0.3.1 (2020-10-14)
+
+* Added function for generating Finnish Business IDs, rbid
+* Added new alias to hetu_diagnostic, pin_diagnostic, for consistent behaviour with other functions
+* New examples in package vignette
+
 # hetu 0.3.0 (2020-10-13)
 
 * Optimized functions: generating and handling a large amount of PINs is now much faster (tested with 5.5 million PINs)

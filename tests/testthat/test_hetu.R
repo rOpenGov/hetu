@@ -79,6 +79,13 @@ test_that("pin_sex() works correctly", {
 test_that("rpin() works correctly", {
   expect_equal(length(rpin(10)), 10)
   expect_equal(length(rpin(10, p.temp = 0.1)), 10)
+  expect_equal(length(rpin(3, start_date = "1895-01-01", end_date = "1899-01-01")), 3)
+  expect_equal(length(rpin(3, start_date = "1995-01-01", end_date = "1999-01-01")), 3)
+  expect_equal(length(rpin(3, start_date = "2001-01-01", end_date = "2005-01-01")), 3)
+})
+
+test_that("rbid() works correctly", {
+  expect_equal(length(rbid(3)), 3)
 })
 
 test_that("hetu_diagnostic works correctly", {
