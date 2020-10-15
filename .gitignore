@@ -12,5 +12,7 @@ vignettes/figure
 .Rhistory
 doc
 Meta
-docs
 inst/doc
+
+tests/.DS_Store
+.Rdata

@@ -102,7 +102,7 @@ rhetu <- rpin
 rbid <- function(n) {
   
   # produce a slightly larger sample to make up for removed BIDs 
-  x <- ceiling(n * 1.4)
+  x <- ceiling(n * 1.5)
   
   numbers <- sample(0:9, size = x * 7, replace = TRUE)
   
@@ -132,7 +132,13 @@ rbid <- function(n) {
   }
   
   # since the sample is probably larger than needed, take only n number of BIDs
-  sample(bids, size = n, replace = FALSE)
+  # in the rare case of getting less samples than needed, allow replacing
+  if (length(bids) < n) {
+    sample(bids, size = n, replace = TRUE)
+  } else {
+    sample(bids, size = n, replace = FALSE)
+  }
+  
 }
   
   

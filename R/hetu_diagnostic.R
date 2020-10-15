@@ -29,8 +29,8 @@ hetu_diagnostic <- function(pin, extract = NULL, subsetting = FALSE) {
             "valid.year", "valid.length", "valid.century")
   
   if (!is.null(extract)) {
-    if (!extract %in% diagnostic_params) {
-      stop("Trying to extract invalid diagnostic")
+    if (!all(extract %in% diagnostic_params)) {
+      stop("Trying to extract invalid diagnostic(s)")
     }
   }
   

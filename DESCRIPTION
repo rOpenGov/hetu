@@ -1,9 +1,9 @@
 Package: hetu
 Type: Package
 Title: Structural Handling of Finnish Personal Identity Numbers
-Version: 0.3.1
+Version: 1.0.1
 Encoding: UTF-8
-Date: 2020-10-14
+Date: 2020-10-15
 Authors@R: c(
   person("Pyry", "Kantanen", email = "pyry.kantanen@gmail.com", role = c("aut", "cre")),
   person("Mans", "Magnusson", role = "aut"),

@@ -1,6 +1,12 @@
 # *News*
 ==========
 
+# hetu 1.0.1 (2020-10-15)
+
+* Build submitted to CRAN
+* More organized vignette, hetu and BID examples separated
+* Minor fixes to hetu_diagnostic and rbid
+
 # hetu 0.3.1 (2020-10-14)
 
 * Added function for generating Finnish Business IDs, rbid
