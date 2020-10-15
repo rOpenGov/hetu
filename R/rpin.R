@@ -101,6 +101,7 @@ rhetu <- rpin
 #' @export
 rbid <- function(n) {
   
+  # produce a slightly larger sample to make up for removed BIDs 
   x <- ceiling(n * 1.4)
   
   numbers <- sample(0:9, size = x * 7, replace = TRUE)
@@ -109,23 +110,28 @@ rbid <- function(n) {
   
   bid_frame <- as.data.frame(matrix)
   
+  # transpose matrix to perform row-wise multiplication
   bid_frame$check <- rowSums(t(t(bid_frame) * c(7,9,10,5,8,4,2))) %% 11
   
+  # as a result of this, only checknums 0-9 should remain
   bid_frame$check <- ifelse(test = bid_frame$check %in% c(2:10), 
          yes = (11 - bid_frame$check), 
          no = bid_frame$check)
   
+  # this removes BIDs with invalid checknum 1
   bid_frame$valid.bid <- ifelse(bid_frame$check == 1, FALSE, TRUE)
   
   # choose only BIDs with valid checksum
   bid_frame <- bid_frame[bid_frame$valid.bid,]
   
+  # Produce a vector of finalized BIDs
   bids <- rep(NA, nrow(bid_frame))
   for (i in 1:nrow(bid_frame)) {
     bids[i] <- paste0(paste(bid_frame[i,1:7], collapse = ''), "-", paste0(bid_frame[i,8], collapse = ''))
     next
   }
   
+  # since the sample is probably larger than needed, take only n number of BIDs
   sample(bids, size = n, replace = FALSE)
 }
   

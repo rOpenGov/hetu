@@ -137,10 +137,11 @@ hetu <- function(pin, extract = NULL, allow.temp = FALSE, diagnostic = FALSE) {
   valid.length <- nchar(pin) == 11
   
   # Produce a logical test value for overall validity of PIN
-  valid.pin <- rep(NULL, length(pin))
-  for(i in 1:length(pin))
-  valid.pin[i] <- all(c(valid.p.num[i], valid.checksum[i], correct.checksum[i],
-            valid.date[i], valid.day[i], valid.month[i], valid.year[i], valid.length[i], valid.century[i])) == TRUE
+  valid.pin <- rep(NA, length(pin))
+  for(i in 1:length(pin)) {
+    valid.pin[i] <- all(c(valid.p.num[i], valid.checksum[i], correct.checksum[i],
+                          valid.date[i], valid.day[i], valid.month[i], valid.year[i], valid.length[i], valid.century[i])) == TRUE
+  }
   
   # Create hetu-object
   object <- list(hetu = pin, sex=sex, 
