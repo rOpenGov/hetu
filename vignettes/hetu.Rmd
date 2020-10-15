@@ -20,7 +20,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-The **hetu R package** provides tools to work with Finnish personal identity numbers (hetu). Some functions can also be used with Finnish Business ID numbers (y-tunnus).
+The **hetu R package** provides tools to work with Finnish personal identity numbers (hetu). Some functions can also be used with Finnish Business ID numbers (y-tunnus). 
 
 Where possible, we have unified the syntax with [sweidnumbr](https://github.com/rOpenGov/sweidnumbr).
 
