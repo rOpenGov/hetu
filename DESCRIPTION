@@ -11,7 +11,7 @@ Authors@R: c(
   person("Leo", "Lahti", role = "aut")
   )
 MailingList: rOpenGov <ropengov-forum@googlegroups.com>
-Description: Algorithms for Finnish open government data.
+Description: Structural handling of Finnish identity numbers (persons and companies); extract information, check ID validity and diagnostics.
 License: BSD_2_clause + file LICENSE
 VignetteBuilder: knitr
 BugReports: https://github.com/ropengov/hetu/issues
