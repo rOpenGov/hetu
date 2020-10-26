@@ -10,8 +10,8 @@
 #' @param allow.temp Allow artificial or temporary PINs (personal numbers 900-999). 
 #'    If \code{FALSE} (default), only PINs intended for official use (personal numbers 002-899) are allowed.
 #' @param diagnostic Print additional information about possible problems in PINs. The checks are 
-#'   "\code{invalid.p.num}", "\code{invalid.checksum}", "\code{incorrect.checksum}" 
-#'   "\code{invalid.date}", "\code{invalid.day}", "\code{invalid.month}, "\code{invalid.length}, 
+#'   "\code{invalid.p.num}", "\code{invalid.checksum}", "\code{incorrect.checksum}", 
+#'   "\code{invalid.date}", "\code{invalid.day}", "\code{invalid.month}", "\code{invalid.length}", 
 #'  "\code{invalid.century}". Default is \code{FALSE} which returns no diagnostic information.
 #' @return Finnish personal identification number data.frame,
 #'     or if extract parameter is set, the requested part of the 
@@ -29,7 +29,7 @@
 #' \item{year}{Year of the birthdate.}
 #' \item{century}{Century character of the birthdate: 
 #'            + (1800), - (1900) or A (2000). }
-#' \item{is.temp}{Is the personal identification number an artificial number intended for temporary use: (\code{TRUE} or \code{FALSE})}
+#' \item{valid.pin}{Does the personal identification number pass all validity checks: (\code{TRUE} or \code{FALSE})}
 #' 
 #' @author Pyry Kantanen, Jussi Paananen
 #' @seealso \code{\link{pin_ctrl}} For validating Finnish personal 
