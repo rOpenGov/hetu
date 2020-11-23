@@ -1,6 +1,10 @@
 # *News*
 ==========
 
+# hetu 1.0.2 (2020-11-23)
+
+* Moving away from Travis CI to GitHub Actions
+
 # hetu 1.0.1 (2020-10-15)
 
 * Build submitted to CRAN

@@ -1,17 +1,18 @@
 <!-- badges: start -->
-  [![Build Status](https://travis-ci.org/rOpenGov/hetu.svg?branch=master)](https://travis-ci.org/rOpenGov/hetu)
+  [![R build status](https://github.com/rOpenGov/hetu/workflows/R-CMD-check/badge.svg)](https://github.com/rOpenGov/hetu/actions)
   [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/rOpenGov/hetu?branch=master&svg=true)](https://ci.appveyor.com/project/rOpenGov/hetu)
   [![codecov](https://codecov.io/gh/rOpenGov/hetu/branch/master/graph/badge.svg)](https://codecov.io/gh/rOpenGov/hetu)
+  [![Downloads](http://cranlogs.r-pkg.org/badges/grand-total/hetu)](https://cran.r-project.org/package=hetu)
+  [![Downloads](http://cranlogs.r-pkg.org/badges/hetu)](https://cran.r-project.org/package=hetu)
   [![Watch on GitHub][github-watch-badge]][github-watch]
   [![Star on GitHub][github-star-badge]][github-star]
   [![Follow](https://img.shields.io/twitter/follow/ropengov.svg?style=social)](https://twitter.com/intent/follow?screen_name=ropengov)
+  [![cran version](http://www.r-pkg.org/badges/version/hetu)](http://cran.rstudio.com/web/packages/hetu)
   <!-- badges: end -->
 
 <!--[![Coverage Status](https://coveralls.io/repos/github/rOpenGov/hetu/badge.svg?branch=master)](https://coveralls.io/github/rOpenGov/hetu?branch=master)-->
 
 <!--[![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/grand-total/hetu)](https://github.com/metacran/cranlogs.app)-->
-
-<!--[![cran version](http://www.r-pkg.org/badges/version/hetu)](http://cran.rstudio.com/web/packages/hetu)-->
 
 hetu
 ==========

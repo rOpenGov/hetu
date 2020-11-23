@@ -20,8 +20,8 @@ If \code{NULL} (default), returns all information.}
 If \code{FALSE} (default), only PINs intended for official use (personal numbers 002-899) are allowed.}
 
 \item{diagnostic}{Print additional information about possible problems in PINs. The checks are 
- "\code{invalid.p.num}", "\code{invalid.checksum}", "\code{incorrect.checksum}" 
- "\code{invalid.date}", "\code{invalid.day}", "\code{invalid.month}, "\code{invalid.length}, 
+ "\code{invalid.p.num}", "\code{invalid.checksum}", "\code{incorrect.checksum}", 
+ "\code{invalid.date}", "\code{invalid.day}", "\code{invalid.month}", "\code{invalid.length}", 
 "\code{invalid.century}". Default is \code{FALSE} which returns no diagnostic information.}
 }
 \value{
@@ -41,7 +41,7 @@ Finnish personal identification number data.frame,
 \item{year}{Year of the birthdate.}
 \item{century}{Century character of the birthdate: 
            + (1800), - (1900) or A (2000). }
-\item{is.temp}{Is the personal identification number an artificial number intended for temporary use: (\code{TRUE} or \code{FALSE})}
+\item{valid.pin}{Does the personal identification number pass all validity checks: (\code{TRUE} or \code{FALSE})}
 }
 \description{
 Extract information from Finnish personal identification numbers (hetu).
