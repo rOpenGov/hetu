@@ -8,6 +8,9 @@ Authors@R: c(
   person("Pyry", "Kantanen", email = "pyry.kantanen@gmail.com", role = c("aut", "cre")),
   person("Mans", "Magnusson", role = "aut"),
   person("Jussi", "Paananen", role = "aut"),
+  person("Juho", "Kopra", role = "ctb"),
+  person("Oskari", "Luomala", role = "ctb"),
+  person("Tuomo", "Nieminen", role = "ctb"),      
   person("Leo", "Lahti", role = "aut")
   )
 MailingList: rOpenGov <ropengov-forum@googlegroups.com>
