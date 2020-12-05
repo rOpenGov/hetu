@@ -70,14 +70,14 @@
 
       
 
-      </header><script src="hetu_files/header-attrs-2.5/header-attrs.js"></script><link href="hetu_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
+      </header><link href="hetu_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
 <script src="hetu_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Finnish personal ID number data toolkit for R (hetu)</h1>
                         <h4 class="author">Pyry Kantanen, Jussi Paananen, Mans Magnusson, Leo Lahti</h4>
             
-            <h4 class="date">2020-11-23</h4>
+            <h4 class="date">2020-12-05</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ropengov/hetu/blob/master/vignettes/hetu.Rmd"><code>vignettes/hetu.Rmd</code></a></small>
       <div class="hidden name"><code>hetu.Rmd</code></div>
@@ -92,14 +92,14 @@
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>Install the current devel version in R:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"ropengov/hetu"</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"ropengov/hetu"</span><span class="op">)</span></code></pre></div>
 <p>Test the installation by loading the library:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ropengov/hetu">hetu</a></span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ropengov/hetu">hetu</a></span><span class="op">)</span></code></pre></div>
 <p>We also recommend setting the UTF-8 encoding:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/locales.html">Sys.setlocale</a></span><span class="op">(</span>locale<span class="op">=</span><span class="st">"UTF-8"</span><span class="op">)</span> </pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/locales.html">Sys.setlocale</a></span><span class="op">(</span>locale<span class="op">=</span><span class="st">"UTF-8"</span><span class="op">)</span> </code></pre></div>
 </div>
 <div id="introduction" class="section level2">
 <h2 class="hasAnchor">
@@ -113,14 +113,14 @@
 <h2 class="hasAnchor">
 <a href="#personal-identification-numbers-hetu" class="anchor"></a>Personal identification numbers (HETU)</h2>
 <p>The basic hetu function can be used to view information included in a Finnish personal identification number. The data is outputted as a data frame.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="va">example_pin</span> <span class="op">&lt;-</span> <span class="st">"111111-111C"</span>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">example_pin</span> <span class="op">&lt;-</span> <span class="st">"111111-111C"</span>
 <span class="fu"><a href="../reference/hetu.html">hetu</a></span><span class="op">(</span><span class="va">example_pin</span><span class="op">)</span>
 <span class="co">#&gt;          hetu  sex p.num checksum       date day month year century valid.pin</span>
-<span class="co">#&gt; 1 111111-111C Male   111        C 1911-11-11  11    11 1911       -      TRUE</span></pre></div>
+<span class="co">#&gt; 1 111111-111C Male   111        C 1911-11-11  11    11 1911       -      TRUE</span></code></pre></div>
 <p>The output can be made prettier, for example by using knitr:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="../reference/hetu.html">hetu</a></span><span class="op">(</span><span class="va">example_pin</span><span class="op">)</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="../reference/hetu.html">hetu</a></span><span class="op">(</span><span class="va">example_pin</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">hetu</th>
@@ -148,9 +148,9 @@
 </tr></tbody>
 </table>
 <p>The hetu function also accepts vectors with several identification numbers as input:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit">
-<span class="va">example_pins</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"010101-0101"</span>, <span class="st">"111111-111C"</span><span class="op">)</span>
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="../reference/hetu.html">hetu</a></span><span class="op">(</span><span class="va">example_pins</span><span class="op">)</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">example_pins</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"010101-0101"</span>, <span class="st">"111111-111C"</span><span class="op">)</span>
+<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="../reference/hetu.html">hetu</a></span><span class="op">(</span><span class="va">example_pins</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">hetu</th>
@@ -192,60 +192,60 @@
 </tbody>
 </table>
 <p>The hetu function does not print warning messages to the user if input vector contains invalid PINs. Validity of specific PINs can be determined by looking at the valid.pin column.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit">
-<span class="fu"><a href="../reference/hetu.html">hetu</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"010101-0102"</span>, <span class="st">"111311-111C"</span>, <span class="st">"010101-0101"</span><span class="op">)</span><span class="op">)</span>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/hetu.html">hetu</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"010101-0102"</span>, <span class="st">"111311-111C"</span>, <span class="st">"010101-0101"</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;          hetu    sex p.num checksum       date day month year century valid.pin</span>
 <span class="co">#&gt; 1 010101-0102 Female   010        2 1901-01-01   1     1 1901       -     FALSE</span>
 <span class="co">#&gt; 2 111311-111C   Male   111        C       &lt;NA&gt;  11    NA 1911       -     FALSE</span>
-<span class="co">#&gt; 3 010101-0101 Female   010        1 1901-01-01   1     1 1901       -      TRUE</span></pre></div>
+<span class="co">#&gt; 3 010101-0101 Female   010        1 1901-01-01   1     1 1901       -      TRUE</span></code></pre></div>
 <div id="extracting-specific-information" class="section level3">
 <h3 class="hasAnchor">
 <a href="#extracting-specific-information" class="anchor"></a>Extracting specific information</h3>
 <p>Information contained in the PIN can be extracted with a generic extract parameter. Valid values for extraction are <em>hetu</em>, <em>sex</em>, <em>personal.number</em>, <em>checksum</em>, <em>date</em>, <em>day</em>, <em>month</em>, <em>year</em>, <em>century</em>, <em>valid.pin</em> and <em>is.temp</em>.</p>
 <p><em>is.temp</em> can be extracted only if allow.temp is set to TRUE. If allow.temp is set to FALSE (default), temporary PINs are filtered from the output and information provided by <em>is.temp</em> would be meaningless.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit">
-<span class="fu"><a href="../reference/hetu.html">hetu</a></span><span class="op">(</span><span class="va">example_pins</span>, extract <span class="op">=</span> <span class="st">"sex"</span><span class="op">)</span>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/hetu.html">hetu</a></span><span class="op">(</span><span class="va">example_pins</span>, extract <span class="op">=</span> <span class="st">"sex"</span><span class="op">)</span>
 <span class="co">#&gt; [1] "Female" "Male"</span>
 <span class="fu"><a href="../reference/hetu.html">hetu</a></span><span class="op">(</span><span class="va">example_pins</span>, extract <span class="op">=</span> <span class="st">"checksum"</span><span class="op">)</span>
-<span class="co">#&gt; [1] "1" "C"</span></pre></div>
+<span class="co">#&gt; [1] "1" "C"</span></code></pre></div>
 <p>Some fields can be extracted with specialized functions. Extracting sex with hetu_sex function:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit">
-<span class="fu"><a href="../reference/pin_sex.html">hetu_sex</a></span><span class="op">(</span><span class="va">example_pins</span><span class="op">)</span>
-<span class="co">#&gt; [1] "Female" "Male"</span></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/pin_sex.html">hetu_sex</a></span><span class="op">(</span><span class="va">example_pins</span><span class="op">)</span>
+<span class="co">#&gt; [1] "Female" "Male"</span></code></pre></div>
 <p>Extracting age at current date and at a given date with hetu_age function:</p>
-<div class="sourceCode" id="cb10"><pre class="downlit">
-<span class="fu"><a href="../reference/pin_age.html">hetu_age</a></span><span class="op">(</span><span class="va">example_pins</span><span class="op">)</span>
-<span class="co">#&gt; The age in years has been calculated at 2020-11-23.</span>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/pin_age.html">hetu_age</a></span><span class="op">(</span><span class="va">example_pins</span><span class="op">)</span>
+<span class="co">#&gt; The age in years has been calculated at 2020-12-05.</span>
 <span class="co">#&gt; [1] 119 109</span>
 <span class="fu"><a href="../reference/pin_age.html">hetu_age</a></span><span class="op">(</span><span class="va">example_pins</span>, date <span class="op">=</span> <span class="st">"2012-01-01"</span><span class="op">)</span>
 <span class="co">#&gt; The age in years has been calculated at 2012-01-01.</span>
 <span class="co">#&gt; [1] 111 100</span>
 <span class="fu"><a href="../reference/pin_age.html">hetu_age</a></span><span class="op">(</span><span class="va">example_pins</span>, timespan <span class="op">=</span> <span class="st">"months"</span><span class="op">)</span>
-<span class="co">#&gt; The age in months has been calculated at 2020-11-23.</span>
-<span class="co">#&gt; [1] 1438 1308</span></pre></div>
+<span class="co">#&gt; The age in months has been calculated at 2020-12-05.</span>
+<span class="co">#&gt; [1] 1439 1308</span></code></pre></div>
 <p>Dates (birth dates) also have their own function, hetu_date.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit">
-<span class="fu"><a href="../reference/pin_date.html">hetu_date</a></span><span class="op">(</span><span class="va">example_pins</span><span class="op">)</span>
-<span class="co">#&gt; [1] "1901-01-01" "1911-11-11"</span></pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/pin_date.html">hetu_date</a></span><span class="op">(</span><span class="va">example_pins</span><span class="op">)</span>
+<span class="co">#&gt; [1] "1901-01-01" "1911-11-11"</span></code></pre></div>
 </div>
 <div id="validity-checking" class="section level3">
 <h3 class="hasAnchor">
 <a href="#validity-checking" class="anchor"></a>Validity checking</h3>
 <p>The basic hetu function output includes information on the validity of each pin, which can be extracted by using hetu-function with <em>valid.pin</em> as extract parameter.</p>
 <p>The validity of the PINs can also be determined by using the hetu_ctrl function, which produces a vector:</p>
-<div class="sourceCode" id="cb12"><pre class="downlit">
-<span class="fu"><a href="../reference/pin_ctrl.html">hetu_ctrl</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"010101-0101"</span>, <span class="st">"111111-111C"</span><span class="op">)</span><span class="op">)</span> <span class="co"># TRUE TRUE</span>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/pin_ctrl.html">hetu_ctrl</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"010101-0101"</span>, <span class="st">"111111-111C"</span><span class="op">)</span><span class="op">)</span> <span class="co"># TRUE TRUE</span>
 <span class="co">#&gt; [1] TRUE TRUE</span>
 <span class="fu"><a href="../reference/pin_ctrl.html">hetu_ctrl</a></span><span class="op">(</span><span class="st">"010101-1010"</span><span class="op">)</span> <span class="co"># FALSE</span>
-<span class="co">#&gt; [1] FALSE</span></pre></div>
+<span class="co">#&gt; [1] FALSE</span></code></pre></div>
 </div>
 <div id="artificial-and-temporary-personal-identification-numbers" class="section level3">
 <h3 class="hasAnchor">
 <a href="#artificial-and-temporary-personal-identification-numbers" class="anchor"></a>Artificial and temporary personal identification numbers</h3>
 <p>The package functions can be made to accept artificial or temporary personal identification numbers. Artificial and temporary PINs can be used normally by allowing them through allow.temp parameter.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit">
-<span class="va">example_temp_pin</span> <span class="op">&lt;-</span> <span class="st">"010101A900R"</span>
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="../reference/hetu.html">hetu</a></span><span class="op">(</span><span class="va">example_temp_pin</span>, allow.temp <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">example_temp_pin</span> <span class="op">&lt;-</span> <span class="st">"010101A900R"</span>
+<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="../reference/hetu.html">hetu</a></span><span class="op">(</span><span class="va">example_temp_pin</span>, allow.temp <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">hetu</th>
@@ -276,11 +276,11 @@
 </table>
 <p>A vector with regular and temporary PINs mixed together prints only regular PINs, if allow.temp is not set to TRUE. Automatic omitting of temporary PINs does not produce a visible error message and therefore users need to be cautious if they want to use temporary PINs.</p>
 <p>If temporary PINs are not explicitly allowed and the input vector consists of temporary PINs only, the function will return an error.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit">
-<span class="va">example_temp_pins</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"010101A900R"</span>, <span class="st">"010101-0101"</span><span class="op">)</span>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">example_temp_pins</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"010101A900R"</span>, <span class="st">"010101-0101"</span><span class="op">)</span>
 <span class="fu"><a href="../reference/pin_ctrl.html">hetu_ctrl</a></span><span class="op">(</span><span class="st">"010101A900R"</span>, allow.temp <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 <span class="co">#&gt; [1] NA</span>
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="../reference/hetu.html">hetu</a></span><span class="op">(</span><span class="va">example_temp_pins</span><span class="op">)</span><span class="op">)</span></pre></div>
+<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="../reference/hetu.html">hetu</a></span><span class="op">(</span><span class="va">example_temp_pins</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left"></th>
@@ -310,8 +310,8 @@
 </tr></tbody>
 </table>
 <p>When allow.temp is set to TRUE, all PINs are handled as if they were regular PINs.</p>
-<div class="sourceCode" id="cb15"><pre class="downlit">
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="../reference/hetu.html">hetu</a></span><span class="op">(</span><span class="va">example_temp_pins</span>, allow.temp <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="../reference/hetu.html">hetu</a></span><span class="op">(</span><span class="va">example_temp_pins</span>, allow.temp <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">hetu</th>
@@ -355,12 +355,12 @@
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb16"><pre class="downlit">
-<span class="fu"><a href="../reference/pin_ctrl.html">hetu_ctrl</a></span><span class="op">(</span><span class="st">"010101A900R"</span>, allow.temp <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="co">#&gt; [1] TRUE</span></pre></div>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/pin_ctrl.html">hetu_ctrl</a></span><span class="op">(</span><span class="st">"010101A900R"</span>, allow.temp <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="co">#&gt; [1] TRUE</span></code></pre></div>
 <p>Validation function hetu_ctrl produces a FALSE for every artificial / temporary PIN, if they are not explicitly allowed.</p>
-<div class="sourceCode" id="cb17"><pre class="downlit">
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="../reference/hetu.html">hetu</a></span><span class="op">(</span><span class="va">example_temp_pins</span><span class="op">)</span><span class="op">)</span> <span class="co">#FALSE TRUE</span></pre></div>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="../reference/hetu.html">hetu</a></span><span class="op">(</span><span class="va">example_temp_pins</span><span class="op">)</span><span class="op">)</span> <span class="co">#FALSE TRUE</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left"></th>
@@ -389,8 +389,8 @@
 <td align="left">TRUE</td>
 </tr></tbody>
 </table>
-<div class="sourceCode" id="cb18"><pre class="downlit">
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="../reference/hetu.html">hetu</a></span><span class="op">(</span><span class="va">example_temp_pins</span>, allow.temp <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="co">#TRUE TRUE</span></pre></div>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="../reference/hetu.html">hetu</a></span><span class="op">(</span><span class="va">example_temp_pins</span>, allow.temp <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="co">#TRUE TRUE</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">hetu</th>
@@ -439,32 +439,32 @@
 <h3 class="hasAnchor">
 <a href="#generating-random-pins" class="anchor"></a>Generating random PINs</h3>
 <p>Random PINs can be generated by using the rpin function.</p>
-<div class="sourceCode" id="cb19"><pre class="downlit">
-<span class="fu"><a href="../reference/rpin.html">rhetu</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>
-<span class="co">#&gt; [1] "260258-378J" "140609A038D" "280521-469M" "181042-2652"</span>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/rpin.html">rhetu</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>
+<span class="co">#&gt; [1] "181278-2970" "090130-2768" "130581-662N" "291111A746F"</span>
 <span class="fu"><a href="../reference/rpin.html">rhetu</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">4</span>, start_date <span class="op">=</span> <span class="st">"1990-01-01"</span>, end_date <span class="op">=</span> <span class="st">"2005-01-01"</span><span class="op">)</span>
-<span class="co">#&gt; [1] "171096-8120" "030597-402Y" "100301A202M" "270593-3668"</span></pre></div>
+<span class="co">#&gt; [1] "130103A336T" "070200A014K" "280299-078R" "260692-4628"</span></code></pre></div>
 <p>The number of males in the generated sample can be changed with parameter p.male. Default is 0.4.</p>
-<div class="sourceCode" id="cb20"><pre class="downlit">
-<span class="va">random_sample</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/rpin.html">rhetu</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">4</span>, p.male <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">random_sample</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/rpin.html">rhetu</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">4</span>, p.male <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">random_sample</span><span class="op">)</span>
 <span class="co">#&gt; random_sample</span>
-<span class="co">#&gt; 121231-281F 190600A045J 251245-6690 301003A285C </span>
-<span class="co">#&gt;           1           1           1           1</span></pre></div>
+<span class="co">#&gt; 041296+197C 090590-269R 210103-131B 281155-017N </span>
+<span class="co">#&gt;           1           1           1           1</span></code></pre></div>
 <p>The default proportion of artificial / temporary PINs is 0.0, meaning that no artificial / temporary PINs are generated by default.</p>
-<div class="sourceCode" id="cb21"><pre class="downlit">
-<span class="va">temp_sample</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/rpin.html">rhetu</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">4</span>, p.temp <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">temp_sample</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/rpin.html">rhetu</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">4</span>, p.temp <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="fu"><a href="../reference/hetu.html">hetu</a></span><span class="op">(</span><span class="va">temp_sample</span>, allow.temp <span class="op">=</span> <span class="cn">TRUE</span>, extract <span class="op">=</span> <span class="st">"is.temp"</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; FALSE  TRUE </span>
-<span class="co">#&gt;     3     1</span></pre></div>
+<span class="co">#&gt;     2     2</span></code></pre></div>
 </div>
 <div id="diagnostics" class="section level3">
 <h3 class="hasAnchor">
 <a href="#diagnostics" class="anchor"></a>Diagnostics</h3>
 <p>In addition to information mentioned in the section <a href="#extracting-specific-information">Extracting specific information</a>, the user can choose to print additional columns containing information about checks done on PINs. The diagnostic checks produce a TRUE or FALSE for the following categories: <em>valid.p.num</em>, <em>valid.checksum</em>, <em>correct.checksum</em>, <em>valid.date</em>, <em>valid.day</em>, <em>valid.month</em>, <em>valid.year</em>, <em>valid.length</em> and <em>valid.century</em>, FALSE meaning that hetu is somehow incorrect.</p>
-<div class="sourceCode" id="cb22"><pre class="downlit">
-<span class="va">diagnosis_example</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"010101-0102"</span>, <span class="st">"111111-111Q"</span>, 
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">diagnosis_example</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"010101-0102"</span>, <span class="st">"111111-111Q"</span>, 
 <span class="st">"010101B0101"</span>, <span class="st">"320101-0101"</span>, <span class="st">"011301-0101"</span>, 
 <span class="st">"010101-01010"</span>, <span class="st">"010101-0011"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fu"><a href="../reference/hetu.html">hetu</a></span><span class="op">(</span><span class="va">diagnosis_example</span>, diagnostic <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, <span class="fl">3</span><span class="op">)</span>
@@ -479,10 +479,10 @@
 <span class="co">#&gt;   valid.year valid.length valid.century</span>
 <span class="co">#&gt; 1       TRUE         TRUE          TRUE</span>
 <span class="co">#&gt; 2       TRUE         TRUE          TRUE</span>
-<span class="co">#&gt; 3       TRUE         TRUE         FALSE</span></pre></div>
+<span class="co">#&gt; 3       TRUE         TRUE         FALSE</span></code></pre></div>
 <p>Diagnostic information can be examined more closely by using subset or by using a separate hetu_diagnostics function. The user can print all diagnostic information for all PINs in the dataset:</p>
-<div class="sourceCode" id="cb23"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">tail</a></span><span class="op">(</span><span class="fu"><a href="../reference/hetu_diagnostic.html">hetu_diagnostic</a></span><span class="op">(</span><span class="va">diagnosis_example</span><span class="op">)</span>, <span class="fl">3</span><span class="op">)</span>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">tail</a></span><span class="op">(</span><span class="fu"><a href="../reference/hetu_diagnostic.html">hetu_diagnostic</a></span><span class="op">(</span><span class="va">diagnosis_example</span><span class="op">)</span>, <span class="fl">3</span><span class="op">)</span>
 <span class="co">#&gt;           hetu is.temp valid.p.num valid.checksum correct.checksum valid.date</span>
 <span class="co">#&gt; 5  011301-0101   FALSE        TRUE           TRUE            FALSE      FALSE</span>
 <span class="co">#&gt; 6 010101-01010   FALSE        TRUE           TRUE             TRUE       TRUE</span>
@@ -490,10 +490,10 @@
 <span class="co">#&gt;   valid.day valid.month valid.year valid.length valid.century</span>
 <span class="co">#&gt; 5      TRUE       FALSE       TRUE         TRUE          TRUE</span>
 <span class="co">#&gt; 6      TRUE        TRUE       TRUE        FALSE          TRUE</span>
-<span class="co">#&gt; 7      TRUE        TRUE       TRUE         TRUE          TRUE</span></pre></div>
+<span class="co">#&gt; 7      TRUE        TRUE       TRUE         TRUE          TRUE</span></code></pre></div>
 <p>By using extract, the user can limit the printed columns to only those which have FALSE values.</p>
-<div class="sourceCode" id="cb24"><pre class="downlit">
-<span class="fu"><a href="../reference/hetu_diagnostic.html">hetu_diagnostic</a></span><span class="op">(</span><span class="va">diagnosis_example</span>, extract <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"valid.century"</span>, <span class="st">"correct.checksum"</span><span class="op">)</span><span class="op">)</span>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/hetu_diagnostic.html">hetu_diagnostic</a></span><span class="op">(</span><span class="va">diagnosis_example</span>, extract <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"valid.century"</span>, <span class="st">"correct.checksum"</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;           hetu valid.century correct.checksum</span>
 <span class="co">#&gt; 1  010101-0102          TRUE            FALSE</span>
 <span class="co">#&gt; 2  111111-111Q          TRUE            FALSE</span>
@@ -501,20 +501,20 @@
 <span class="co">#&gt; 4  320101-0101          TRUE             TRUE</span>
 <span class="co">#&gt; 5  011301-0101          TRUE            FALSE</span>
 <span class="co">#&gt; 6 010101-01010          TRUE             TRUE</span>
-<span class="co">#&gt; 7  010101-0011          TRUE            FALSE</span></pre></div>
+<span class="co">#&gt; 7  010101-0011          TRUE            FALSE</span></code></pre></div>
 <p>When subsetting is set to TRUE, the function prints only rows with FALSE value in the extracted test.</p>
-<div class="sourceCode" id="cb25"><pre class="downlit">
-<span class="fu"><a href="../reference/hetu_diagnostic.html">hetu_diagnostic</a></span><span class="op">(</span><span class="va">diagnosis_example</span>, subsetting <span class="op">=</span> <span class="cn">TRUE</span>, extract <span class="op">=</span> <span class="st">"valid.century"</span><span class="op">)</span>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/hetu_diagnostic.html">hetu_diagnostic</a></span><span class="op">(</span><span class="va">diagnosis_example</span>, subsetting <span class="op">=</span> <span class="cn">TRUE</span>, extract <span class="op">=</span> <span class="st">"valid.century"</span><span class="op">)</span>
 <span class="co">#&gt;          hetu    sex p.num checksum date day month year century valid.pin</span>
 <span class="co">#&gt; 1 010101B0101 Female   010        1 &lt;NA&gt;   1     1   NA       B     FALSE</span>
 <span class="co">#&gt;   valid.p.num valid.checksum correct.checksum valid.date valid.day valid.month</span>
 <span class="co">#&gt; 1        TRUE           TRUE             TRUE      FALSE      TRUE        TRUE</span>
 <span class="co">#&gt;   valid.year valid.length valid.century is.temp</span>
-<span class="co">#&gt; 1       TRUE         TRUE         FALSE   FALSE</span></pre></div>
+<span class="co">#&gt; 1       TRUE         TRUE         FALSE   FALSE</span></code></pre></div>
 <p>Because of the way PINs are handled in inside hetu-function, the diagnostics-function can show unexpected warning messages or introduce NAs by coercion if the date-part of the PIN is too long. This may result in inability to handle the PIN at all!</p>
-<div class="sourceCode" id="cb26"><pre class="downlit">
-<span class="co"># Faulty example</span>
-<span class="fu"><a href="../reference/hetu_diagnostic.html">hetu_diagnostic</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"01011901-01010"</span><span class="op">)</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Faulty example</span>
+<span class="fu"><a href="../reference/hetu_diagnostic.html">hetu_diagnostic</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"01011901-01010"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
 <div id="business-identity-codes-bid" class="section level2">
@@ -525,28 +525,28 @@
 <h3 class="hasAnchor">
 <a href="#generating-random-bids" class="anchor"></a>Generating random BIDs</h3>
 <p>Similar to hetu PINs, random Finnish Business IDs (y-tunnus) can be generated by using rbid function.</p>
-<div class="sourceCode" id="cb27"><pre class="downlit">
-<span class="va">bid_sample</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/rbid.html">rbid</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">bid_sample</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/rbid.html">rbid</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span>
 <span class="va">bid_sample</span>
-<span class="co">#&gt; [1] "6553606-8" "4549482-5" "6268305-4"</span></pre></div>
+<span class="co">#&gt; [1] "6343062-2" "5077441-8" "5077441-8"</span></code></pre></div>
 </div>
 <div id="bid-validity-checking" class="section level3">
 <h3 class="hasAnchor">
 <a href="#bid-validity-checking" class="anchor"></a>BID validity checking</h3>
 <p>The validity of Finnish Business Identity Codes can be checked with a similar function to hetu_ctrl: bid_ctrl.</p>
-<div class="sourceCode" id="cb28"><pre class="downlit">
-<span class="fu"><a href="../reference/bid_ctrl.html">bid_ctrl</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"0737546-2"</span>, <span class="st">"1572860-0"</span><span class="op">)</span><span class="op">)</span> <span class="co"># TRUE TRUE</span>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/bid_ctrl.html">bid_ctrl</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"0737546-2"</span>, <span class="st">"1572860-0"</span><span class="op">)</span><span class="op">)</span> <span class="co"># TRUE TRUE</span>
 <span class="co">#&gt; [1] TRUE TRUE</span>
 <span class="fu"><a href="../reference/bid_ctrl.html">bid_ctrl</a></span><span class="op">(</span><span class="st">"0737546-1"</span><span class="op">)</span> <span class="co"># FALSE</span>
-<span class="co">#&gt; [1] FALSE</span></pre></div>
+<span class="co">#&gt; [1] FALSE</span></code></pre></div>
 </div>
 </div>
 <div id="various-examples" class="section level2">
 <h2 class="hasAnchor">
 <a href="#various-examples" class="anchor"></a>Various examples</h2>
 <p>Data frames generated by hetu function work well with tidyverse/dplyr workflows as well.</p>
-<div class="sourceCode" id="cb29"><pre class="downlit">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ropengov/hetu">hetu</a></span><span class="op">)</span>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ropengov/hetu">hetu</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
 
@@ -556,15 +556,15 @@
 <span class="co"># Extract all the hetu information to tibble format</span>
 <span class="va">hdat</span><span class="op">&lt;-</span><span class="va">hdat</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>result<span class="op">=</span><span class="fu">map</span><span class="op">(</span>.x<span class="op">=</span><span class="va">pin</span>,.f<span class="op">=</span><span class="fu">hetu</span><span class="fu">::</span><span class="va"><a href="../reference/hetu.html">hetu</a></span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">unnest</span><span class="op">(</span>cols<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span><span class="op">)</span>
-<span class="va">hdat</span></pre></div>
+<span class="va">hdat</span></code></pre></div>
 </div>
 <div id="licensing-and-citations" class="section level2">
 <h2 class="hasAnchor">
 <a href="#licensing-and-citations" class="anchor"></a>Licensing and Citations</h2>
 <p>This work can be freely used, modified and distributed under the open license specified in the <a href="https://github.com/rOpenGov/hetu/blob/master/DESCRIPTION">DESCRIPTION file</a>.</p>
 <p>Kindly cite the work as follows</p>
-<div class="sourceCode" id="cb30"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/utils/citation.html">citation</a></span><span class="op">(</span><span class="st">"hetu"</span><span class="op">)</span>
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/citation.html">citation</a></span><span class="op">(</span><span class="st">"hetu"</span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Kindly cite the hetu R package as follows:</span>
 <span class="co">#&gt; </span>
@@ -580,7 +580,7 @@
 <span class="co">#&gt;     year = {2020},</span>
 <span class="co">#&gt;   }</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; Many thanks for all contributors!</span></pre></div>
+<span class="co">#&gt; Many thanks for all contributors!</span></code></pre></div>
 </div>
 <div id="references" class="section level2">
 <h2 class="hasAnchor">
@@ -600,18 +600,23 @@
 <h2 class="hasAnchor">
 <a href="#session-info" class="anchor"></a>Session info</h2>
 <p>This vignette was created with</p>
-<div class="sourceCode" id="cb31"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; R version 4.0.3 (2020-10-10)</span>
-<span class="co">#&gt; Platform: x86_64-apple-darwin17.0 (64-bit)</span>
-<span class="co">#&gt; Running under: macOS Catalina 10.15.7</span>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co">#&gt; R version 4.0.0 (2020-04-24)</span>
+<span class="co">#&gt; Platform: x86_64-pc-linux-gnu (64-bit)</span>
+<span class="co">#&gt; Running under: Ubuntu 20.04.1 LTS</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Matrix products: default</span>
-<span class="co">#&gt; BLAS:   /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRblas.dylib</span>
-<span class="co">#&gt; LAPACK: /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRlapack.dylib</span>
+<span class="co">#&gt; BLAS:   /home/lei/bin/R-4.0.0/lib/libRblas.so</span>
+<span class="co">#&gt; LAPACK: /home/lei/bin/R-4.0.0/lib/libRlapack.so</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; locale:</span>
-<span class="co">#&gt; [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8</span>
+<span class="co">#&gt;  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              </span>
+<span class="co">#&gt;  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    </span>
+<span class="co">#&gt;  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   </span>
+<span class="co">#&gt;  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 </span>
+<span class="co">#&gt;  [9] LC_ADDRESS=C               LC_TELEPHONE=C            </span>
+<span class="co">#&gt; [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; attached base packages:</span>
 <span class="co">#&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     </span>
@@ -620,16 +625,16 @@
 <span class="co">#&gt; [1] hetu_1.0.1</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; loaded via a namespace (and not attached):</span>
-<span class="co">#&gt;  [1] Rcpp_1.0.5        rstudioapi_0.11   knitr_1.30        magrittr_1.5     </span>
-<span class="co">#&gt;  [5] tidyselect_1.1.0  R6_2.5.0          ragg_0.3.1        rlang_0.4.8      </span>
-<span class="co">#&gt;  [9] dplyr_1.0.2       stringr_1.4.0     highr_0.8         tools_4.0.3      </span>
-<span class="co">#&gt; [13] checkmate_2.0.0   xfun_0.19         ellipsis_0.3.1    htmltools_0.5.0  </span>
-<span class="co">#&gt; [17] systemfonts_0.3.2 yaml_2.2.1        assertthat_0.2.1  digest_0.6.27    </span>
-<span class="co">#&gt; [21] rprojroot_1.3-2   tibble_3.0.4      lifecycle_0.2.0   pkgdown_1.6.1    </span>
-<span class="co">#&gt; [25] crayon_1.3.4      purrr_0.3.4       vctrs_0.3.4       fs_1.5.0         </span>
+<span class="co">#&gt;  [1] Rcpp_1.0.5        knitr_1.30        magrittr_2.0.1    tidyselect_1.1.0 </span>
+<span class="co">#&gt;  [5] R6_2.5.0          ragg_0.4.0        rlang_0.4.9       dplyr_1.0.2      </span>
+<span class="co">#&gt;  [9] stringr_1.4.0     highr_0.8         tools_4.0.0       checkmate_2.0.0  </span>
+<span class="co">#&gt; [13] xfun_0.19         ellipsis_0.3.1    htmltools_0.5.0   systemfonts_0.3.2</span>
+<span class="co">#&gt; [17] yaml_2.2.1        assertthat_0.2.1  rprojroot_2.0.2   digest_0.6.27    </span>
+<span class="co">#&gt; [21] tibble_3.0.4      lifecycle_0.2.0   pkgdown_1.6.1     crayon_1.3.4     </span>
+<span class="co">#&gt; [25] textshaping_0.2.1 purrr_0.3.4       vctrs_0.3.5       fs_1.5.0         </span>
 <span class="co">#&gt; [29] glue_1.4.2        memoise_1.1.0     evaluate_0.14     rmarkdown_2.5    </span>
-<span class="co">#&gt; [33] stringi_1.5.3     pillar_1.4.6      compiler_4.0.3    desc_1.2.0       </span>
-<span class="co">#&gt; [37] generics_0.1.0    backports_1.2.0   lubridate_1.7.9   pkgconfig_2.0.3</span></pre></div>
+<span class="co">#&gt; [33] stringi_1.5.3     pillar_1.4.7      compiler_4.0.0    desc_1.2.0       </span>
+<span class="co">#&gt; [37] generics_0.1.0    backports_1.2.0   lubridate_1.7.9.2 pkgconfig_2.0.3</span></code></pre></div>
 </div>
   </div>
 
