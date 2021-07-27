@@ -10,11 +10,12 @@ pin_sex(pin, allow.temp = TRUE)
 hetu_sex(pin, allow.temp = TRUE)
 }
 \arguments{
-\item{pin}{Finnish personal identification number as a character vector, 
+\item{pin}{Finnish personal identification number as a character vector,
 or vector of identification numbers as a character vectors}
 
-\item{allow.temp}{Allow artificial or temporary PINs (personal numbers 900-999). 
-If \code{FALSE} (default), only PINs intended for official use (personal numbers 002-899) are allowed.}
+\item{allow.temp}{Allow artificial or temporary PINs (personal numbers
+900-999). If \code{FALSE} (default), only PINs intended for official
+use (personal numbers 002-899) are allowed.}
 }
 \value{
 Factor with label 'Male' and 'Female'.

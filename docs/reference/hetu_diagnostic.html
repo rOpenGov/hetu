@@ -45,6 +45,8 @@
 
 
 
+
+
 <!-- mathjax -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script>
@@ -56,9 +58,16 @@
 
 
 
+
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -72,19 +81,13 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">hetu</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../articles/hetu.html">Get started</a>
 </li>
 <li>
@@ -97,7 +100,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/ropengov/hetu/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -123,9 +126,9 @@
     <p>Produce a data frame of PINs that may require closer scrutiny.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>hetu_diagnostic</span><span class='op'>(</span><span class='va'>pin</span>, extract <span class='op'>=</span> <span class='cn'>NULL</span>, subsetting <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>hetu_diagnostic</span><span class='op'>(</span><span class='va'>pin</span>, extract <span class='op'>=</span> <span class='cn'>NULL</span>, subsetting <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
 
-<span class='fu'>pin_diagnostic</span><span class='op'>(</span><span class='va'>pin</span>, extract <span class='op'>=</span> <span class='cn'>NULL</span>, subsetting <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
+<span class='fu'>pin_diagnostic</span><span class='op'>(</span><span class='va'>pin</span>, extract <span class='op'>=</span> <span class='cn'>NULL</span>, subsetting <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></code></pre></div>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -154,64 +157,68 @@ or vector of identification numbers as a character vectors</p></td>
     <p>A data.frame containing diagnostic checks about PINs.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>diagnosis_example</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"010101-0102"</span>, <span class='st'>"111111-111Q"</span>, 
-<span class='st'>"010101B0101"</span>, <span class='st'>"320101-0101"</span>, <span class='st'>"011301-0101"</span>, 
-<span class='st'>"010101-01010"</span>, <span class='st'>"010101-0011"</span><span class='op'>)</span>
-<span class='co'>## Print all diagnoses</span>
-<span class='fu'>hetu_diagnostic</span><span class='op'>(</span><span class='va'>diagnosis_example</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;           hetu is.temp valid.p.num valid.checksum correct.checksum valid.date
-#&gt; 1  010101-0102   FALSE        TRUE           TRUE            FALSE       TRUE
-#&gt; 2  111111-111Q   FALSE        TRUE          FALSE            FALSE       TRUE
-#&gt; 3  010101B0101   FALSE        TRUE           TRUE             TRUE      FALSE
-#&gt; 4  320101-0101   FALSE        TRUE           TRUE             TRUE      FALSE
-#&gt; 5  011301-0101   FALSE        TRUE           TRUE            FALSE      FALSE
-#&gt; 6 010101-01010   FALSE        TRUE           TRUE             TRUE       TRUE
-#&gt; 7  010101-0011   FALSE       FALSE           TRUE            FALSE       TRUE
-#&gt;   valid.day valid.month valid.year valid.length valid.century
-#&gt; 1      TRUE        TRUE       TRUE         TRUE          TRUE
-#&gt; 2      TRUE        TRUE       TRUE         TRUE          TRUE
-#&gt; 3      TRUE        TRUE       TRUE         TRUE         FALSE
-#&gt; 4     FALSE        TRUE       TRUE         TRUE          TRUE
-#&gt; 5      TRUE       FALSE       TRUE         TRUE          TRUE
-#&gt; 6      TRUE        TRUE       TRUE        FALSE          TRUE
-#&gt; 7      TRUE        TRUE       TRUE         TRUE          TRUE</div><div class='input'><span class='co'># Extract century-related checks</span>
-<span class='fu'>hetu_diagnostic</span><span class='op'>(</span><span class='va'>diagnosis_example</span>, extract <span class='op'>=</span> <span class='st'>"valid.century"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;           hetu valid.century
-#&gt; 1  010101-0102          TRUE
-#&gt; 2  111111-111Q          TRUE
-#&gt; 3  010101B0101         FALSE
-#&gt; 4  320101-0101          TRUE
-#&gt; 5  011301-0101          TRUE
-#&gt; 6 010101-01010          TRUE
-#&gt; 7  010101-0011          TRUE</div><div class='input'><span class='co'># Extract only rows where invalid.checksum = TRUE</span>
-<span class='fu'>hetu_diagnostic</span><span class='op'>(</span><span class='va'>diagnosis_example</span>, subsetting <span class='op'>=</span> <span class='cn'>TRUE</span>, extract <span class='op'>=</span> <span class='st'>"valid.checksum"</span><span class='op'>)</span> 
-</div><div class='output co'>#&gt;          hetu  sex p.num checksum       date day month year century valid.pin
-#&gt; 1 111111-111Q Male   111        Q 1911-11-11  11    11 1911       -     FALSE
-#&gt;   valid.p.num valid.checksum correct.checksum valid.date valid.day valid.month
-#&gt; 1        TRUE          FALSE            FALSE       TRUE      TRUE        TRUE
-#&gt;   valid.year valid.length valid.century is.temp
-#&gt; 1       TRUE         TRUE          TRUE   FALSE</div><div class='input'>
-<span class='va'>diagnosis_example</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"010101-0102"</span>, <span class='st'>"111111-111Q"</span>, 
-<span class='st'>"010101B0101"</span>, <span class='st'>"320101-0101"</span>, <span class='st'>"011301-0101"</span>, 
-<span class='st'>"010101-01010"</span>, <span class='st'>"010101-0011"</span><span class='op'>)</span>
-<span class='co'>## Print all diagnoses</span>
-<span class='fu'>pin_diagnostic</span><span class='op'>(</span><span class='va'>diagnosis_example</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;           hetu is.temp valid.p.num valid.checksum correct.checksum valid.date
-#&gt; 1  010101-0102   FALSE        TRUE           TRUE            FALSE       TRUE
-#&gt; 2  111111-111Q   FALSE        TRUE          FALSE            FALSE       TRUE
-#&gt; 3  010101B0101   FALSE        TRUE           TRUE             TRUE      FALSE
-#&gt; 4  320101-0101   FALSE        TRUE           TRUE             TRUE      FALSE
-#&gt; 5  011301-0101   FALSE        TRUE           TRUE            FALSE      FALSE
-#&gt; 6 010101-01010   FALSE        TRUE           TRUE             TRUE       TRUE
-#&gt; 7  010101-0011   FALSE       FALSE           TRUE            FALSE       TRUE
-#&gt;   valid.day valid.month valid.year valid.length valid.century
-#&gt; 1      TRUE        TRUE       TRUE         TRUE          TRUE
-#&gt; 2      TRUE        TRUE       TRUE         TRUE          TRUE
-#&gt; 3      TRUE        TRUE       TRUE         TRUE         FALSE
-#&gt; 4     FALSE        TRUE       TRUE         TRUE          TRUE
-#&gt; 5      TRUE       FALSE       TRUE         TRUE          TRUE
-#&gt; 6      TRUE        TRUE       TRUE        FALSE          TRUE
-#&gt; 7      TRUE        TRUE       TRUE         TRUE          TRUE</div></pre>
+    <div class="ref-examples sourceCode"><pre class='sourceCode r'><code><span class='r-in'><span class='va'>diagnosis_example</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"010101-0102"</span>, <span class='st'>"111111-111Q"</span>, </span>
+<span class='r-in'><span class='st'>"010101B0101"</span>, <span class='st'>"320101-0101"</span>, <span class='st'>"011301-0101"</span>, </span>
+<span class='r-in'><span class='st'>"010101-01010"</span>, <span class='st'>"010101-0011"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='co'>## Print all diagnoses</span></span>
+<span class='r-in'><span class='fu'>hetu_diagnostic</span><span class='op'>(</span><span class='va'>diagnosis_example</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>           hetu is.temp valid.p.num valid.checksum correct.checksum valid.date</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1  010101-0102   FALSE        TRUE           TRUE            FALSE       TRUE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2  111111-111Q   FALSE        TRUE          FALSE            FALSE       TRUE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3  010101B0101   FALSE        TRUE           TRUE             TRUE      FALSE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 4  320101-0101   FALSE        TRUE           TRUE             TRUE      FALSE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 5  011301-0101   FALSE        TRUE           TRUE            FALSE      FALSE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 6 010101-01010   FALSE        TRUE           TRUE             TRUE       TRUE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 7  010101-0011   FALSE       FALSE           TRUE            FALSE       TRUE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   valid.day valid.month valid.year valid.length valid.century</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1      TRUE        TRUE       TRUE         TRUE          TRUE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2      TRUE        TRUE       TRUE         TRUE          TRUE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3      TRUE        TRUE       TRUE         TRUE         FALSE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 4     FALSE        TRUE       TRUE         TRUE          TRUE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 5      TRUE       FALSE       TRUE         TRUE          TRUE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 6      TRUE        TRUE       TRUE        FALSE          TRUE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 7      TRUE        TRUE       TRUE         TRUE          TRUE</span>
+<span class='r-in'><span class='co'># Extract century-related checks</span></span>
+<span class='r-in'><span class='fu'>hetu_diagnostic</span><span class='op'>(</span><span class='va'>diagnosis_example</span>, extract <span class='op'>=</span> <span class='st'>"valid.century"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>           hetu valid.century</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1  010101-0102          TRUE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2  111111-111Q          TRUE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3  010101B0101         FALSE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 4  320101-0101          TRUE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 5  011301-0101          TRUE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 6 010101-01010          TRUE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 7  010101-0011          TRUE</span>
+<span class='r-in'><span class='co'># Extract only rows where invalid.checksum = TRUE</span></span>
+<span class='r-in'><span class='fu'>hetu_diagnostic</span><span class='op'>(</span><span class='va'>diagnosis_example</span>, subsetting <span class='op'>=</span> <span class='cn'>TRUE</span>, extract <span class='op'>=</span> <span class='st'>"valid.checksum"</span><span class='op'>)</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>          hetu  sex p.num checksum       date day month year century valid.pin</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1 111111-111Q Male   111        Q 1911-11-11  11    11 1911       -     FALSE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   valid.p.num valid.checksum correct.checksum valid.date valid.day valid.month</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1        TRUE          FALSE            FALSE       TRUE      TRUE        TRUE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   valid.year valid.length valid.century is.temp</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1       TRUE         TRUE          TRUE   FALSE</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='va'>diagnosis_example</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"010101-0102"</span>, <span class='st'>"111111-111Q"</span>, </span>
+<span class='r-in'><span class='st'>"010101B0101"</span>, <span class='st'>"320101-0101"</span>, <span class='st'>"011301-0101"</span>, </span>
+<span class='r-in'><span class='st'>"010101-01010"</span>, <span class='st'>"010101-0011"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='co'>## Print all diagnoses</span></span>
+<span class='r-in'><span class='fu'>pin_diagnostic</span><span class='op'>(</span><span class='va'>diagnosis_example</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>           hetu is.temp valid.p.num valid.checksum correct.checksum valid.date</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1  010101-0102   FALSE        TRUE           TRUE            FALSE       TRUE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2  111111-111Q   FALSE        TRUE          FALSE            FALSE       TRUE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3  010101B0101   FALSE        TRUE           TRUE             TRUE      FALSE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 4  320101-0101   FALSE        TRUE           TRUE             TRUE      FALSE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 5  011301-0101   FALSE        TRUE           TRUE            FALSE      FALSE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 6 010101-01010   FALSE        TRUE           TRUE             TRUE       TRUE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 7  010101-0011   FALSE       FALSE           TRUE            FALSE       TRUE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   valid.day valid.month valid.year valid.length valid.century</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1      TRUE        TRUE       TRUE         TRUE          TRUE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2      TRUE        TRUE       TRUE         TRUE          TRUE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3      TRUE        TRUE       TRUE         TRUE         FALSE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 4     FALSE        TRUE       TRUE         TRUE          TRUE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 5      TRUE       FALSE       TRUE         TRUE          TRUE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 6      TRUE        TRUE       TRUE        FALSE          TRUE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 7      TRUE        TRUE       TRUE         TRUE          TRUE</span>
+</code></pre></div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -223,11 +230,11 @@ or vector of identification numbers as a character vectors</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Pyry Kantanen, Mans Magnusson, Jussi Paananen, Leo Lahti.</p>
+  <p><p>Developed by Pyry Kantanen, Mans Magnusson, Jussi Paananen, Leo Lahti.</p></p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001.</p></p>
 </div>
 
       </footer>
@@ -235,6 +242,8 @@ or vector of identification numbers as a character vectors</p></td>
 
   
 
+
+  
 
   </body>
 </html>

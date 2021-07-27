@@ -40,7 +40,10 @@
 
 
 <meta property="og:title" content="Finnish personal identification number extraction — hetu" />
-<meta property="og:description" content="Extract information from Finnish personal identification numbers (hetu)." />
+<meta property="og:description" content="Extract information from Finnish personal identification
+   numbers (hetu)." />
+
+
 
 
 
@@ -56,9 +59,16 @@
 
 
 
+
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -72,19 +82,13 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">hetu</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../articles/hetu.html">Get started</a>
 </li>
 <li>
@@ -97,7 +101,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/ropengov/hetu/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -120,50 +124,54 @@
     </div>
 
     <div class="ref-description">
-    <p>Extract information from Finnish personal identification numbers (hetu).</p>
+    <p>Extract information from Finnish personal identification
+   numbers (hetu).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>hetu</span><span class='op'>(</span><span class='va'>pin</span>, extract <span class='op'>=</span> <span class='cn'>NULL</span>, allow.temp <span class='op'>=</span> <span class='cn'>FALSE</span>, diagnostic <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
+    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>hetu</span><span class='op'>(</span><span class='va'>pin</span>, extract <span class='op'>=</span> <span class='cn'>NULL</span>, allow.temp <span class='op'>=</span> <span class='cn'>FALSE</span>, diagnostic <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></code></pre></div>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>pin</th>
-      <td><p>Finnish personal identification number as a character vector, 
+      <td><p>Finnish personal identification number as a character vector,
 or vector of identification numbers as a character vectors</p></td>
     </tr>
     <tr>
       <th>extract</th>
-      <td><p>Extract only selected part of the information. 
+      <td><p>Extract only selected part of the information.
 Valid values are "<code>hetu</code>", "<code>sex</code>", "<code>p.num</code>",
-"<code>checksum</code>", "<code>date</code>", "<code>day</code>", "<code>month</code>", 
+"<code>checksum</code>", "<code>date</code>", "<code>day</code>", "<code>month</code>",
 "<code>year</code>", "<code>century</code>", "<code>is.temp</code>".
 If <code>NULL</code> (default), returns all information.</p></td>
     </tr>
     <tr>
       <th>allow.temp</th>
-      <td><p>Allow artificial or temporary PINs (personal numbers 900-999). 
-If <code>FALSE</code> (default), only PINs intended for official use (personal numbers 002-899) are allowed.</p></td>
+      <td><p>Allow artificial or temporary PINs (personal numbers
+900-999). If <code>FALSE</code> (default), only PINs intended for official
+use (personal numbers 002-899) are allowed.</p></td>
     </tr>
     <tr>
       <th>diagnostic</th>
-      <td><p>Print additional information about possible problems in PINs. The checks are 
- "<code>invalid.p.num</code>", "<code>invalid.checksum</code>", "<code>incorrect.checksum</code>", 
- "<code>invalid.date</code>", "<code>invalid.day</code>", "<code>invalid.month</code>", "<code>invalid.length</code>", 
-"<code>invalid.century</code>". Default is <code>FALSE</code> which returns no diagnostic information.</p></td>
+      <td><p>Print additional information about possible problems in
+PINs. The checks are "<code>valid.p.num</code>", "<code>valid.checksum</code>",
+"<code>correct.checksum</code>", "<code>valid.date</code>", "<code>valid.day</code>",
+"<code>valid.month</code>", "<code>valid.length</code>", "<code>valid.century</code>".
+Default is <code>FALSE</code> which returns no diagnostic information.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>Finnish personal identification number data.frame,
-    or if extract parameter is set, the requested part of the 
-   information as a vector. Returns an error or <code>NA</code> if the given character 
-   vector is not a valid Finnish personal identification number.</p>
-<dt>hetu</dt><dd><p>Finnish personal identification number as a character vector. 
-    A correct pin should be in the form DDMMYYCZZZQ, where DDMMYY stands for date, C for century sign, 
-    ZZZ for personal number and Q for checksum character.</p></dd>
+    or if extract parameter is set, the requested part of the
+   information as a vector. Returns an error or <code>NA</code> if the given
+   character vector is not a valid Finnish personal identification number.</p>
+<dt>hetu</dt><dd><p>Finnish personal identification number as a character vector.
+    A correct pin should be in the form DDMMYYCZZZQ, where DDMMYY stands for
+    date, C for century sign, ZZZ for personal number and Q for checksum
+    character.</p></dd>
 <dt>sex</dt><dd><p>sex of the person as a character vector ("Male" or "Female").</p></dd>
 <dt>p.num</dt><dd><p>Personal number part of the identification number.</p></dd>
 <dt>checksum</dt><dd><p>Checksum for the personal identification number.</p></dd>
@@ -171,34 +179,39 @@ If <code>FALSE</code> (default), only PINs intended for official use (personal n
 <dt>day</dt><dd><p>Day of the birthdate.</p></dd>
 <dt>month</dt><dd><p>Month of the birthdate.</p></dd>
 <dt>year</dt><dd><p>Year of the birthdate.</p></dd>
-<dt>century</dt><dd><p>Century character of the birthdate: 
-           + (1800), - (1900) or A (2000).</p></dd>
-<dt>valid.pin</dt><dd><p>Does the personal identification number pass all validity checks: (<code>TRUE</code> or <code>FALSE</code>)</p></dd>
+<dt>century</dt><dd><p>Century character of the birthdate: + (1800), - (1900) or
+    A (2000).</p></dd>
+<dt>valid.pin</dt><dd><p>Does the personal identification number pass all validity
+   checks: (<code>TRUE</code> or <code>FALSE</code>)</p></dd>
 
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='pin_ctrl.html'>pin_ctrl</a></code> For validating Finnish personal 
+    <div class='dont-index'><p><code><a href='pin_ctrl.html'>pin_ctrl</a></code> For validating Finnish personal
 	    identification numbers.</p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Pyry Kantanen, Jussi Paananen</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>hetu</span><span class='op'>(</span><span class='st'>"111111-111C"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;          hetu  sex p.num checksum       date day month year century valid.pin
-#&gt; 1 111111-111C Male   111        C 1911-11-11  11    11 1911       -      TRUE</div><div class='input'><span class='fu'>hetu</span><span class='op'>(</span><span class='st'>"111111-111C"</span><span class='op'>)</span><span class='op'>$</span><span class='va'>date</span>
-</div><div class='output co'>#&gt; [1] "1911-11-11"</div><div class='input'><span class='fu'>hetu</span><span class='op'>(</span><span class='st'>"111111-111C"</span><span class='op'>)</span><span class='op'>$</span><span class='va'>sex</span>
-</div><div class='output co'>#&gt; [1] "Male"</div><div class='input'><span class='co'># Same as previous, but using extract argument</span>
-<span class='fu'>hetu</span><span class='op'>(</span><span class='st'>"111111-111C"</span>, extract<span class='op'>=</span><span class='st'>"sex"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "Male"</div><div class='input'>
-<span class='co'># Process a vector of hetu's</span>
-<span class='fu'>hetu</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"010101-0101"</span>, <span class='st'>"111111-111C"</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;          hetu    sex p.num checksum       date day month year century valid.pin
-#&gt; 1 010101-0101 Female   010        1 1901-01-01   1     1 1901       -      TRUE
-#&gt; 2 111111-111C   Male   111        C 1911-11-11  11    11 1911       -      TRUE</div><div class='input'>
-<span class='co'># Process a vector of hetu's and extract sex information from each</span>
-<span class='fu'>hetu</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"010101-0101"</span>, <span class='st'>"111111-111C"</span><span class='op'>)</span>, extract<span class='op'>=</span><span class='st'>"sex"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "Female" "Male"  </div></pre>
+    <div class="ref-examples sourceCode"><pre class='sourceCode r'><code><span class='r-in'><span class='fu'>hetu</span><span class='op'>(</span><span class='st'>"111111-111C"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>          hetu  sex p.num checksum       date day month year century valid.pin</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1 111111-111C Male   111        C 1911-11-11  11    11 1911       -      TRUE</span>
+<span class='r-in'><span class='fu'>hetu</span><span class='op'>(</span><span class='st'>"111111-111C"</span><span class='op'>)</span><span class='op'>$</span><span class='va'>date</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "1911-11-11"</span>
+<span class='r-in'><span class='fu'>hetu</span><span class='op'>(</span><span class='st'>"111111-111C"</span><span class='op'>)</span><span class='op'>$</span><span class='va'>sex</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "Male"</span>
+<span class='r-in'><span class='co'># Same as previous, but using extract argument</span></span>
+<span class='r-in'><span class='fu'>hetu</span><span class='op'>(</span><span class='st'>"111111-111C"</span>, extract<span class='op'>=</span><span class='st'>"sex"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "Male"</span>
+<span class='r-in'><span class='co'># Process a vector of hetu's</span></span>
+<span class='r-in'><span class='fu'>hetu</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"010101-0101"</span>, <span class='st'>"111111-111C"</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>          hetu    sex p.num checksum       date day month year century valid.pin</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1 010101-0101 Female   010        1 1901-01-01   1     1 1901       -      TRUE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2 111111-111C   Male   111        C 1911-11-11  11    11 1911       -      TRUE</span>
+<span class='r-in'><span class='co'># Process a vector of hetu's and extract sex information from each</span></span>
+<span class='r-in'><span class='fu'>hetu</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"010101-0101"</span>, <span class='st'>"111111-111C"</span><span class='op'>)</span>, extract<span class='op'>=</span><span class='st'>"sex"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "Female" "Male"  </span>
+</code></pre></div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -210,11 +223,11 @@ If <code>FALSE</code> (default), only PINs intended for official use (personal n
 
       <footer>
       <div class="copyright">
-  <p>Developed by Pyry Kantanen, Mans Magnusson, Jussi Paananen, Leo Lahti.</p>
+  <p><p>Developed by Pyry Kantanen, Mans Magnusson, Jussi Paananen, Leo Lahti.</p></p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001.</p></p>
 </div>
 
       </footer>
@@ -222,6 +235,8 @@ If <code>FALSE</code> (default), only PINs intended for official use (personal n
 
   
 
+
+  
 
   </body>
 </html>

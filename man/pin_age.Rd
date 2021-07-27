@@ -10,7 +10,7 @@ pin_age(pin, date = Sys.Date(), timespan = "years", allow.temp = FALSE)
 hetu_age(pin, date = Sys.Date(), timespan = "years", allow.temp = FALSE)
 }
 \arguments{
-\item{pin}{Finnish personal identification number as a character vector, 
+\item{pin}{Finnish personal identification number as a character vector,
 or vector of identification numbers as a character vectors}
 
 \item{date}{Date at which age is calculated. If a vector is provided it must be
@@ -24,8 +24,9 @@ of the same length as the \code{pin} argument.}
   \item \code{days}
 }}
 
-\item{allow.temp}{Allow artificial or temporary PINs (personal numbers 900-999). 
-If \code{FALSE} (default), only PINs intended for official use (personal numbers 002-899) are allowed.}
+\item{allow.temp}{Allow artificial or temporary PINs (personal numbers
+900-999). If \code{FALSE} (default), only PINs intended for official
+use (personal numbers 002-899) are allowed.}
 }
 \value{
 Age as an integer vector.
