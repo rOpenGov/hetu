@@ -5,6 +5,7 @@
 
 * Implementing recommendations from goodpractice (whole package) and lintr (hetu.R) for better code legibility
 * Renamed internal objects to make it easier to distinguish between user input (function arguments), internal objects used in intermediate steps and output names for the data table
+* New function hetu_control_char for easy calculation of control characters when birth date and personal numbers are already known
 
 # hetu 1.0.2 (2020-11-23)
 

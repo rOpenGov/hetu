@@ -111,3 +111,12 @@ test_that("hetu_diagnostic works correctly", {
   expect_false(hetu_diagnostic("010101-01010", subsetting = FALSE,
                                extract = "valid.length")$valid.length)
 })
+
+test_that("hetu_control_char works correctly", {
+  expect_visible(hetu_control_char("010101-010", with.century = TRUE))
+  expect_visible(hetu_control_char("010101010", with.century = FALSE))
+  expect_visible(hetu_control_char(c("010101-010", "111111-111")))
+  expect_error(hetu_control_char("010101-0101", with.century = TRUE))
+  expect_error(hetu_control_char("010101B010", with.century = TRUE))
+  expect_error(hetu_control_char("0101010101", with.century = FALSE))
+})

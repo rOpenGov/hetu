@@ -3,6 +3,7 @@
 export(bid_ctrl)
 export(hetu)
 export(hetu_age)
+export(hetu_control_char)
 export(hetu_ctrl)
 export(hetu_date)
 export(hetu_diagnostic)
