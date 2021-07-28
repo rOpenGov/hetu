@@ -1,9 +1,9 @@
 #' @title Age from ID
 #' @description Calculate the age in full years for a given date.
 #' @inheritParams hetu
-#' @param date Date at which age is calculated. If a vector is provided it must be
-#'  of the same length as the \code{pin} argument.
-#' @param timespan Timespan to use to calculate age. The actual timespans are:
+#' @param date Date at which age is calculated. If a vector is provided it 
+#'    must be of the same length as the \code{pin} argument.
+#' @param timespan Timespan to use to calculate age. The possible timespans are:
 #' \itemize{
 #'   \item \code{years} (Default)
 #'   \item \code{months}
@@ -16,19 +16,29 @@
 #' @examples
 #' ex_pin <- c("010101-0101", "111111-111C")
 #' pin_age(ex_pin, date = "2012-01-01")
+#' 
+#' @importFrom checkmate assert_date assert_choice
+#' @importFrom lubridate ymd interval years weeks days period
 #'
 #' @export
-pin_age <- function(pin, date=Sys.Date(), timespan = "years", allow.temp = FALSE) {
+pin_age <- function(pin,
+                    date=Sys.Date(),
+                    timespan = "years",
+                    allow.temp = FALSE) {
 
   date <- as.Date(date)
   checkmate::assert_date(date, any.missing = FALSE)
-  checkmate::assert_choice(timespan, choices = c("years", "months", "weeks", "days"))
-  
+  checkmate::assert_choice(timespan, choices = c("years", 
+                                                 "months", 
+                                                 "weeks", 
+                                                 "days"))
+
   if (length(date) == 1) {
-    message("The age in ", timespan, " has been calculated at ", as.character(date), 
-            ".")
+    message("The age in ", timespan, " has been calculated at ", 
+            as.character(date), ".")
   } else if (length(date) == length(pin)){
-    message("The age is calculated relative to the '", deparse(substitute(date)), "' date")
+    message("The age is calculated relative to the '", 
+            deparse(substitute(date)), "' date")
   } else {
     stop("Multiple dates used.")
   }

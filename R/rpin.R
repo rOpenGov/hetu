@@ -4,10 +4,13 @@
 #' A function that generates random \code{hetu}-pins. 
 #'
 #' @param n number of generated \code{hetu}-pins
-#' @param start_date Lower limit of generated \code{hetu} dates. Default is 1895-01-01.
-#' @param end_date Upper limit of generated \code{hetu}. Default is the current date.
+#' @param start_date Lower limit of generated \code{hetu} dates. 
+#'    Default is 1895-01-01.
+#' @param end_date Upper limit of generated \code{hetu}. 
+#'    Default is current date (Sys.Date).
 #' @param p.male Proportion of males. Default is 0.4.
-#' @param p.temp Proportion of temporary identification numbers. Default is 0.0.
+#' @param p.temp Proportion of temporary identification numbers. 
+#'    Default is 0.0.
 #' 
 #' @return a vector of generated \code{hetu}-pins.
 #' 
@@ -20,11 +23,18 @@
 #' hetu(x, extract = "checksum")
 #' 
 #' @export
-rpin <- function(n, start_date = as.Date("1895-01-01"), end_date = as.Date(Sys.Date()), p.male = 0.4, p.temp = 0.0){
-  # Oversample a bit to make up for filtered PINs (duplicates, PINs with inadequate personal numbers) 
+rpin <- function(n, 
+                 start_date = as.Date("1895-01-01"),
+                 end_date = as.Date(Sys.Date()),
+                 p.male = 0.4,
+                 p.temp = 0.0){
+  # Oversample a bit to make up for filtered PINs (duplicates, PINs with 
+  # inadequate personal numbers) 
   n_sample <- ceiling(n * 1.1)
   
-  rdate <- sample(as.Date(start_date):as.Date(end_date), n_sample, replace = TRUE)
+  rdate <- sample(as.Date(start_date):as.Date(end_date),
+                  size = n_sample,
+                  replace = TRUE)
   
   # origin date according to POSIX standard
   rdate <- as.Date(rdate, origin = "1970-01-01")
@@ -33,14 +43,17 @@ rpin <- function(n, start_date = as.Date("1895-01-01"), end_date = as.Date(Sys.D
   ddmmyy <- format(rdate, "%d%m%y")
   
   # Determine the correct century marker (C in DDMMYYCZZZQ)
-  century <- function(x) {
+  century_function <- function(x) {
     switch(substr(x, 1, 2),
          "20" = "A",
          "19" = "-",
          "18" = "+",
     )
   }
-  century.char <- sapply(rdate, century, USE.NAMES = FALSE)
+  century.char <- vapply(rdate, 
+                         FUN = century_function,
+                         FUN.VALUE = character(1),
+                         USE.NAMES = FALSE)
   
   # Generate the personal number part of hetu (ZZZ in DDMMYYCZZZQ)
   zz_norm <- sample(x = 0:89, replace = TRUE, size = round(n_sample*(1-p.temp)))
@@ -88,7 +101,8 @@ rhetu <- rpin
 #' @title Generate a vector of random Finnish Business ID's (y-tunnus)
 #' 
 #' @description 
-#' A function that generates random Finnish Business ID's, \code{bid}-numbers (Y-tunnus). 
+#' A function that generates random Finnish Business ID's, 
+#'    \code{bid}-numbers (Y-tunnus). 
 #' 
 #' @param 
 #' n number of generated BIDs
@@ -115,8 +129,8 @@ rbid <- function(n) {
   
   # as a result of this, only checknums 0-9 should remain
   bid_frame$check <- ifelse(test = bid_frame$check %in% c(2:10), 
-         yes = (11 - bid_frame$check), 
-         no = bid_frame$check)
+                            yes = (11 - bid_frame$check), 
+                            no = bid_frame$check)
   
   # this removes BIDs with invalid checknum 1
   bid_frame$valid.bid <- ifelse(bid_frame$check == 1, FALSE, TRUE)
@@ -126,8 +140,10 @@ rbid <- function(n) {
   
   # Produce a vector of finalized BIDs
   bids <- rep(NA, nrow(bid_frame))
-  for (i in 1:nrow(bid_frame)) {
-    bids[i] <- paste0(paste(bid_frame[i,1:7], collapse = ''), "-", paste0(bid_frame[i,8], collapse = ''))
+  for (i in seq_len(nrow(bid_frame))) {
+    bids[i] <- paste0(paste(bid_frame[i,1:7], collapse = ''),
+                      "-", 
+                      paste0(bid_frame[i,8], collapse = ''))
     next
   }
   

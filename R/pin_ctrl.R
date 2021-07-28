@@ -1,21 +1,24 @@
 #' @title Finnish Personal Identification Number Validator
 #' @description Validate Finnish personal identification numbers (hetu).
 #' @param pin Finnish personal identification number as a character vector, or
-#'   vector of identification numbers as a character vectors.
-#' @param allow.temp If TRUE, temporary PINs (personal numbers 900-999) are handled
-#'  similarly to regular PINs (personal numbers 002-899), meaning that otherwise valid
-#'  temporary PIN will return a TRUE. Default is \code{FALSE}.
-#' @return Logical indicating whether the input string is a valid Finnish personal identification number,
+#'    vector of identification numbers as a character vectors.
+#' @param allow.temp If TRUE, temporary PINs (personal numbers 900-999) are 
+#'    handled similarly to regular PINs (personal numbers 002-899), meaning 
+#'    that otherwise valid temporary PIN will return a TRUE. Default 
+#'    is \code{FALSE}.
+#' @return Logical indicating whether the input string is a valid Finnish 
+#'    personal identification number,
 #' @author Pyry Kantanen
 #' @seealso \code{\link{hetu}} For extracting information from Finnish personal
-#'   identification numbers.
+#'    identification numbers.
 #' @examples
 #' pin_ctrl("010101-0101") # TRUE
 #' pin_ctrl("010101-010A") # FALSE
 #' @export
 pin_ctrl <- function(pin, allow.temp = FALSE) {
 
-  return(hetu(pin, extract = "valid.pin", allow.temp = allow.temp))
+  validity_test <- hetu(pin, extract = "valid.pin", allow.temp = allow.temp)
+  validity_test
   
 }
 
@@ -40,30 +43,37 @@ hetu_ctrl <- pin_ctrl
 #' bid_ctrl("0737546-1") # FALSE
 #' @export
 bid_ctrl <- function(bid) {
-  
-  # Try to create Business ID -object from the given bid, check if created object 
-  # is of the correct class 
+
+  # Try to create Business ID -object from the given bid, check if created 
+  # object is of the correct class 
   if (length(bid) > 1) {
-    return(sapply(bid, FUN=bid_ctrl, USE.NAMES = FALSE))
+    return(vapply(bid, FUN=bid_ctrl, FUN.VALUE = logical(1), USE.NAMES = FALSE))
   }
-  
-  if(!is.character(bid)) {bid <- as.character(bid)}
-  
+
+  if (!is.character(bid)) {
+    bid <- as.character(bid)
+  }
+
   # Check bid number of characters
   if (nchar(bid) != 9) {
     warning(paste("Invalid number of characters in Business ID", bid))
     valid.length <- FALSE
     return(valid.length)
-  } else {valid.length <- TRUE}
-  
+  } else {
+    valid.length <- TRUE
+  }
+
   # Check separator character
   dash <- substr(bid, start=8, stop=8)
   if (!dash %in% c("-")) {
-    warning(paste0("Invalid separator character '", dash, "' in Business ID ", bid))
+    warning(paste0("Invalid separator character '",
+                   dash,
+                   "' in Business ID ",
+                   bid))
     valid.separator <- FALSE
     return(valid.separator)
   } else {valid.separator <- TRUE}
-  
+
   # Calculate if BID is correct using Mod 11-2
   x <- substr(bid, start = 1, stop = 7)
   x_control <- substr(bid, start = 9, stop = 9)

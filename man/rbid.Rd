@@ -13,7 +13,8 @@ rbid(n)
 a vector of generated \code{BID}-numbers.
 }
 \description{
-A function that generates random Finnish Business ID's, \code{bid}-numbers (Y-tunnus).
+A function that generates random Finnish Business ID's, 
+   \code{bid}-numbers (Y-tunnus).
 }
 \examples{
 x <- rbid(3)

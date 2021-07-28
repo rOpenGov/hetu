@@ -2,13 +2,14 @@
 #' @title Diagnostics Tool for HETU
 #' @description Produce a data frame of PINs that may require closer scrutiny.
 #' @param pin Finnish personal identification number as a character vector, 
-#' 	  or vector of identification numbers as a character vectors
+#'    or vector of identification numbers as a character vectors
 #' @param extract Extract only selected part of the diagnostic information.
-#'   Valid values are "\code{hetu}", "\code{is.temp}", "\code{valid.p.num}",
-#'   "\code{valid.checksum}", "\code{correct.checksum}", "\code{valid.date}",
-#'   "\code{valid.day}", "\code{valid.month}", "\code{valid.length}", 
-#'  "\code{valid.century}". If \code{NULL} (default), returns all information.
-#' @param subsetting Print only PINs where the validity check chosen in \code{extract} returns \code{FALSE}.
+#'    Valid values are "\code{hetu}", "\code{is.temp}", "\code{valid.p.num}",
+#'    "\code{valid.checksum}", "\code{correct.checksum}", "\code{valid.date}",
+#'    "\code{valid.day}", "\code{valid.month}", "\code{valid.length}", 
+#'    "\code{valid.century}". If \code{NULL} (default), returns all information.
+#' @param subsetting Print only PINs where the validity check chosen 
+#'    in \code{extract} returns \code{FALSE}.
 #' @return A data.frame containing diagnostic checks about PINs.
 #' @examples
 #' diagnosis_example <- c("010101-0102", "111111-111Q", 
@@ -19,7 +20,9 @@
 #' # Extract century-related checks
 #' hetu_diagnostic(diagnosis_example, extract = "valid.century")
 #' # Extract only rows where invalid.checksum = TRUE
-#' hetu_diagnostic(diagnosis_example, subsetting = TRUE, extract = "valid.checksum") 
+#' hetu_diagnostic(diagnosis_example, subsetting = TRUE, extract = "valid.day") 
+#' 
+#' @importFrom dplyr filter
 #'
 #' @export
 hetu_diagnostic <- function(pin, extract = NULL, subsetting = FALSE) {
@@ -35,14 +38,21 @@ hetu_diagnostic <- function(pin, extract = NULL, subsetting = FALSE) {
   }
   
   if (is.null(extract)) {
-    output <- subset(hetu(pin, allow.temp = TRUE, diagnostic = TRUE), select = diagnostic_params)
+    output <- subset(hetu(pin, 
+                          allow.temp = TRUE, 
+                          diagnostic = TRUE), 
+                     select = diagnostic_params)
   } else {
       if (subsetting == TRUE) {
         output <- hetu(pin, allow.temp = TRUE, diagnostic = TRUE)
-        output <- dplyr::filter(output, eval(parse(text = paste(extract, "== FALSE"))))
+        output <- dplyr::filter(output, 
+                                eval(parse(text = paste(extract, "== FALSE"))))
       }
       else {
-        output <- subset(hetu(pin, allow.temp = TRUE, diagnostic = TRUE), select = c("hetu", extract))
+        output <- subset(hetu(pin,
+                              allow.temp = TRUE,
+                              diagnostic = TRUE), 
+                         select = c("hetu", extract))
       }
   }
   return(output)

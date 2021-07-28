@@ -43,7 +43,7 @@ Finnish personal identification number data.frame,
 \item{month}{Month of the birthdate.}
 \item{year}{Year of the birthdate.}
 \item{century}{Century character of the birthdate: + (1800), - (1900) or
-    A (2000).}
+   A (2000).}
 \item{valid.pin}{Does the personal identification number pass all validity
    checks: (\code{TRUE} or \code{FALSE})}
 }
@@ -64,7 +64,7 @@ hetu(c("010101-0101", "111111-111C"), extract="sex")
 }
 \seealso{
 \code{\link{pin_ctrl}} For validating Finnish personal
-	    identification numbers.
+   identification numbers.
 }
 \author{
 Pyry Kantanen, Jussi Paananen

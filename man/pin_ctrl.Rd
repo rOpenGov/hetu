@@ -13,12 +13,14 @@ hetu_ctrl(pin, allow.temp = FALSE)
 \item{pin}{Finnish personal identification number as a character vector, or
 vector of identification numbers as a character vectors.}
 
-\item{allow.temp}{If TRUE, temporary PINs (personal numbers 900-999) are handled
-similarly to regular PINs (personal numbers 002-899), meaning that otherwise valid
-temporary PIN will return a TRUE. Default is \code{FALSE}.}
+\item{allow.temp}{If TRUE, temporary PINs (personal numbers 900-999) are 
+handled similarly to regular PINs (personal numbers 002-899), meaning 
+that otherwise valid temporary PIN will return a TRUE. Default 
+is \code{FALSE}.}
 }
 \value{
-Logical indicating whether the input string is a valid Finnish personal identification number,
+Logical indicating whether the input string is a valid Finnish 
+   personal identification number,
 }
 \description{
 Validate Finnish personal identification numbers (hetu).
@@ -31,7 +33,7 @@ hetu_ctrl("010101-010A") # FALSE
 }
 \seealso{
 \code{\link{hetu}} For extracting information from Finnish personal
-  identification numbers.
+   identification numbers.
 }
 \author{
 Pyry Kantanen

@@ -14,12 +14,13 @@ pin_diagnostic(pin, extract = NULL, subsetting = FALSE)
 or vector of identification numbers as a character vectors}
 
 \item{extract}{Extract only selected part of the diagnostic information.
- Valid values are "\code{hetu}", "\code{is.temp}", "\code{valid.p.num}",
- "\code{valid.checksum}", "\code{correct.checksum}", "\code{valid.date}",
- "\code{valid.day}", "\code{valid.month}", "\code{valid.length}", 
+Valid values are "\code{hetu}", "\code{is.temp}", "\code{valid.p.num}",
+"\code{valid.checksum}", "\code{correct.checksum}", "\code{valid.date}",
+"\code{valid.day}", "\code{valid.month}", "\code{valid.length}", 
 "\code{valid.century}". If \code{NULL} (default), returns all information.}
 
-\item{subsetting}{Print only PINs where the validity check chosen in \code{extract} returns \code{FALSE}.}
+\item{subsetting}{Print only PINs where the validity check chosen 
+in \code{extract} returns \code{FALSE}.}
 }
 \value{
 A data.frame containing diagnostic checks about PINs.
@@ -36,7 +37,7 @@ hetu_diagnostic(diagnosis_example)
 # Extract century-related checks
 hetu_diagnostic(diagnosis_example, extract = "valid.century")
 # Extract only rows where invalid.checksum = TRUE
-hetu_diagnostic(diagnosis_example, subsetting = TRUE, extract = "valid.checksum") 
+hetu_diagnostic(diagnosis_example, subsetting = TRUE, extract = "valid.day") 
 
 diagnosis_example <- c("010101-0102", "111111-111Q", 
 "010101B0101", "320101-0101", "011301-0101", 

@@ -2,7 +2,7 @@
 #' @description Extract information from Finnish personal identification
 #'    numbers (hetu).
 #' @param pin Finnish personal identification number as a character vector,
-#' 	  or vector of identification numbers as a character vectors
+#'    or vector of identification numbers as a character vectors
 #' @param extract Extract only selected part of the information.
 #'    Valid values are "\code{hetu}", "\code{sex}", "\code{p.num}",
 #'    "\code{checksum}", "\code{date}", "\code{day}", "\code{month}",
@@ -32,12 +32,12 @@
 #' \item{month}{Month of the birthdate.}
 #' \item{year}{Year of the birthdate.}
 #' \item{century}{Century character of the birthdate: + (1800), - (1900) or
-#'     A (2000).}
+#'    A (2000).}
 #' \item{valid.pin}{Does the personal identification number pass all validity
 #'    checks: (\code{TRUE} or \code{FALSE})}
 #' @author Pyry Kantanen, Jussi Paananen
 #' @seealso \code{\link{pin_ctrl}} For validating Finnish personal
-#' 	    identification numbers.
+#'    identification numbers.
 #' @examples
 #' hetu("111111-111C")
 #' hetu("111111-111C")$date
@@ -107,7 +107,10 @@ hetu <- function(pin, extract = NULL, allow.temp = FALSE, diagnostic = FALSE) {
     )
   }
   # full_year_function takes 1 pin at a time so using sapply
-  full_year <- sapply(pin, FUN = full_year_function, USE.NAMES = FALSE)
+  full_year <- vapply(pin,
+                      FUN = full_year_function,
+                      FUN.VALUE = double(1),
+                      USE.NAMES = FALSE)
 
   # Check if date exists
   extracted_date <- as.Date(paste(extracted_day, "/",

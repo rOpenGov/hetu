@@ -1,6 +1,11 @@
 # *News*
 ==========
 
+# hetu 1.0.3 (2021-07-28)
+
+* Implementing recommendations from goodpractice (whole package) and lintr (hetu.R) for better code legibility
+* Renamed internal objects to make it easier to distinguish between user input (function arguments), internal objects used in intermediate steps and output names for the data table
+
 # hetu 1.0.2 (2020-11-23)
 
 * Moving away from Travis CI to GitHub Actions

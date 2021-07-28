@@ -24,13 +24,16 @@ rhetu(
 \arguments{
 \item{n}{number of generated \code{hetu}-pins}
 
-\item{start_date}{Lower limit of generated \code{hetu} dates. Default is 1895-01-01.}
+\item{start_date}{Lower limit of generated \code{hetu} dates. 
+Default is 1895-01-01.}
 
-\item{end_date}{Upper limit of generated \code{hetu}. Default is the current date.}
+\item{end_date}{Upper limit of generated \code{hetu}. 
+Default is current date (Sys.Date).}
 
 \item{p.male}{Proportion of males. Default is 0.4.}
 
-\item{p.temp}{Proportion of temporary identification numbers. Default is 0.0.}
+\item{p.temp}{Proportion of temporary identification numbers. 
+Default is 0.0.}
 }
 \value{
 a vector of generated \code{hetu}-pins.
