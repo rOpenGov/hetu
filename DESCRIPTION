@@ -1,7 +1,7 @@
 Package: hetu
 Type: Package
 Title: Structural Handling of Finnish Personal Identity Numbers
-Version: 1.0.3
+Version: 1.0.3.9000
 Encoding: UTF-8
 Authors@R: 
     c(
@@ -42,7 +42,8 @@ Depends:
 Imports:
     dplyr,
     lubridate,
-    checkmate
+    checkmate,
+    assertthat
 Suggests:
     Cairo,
     knitr,

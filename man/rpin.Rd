@@ -7,16 +7,16 @@
 \usage{
 rpin(
   n,
-  start_date = as.Date("1895-01-01"),
-  end_date = as.Date(Sys.Date()),
+  start.date = "1895-01-01",
+  end.date = Sys.Date(),
   p.male = 0.4,
   p.temp = 0
 )
 
 rhetu(
   n,
-  start_date = as.Date("1895-01-01"),
-  end_date = as.Date(Sys.Date()),
+  start.date = "1895-01-01",
+  end.date = Sys.Date(),
   p.male = 0.4,
   p.temp = 0
 )
@@ -24,16 +24,17 @@ rhetu(
 \arguments{
 \item{n}{number of generated \code{hetu}-pins}
 
-\item{start_date}{Lower limit of generated \code{hetu} dates. 
-Default is 1895-01-01.}
+\item{start.date}{Lower limit of generated \code{hetu} dates,
+character string in ISO 8601 standard, for example "2001-02-03"
+(%Y-%m-%d or Year-month-day). Default is "1895-01-01".}
 
-\item{end_date}{Upper limit of generated \code{hetu}. 
+\item{end.date}{Upper limit of generated \code{hetu}. 
 Default is current date (Sys.Date).}
 
-\item{p.male}{Proportion of males. Default is 0.4.}
+\item{p.male}{Proportion of males, between 0.0 and 1.0. Default is 0.4.}
 
-\item{p.temp}{Proportion of temporary identification numbers. 
-Default is 0.0.}
+\item{p.temp}{Proportion of temporary identification numbers, between
+0.0 and 1.0. Default is 0.0.}
 }
 \value{
 a vector of generated \code{hetu}-pins.

@@ -4,13 +4,14 @@
 #' A function that generates random \code{hetu}-pins. 
 #'
 #' @param n number of generated \code{hetu}-pins
-#' @param start_date Lower limit of generated \code{hetu} dates. 
-#'    Default is 1895-01-01.
-#' @param end_date Upper limit of generated \code{hetu}. 
+#' @param start.date Lower limit of generated \code{hetu} dates,
+#'    character string in ISO 8601 standard, for example "2001-02-03"
+#'    (%Y-%m-%d or Year-month-day). Default is "1895-01-01".
+#' @param end.date Upper limit of generated \code{hetu}. 
 #'    Default is current date (Sys.Date).
-#' @param p.male Proportion of males. Default is 0.4.
-#' @param p.temp Proportion of temporary identification numbers. 
-#'    Default is 0.0.
+#' @param p.male Proportion of males, between 0.0 and 1.0. Default is 0.4.
+#' @param p.temp Proportion of temporary identification numbers, between
+#'    0.0 and 1.0. Default is 0.0.
 #' 
 #' @return a vector of generated \code{hetu}-pins.
 #' 
@@ -22,17 +23,59 @@
 #' hetu(x, extract = "sex")
 #' hetu(x, extract = "checksum")
 #' 
+#' @importFrom assertthat assert_that
+#' 
 #' @export
 rpin <- function(n, 
-                 start_date = as.Date("1895-01-01"),
-                 end_date = as.Date(Sys.Date()),
+                 start.date = "1895-01-01",
+                 end.date = Sys.Date(),
                  p.male = 0.4,
                  p.temp = 0.0){
+  
+  start.date <- as.Date(start.date)
+  end.date <- as.Date(end.date)
+  
+  assert_that(p.temp >= 0 & p.temp <= 1)
+  assert_that(p.male >= 0 & p.male <= 1)
+  assert_that(end.date <= Sys.Date())
+  assert_that(start.date <= end.date)
+  assert_that(start.date >= as.Date("1860-01-01"))
+
+  max_p_sex <- max(p.male, (1 - p.male))
+  max_p_temp <- max(p.temp, (1 - p.temp))
+  
+  # available personal numbers per day are 002-899, length(2:899) = 898
+  # if p.temp != 0, then available personal numbers are 002-999; 998 numbers
+  if (isTRUE(all.equal(p.temp, 0))) {
+    max_pins_per_day <- 898
+  } else if (p.temp > 0) {
+    max_pins_per_day <- 998
+  }
+  # available personal numbers per sex per day is 898/2 = 449
+  max_pins_per_sex <- 449
+  # available temp pins per day is length(900:999) = 100
+  max_temp_pins <- 100
+  
+  days_in_time_period <- length(start.date:end.date)
+  
+  if (n > max_pins_per_day * days_in_time_period){
+    stop("You can not generate more random PINs than the maximum number 
+  available: 898 per day")
+  }
+  
+  if (max_p_sex * n > max_pins_per_sex * days_in_time_period){
+    stop("You can generate only 449 PINs per sex per day")
+  }
+  
+  if (p.temp * n > max_temp_pins) {
+    stop("You can generate only 100 temporary PINs per day")
+  }
+  
   # Oversample a bit to make up for filtered PINs (duplicates, PINs with 
   # inadequate personal numbers) 
   n_sample <- ceiling(n * 1.1)
   
-  rdate <- sample(as.Date(start_date):as.Date(end_date),
+  rdate <- sample(start.date:end.date,
                   size = n_sample,
                   replace = TRUE)
   
