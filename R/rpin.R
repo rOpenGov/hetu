@@ -5,14 +5,14 @@
 #'
 #' @param n number of generated \code{hetu}-pins
 #' @param start.date Lower limit of generated \code{hetu} dates,
-#'    character string in ISO 8601 standard, for example "2001-02-03"
-#'    (%Y-%m-%d or Year-month-day). Default is "1895-01-01".
+#'    character string in ISO 8601 standard, for example "2001-02-03".
+#'    Default is "1895-01-01".
 #' @param end.date Upper limit of generated \code{hetu}. 
-#'    Default is current date (Sys.Date).
+#'    Default is current date.
 #' @param p.male Proportion of males, between 0.0 and 1.0. Default is 0.4.
 #' @param p.temp Proportion of temporary identification numbers, between
 #'    0.0 and 1.0. Default is 0.0.
-#' 
+#'
 #' @return a vector of generated \code{hetu}-pins.
 #' 
 #' @author Pyry Kantanen, Jussi Paananen
@@ -27,7 +27,7 @@
 #' 
 #' @export
 rpin <- function(n, 
-                 start.date = "1895-01-01",
+                 start.date = as.Date("1895-01-01"),
                  end.date = Sys.Date(),
                  p.male = 0.4,
                  p.temp = 0.0){

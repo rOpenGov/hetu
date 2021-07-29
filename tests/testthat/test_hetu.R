@@ -92,8 +92,8 @@ test_that("rpin() works correctly", {
   expect_equal(length(rpin(10)), 10)
   expect_equal(length(rpin(10, p.temp = 0.1)), 10)
   expect_equal(length(rpin(3, 
-                           start_date = "1895-01-01", 
-                           end_date = "1899-01-01")), 3)
+                           start.date = "1895-01-01", 
+                           end.date = "1899-01-01")), 3)
 })
 
 test_that("rbid() works correctly", {

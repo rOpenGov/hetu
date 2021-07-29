@@ -7,7 +7,7 @@
 \usage{
 rpin(
   n,
-  start.date = "1895-01-01",
+  start.date = as.Date("1895-01-01"),
   end.date = Sys.Date(),
   p.male = 0.4,
   p.temp = 0
@@ -15,7 +15,7 @@ rpin(
 
 rhetu(
   n,
-  start.date = "1895-01-01",
+  start.date = as.Date("1895-01-01"),
   end.date = Sys.Date(),
   p.male = 0.4,
   p.temp = 0
@@ -25,11 +25,11 @@ rhetu(
 \item{n}{number of generated \code{hetu}-pins}
 
 \item{start.date}{Lower limit of generated \code{hetu} dates,
-character string in ISO 8601 standard, for example "2001-02-03"
-(%Y-%m-%d or Year-month-day). Default is "1895-01-01".}
+character string in ISO 8601 standard, for example "2001-02-03".
+Default is "1895-01-01".}
 
 \item{end.date}{Upper limit of generated \code{hetu}. 
-Default is current date (Sys.Date).}
+Default is current date.}
 
 \item{p.male}{Proportion of males, between 0.0 and 1.0. Default is 0.4.}
 
