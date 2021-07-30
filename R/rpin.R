@@ -67,70 +67,51 @@ rpin <- function(n,
     stop("You can generate only 449 PINs per sex per day")
   }
   
-  if (p.temp * n > max_temp_pins) {
+  if (p.temp * n > max_temp_pins * days_in_time_period) {
     stop("You can generate only 100 temporary PINs per day")
   }
   
   # Oversample a bit to make up for filtered PINs (duplicates, PINs with 
   # inadequate personal numbers) 
-  n_sample <- ceiling(n * 1.1)
+  rdates <- sample(start.date:end.date,
+                   size = n,
+                   replace = TRUE)
   
-  rdate <- sample(start.date:end.date,
-                  size = n_sample,
-                  replace = TRUE)
+  rdates <- as.Date(rdates, origin = "1970-01-01")
   
-  # origin date according to POSIX standard
-  rdate <- as.Date(rdate, origin = "1970-01-01")
+  dates_table <- table(rdates)
   
-  # DDMMYY in DDMMYYCZZZQ
-  ddmmyy <- format(rdate, "%d%m%y")
-  
-  # Determine the correct century marker (C in DDMMYYCZZZQ)
-  century_function <- function(x) {
-    switch(substr(x, 1, 2),
-         "20" = "A",
-         "19" = "-",
-         "18" = "+",
-    )
-  }
-  century.char <- vapply(rdate, 
-                         FUN = century_function,
-                         FUN.VALUE = character(1),
-                         USE.NAMES = FALSE)
-  
-  # Generate the personal number part of hetu (ZZZ in DDMMYYCZZZQ)
-  zz_norm <- sample(x = 0:89, replace = TRUE, size = round(n_sample*(1-p.temp)))
-  zz_temp <- sample(x = 90:99, replace = TRUE, size = round(n_sample*p.temp))
-  zz <- append(zz_norm, zz_temp)
-  #randomize order of pins to make the vector seem more natural
-  # zz <- sample(zz)
-  zz <- formatC(zz, width = 2, format = "d", flag = "0")
-  z <- sample(x = as.character(c(0, 2, 4, 6, 8, 1, 3, 5, 7, 9)), 
-              prob = c(rep(1 - p.male, 5), 
-              rep(p.male, 5)), 
-              replace = TRUE, 
-              size = n_sample)
+  HetuList <- list()
+  # x <- rep(NA, length(dates_table))
+  for (i in seq_len(length(dates_table))){
+    
+    ddmmyy <- format(as.Date(names(dates_table[i])), "%d%m%y")
+    
+    century <- switch(substr(names(dates_table[i]), 1, 2),
+                      "20" = "A",
+                      "19" = "-",
+                      "18" = "+",
+                      stop("Invalid input"))
 
-  # Allowed characters used for determining the checksum of hetu
-  checklist <- c("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", 
-                 "A", "B", "C", "D", "E", "F", "H", "J", "K", "L", 
-                 "M", "N", "P", "R", "S", "T", "U", "V", "W", "X", "Y")
-  names(checklist) <- 0:30
-  
-  # Determine the checksum part of hetu (Q in DDMMYYCZZZQ)
-  checksum <- checklist[as.character(as.numeric(paste0(ddmmyy, zz, z)) %% 31)]
-  
-  pins <- paste0(ddmmyy, century.char, zz, z, checksum)
-  # Remove duplicates
-  pins <- pins[!duplicated(pins)]
-  
-  # Remove pins with 000 and 001 in personal number
-  pins <- pins[!substr(pins, 8, 10) == "000"]
-  pins <- pins[!substr(pins, 8, 10) == "001"]
-  
-  # Final product
-  # Select a subsample of desired size from a slightly larger sample 
-  pins <- sample(pins, n)
+    # odd numbers for males
+    x1 <- (2:899)[2:899 %% 2 != 0]
+    # even numbers for females
+    x2 <- (2:899)[2:899 %% 2 == 0]
+    p_nums <- sample(c(x1, x2), 
+                  size = dates_table[[i]], 
+                  replace = FALSE,
+                  prob = c(rep(p.male, length(x1)), rep(1-p.male, length(x2))))
+
+    p_nums <- formatC(p_nums, width = 3, format = "d", flag = "0")
+    
+    pins <- paste0(ddmmyy, century, p_nums)
+    control_chars <- hetu_control_char(pin = pins, with.century = TRUE)
+    pins <- paste0(pins, control_chars)
+    
+    HetuList[[names(dates_table[i])]] <- pins
+  }
+  pins <- unlist(HetuList, use.names = FALSE)
+
   pins
 }
 
@@ -199,6 +180,7 @@ rbid <- function(n) {
   }
   
 }
-  
+
+
   
   

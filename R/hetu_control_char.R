@@ -61,8 +61,8 @@ numbers (DDMMYYZZZ)")
   }
   
   mod <- as.numeric(paste0(pin_ddmmyy, pin_zzz)) %% 31
-  extracted_checkmark <- checklist[as.character(mod)]
-  names(extracted_checkmark) <- NULL
-  extracted_checkmark
+  extracted_control_char <- checklist[as.character(mod)]
+  names(extracted_control_char) <- NULL
+  extracted_control_char
   
 }
