@@ -80,39 +80,47 @@ rpin <- function(n,
   rdates <- as.Date(rdates, origin = "1970-01-01")
   
   dates_table <- table(rdates)
+  # names(dates_table) <- format(as.Date(names(dates_table)), "%d%m%y")
+  
+  # odd numbers for males
+  x1 <- (2:899)[2:899 %% 2 != 0]
+  # even numbers for females
+  x2 <- (2:899)[2:899 %% 2 == 0]
+  
+  x1 <- formatC(x1, width = 3, format = "d", flag = "0")
+  x2 <- formatC(x2, width = 3, format = "d", flag = "0")
+  
+  prob_x1 <- rep(p.male, length(x1))
+  prob_x2 <- rep(1-p.male, length(x2))
   
   HetuList <- list()
   # x <- rep(NA, length(dates_table))
   for (i in seq_len(length(dates_table))){
-    
-    ddmmyy <- format(as.Date(names(dates_table[i])), "%d%m%y")
-    
-    century <- switch(substr(names(dates_table[i]), 1, 2),
-                      "20" = "A",
-                      "19" = "-",
-                      "18" = "+",
-                      stop("Invalid input"))
 
-    # odd numbers for males
-    x1 <- (2:899)[2:899 %% 2 != 0]
-    # even numbers for females
-    x2 <- (2:899)[2:899 %% 2 == 0]
     p_nums <- sample(c(x1, x2), 
                   size = dates_table[[i]], 
                   replace = FALSE,
-                  prob = c(rep(p.male, length(x1)), rep(1-p.male, length(x2))))
-
-    p_nums <- formatC(p_nums, width = 3, format = "d", flag = "0")
+                  prob = c(prob_x1, prob_x2))
     
-    pins <- paste0(ddmmyy, century, p_nums)
-    control_chars <- hetu_control_char(pin = pins, with.century = TRUE)
-    pins <- paste0(pins, control_chars)
-    
-    HetuList[[names(dates_table[i])]] <- pins
+    HetuList[[names(dates_table[i])]] <- p_nums
   }
-  pins <- unlist(HetuList, use.names = FALSE)
+  
+  p_nums <- unlist(HetuList, use.names = FALSE)
+  
+  ddmmyyyy <- rep(names(dates_table), times = dates_table)
+  
+  century <- lapply(ddmmyyyy, function(z) switch(substr(z, 1, 2),
+                                                           "20" = "A",
+                                                           "19" = "-",
+                                                           "18" = "+",
+                                                           stop("Invalid input")))
+  
+  ddmmyy <- ddmmyy <- format(as.Date(ddmmyyyy), "%d%m%y")
+  
+  incomplete_pins <- paste0(ddmmyy, century, p_nums)
+  control_chars <- hetu_control_char(pin = incomplete_pins, with.century = TRUE)
+  paste0(incomplete_pins, control_chars)
 
-  pins
 }
 
 #' @rdname rpin
@@ -180,7 +188,3 @@ rbid <- function(n) {
   }
   
 }
-
-
-  
-  
