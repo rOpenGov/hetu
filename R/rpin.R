@@ -12,6 +12,9 @@
 #' @param p.male Proportion of males, between 0.0 and 1.0. Default is 0.4.
 #' @param p.temp Proportion of temporary identification numbers, between
 #'    0.0 and 1.0. Default is 0.0.
+#' @param num.cores The number of cores for parallel processing. The number 
+#'    of available cores can be determined with \code{detectCores()}.
+#'    Default is 1.
 #'
 #' @return a vector of generated \code{hetu}-pins.
 #' 
@@ -24,13 +27,15 @@
 #' hetu(x, extract = "checksum")
 #' 
 #' @importFrom assertthat assert_that
+#' @importFrom parallel mclapply
 #' 
 #' @export
 rpin <- function(n, 
                  start.date = as.Date("1895-01-01"),
                  end.date = Sys.Date(),
                  p.male = 0.4,
-                 p.temp = 0.0){
+                 p.temp = 0.0,
+                 num.cores = 1){
   
   start.date <- as.Date(start.date)
   end.date <- as.Date(end.date)
@@ -92,12 +97,6 @@ rpin <- function(n,
   
   prob_x1 <- rep(p.male, length(x1))
   prob_x2 <- rep(1-p.male, length(x2))
-  
-  if (.Platform$OS.type == "windows") {
-    num_cores <- 1
-  } else {
-    num_cores <- detectCores()
-  }
 
   p_nums <- unlist(
     mclapply(X = dates_table, 
@@ -105,7 +104,7 @@ rpin <- function(n,
                                     size = x, 
                                     prob = c(prob_x1, prob_x2)
                                     ),
-           mc.cores = num_cores
+           mc.cores = num.cores
            )
     )
 

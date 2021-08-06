@@ -10,7 +10,8 @@ rpin(
   start.date = as.Date("1895-01-01"),
   end.date = Sys.Date(),
   p.male = 0.4,
-  p.temp = 0
+  p.temp = 0,
+  num.cores = 1
 )
 
 rhetu(
@@ -18,7 +19,8 @@ rhetu(
   start.date = as.Date("1895-01-01"),
   end.date = Sys.Date(),
   p.male = 0.4,
-  p.temp = 0
+  p.temp = 0,
+  num.cores = 1
 )
 }
 \arguments{
@@ -35,6 +37,10 @@ Default is current date.}
 
 \item{p.temp}{Proportion of temporary identification numbers, between
 0.0 and 1.0. Default is 0.0.}
+
+\item{num.cores}{The number of cores for parallel processing. The number 
+of available cores can be determined with \code{detectCores()}.
+Default is 1.}
 }
 \value{
 a vector of generated \code{hetu}-pins.
