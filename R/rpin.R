@@ -93,29 +93,32 @@ rpin <- function(n,
   prob_x1 <- rep(p.male, length(x1))
   prob_x2 <- rep(1-p.male, length(x2))
   
-  HetuList <- list()
-  # x <- rep(NA, length(dates_table))
-  for (i in seq_len(length(dates_table))){
-
-    p_nums <- sample(c(x1, x2), 
-                  size = dates_table[[i]], 
-                  replace = FALSE,
-                  prob = c(prob_x1, prob_x2))
-    
-    HetuList[[names(dates_table[i])]] <- p_nums
+  if (.Platform$OS.type == "windows") {
+    num_cores <- 1
+  } else {
+    num_cores <- detectCores()
   }
-  
-  p_nums <- unlist(HetuList, use.names = FALSE)
-  
+
+  p_nums <- unlist(
+    mclapply(X = dates_table, 
+           FUN = function(x) sample(c(x1, x2), 
+                                    size = x, 
+                                    prob = c(prob_x1, prob_x2)
+                                    ),
+           mc.cores = num_cores
+           )
+    )
+
   ddmmyyyy <- rep(names(dates_table), times = dates_table)
-  
-  century <- lapply(ddmmyyyy, function(z) switch(substr(z, 1, 2),
-                                                           "20" = "A",
-                                                           "19" = "-",
-                                                           "18" = "+",
-                                                           stop("Invalid input")))
-  
-  ddmmyy <- ddmmyy <- format(as.Date(ddmmyyyy), "%d%m%y")
+
+  century <- lapply(X = ddmmyyyy, 
+                    FUN = function(y) switch(substr(y, 1, 2), 
+                                             "20" = "A",
+                                             "19" = "-",
+                                             "18" = "+",
+                                             stop("Invalid input")))
+
+  ddmmyy <- format(as.Date(ddmmyyyy), "%d%m%y")
   
   incomplete_pins <- paste0(ddmmyy, century, p_nums)
   control_chars <- hetu_control_char(pin = incomplete_pins, with.century = TRUE)
