@@ -25,10 +25,11 @@ version](http://www.r-pkg.org/badges/version/hetu)](http://cran.rstudio.com/web/
 
 ### Introduction
 
-`hetu` is an R package for structural handling of identity numbers used
-in the Finnish administration, in particular the personal identity
-numbers (henkilötunnus). Some functions can also be used with Finnish
-Business ID numbers (y-tunnus).
+`hetu` is an R package for structural handling of national
+identification numbers used in Finland, or more specifically Finnish
+personal identity codes (in Finnish: henkilötunnus (hetu), in Swedish:
+personbeteckning). Some functions can also be used with Finnish Business
+ID numbers (y-tunnus).
 
 The syntax in this package is unified with the similar package for
 Swedish ID numbers, the
@@ -36,20 +37,29 @@ Swedish ID numbers, the
 
 ### Installation
 
-To install from CRAN just write:
+Install stable version from CRAN:
 
 ``` r
 install.packages(hetu)
 ```
 
-Use the `devtools` package to install the latest version from GitHub:
+Alternatively, use `devtools` package to install the latest development
+version from GitHub:
 
 ``` r
 devtools::install_github("rOpenGov/hetu")
+```
+
+### Loading the package and accessing the tutorial
+
+Load the package:
+
+``` r
 library(hetu)
 ```
 
-A tutorial is included with the package and can be viewed with:
+A tutorial is included with the package and can be viewed with
+vignette-function:
 
 ``` r
 vignette("hetu")
