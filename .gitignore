@@ -17,3 +17,5 @@ inst/doc
 tests/.DS_Store
 .Rdata
 docs
+/doc/
+/Meta/
