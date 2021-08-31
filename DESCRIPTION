@@ -36,7 +36,7 @@ Description: Structural handling of Finnish identity numbers (persons and
 License: BSD_2_clause + file LICENSE
 VignetteBuilder: knitr
 BugReports: https://github.com/ropengov/hetu/issues
-URL: https://github.com/ropengov/hetu
+URL: https://ropengov.github.io/hetu, https://github.com/ropengov/hetu
 Depends:
     R (>= 4.0.0)
 Imports:
