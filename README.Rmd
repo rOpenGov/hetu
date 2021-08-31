@@ -62,7 +62,6 @@ IMPORTANT: When submitting a bug, you can make the lives of the developers easie
 - The output of `sessionInfo()`
 - The output of `packageVersion("hetu")`
 
-
 [github-watch-badge]: https://img.shields.io/github/watchers/ropengov/hetu.svg?style=social
 [github-watch]: https://github.com/ropengov/hetu/watchers
 [github-star-badge]: https://img.shields.io/github/stars/ropengov/hetu.svg?style=social
