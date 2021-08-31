@@ -82,21 +82,27 @@
 <div id="introduction" class="section level3">
 <h3 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h3>
-<p><code>hetu</code> is an R package for structural handling of identity numbers used in the Finnish administration, in particular the personal identity numbers (henkilötunnus). Some functions can also be used with Finnish Business ID numbers (y-tunnus).</p>
+<p><code>hetu</code> is an R package for structural handling of national identification numbers used in Finland, or more specifically Finnish personal identity codes (in Finnish: henkilötunnus (hetu), in Swedish: personbeteckning). Some functions can also be used with Finnish Business ID numbers (y-tunnus).</p>
 <p>The syntax in this package is unified with the similar package for Swedish ID numbers, the <a href="https://github.com/rOpenGov/sweidnumbr">sweidnumbr</a>.</p>
 </div>
 <div id="installation" class="section level3">
 <h3 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h3>
-<p>To install from CRAN just write:</p>
+<p>Install stable version from CRAN:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="va">hetu</span><span class="op">)</span></code></pre></div>
-<p>Use the <code>devtools</code> package to install the latest version from GitHub:</p>
+<p>Alternatively, use <code>devtools</code> package to install the latest development version from GitHub:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"rOpenGov/hetu"</span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ropengov.github.io/hetu">hetu</a></span><span class="op">)</span></code></pre></div>
-<p>A tutorial is included with the package and can be viewed with:</p>
+<code class="sourceCode R"><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"rOpenGov/hetu"</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="loading-the-package-and-accessing-the-tutorial" class="section level3">
+<h3 class="hasAnchor">
+<a href="#loading-the-package-and-accessing-the-tutorial" class="anchor"></a>Loading the package and accessing the tutorial</h3>
+<p>Load the package:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ropengov.github.io/hetu">hetu</a></span><span class="op">)</span></code></pre></div>
+<p>A tutorial is included with the package and can be viewed with vignette-function:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/vignette.html">vignette</a></span><span class="op">(</span><span class="st">"hetu"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="reporting-bugs" class="section level3">
