@@ -24,7 +24,6 @@ version](http://www.r-pkg.org/badges/version/hetu)](http://cran.rstudio.com/web/
 
 # hetu - Structural Handling of Finnish Personal Identity Numbers <a href="https://ropengov.github.io/hetu/"><img src="man/figures/logo.png" align="right" height="139" /></a>
 
-
 ### Introduction
 
 `hetu` is an R package for structural handling of national
