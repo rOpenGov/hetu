@@ -3,6 +3,7 @@
 
 <!-- badges: start -->
 
+[![rOG-badge](https://ropengov.github.io/rogtemplate/reference/figures/ropengov-badge.svg)](http://ropengov.org/)
 [![R build
 status](https://github.com/rOpenGov/hetu/workflows/R-CMD-check/badge.svg)](https://github.com/rOpenGov/hetu/actions)
 [![AppVeyor build
@@ -21,7 +22,8 @@ version](http://www.r-pkg.org/badges/version/hetu)](http://cran.rstudio.com/web/
 
 <!--[![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/grand-total/hetu)](https://github.com/metacran/cranlogs.app)-->
 
-# hetu - Structural Handling of Finnish Personal Identity Numbers
+# hetu - Structural Handling of Finnish Personal Identity Numbers <a href="https://ropengov.github.io/hetu/"><img src="man/figures/logo.png" align="right" height="139" /></a>
+
 
 ### Introduction
 
