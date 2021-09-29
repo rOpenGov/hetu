@@ -27,7 +27,7 @@ knitr::opts_chunk$set(
 
 <!--[![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/grand-total/hetu)](https://github.com/metacran/cranlogs.app)-->
 
-# hetu - Structural Handling of Finnish Personal Identity Numbers <a href=‘https://ropengov.github.io/hetu/‘><img src=‘man/figures/logo.png’ align=“right” height=“139” /></a>
+# hetu - Structural Handling of Finnish Personal Identity Numbers <a href="https://ropengov.github.io/hetu/"><img src="man/figures/logo.png" align="right" height="139" /></a>
 
 ### Introduction
 
