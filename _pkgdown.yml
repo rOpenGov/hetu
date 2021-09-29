@@ -1,5 +1,3 @@
-url: https://ropengov.github.io/hetu
-
+url: https://ropengov.github.io/hetu/
 template:
-  params:
-    bootswatch: readable
+  package: rogtemplate
