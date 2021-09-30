@@ -1,7 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://ropengov.github.io/hetu/404.html</loc>
+  </url>
+  <url>
+    <loc>https://ropengov.github.io/hetu/LICENSE-text.html</loc>
+  </url>
+  <url>
+    <loc>https://ropengov.github.io/hetu/articles/hetu.html</loc>
+  </url>
+  <url>
+    <loc>https://ropengov.github.io/hetu/articles/index.html</loc>
+  </url>
+  <url>
+    <loc>https://ropengov.github.io/hetu/authors.html</loc>
+  </url>
+  <url>
     <loc>https://ropengov.github.io/hetu/index.html</loc>
+  </url>
+  <url>
+    <loc>https://ropengov.github.io/hetu/news/index.html</loc>
   </url>
   <url>
     <loc>https://ropengov.github.io/hetu/reference/bid_ctrl.html</loc>
@@ -17,6 +35,9 @@
   </url>
   <url>
     <loc>https://ropengov.github.io/hetu/reference/hetu_diagnostic.html</loc>
+  </url>
+  <url>
+    <loc>https://ropengov.github.io/hetu/reference/index.html</loc>
   </url>
   <url>
     <loc>https://ropengov.github.io/hetu/reference/pin_age.html</loc>
@@ -38,8 +59,5 @@
   </url>
   <url>
     <loc>https://ropengov.github.io/hetu/reference/rpin.html</loc>
-  </url>
-  <url>
-    <loc>https://ropengov.github.io/hetu/articles/hetu.html</loc>
   </url>
 </urlset>
