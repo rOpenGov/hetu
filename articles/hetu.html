@@ -15,7 +15,7 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="../deps/bs3compat-0.3.0/transition.js"></script><script src="../deps/bs3compat-0.3.0/tabs.js"></script><script src="../deps/bs3compat-0.3.0/bs3compat.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<script src="../deps/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="../deps/bs3compat-0.3.1/transition.js"></script><script src="../deps/bs3compat-0.3.1/tabs.js"></script><script src="../deps/bs3compat-0.3.1/bs3compat.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <link href="../syntax-highlighting.css" rel="stylesheet">
@@ -78,7 +78,7 @@
       <h1 class="display-4" data-toc-skip>Finnish personal ID number data toolkit for R (hetu)</h1>
                         <h4 data-toc-skip class="author">Pyry Kantanen, Jussi Paananen, Mans Magnusson, Leo Lahti</h4>
             
-            <h4 data-toc-skip class="date">2021-09-30</h4>
+            <h4 data-toc-skip class="date">2021-10-13</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/rOpenGov/hetu/blob/master/vignettes/hetu.Rmd" class="external-link"><code>vignettes/hetu.Rmd</code></a></small>
       <div class="d-none name"><code>hetu.Rmd</code></div>
@@ -216,14 +216,14 @@
 <p>Extracting age at current date and at a given date with hetu_age function:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/pin_age.html">hetu_age</a></span><span class="op">(</span><span class="va">example_pins</span><span class="op">)</span>
-<span class="co">#&gt; The age in years has been calculated at 2021-09-30.</span>
+<span class="co">#&gt; The age in years has been calculated at 2021-10-13.</span>
 <span class="co">#&gt; [1] 120 109</span>
 <span class="fu"><a href="../reference/pin_age.html">hetu_age</a></span><span class="op">(</span><span class="va">example_pins</span>, date <span class="op">=</span> <span class="st">"2012-01-01"</span><span class="op">)</span>
 <span class="co">#&gt; The age in years has been calculated at 2012-01-01.</span>
 <span class="co">#&gt; [1] 111 100</span>
 <span class="fu"><a href="../reference/pin_age.html">hetu_age</a></span><span class="op">(</span><span class="va">example_pins</span>, timespan <span class="op">=</span> <span class="st">"months"</span><span class="op">)</span>
-<span class="co">#&gt; The age in months has been calculated at 2021-09-30.</span>
-<span class="co">#&gt; [1] 1448 1318</span></code></pre></div>
+<span class="co">#&gt; The age in months has been calculated at 2021-10-13.</span>
+<span class="co">#&gt; [1] 1449 1319</span></code></pre></div>
 <p>Dates (birth dates) also have their own function, hetu_date.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/pin_date.html">hetu_date</a></span><span class="op">(</span><span class="va">example_pins</span><span class="op">)</span>
@@ -442,15 +442,15 @@
 <p>Random PINs can be generated by using the rpin function.</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/rpin.html">rhetu</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>
-<span class="co">#&gt; [1] "050612-364W" "160117-747L" "020138-8732" "260190-214P"</span>
+<span class="co">#&gt; [1] "100934-602W" "260552-079S" "230977-3785" "060699-319J"</span>
 <span class="fu"><a href="../reference/rpin.html">rhetu</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">4</span>, start.date <span class="op">=</span> <span class="st">"1990-01-01"</span>, end.date <span class="op">=</span> <span class="st">"2005-01-01"</span><span class="op">)</span>
-<span class="co">#&gt; [1] "100492-774C" "100100A570M" "080801A7546" "011002A0550"</span></code></pre></div>
+<span class="co">#&gt; [1] "071091-448H" "061196-0194" "120199-3435" "220400A729X"</span></code></pre></div>
 <p>The number of males in the generated sample can be changed with parameter p.male. Default is 0.4.</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">random_sample</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/rpin.html">rhetu</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">4</span>, p.male <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">random_sample</span><span class="op">)</span>
 <span class="co">#&gt; random_sample</span>
-<span class="co">#&gt; 110973-4911 120793-033E 200461-436X 200474-0959 </span>
+<span class="co">#&gt; 010809A246B 060404A599E 110878-803K 190410A4375 </span>
 <span class="co">#&gt;           1           1           1           1</span></code></pre></div>
 <p>The default proportion of artificial / temporary PINs is 0.0, meaning that no artificial / temporary PINs are generated by default.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
@@ -529,7 +529,7 @@
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">bid_sample</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/rbid.html">rbid</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span>
 <span class="va">bid_sample</span>
-<span class="co">#&gt; [1] "9535572-7" "3046513-2" "8543878-0"</span></code></pre></div>
+<span class="co">#&gt; [1] "2051097-2" "6281863-3" "0939912-6"</span></code></pre></div>
 </div>
 <div id="bid-validity-checking" class="section level3">
 <h3 class="hasAnchor">
@@ -624,19 +624,22 @@
 <span class="co">#&gt; [1] hetu_1.0.3.9000</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; loaded via a namespace (and not attached):</span>
-<span class="co">#&gt;  [1] Rcpp_1.0.7         highr_0.9          bslib_0.3.0        compiler_4.1.1    </span>
-<span class="co">#&gt;  [5] pillar_1.6.3       jquerylib_0.1.4    tools_4.1.1        digest_0.6.28     </span>
-<span class="co">#&gt;  [9] lubridate_1.7.10   jsonlite_1.7.2     evaluate_0.14      memoise_2.0.0     </span>
-<span class="co">#&gt; [13] lifecycle_1.0.1    tibble_3.1.4       checkmate_2.0.0    pkgconfig_2.0.3   </span>
-<span class="co">#&gt; [17] rlang_0.4.11       parallel_4.1.1     yaml_2.2.1         pkgdown_1.6.1.9001</span>
-<span class="co">#&gt; [21] xfun_0.26          fastmap_1.1.0      stringr_1.4.0      dplyr_1.0.7       </span>
-<span class="co">#&gt; [25] knitr_1.36         desc_1.4.0         generics_0.1.0     fs_1.5.0          </span>
-<span class="co">#&gt; [29] sass_0.4.0         vctrs_0.3.8        systemfonts_1.0.2  tidyselect_1.1.1  </span>
-<span class="co">#&gt; [33] rprojroot_2.0.2    glue_1.4.2         R6_2.5.1           textshaping_0.3.5 </span>
-<span class="co">#&gt; [37] fansi_0.5.0        rmarkdown_2.11     purrr_0.3.4        magrittr_2.0.1    </span>
-<span class="co">#&gt; [41] backports_1.2.1    htmltools_0.5.2    ellipsis_0.3.2     assertthat_0.2.1  </span>
-<span class="co">#&gt; [45] ragg_1.1.3         utf8_1.2.2         stringi_1.7.4      cachem_1.0.6      </span>
-<span class="co">#&gt; [49] crayon_1.4.1</span></code></pre></div>
+<span class="co">#&gt;  [1] highr_0.9                bslib_0.3.1              compiler_4.1.1          </span>
+<span class="co">#&gt;  [4] pillar_1.6.3             jquerylib_0.1.4          tools_4.1.1             </span>
+<span class="co">#&gt;  [7] digest_0.6.28            lubridate_1.8.0          jsonlite_1.7.2          </span>
+<span class="co">#&gt; [10] evaluate_0.14            memoise_2.0.0            lifecycle_1.0.1         </span>
+<span class="co">#&gt; [13] tibble_3.1.5             checkmate_2.0.0          pkgconfig_2.0.3         </span>
+<span class="co">#&gt; [16] rlang_0.4.11             parallel_4.1.1           yaml_2.2.1              </span>
+<span class="co">#&gt; [19] pkgdown_1.9000.9000.9000 xfun_0.26                fastmap_1.1.0           </span>
+<span class="co">#&gt; [22] stringr_1.4.0            dplyr_1.0.7              knitr_1.36              </span>
+<span class="co">#&gt; [25] desc_1.4.0               generics_0.1.0           fs_1.5.0                </span>
+<span class="co">#&gt; [28] sass_0.4.0               vctrs_0.3.8              systemfonts_1.0.2       </span>
+<span class="co">#&gt; [31] tidyselect_1.1.1         rprojroot_2.0.2          glue_1.4.2              </span>
+<span class="co">#&gt; [34] R6_2.5.1                 textshaping_0.3.5        fansi_0.5.0             </span>
+<span class="co">#&gt; [37] rmarkdown_2.11           purrr_0.3.4              magrittr_2.0.1          </span>
+<span class="co">#&gt; [40] backports_1.2.1          htmltools_0.5.2          ellipsis_0.3.2          </span>
+<span class="co">#&gt; [43] assertthat_0.2.1         ragg_1.1.3               utf8_1.2.2              </span>
+<span class="co">#&gt; [46] stringi_1.7.5            cachem_1.0.6             crayon_1.4.1</span></code></pre></div>
 </div>
   </div>
  <div class="col-md-3 d-none d-md-block" id="pkgdown-sidebar">
@@ -658,7 +661,7 @@
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link external-link">pkgdown</a> 1.6.1.9001.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link external-link">pkgdown</a> 1.9000.9000.9000.</p>
 </div>
 
       </footer>
