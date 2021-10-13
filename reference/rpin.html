@@ -101,18 +101,18 @@ Default is 1.</p></dd>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples" aria-hidden="true"></a>Examples</h2>
     <div class="ref-examples sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu">rpin</span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></span>
 <span class="r-in"><span class="fu"><a href="hetu.html">hetu</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          hetu  sex p.num checksum       date day month year century valid.pin</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 040610-143L Male   143        L 1910-06-04   4     6 1910       -      TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 281057-243N Male   243        N 1957-10-28  28    10 1957       -      TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 250818A791R Male   791        R 2018-08-25  25     8 2018       A      TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>          hetu    sex p.num checksum       date day month year century valid.pin</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 141034-524S Female   524        S 1934-10-14  14    10 1934       -      TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 200860-307R   Male   307        R 1960-08-20  20     8 1960       -      TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 060580-596S Female   596        S 1980-05-06   6     5 1980       -      TRUE</span>
 <span class="r-in"><span class="fu"><a href="hetu.html">hetu</a></span><span class="op">(</span><span class="va">x</span>, extract <span class="op">=</span> <span class="st">"sex"</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Male" "Male" "Male"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Female" "Male"   "Female"</span>
 <span class="r-in"><span class="fu"><a href="hetu.html">hetu</a></span><span class="op">(</span><span class="va">x</span>, extract <span class="op">=</span> <span class="st">"checksum"</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "L" "N" "R"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "S" "R" "S"</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu">rhetu</span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></span>
 <span class="r-in"><span class="va">x</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "091089-8464" "010692-2720" "200314A244T"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "060740-3792" "141167-4036" "201002A538U"</span>
 </code></pre></div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
