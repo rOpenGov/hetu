@@ -14,7 +14,7 @@ doc
 Meta
 inst/doc
 
-tests/.DS_Store
+.DS_Store
 .Rdata
 docs
 /doc/
