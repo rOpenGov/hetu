@@ -50,6 +50,6 @@ Suggests:
     testthat,
     rmarkdown,
     covr
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 X-schema.org-isPartOf: http://ropengov.org/
 X-schema.org-keywords: ropengov

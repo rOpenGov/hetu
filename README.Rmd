@@ -39,13 +39,13 @@ The syntax in this package is unified with the similar package for Swedish ID nu
 
 Install stable version from CRAN:
 
-```r
+```{r install_stable, eval = FALSE}
 install.packages(hetu)
 ```
 
 Alternatively, use `devtools` package to install the latest development version from GitHub:
 
-```r
+```{r install_dev, eval = FALSE}
 devtools::install_github("rOpenGov/hetu")
 ```
 
@@ -53,25 +53,24 @@ devtools::install_github("rOpenGov/hetu")
 
 Load the package:
 
-```r
+```{r load_library, eval = TRUE}
 library(hetu)
 ```
 
 A tutorial is included with the package and can be viewed with vignette-function:
 
-```r
-vignette("hetu")
+```{r printout, eval = TRUE}
+example_hetu <- c("010101-0101", "111111-111C")
+hetu(example_hetu)
 ```
-
-
 
 ### Reporting bugs
 
 Please use the GitHub issue tracker [here](https://github.com/rOpenGov/hetu/issues) for reporting bugs and making further feature requests.
 
 IMPORTANT: When submitting a bug, you can make the lives of the developers easier by submitting the following information along with your bug report:
-- The output of `sessionInfo()`
-- The output of `packageVersion("hetu")`
+* The output of `sessionInfo()`
+* The output of `packageVersion("hetu")`
 
 [github-watch-badge]: https://img.shields.io/github/watchers/ropengov/hetu.svg?style=social
 [github-watch]: https://github.com/ropengov/hetu/watchers
