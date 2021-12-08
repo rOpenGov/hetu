@@ -109,19 +109,34 @@
 <p>Load the package:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ropengov.github.io/hetu">hetu</a></span><span class="op">)</span></code></pre></div>
-<p>A tutorial is included with the package and can be viewed with vignette-function:</p>
+<p>A simple example of printing a table containing data from 2 imaginary personal identity codes:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">example_hetu</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"010101-0101"</span>, <span class="st">"111111-111C"</span><span class="op">)</span>
 <span class="fu"><a href="reference/hetu.html">hetu</a></span><span class="op">(</span><span class="va">example_hetu</span><span class="op">)</span>
 <span class="co">#&gt;          hetu    sex p.num checksum       date day month year century valid.pin</span>
 <span class="co">#&gt; 1 010101-0101 Female   010        1 1901-01-01   1     1 1901       -      TRUE</span>
 <span class="co">#&gt; 2 111111-111C   Male   111        C 1911-11-11  11    11 1911       -      TRUE</span></code></pre></div>
+<p>A tutorial is included with the package and can be viewed with vignette-function:</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/vignette.html" class="external-link">vignette</a></span><span class="op">(</span><span class="st">"hetu"</span><span class="op">)</span></code></pre></div>
 </div>
-<div class="section level3">
-<h3 id="reporting-bugs">Reporting bugs<a class="anchor" aria-label="anchor" href="#reporting-bugs"></a>
-</h3>
-<p>Please use the GitHub issue tracker <a href="https://github.com/rOpenGov/hetu/issues" class="external-link">here</a> for reporting bugs and making further feature requests.</p>
-<p>IMPORTANT: When submitting a bug, you can make the lives of the developers easier by submitting the following information along with your bug report: * The output of <code><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo()</a></code> * The output of <code>packageVersion("hetu")</code></p>
+<div class="section level2">
+<h2 id="contributing">Contributing<a class="anchor" aria-label="anchor" href="#contributing"></a>
+</h2>
+<ul>
+<li>
+<a href="https://github.com/ropengov/hetu/issues" class="external-link">Submit suggestions and bug reports</a> (provide the output of <code><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo()</a></code> and <code>packageVersion("hetu")</code> and preferably provide a <a href="http://adv-r.had.co.nz/Reproducibility.html" class="external-link">reproducible example</a>)</li>
+<li><a href="https://github.com/rOpenGov/hetu/pulls" class="external-link">Send a pull request</a></li>
+<li><a href="https://github.com/ropengov/hetu/" class="external-link">Star us on the Github page</a></li>
+<li>
+<a href="http://ropengov.org/community/" class="external-link">See our website</a> for additional contact information</li>
+</ul>
+</div>
+<div class="section level2">
+<h2 id="acknowledgements">Acknowledgements<a class="anchor" aria-label="anchor" href="#acknowledgements"></a>
+</h2>
+<p><strong>Kindly cite this work</strong> as follows: <a href="http://github.com/pitkant/" class="external-link">Pyry Kantanen</a>, Måns Magnusson, Jussi Paananen, Leo Lahti. hetu: Finnish personal ID number data toolkit for R. URL: <a href="http://ropengov.github.io/hetu/" class="external-link uri">http://ropengov.github.io/hetu/</a></p>
+<p>We are grateful to all <a href="https://github.com/rOpenGov/hetu/graphs/contributors" class="external-link">contributors</a>! This project is part of <a href="http://ropengov.org" class="external-link">rOpenGov</a>.</p>
 </div>
 </div>
 
