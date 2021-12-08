@@ -59,9 +59,16 @@ library(hetu)
 
 A simple example of printing a table containing data from 2 imaginary personal identity codes:
 
-```{r printout, eval = TRUE}
+```{r hetu_printout, eval = TRUE}
 example_hetu <- c("010101-0101", "111111-111C")
 hetu(example_hetu)
+```
+
+The package can also be used to check the validity of Finnish Business IDs (Yritys- ja Yhteisötunnus, or Y-tunnus for short):
+
+```{r bid_printout, eval = TRUE}
+example_ytunnus <- c("5996039-9", "5619117-6", "6095515-9")
+bid_ctrl(example_ytunnus)
 ```
 
 A tutorial is included with the package and can be viewed with vignette-function:
