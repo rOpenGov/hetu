@@ -63,7 +63,11 @@ A tutorial is included with the package and can be viewed with
 vignette-function:
 
 ``` r
-vignette("hetu")
+example_hetu <- c("010101-0101", "111111-111C")
+hetu(example_hetu)
+#>          hetu    sex p.num checksum       date day month year century valid.pin
+#> 1 010101-0101 Female   010        1 1901-01-01   1     1 1901       -      TRUE
+#> 2 111111-111C   Male   111        C 1911-11-11  11    11 1911       -      TRUE
 ```
 
 ### Reporting bugs
@@ -74,5 +78,5 @@ making further feature requests.
 
 IMPORTANT: When submitting a bug, you can make the lives of the
 developers easier by submitting the following information along with
-your bug report: - The output of `sessionInfo()` - The output of
+your bug report: \* The output of `sessionInfo()` \* The output of
 `packageVersion("hetu")`
