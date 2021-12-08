@@ -188,7 +188,7 @@ hetu <- function(pin, extract = NULL, allow.temp = FALSE, diagnostic = FALSE) {
 
   if (allow.temp == FALSE) {
     if (is.null(extract)) {
-      object <- subset(as.data.frame(object), is_temp_test == FALSE)
+      object <- subset(quickdf(object), is_temp_test == FALSE)
         #Remove temporary PINs
         if (dim(object)[1] == 0) {
           return(NA) #If all PINs were temporary, return NA
@@ -197,7 +197,7 @@ hetu <- function(pin, extract = NULL, allow.temp = FALSE, diagnostic = FALSE) {
           return(object)
         }
     } else {
-      object <- subset(as.data.frame(object), is_temp_test == FALSE)
+      object <- subset(quickdf(object), is_temp_test == FALSE)
         if (dim(object)[1] == 0) {
           return(NA)
         } else {
@@ -210,7 +210,7 @@ hetu <- function(pin, extract = NULL, allow.temp = FALSE, diagnostic = FALSE) {
     temp_diag <- list(is.temp = is_temp_test)
     object <- append(object, temp_diag)
     if (is.null(extract)) {
-      return(as.data.frame(object))
+      return(quickdf(object))
     } else {
       return(unname(do.call("c", object[extract])))
     }
