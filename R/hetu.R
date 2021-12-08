@@ -106,7 +106,7 @@ hetu <- function(pin, extract = NULL, allow.temp = FALSE, diagnostic = FALSE) {
            NA
     )
   }
-  # full_year_function takes 1 pin at a time so using sapply
+  # full_year_function takes 1 pin at a time so using vapply
   full_year <- vapply(pin,
                       FUN = full_year_function,
                       FUN.VALUE = double(1),
@@ -137,6 +137,7 @@ hetu <- function(pin, extract = NULL, allow.temp = FALSE, diagnostic = FALSE) {
   mod <- as.numeric(paste0(substr(pin, start = 1, stop = 6),
                            substr(pin, start = 8, stop = 10))) %% 31
   checksum_test <- extracted_check_marker == checklist[as.character(mod)]
+  names(checksum_test) <- NULL
   checksum_test[is.na(checksum_test)] <- FALSE
 
   # Check sex
@@ -150,18 +151,10 @@ hetu <- function(pin, extract = NULL, allow.temp = FALSE, diagnostic = FALSE) {
   valid_length_test <- (nchar(pin) == 11)
 
   # Produce a logical test value for overall validity of PIN
-  valid_pin_test <- rep(NA, length(pin))
-  for (i in seq_len(length(pin))) {
-    valid_pin_test[i] <- all(c(valid_p_num_test[i],
-                          valid_checksum_test[i],
-                          checksum_test[i],
-                          valid_date_test[i],
-                          valid_day_test[i],
-                          valid_month_test[i],
-                          valid_year_test[i],
-                          valid_length_test[i],
-                          valid_century_test[i])) == TRUE
-  }
+  test_matrix <- cbind(valid_p_num_test, valid_checksum_test, checksum_test,
+                       valid_date_test, valid_day_test, valid_month_test,
+                       valid_year_test, valid_length_test, valid_century_test)
+  valid_pin_test <- apply(test_matrix, 1, all)
 
   # Create hetu-object
   object <- list(hetu = pin,
@@ -177,16 +170,16 @@ hetu <- function(pin, extract = NULL, allow.temp = FALSE, diagnostic = FALSE) {
 
   if (diagnostic == TRUE) {
     # create hetu-object with diagnostics
-    diagnostics <- list(valid.p.num = valid_p_num_test,
-                        valid.checksum = valid_checksum_test,
-                        correct.checksum = checksum_test,
-                        valid.date = valid_date_test,
-                        valid.day = valid_day_test,
-                        valid.month = valid_month_test,
-                        valid.year = valid_year_test,
-                        valid.length = valid_length_test,
-                        valid.century = valid_century_test)
-    object <- append(object, diagnostics)
+    diagnostic_list <- list(valid.p.num = valid_p_num_test,
+                            valid.checksum = valid_checksum_test,
+                            correct.checksum = checksum_test,
+                            valid.date = valid_date_test,
+                            valid.day = valid_day_test,
+                            valid.month = valid_month_test,
+                            valid.year = valid_year_test,
+                            valid.length = valid_length_test,
+                            valid.century = valid_century_test)
+    object <- append(object, diagnostic_list)
   }
 
   # Return full object or only requested part
