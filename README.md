@@ -70,6 +70,15 @@ hetu(example_hetu)
 #> 2 111111-111C   Male   111        C 1911-11-11  11    11 1911       -      TRUE
 ```
 
+The package can also be used to check the validity of Finnish Business
+IDs (Yritys- ja Yhteisötunnus, or Y-tunnus for short):
+
+``` r
+example_ytunnus <- c("5996039-9", "5619117-6", "6095515-9")
+bid_ctrl(example_ytunnus)
+#> [1] TRUE TRUE TRUE
+```
+
 A tutorial is included with the package and can be viewed with
 vignette-function:
 
