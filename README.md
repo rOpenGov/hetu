@@ -59,8 +59,8 @@ Load the package:
 library(hetu)
 ```
 
-A tutorial is included with the package and can be viewed with
-vignette-function:
+A simple example of printing a table containing data from 2 imaginary
+personal identity codes:
 
 ``` r
 example_hetu <- c("010101-0101", "111111-111C")
@@ -70,13 +70,32 @@ hetu(example_hetu)
 #> 2 111111-111C   Male   111        C 1911-11-11  11    11 1911       -      TRUE
 ```
 
-### Reporting bugs
+A tutorial is included with the package and can be viewed with
+vignette-function:
 
-Please use the GitHub issue tracker
-[here](https://github.com/rOpenGov/hetu/issues) for reporting bugs and
-making further feature requests.
+``` r
+vignette("hetu")
+```
 
-IMPORTANT: When submitting a bug, you can make the lives of the
-developers easier by submitting the following information along with
-your bug report: \* The output of `sessionInfo()` \* The output of
-`packageVersion("hetu")`
+## Contributing
+
+  - [Submit suggestions and bug
+    reports](https://github.com/ropengov/hetu/issues) (provide the
+    output of `sessionInfo()` and `packageVersion("hetu")` and
+    preferably provide a [reproducible
+    example](http://adv-r.had.co.nz/Reproducibility.html))
+  - [Send a pull request](https://github.com/rOpenGov/hetu/pulls)
+  - [Star us on the Github page](https://github.com/ropengov/hetu/)
+  - [See our website](http://ropengov.org/community/) for additional
+    contact information
+
+## Acknowledgements
+
+**Kindly cite this work** as follows: [Pyry
+Kantanen](http://github.com/pitkant/), Måns Magnusson, Jussi Paananen,
+Leo Lahti. hetu: Finnish personal ID number data toolkit for R. URL:
+<http://ropengov.github.io/hetu/>
+
+We are grateful to all
+[contributors](https://github.com/rOpenGov/hetu/graphs/contributors)\!
+This project is part of [rOpenGov](http://ropengov.org).
