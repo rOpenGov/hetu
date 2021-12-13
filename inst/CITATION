@@ -14,6 +14,7 @@ citEntry(
       person(given ="Leo", family="Lahti")),
   doi = "",
   journal = "",
+  URL = "https://github.com/rOpenGov/hetu",
   year = year,
   note = vers,
   textVersion = 
