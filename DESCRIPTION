@@ -1,8 +1,7 @@
 Package: hetu
 Type: Package
-Title: Structural Handling of Finnish Personal Identity Numbers
+Title: Structural Handling of Finnish Personal Identity Codes
 Version: 1.0.4.9000
-Encoding: UTF-8
 Authors@R: 
     c(
   person(given = "Pyry",
@@ -31,10 +30,11 @@ Authors@R:
          comment = c(ORCID = "0000-0001-5537-637X"))
   )
 MailingList: rOpenGov <ropengov-forum@googlegroups.com>
-Description: Structural handling of Finnish identity numbers (persons and 
-    companies); extract information, check ID validity and diagnostics.
+Description: Structural handling of Finnish identity codes (natural persons and 
+    organizations); extract information, check ID validity and diagnostics.
 License: BSD_2_clause + file LICENSE
 VignetteBuilder: knitr
+Encoding: UTF-8
 BugReports: https://github.com/ropengov/hetu/issues
 URL: https://ropengov.github.io/hetu, https://github.com/ropengov/hetu
 Depends:

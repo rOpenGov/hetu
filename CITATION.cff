@@ -1,0 +1,52 @@
+# -----------------------------------------------------------
+# CITATION file created with {cffr} R package, v0.1.1
+# See also: https://docs.ropensci.org/cffr/
+# -----------------------------------------------------------
+ 
+cff-version: 1.2.0
+message: 'To cite package "hetu" in publications use:'
+type: software
+license: BSD-2-Clause
+title: 'hetu: Structural Handling of Finnish Personal Identity Numbers'
+version: 1.0.4.9000
+abstract: Structural handling of Finnish identity numbers (persons and companies);
+  extract information, check ID validity and diagnostics.
+authors:
+- family-names: Kantanen
+  given-names: Pyry
+  email: pyry.kantanen@gmail.com
+  orcid: https://orcid.org/0000-0003-2853-2765
+- family-names: Magnusson
+  given-names: Mans
+- family-names: Paananen
+  given-names: Jussi
+- family-names: Lahti
+  given-names: Leo
+  orcid: https://orcid.org/0000-0001-5537-637X
+preferred-citation:
+  type: generic
+  title: 'hetu: Finnish personal ID number data toolkit for R'
+  authors:
+  - family-names: Kantanen
+    given-names: Pyry
+    email: pyry.kantanen@gmail.com
+  - family-names: Magnusson
+    given-names: Mans
+  - family-names: Paananen
+    given-names: Jussi
+  - family-names: Lahti
+    given-names: Leo
+repository: https://CRAN.R-project.org/package=hetu
+repository-code: https://github.com/ropengov/hetu
+url: https://ropengov.github.io/hetu
+contact:
+- family-names: Kantanen
+  given-names: Pyry
+  email: pyry.kantanen@gmail.com
+  orcid: https://orcid.org/0000-0003-2853-2765
+keywords:
+- ropengov
+- r-package
+- cran
+- r
+- rstats

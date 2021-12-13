@@ -1,21 +1,27 @@
 citHeader("Kindly cite the hetu R package as follows:")
 
-citEntry(entry="misc",
-         title = "hetu: Finnish personal ID number data toolkit for R",
-         author = personList(
-	   person(given ="Pyry", family="Kantanen", email = "pyry.kantanen@gmail.com"),
-	   person(given ="Mans", family="Magnusson"),	   
-	   person(given ="Jussi", family="Paananen"),
-	   person(given ="Leo", family="Lahti")
-         ),
-	 doi = "",
-	 journal = "",
-	 year = "2020",
-         textVersion =
-         paste("(C) Pyry Kantanen, Mans Magnusson, Jussi Paananen and Leo Lahti (rOpenGov 2020). ",
-               "hetu: Finnish personal ID number data toolkit for R. ",
-	       "URL: http://github.com/rOpenGov/hetu",
-               sep=" ")
-         )
+year <- sub(".*(2[[:digit:]]{3})-.*", "\\1", meta$Date, perl = TRUE)
+vers <- paste("R package version", meta$Version)
+
+citEntry(
+  entry="misc",
+  title = "hetu: Structural Handling of Finnish Personal Identity Codes",
+  author = 
+    personList(
+      person(given ="Pyry", family="Kantanen", email = "pyry.kantanen@gmail.com"),
+      person(given ="Mans", family="Magnusson"),	   
+      person(given ="Jussi", family="Paananen"),
+      person(given ="Leo", family="Lahti")),
+  doi = "",
+  journal = "",
+  year = year,
+  note = vers,
+  textVersion = 
+    paste(
+      "Pyry Kantanen, Mans Magnusson, Jussi Paananen and Leo Lahti (rOpenGov ",year,"). ",
+      "hetu: Structural Handling of Finnish Personal Identity Codes. ",
+      vers,
+      " URL: http://github.com/rOpenGov/hetu",
+      sep=""))
 
 citFooter("\nMany thanks for all contributors!")

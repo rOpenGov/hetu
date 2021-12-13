@@ -15,16 +15,12 @@ inst/win-install*
 # vignettes/figure
 cran-comments.md
 README.Rmd
-
 # Git related
 .git*
-
 # Travis scripts
 .travis.yml
-
 # Misc
 .*~
-
 ^\.travis\.yml$
 ^.*\.Rproj$
 ^\.Rproj\.user$
@@ -36,3 +32,4 @@ README.Rmd
 ^codecov\.yml$
 ^appveyor\.yml$
 ^\.github$
+^CITATION\.cff$
