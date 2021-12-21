@@ -24,9 +24,9 @@
 #' x <- rpin(3)
 #' hetu(x)
 #' hetu(x, extract = "sex")
-#' hetu(x, extract = "checksum")
+#' hetu(x, extract = "ctrl.char")
 #' 
-#' @importFrom assertthat assert_that
+#' @importFrom checkmate assert_double assert_date
 #' @importFrom parallel mclapply
 #' 
 #' @export
@@ -40,11 +40,10 @@ rpin <- function(n,
   start.date <- as.Date(start.date)
   end.date <- as.Date(end.date)
   
-  assert_that(p.temp >= 0 & p.temp <= 1)
-  assert_that(p.male >= 0 & p.male <= 1)
-  assert_that(end.date <= Sys.Date())
-  assert_that(start.date <= end.date)
-  assert_that(start.date >= as.Date("1860-01-01"))
+  assert_double(p.temp, 0, 1)
+  assert_double(p.male, 0, 1)
+  assert_date(end.date, start.date, Sys.Date())
+  assert_date(start.date, as.Date("1860-01-01"), end.date)
 
   max_p_sex <- max(p.male, (1 - p.male))
   max_p_temp <- max(p.temp, (1 - p.temp))
@@ -169,7 +168,7 @@ rbid <- function(n) {
   # this removes BIDs with invalid checknum 1
   bid_frame$valid.bid <- ifelse(bid_frame$check == 1, FALSE, TRUE)
   
-  # choose only BIDs with valid checksum
+  # choose only BIDs with valid control character
   bid_frame <- bid_frame[bid_frame$valid.bid,]
   
   # Produce a vector of finalized BIDs

@@ -12,7 +12,7 @@ or vector of identification numbers as a character vectors}
 
 \item{extract}{Extract only selected part of the information.
 Valid values are "\code{hetu}", "\code{sex}", "\code{p.num}",
-"\code{checksum}", "\code{date}", "\code{day}", "\code{month}",
+"\code{ctrl.char}", "\code{date}", "\code{day}", "\code{month}",
 "\code{year}", "\code{century}", "\code{is.temp}".
 If \code{NULL} (default), returns all information.}
 
@@ -21,8 +21,8 @@ If \code{NULL} (default), returns all information.}
 use (personal numbers 002-899) are allowed.}
 
 \item{diagnostic}{Print additional information about possible problems in
-PINs. The checks are "\code{valid.p.num}", "\code{valid.checksum}",
-"\code{correct.checksum}", "\code{valid.date}", "\code{valid.day}",
+PINs. The checks are "\code{valid.p.num}", "\code{valid.ctrl.char}",
+"\code{correct.ctrl.char}", "\code{valid.date}", "\code{valid.day}",
 "\code{valid.month}", "\code{valid.length}", "\code{valid.century}".
 Default is \code{FALSE} which returns no diagnostic information.}
 }
@@ -33,11 +33,11 @@ Finnish personal identification number data.frame,
    character vector is not a valid Finnish personal identification number.
 \item{hetu}{Finnish personal identification number as a character vector.
     A correct pin should be in the form DDMMYYCZZZQ, where DDMMYY stands for
-    date, C for century sign, ZZZ for personal number and Q for checksum
+    date, C for century sign, ZZZ for personal number and Q for control
     character.}
 \item{sex}{sex of the person as a character vector ("Male" or "Female").}
 \item{p.num}{Personal number part of the identification number.}
-\item{checksum}{Checksum for the personal identification number.}
+\item{ctrl.char}{Control character for the personal identification number.}
 \item{date}{Birthdate.}
 \item{day}{Day of the birthdate.}
 \item{month}{Month of the birthdate.}
@@ -61,6 +61,7 @@ hetu("111111-111C", extract="sex")
 hetu(c("010101-0101", "111111-111C"))
 # Process a vector of hetu's and extract sex information from each
 hetu(c("010101-0101", "111111-111C"), extract="sex")
+
 }
 \seealso{
 \code{\link{pin_ctrl}} For validating Finnish personal

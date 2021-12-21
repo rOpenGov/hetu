@@ -14,7 +14,7 @@ test_that("hetu() works correctly", {
   expect_equal(as.character(hetu("010101-0101")$hetu), "010101-0101")
   expect_equal(as.character(hetu(c("010101-0101"))$sex), "Female")
   expect_equal(hetu("010101-0101")$p.num, "010")
-  expect_equal(as.character(hetu("010101-0101")$checksum), "1")
+  expect_equal(as.character(hetu("010101-0101")$ctrl.char), "1")
   expect_equal(as.character(hetu("010101-0101")$date), "1901-01-01")
   expect_equal(hetu("010101-0101")$day, 1)
   expect_equal(hetu("010101-0101")$month, 1)
@@ -105,7 +105,7 @@ test_that("hetu_diagnostic works correctly", {
   expect_error(hetu_diagnostic("010101-0101", 
                                extract = "incorrect_diagnostic"))
   expect_false(hetu_diagnostic("010101-0102",
-                               extract = "correct.checksum")$correct.checksum)
+                               extract = "correct.ctrl.char")$correct.ctrl.char)
   expect_false(hetu_diagnostic("010101-01010", subsetting = TRUE,
                                extract = "valid.length")$valid.length)
   expect_false(hetu_diagnostic("010101-01010", subsetting = FALSE,

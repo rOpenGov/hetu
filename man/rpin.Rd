@@ -52,7 +52,7 @@ A function that generates random \code{hetu}-pins.
 x <- rpin(3)
 hetu(x)
 hetu(x, extract = "sex")
-hetu(x, extract = "checksum")
+hetu(x, extract = "ctrl.char")
 
 x <- rhetu(3)
 x

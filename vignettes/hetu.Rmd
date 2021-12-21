@@ -85,13 +85,13 @@ hetu(c("010101-0102", "111311-111C", "010101-0101"))
 
 ### Extracting specific information
 
-Information contained in the PIN can be extracted with a generic extract parameter. Valid values for extraction are *hetu*, *sex*, *personal.number*, *checksum*, *date*, *day*, *month*, *year*, *century*, *valid.pin* and *is.temp*. 
+Information contained in the PIN can be extracted with a generic extract parameter. Valid values for extraction are *hetu*, *sex*, *personal.number*, *ctrl.char*, *date*, *day*, *month*, *year*, *century*, *valid.pin* and *is.temp*. 
 
 *is.temp* can be extracted only if allow.temp is set to TRUE. If allow.temp is set to FALSE (default), temporary PINs are filtered from the output and information provided by *is.temp* would be meaningless.
 
 ```{r hetuextract1, message=FALSE}
 hetu(example_pins, extract = "sex")
-hetu(example_pins, extract = "checksum")
+hetu(example_pins, extract = "ctrl.char")
 ```
 
 Some fields can be extracted with specialized functions. Extracting sex with hetu_sex function:

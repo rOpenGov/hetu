@@ -5,15 +5,15 @@
 #'    or vector of identification numbers as a character vectors
 #' @param extract Extract only selected part of the information.
 #'    Valid values are "\code{hetu}", "\code{sex}", "\code{p.num}",
-#'    "\code{checksum}", "\code{date}", "\code{day}", "\code{month}",
+#'    "\code{ctrl.char}", "\code{date}", "\code{day}", "\code{month}",
 #'    "\code{year}", "\code{century}", "\code{is.temp}".
 #'    If \code{NULL} (default), returns all information.
 #' @param allow.temp Allow artificial or temporary PINs (personal numbers
 #'    900-999). If \code{FALSE} (default), only PINs intended for official
 #'    use (personal numbers 002-899) are allowed.
 #' @param diagnostic Print additional information about possible problems in
-#'    PINs. The checks are "\code{valid.p.num}", "\code{valid.checksum}",
-#'    "\code{correct.checksum}", "\code{valid.date}", "\code{valid.day}",
+#'    PINs. The checks are "\code{valid.p.num}", "\code{valid.ctrl.char}",
+#'    "\code{correct.ctrl.char}", "\code{valid.date}", "\code{valid.day}",
 #'    "\code{valid.month}", "\code{valid.length}", "\code{valid.century}".
 #'    Default is \code{FALSE} which returns no diagnostic information.
 #' @return Finnish personal identification number data.frame,
@@ -22,11 +22,11 @@
 #'	   character vector is not a valid Finnish personal identification number.
 #' \item{hetu}{Finnish personal identification number as a character vector.
 #'     A correct pin should be in the form DDMMYYCZZZQ, where DDMMYY stands for
-#'     date, C for century sign, ZZZ for personal number and Q for checksum
+#'     date, C for century sign, ZZZ for personal number and Q for control
 #'     character.}
 #' \item{sex}{sex of the person as a character vector ("Male" or "Female").}
 #' \item{p.num}{Personal number part of the identification number.}
-#' \item{checksum}{Checksum for the personal identification number.}
+#' \item{ctrl.char}{Control character for the personal identification number.}
 #' \item{date}{Birthdate.}
 #' \item{day}{Day of the birthdate.}
 #' \item{month}{Month of the birthdate.}
@@ -48,22 +48,21 @@
 #' hetu(c("010101-0101", "111111-111C"))
 #' # Process a vector of hetu's and extract sex information from each
 #' hetu(c("010101-0101", "111111-111C"), extract="sex")
+#' 
+#' @importFrom checkmate assert_choice
+#' 
 #' @export
 hetu <- function(pin, extract = NULL, allow.temp = FALSE, diagnostic = FALSE) {
 
   if (!is.null(extract)) {
+    valid_choices <- c("hetu", "sex", "p.num", "ctrl.char",
+                 "date", "day", "month", "year", "century",
+                 "valid.pin")
     if (allow.temp == FALSE) {
-      if (!extract %in% c("hetu", "sex", "p.num", "checksum",
-                          "date", "day", "month", "year", "century",
-                          "valid.pin")) {
-        stop("Trying to extract invalid part of hetu")
-      }
+      checkmate::assert_choice(extract, valid_choices)
     } else if (allow.temp == TRUE) {
-      if (!extract %in% c("hetu", "sex", "p.num", "checksum",
-                          "date", "day", "month", "year", "century",
-                          "is.temp", "valid.pin")) {
-        stop("Trying to extract invalid part of hetu")
-      }
+      valid_choices <- c(valid_choices, "is.temp")
+      checkmate::assert_choice(extract, valid_choices)
     }
   }
 
@@ -119,13 +118,13 @@ hetu <- function(pin, extract = NULL, allow.temp = FALSE, diagnostic = FALSE) {
   extracted_date[is.na(extracted_date)] <- NA
   valid_date_test <- !is.na(extracted_date)
 
-  # Check if checksum character is valid
-  extracted_check_marker <- substr(pin, start = 11, stop = 11)
+  # Check if control character is valid
+  extracted_ctrl_char <- substr(pin, start = 11, stop = 11)
   checklist <- c("0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
                  "A", "B", "C", "D", "E", "F", "H", "J", "K", "L",
                  "M", "N", "P", "R", "S", "T", "U", "V", "W", "X", "Y")
   names(checklist) <- 0:30
-  valid_checksum_test <- extracted_check_marker %in% checklist
+  valid_ctrl_char_test <- extracted_ctrl_char %in% checklist
 
   # Get personal identification number
   extracted_personal_number <- substr(pin, start = 8, stop = 10)
@@ -133,12 +132,12 @@ hetu <- function(pin, extract = NULL, allow.temp = FALSE, diagnostic = FALSE) {
                                        width = 3, format = "d", flag = "0")
   valid_p_num_test <- (as.numeric(extracted_personal_number) >= 2)
 
-  # Check if checksum character is correct
+  # Check if control character is correct
   mod <- as.numeric(paste0(substr(pin, start = 1, stop = 6),
                            substr(pin, start = 8, stop = 10))) %% 31
-  checksum_test <- extracted_check_marker == checklist[as.character(mod)]
-  names(checksum_test) <- NULL
-  checksum_test[is.na(checksum_test)] <- FALSE
+  ctrl_char_test <- extracted_ctrl_char == checklist[as.character(mod)]
+  names(ctrl_char_test) <- NULL
+  ctrl_char_test[is.na(ctrl_char_test)] <- FALSE
 
   # Check sex
   extracted_sex <- ifelse(((as.numeric(extracted_personal_number) %% 2) == 0),
@@ -151,7 +150,7 @@ hetu <- function(pin, extract = NULL, allow.temp = FALSE, diagnostic = FALSE) {
   valid_length_test <- (nchar(pin) == 11)
 
   # Produce a logical test value for overall validity of PIN
-  test_matrix <- cbind(valid_p_num_test, valid_checksum_test, checksum_test,
+  test_matrix <- cbind(valid_p_num_test, valid_ctrl_char_test, ctrl_char_test,
                        valid_date_test, valid_day_test, valid_month_test,
                        valid_year_test, valid_length_test, valid_century_test)
   valid_pin_test <- apply(test_matrix, 1, all)
@@ -160,7 +159,7 @@ hetu <- function(pin, extract = NULL, allow.temp = FALSE, diagnostic = FALSE) {
   object <- list(hetu = pin,
                  sex = extracted_sex,
                  p.num = extracted_personal_number,
-                 checksum = extracted_check_marker,
+                 ctrl.char = extracted_ctrl_char,
                  date = extracted_date,
                  day = extracted_day,
                  month = extracted_month,
@@ -171,8 +170,8 @@ hetu <- function(pin, extract = NULL, allow.temp = FALSE, diagnostic = FALSE) {
   if (diagnostic == TRUE) {
     # create hetu-object with diagnostics
     diagnostic_list <- list(valid.p.num = valid_p_num_test,
-                            valid.checksum = valid_checksum_test,
-                            correct.checksum = checksum_test,
+                            valid.ctrl.char = valid_ctrl_char_test,
+                            correct.ctrl.char = ctrl_char_test,
                             valid.date = valid_date_test,
                             valid.day = valid_day_test,
                             valid.month = valid_month_test,

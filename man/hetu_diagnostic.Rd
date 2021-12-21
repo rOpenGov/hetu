@@ -15,7 +15,7 @@ or vector of identification numbers as a character vectors}
 
 \item{extract}{Extract only selected part of the diagnostic information.
 Valid values are "\code{hetu}", "\code{is.temp}", "\code{valid.p.num}",
-"\code{valid.checksum}", "\code{correct.checksum}", "\code{valid.date}",
+"\code{valid.ctrl.char}", "\code{correct.ctrl.char}", "\code{valid.date}",
 "\code{valid.day}", "\code{valid.month}", "\code{valid.length}", 
 "\code{valid.century}". If \code{NULL} (default), returns all information.}
 
@@ -36,7 +36,7 @@ diagnosis_example <- c("010101-0102", "111111-111Q",
 hetu_diagnostic(diagnosis_example)
 # Extract century-related checks
 hetu_diagnostic(diagnosis_example, extract = "valid.century")
-# Extract only rows where invalid.checksum = TRUE
+# Extract only rows where valid.ctrl.char = FALSE
 hetu_diagnostic(diagnosis_example, subsetting = TRUE, extract = "valid.day") 
 
 diagnosis_example <- c("010101-0102", "111111-111Q", 

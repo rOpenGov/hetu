@@ -5,7 +5,7 @@
 #'    or vector of identification numbers as a character vectors
 #' @param extract Extract only selected part of the diagnostic information.
 #'    Valid values are "\code{hetu}", "\code{is.temp}", "\code{valid.p.num}",
-#'    "\code{valid.checksum}", "\code{correct.checksum}", "\code{valid.date}",
+#'    "\code{valid.ctrl.char}", "\code{correct.ctrl.char}", "\code{valid.date}",
 #'    "\code{valid.day}", "\code{valid.month}", "\code{valid.length}", 
 #'    "\code{valid.century}". If \code{NULL} (default), returns all information.
 #' @param subsetting Print only PINs where the validity check chosen 
@@ -19,7 +19,7 @@
 #' hetu_diagnostic(diagnosis_example)
 #' # Extract century-related checks
 #' hetu_diagnostic(diagnosis_example, extract = "valid.century")
-#' # Extract only rows where invalid.checksum = TRUE
+#' # Extract only rows where valid.ctrl.char = FALSE
 #' hetu_diagnostic(diagnosis_example, subsetting = TRUE, extract = "valid.day") 
 #' 
 #' @importFrom dplyr filter
@@ -27,8 +27,8 @@
 #' @export
 hetu_diagnostic <- function(pin, extract = NULL, subsetting = FALSE) {
   
-  diagnostic_params <- c("hetu", "is.temp", "valid.p.num", "valid.checksum", 
-            "correct.checksum", "valid.date", "valid.day", "valid.month", 
+  diagnostic_params <- c("hetu", "is.temp", "valid.p.num", "valid.ctrl.char", 
+            "correct.ctrl.char", "valid.date", "valid.day", "valid.month", 
             "valid.year", "valid.length", "valid.century")
   
   if (!is.null(extract)) {
@@ -41,7 +41,7 @@ hetu_diagnostic <- function(pin, extract = NULL, subsetting = FALSE) {
     output <- subset(hetu(pin, 
                           allow.temp = TRUE, 
                           diagnostic = TRUE), 
-                     select = diagnostic_params)
+                          select = diagnostic_params)
   } else {
       if (subsetting == TRUE) {
         output <- hetu(pin, allow.temp = TRUE, diagnostic = TRUE)
@@ -52,7 +52,7 @@ hetu_diagnostic <- function(pin, extract = NULL, subsetting = FALSE) {
         output <- subset(hetu(pin,
                               allow.temp = TRUE,
                               diagnostic = TRUE), 
-                         select = c("hetu", extract))
+                              select = c("hetu", extract))
       }
   }
   return(output)
