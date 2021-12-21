@@ -1,6 +1,5 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-
 <!-- badges: start -->
 
 [![rOG-badge](https://ropengov.github.io/rogtemplate/reference/figures/ropengov-badge.svg)](http://ropengov.org/)
@@ -65,9 +64,12 @@ personal identity codes:
 ``` r
 example_hetu <- c("010101-0101", "111111-111C")
 hetu(example_hetu)
-#>          hetu    sex p.num checksum       date day month year century valid.pin
-#> 1 010101-0101 Female   010        1 1901-01-01   1     1 1901       -      TRUE
-#> 2 111111-111C   Male   111        C 1911-11-11  11    11 1911       -      TRUE
+#>          hetu    sex p.num ctrl.char       date day month year century
+#> 1 010101-0101 Female   010         1 1901-01-01   1     1 1901       -
+#> 2 111111-111C   Male   111         C 1911-11-11  11    11 1911       -
+#>   valid.pin
+#> 1      TRUE
+#> 2      TRUE
 ```
 
 The package can also be used to check the validity of Finnish Business
@@ -88,14 +90,14 @@ vignette("hetu")
 
 ## Contributing
 
-  - [Submit suggestions and bug
+-   [Submit suggestions and bug
     reports](https://github.com/ropengov/hetu/issues) (provide the
     output of `sessionInfo()` and `packageVersion("hetu")` and
     preferably provide a [reproducible
     example](http://adv-r.had.co.nz/Reproducibility.html))
-  - [Send a pull request](https://github.com/rOpenGov/hetu/pulls)
-  - [Star us on the Github page](https://github.com/ropengov/hetu/)
-  - [See our website](http://ropengov.org/community/) for additional
+-   [Send a pull request](https://github.com/rOpenGov/hetu/pulls)
+-   [Star us on the Github page](https://github.com/ropengov/hetu/)
+-   [See our website](http://ropengov.org/community/) for additional
     contact information
 
 ## Acknowledgements
@@ -106,5 +108,5 @@ Leo Lahti. hetu: Finnish personal ID number data toolkit for R. URL:
 <http://ropengov.github.io/hetu/>
 
 We are grateful to all
-[contributors](https://github.com/rOpenGov/hetu/graphs/contributors)\!
+[contributors](https://github.com/rOpenGov/hetu/graphs/contributors)!
 This project is part of [rOpenGov](http://ropengov.org).
