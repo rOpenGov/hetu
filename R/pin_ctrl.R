@@ -92,3 +92,24 @@ bid_ctrl <- function(bid) {
   check <- check == x_control
   return(check)
 }
+
+#' @title Check Finnish Unique Identification Number validity
+#' 
+#' @description 
+#' A function that checks whether a \code{satu} (Finnish Unique Identification 
+#' Number) is valid. Returns \code{TRUE} or \code{FALSE}.
+#' 
+#' @param 
+#' satu a vector of 1 or more Unique Identification Numbers
+#' 
+#' @examples 
+#' satu_ctrl("10000001N") # TRUE
+#' satu_ctrl(c("10000001N", "20000001B")) # TRUE FALSE
+#' @export
+satu_ctrl <- function(satu) {
+  
+  first_eight <- substr(satu, 1, 8)
+  
+  vector <- satu_control_char(first_eight, complement = TRUE)
+  satu == vector
+}

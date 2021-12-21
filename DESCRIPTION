@@ -1,8 +1,8 @@
 Package: hetu
 Type: Package
 Title: Structural Handling of Finnish Personal Identity Codes
-Version: 1.0.4.9000
-Date: 2021-12-13
+Version: 1.0.5.9000
+Date: 2021-12-21
 Authors@R: 
     c(
   person(given = "Pyry",
@@ -44,7 +44,7 @@ Imports:
     dplyr,
     lubridate,
     checkmate,
-    assertthat
+    parallel
 Suggests:
     Cairo,
     knitr,

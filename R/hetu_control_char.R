@@ -66,3 +66,60 @@ numbers (DDMMYYZZZ)")
   extracted_control_char
   
 }
+
+#' @title Finnish Unique Identification Number Control Character Calculator
+#' @description Calculate a valid control character for an incomplete 
+#'    Finnish Unique Identification Number (FINUID, or sähköinen asiointitunnus
+#'    SATU).
+#' @param pin An incomplete FINUID that has 8 numbers
+#' @param complement Should the function print only 
+#' @details This method of calculating the control character was devised by
+#'    mathematician Erkki Pale (1962) to detect input errors but also to 
+#'    detect errors produced by early punch card machines. The long number 
+#'    produced by writing the birth date and the personal number together are
+#'    divided by 31 and the remainder is used to look up the control character
+#'    from a separate table containing alphanumeric characters except letters
+#'    G, I, O, Q and Z.
+#'    
+#'    The method of calculating the control character does not need century 
+#'    character and therefore the function has an option to omit it.
+#' @return Control character, either a number 0-9 or a letter. If complete
+#'    is TRUE, then the function returns a complete FINUID.
+#' @author Pyry Kantanen
+#' @examples
+#' satu_control_char("10000001")
+#' @export
+satu_control_char <- function(pin, complement = FALSE) {
+
+  if (length(pin) > 1){
+    x <- vapply(pin,
+                FUN = satu_control_char,
+                complement = complement,
+                FUN.VALUE = character(1),
+                USE.NAMES = FALSE)
+    return(x)
+  }
+  
+  checklist <- c("0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
+                 "A", "B", "C", "D", "E", "F", "H", "J", "K", "L",
+                 "M", "N", "P", "R", "S", "T", "U", "V", "W", "X", "Y")
+  names(checklist) <- 0:30
+
+  if (nchar(pin) != 8){
+    stop("Input FINUIDs that have 8 numbers")
+  }
+  if (suppressWarnings(is.na(as.numeric(pin))) == TRUE){
+    stop("Input FINUIDs that only have numbers")
+  }
+  
+  mod <- as.numeric(pin) %% 31
+  extracted_control_char <- checklist[as.character(mod)]
+  names(extracted_control_char) <- NULL
+  extracted_control_char
+  
+  if (complement == TRUE){
+    paste0(pin, extracted_control_char)
+  } else {
+    extracted_control_char
+  }
+}
