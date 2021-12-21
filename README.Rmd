@@ -88,7 +88,7 @@ vignette("hetu")
 
 **Kindly cite this work** as follows: [Pyry Kantanen](http://github.com/pitkant/), Måns Magnusson, Jussi Paananen, Leo Lahti. hetu: Finnish personal ID number data toolkit for R. URL: [http://ropengov.github.io/hetu/](http://ropengov.github.io/hetu/)
 
-We are grateful to all [contributors](https://github.com/rOpenGov/hetu/graphs/contributors)! This project is part of [rOpenGov](http://ropengov.org).
+We are grateful to all [contributors](https://github.com/rOpenGov/hetu/graphs/contributors)! This project is part of [rOpenGov](http://ropengov.org). 
 
 [github-watch-badge]: https://img.shields.io/github/watchers/ropengov/hetu.svg?style=social
 [github-watch]: https://github.com/ropengov/hetu/watchers
