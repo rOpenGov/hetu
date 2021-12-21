@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">hetu</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.4.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.5.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -107,18 +107,22 @@ Default is 1.</p></dd>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu">rpin</span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></span>
 <span class="r-in"><span class="fu"><a href="hetu.html">hetu</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          hetu    sex p.num checksum       date day month year century valid.pin</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 200517-003D   Male   003        D 1917-05-20  20     5 1917       -      TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 080546-1862 Female   186        2 1946-05-08   8     5 1946       -      TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 300790-112U Female   112        U 1990-07-30  30     7 1990       -      TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>          hetu    sex p.num ctrl.char       date day month year century</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 151105-702F Female   702         F 1905-11-15  15    11 1905       -</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 110951-3261 Female   326         1 1951-09-11  11     9 1951       -</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 140494-4235   Male   423         5 1994-04-14  14     4 1994       -</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   valid.pin</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1      TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2      TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3      TRUE</span>
 <span class="r-in"><span class="fu"><a href="hetu.html">hetu</a></span><span class="op">(</span><span class="va">x</span>, extract <span class="op">=</span> <span class="st">"sex"</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Male"   "Female" "Female"</span>
-<span class="r-in"><span class="fu"><a href="hetu.html">hetu</a></span><span class="op">(</span><span class="va">x</span>, extract <span class="op">=</span> <span class="st">"checksum"</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "D" "2" "U"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Female" "Female" "Male"  </span>
+<span class="r-in"><span class="fu"><a href="hetu.html">hetu</a></span><span class="op">(</span><span class="va">x</span>, extract <span class="op">=</span> <span class="st">"ctrl.char"</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "F" "1" "5"</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu">rhetu</span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></span>
 <span class="r-in"><span class="va">x</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "281072-059L" "190482-642B" "130391-360W"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "031027-775Y" "090470-6878" "251081-0678"</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
@@ -130,7 +134,7 @@ Default is 1.</p></dd>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.0.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
 </div>
 
     </footer></div>

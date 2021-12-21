@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">hetu</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.4.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.5.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -67,7 +67,7 @@ or vector of identification numbers as a character vectors</p></dd>
 <dt>extract</dt>
 <dd><p>Extract only selected part of the diagnostic information.
 Valid values are "<code>hetu</code>", "<code>is.temp</code>", "<code>valid.p.num</code>",
-"<code>valid.checksum</code>", "<code>correct.checksum</code>", "<code>valid.date</code>",
+"<code>valid.ctrl.char</code>", "<code>correct.ctrl.char</code>", "<code>valid.date</code>",
 "<code>valid.day</code>", "<code>valid.month</code>", "<code>valid.length</code>", 
 "<code>valid.century</code>". If <code>NULL</code> (default), returns all information.</p></dd>
 <dt>subsetting</dt>
@@ -86,14 +86,14 @@ in <code>extract</code> returns <code>FALSE</code>.</p></dd>
 <span class="r-in"><span class="st">"010101-01010"</span>, <span class="st">"010101-0011"</span><span class="op">)</span></span>
 <span class="r-in"><span class="co">## Print all diagnoses</span></span>
 <span class="r-in"><span class="fu">hetu_diagnostic</span><span class="op">(</span><span class="va">diagnosis_example</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           hetu is.temp valid.p.num valid.checksum correct.checksum valid.date</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  010101-0102   FALSE        TRUE           TRUE            FALSE       TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  111111-111Q   FALSE        TRUE          FALSE            FALSE       TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  010101B0101   FALSE        TRUE           TRUE             TRUE      FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  320101-0101   FALSE        TRUE           TRUE             TRUE      FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  011301-0101   FALSE        TRUE           TRUE            FALSE      FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6 010101-01010   FALSE        TRUE           TRUE             TRUE       TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7  010101-0011   FALSE       FALSE           TRUE            FALSE       TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           hetu is.temp valid.p.num valid.ctrl.char correct.ctrl.char valid.date</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  010101-0102   FALSE        TRUE            TRUE             FALSE       TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  111111-111Q   FALSE        TRUE           FALSE             FALSE       TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  010101B0101   FALSE        TRUE            TRUE              TRUE      FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  320101-0101   FALSE        TRUE            TRUE              TRUE      FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5  011301-0101   FALSE        TRUE            TRUE             FALSE      FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 010101-01010   FALSE        TRUE            TRUE              TRUE       TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7  010101-0011   FALSE       FALSE            TRUE             FALSE       TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   valid.day valid.month valid.year valid.length valid.century</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1      TRUE        TRUE       TRUE         TRUE          TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2      TRUE        TRUE       TRUE         TRUE          TRUE</span>
@@ -112,28 +112,28 @@ in <code>extract</code> returns <code>FALSE</code>.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5  011301-0101          TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 6 010101-01010          TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 7  010101-0011          TRUE</span>
-<span class="r-in"><span class="co"># Extract only rows where invalid.checksum = TRUE</span></span>
+<span class="r-in"><span class="co"># Extract only rows where valid.ctrl.char = FALSE</span></span>
 <span class="r-in"><span class="fu">hetu_diagnostic</span><span class="op">(</span><span class="va">diagnosis_example</span>, subsetting <span class="op">=</span> <span class="cn">TRUE</span>, extract <span class="op">=</span> <span class="st">"valid.day"</span><span class="op">)</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          hetu    sex p.num checksum date day month year century valid.pin</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 320101-0101 Female   010        1 &lt;NA&gt;  NA     1 1901       -     FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   valid.p.num valid.checksum correct.checksum valid.date valid.day valid.month</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1        TRUE           TRUE             TRUE      FALSE     FALSE        TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   valid.year valid.length valid.century is.temp</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1       TRUE         TRUE          TRUE   FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>          hetu    sex p.num ctrl.char date day month year century valid.pin</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 320101-0101 Female   010         1 &lt;NA&gt;  NA     1 1901       -     FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   valid.p.num valid.ctrl.char correct.ctrl.char valid.date valid.day</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1        TRUE            TRUE              TRUE      FALSE     FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   valid.month valid.year valid.length valid.century is.temp</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1        TRUE       TRUE         TRUE          TRUE   FALSE</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="va">diagnosis_example</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"010101-0102"</span>, <span class="st">"111111-111Q"</span>, </span>
 <span class="r-in"><span class="st">"010101B0101"</span>, <span class="st">"320101-0101"</span>, <span class="st">"011301-0101"</span>, </span>
 <span class="r-in"><span class="st">"010101-01010"</span>, <span class="st">"010101-0011"</span><span class="op">)</span></span>
 <span class="r-in"><span class="co">## Print all diagnoses</span></span>
 <span class="r-in"><span class="fu">pin_diagnostic</span><span class="op">(</span><span class="va">diagnosis_example</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           hetu is.temp valid.p.num valid.checksum correct.checksum valid.date</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  010101-0102   FALSE        TRUE           TRUE            FALSE       TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  111111-111Q   FALSE        TRUE          FALSE            FALSE       TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  010101B0101   FALSE        TRUE           TRUE             TRUE      FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  320101-0101   FALSE        TRUE           TRUE             TRUE      FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  011301-0101   FALSE        TRUE           TRUE            FALSE      FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6 010101-01010   FALSE        TRUE           TRUE             TRUE       TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7  010101-0011   FALSE       FALSE           TRUE            FALSE       TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           hetu is.temp valid.p.num valid.ctrl.char correct.ctrl.char valid.date</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  010101-0102   FALSE        TRUE            TRUE             FALSE       TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  111111-111Q   FALSE        TRUE           FALSE             FALSE       TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  010101B0101   FALSE        TRUE            TRUE              TRUE      FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  320101-0101   FALSE        TRUE            TRUE              TRUE      FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5  011301-0101   FALSE        TRUE            TRUE             FALSE      FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 010101-01010   FALSE        TRUE            TRUE              TRUE       TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7  010101-0011   FALSE       FALSE            TRUE             FALSE       TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   valid.day valid.month valid.year valid.length valid.century</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1      TRUE        TRUE       TRUE         TRUE          TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2      TRUE        TRUE       TRUE         TRUE          TRUE</span>
@@ -153,7 +153,7 @@ in <code>extract</code> returns <code>FALSE</code>.</p></dd>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.0.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
 </div>
 
     </footer></div>
