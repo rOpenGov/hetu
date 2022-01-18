@@ -84,7 +84,11 @@ numbers (DDMMYYZZZ)")
 #'    The method of calculating the control character does not need century 
 #'    character and therefore the function has an option to omit it.
 #' @return Control character, either a number 0-9 or a letter. If complete
-#'    is TRUE, then the function returns a complete FINUID.
+#'    is TRUE, then the function returns a complete FINUID / SATU number.
+#' @seealso 
+#' For more detailed information about FINUID, see Finnish Digital and 
+#' population data services agency website: 
+#' \url{https://dvv.fi/en/citizen-certificate-and-electronic-identity}
 #' @author Pyry Kantanen
 #' @examples
 #' satu_control_char("10000001")
