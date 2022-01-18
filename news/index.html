@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">hetu</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.5.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.6.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,10 +48,20 @@
     </div>
 
     <div class="section level2">
+<h2 class="pkg-version" data-toc-text="1.0.6.9000" id="hetu-1069000-2022-01-18">hetu 1.0.6.9000 (2022-01-18)<a class="anchor" aria-label="anchor" href="#hetu-1069000-2022-01-18"></a></h2>
+<ul><li>Rewritten <code><a href="../reference/rpin.html">rpin()</a></code> function for increased speed</li>
+<li>Added new function <code><a href="../reference/hetu_control_char.html">hetu_control_char()</a></code> both for internal use in other functions as well as convenience (sometimes you know the rest of the identity code and just need to determine the control character)</li>
+<li>Added support for checking the validity of Finnish electronic Unique Identification Numbers (SATU / FINUID). Two new functions: <code><a href="../reference/satu_ctrl.html">satu_ctrl()</a></code> and <code>satu_ctrl_char()</code>, the former works like <code><a href="../reference/pin_ctrl.html">hetu_ctrl()</a></code> and the latter works like abovementioned <code><a href="../reference/hetu_control_char.html">hetu_control_char()</a></code>
+</li>
+<li>
+<code><a href="../reference/hetu.html">hetu()</a></code> table column name checksum changed to more descriptive ctrl.char. The change also affects related column names in <code><a href="../reference/hetu_diagnostic.html">hetu_diagnostic()</a></code>
+</li>
+</ul></div>
+    <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.0.3" id="hetu-103-2021-07-28">hetu 1.0.3 (2021-07-28)<a class="anchor" aria-label="anchor" href="#hetu-103-2021-07-28"></a></h2>
 <ul><li>Implementing recommendations from goodpractice (whole package) and lintr (hetu.R) for better code legibility</li>
 <li>Renamed internal objects to make it easier to distinguish between user input (function arguments), internal objects used in intermediate steps and output names for the data table</li>
-<li>New function hetu_control_char for easy calculation of control characters when birth date and personal numbers are already known</li>
+<li>New function <code><a href="../reference/hetu_control_char.html">hetu_control_char()</a></code> for easy calculation of control characters when birth date and personal numbers are already known</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.0.2" id="hetu-102-2020-11-23">hetu 1.0.2 (2020-11-23)<a class="anchor" aria-label="anchor" href="#hetu-102-2020-11-23"></a></h2>
@@ -61,24 +71,28 @@
 <h2 class="pkg-version" data-toc-text="1.0.1" id="hetu-101-2020-10-15">hetu 1.0.1 (2020-10-15)<a class="anchor" aria-label="anchor" href="#hetu-101-2020-10-15"></a></h2><p class="text-muted">CRAN release: 2020-10-24</p>
 <ul><li>Build submitted to CRAN</li>
 <li>More organized vignette, hetu and BID examples separated</li>
-<li>Minor fixes to hetu_diagnostic and rbid</li>
+<li>Minor fixes to <code><a href="../reference/hetu_diagnostic.html">hetu_diagnostic()</a></code> and <code><a href="../reference/rbid.html">rbid()</a></code>
+</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.3.1" id="hetu-031-2020-10-14">hetu 0.3.1 (2020-10-14)<a class="anchor" aria-label="anchor" href="#hetu-031-2020-10-14"></a></h2>
-<ul><li>Added function for generating Finnish Business IDs, rbid</li>
-<li>Added new alias to hetu_diagnostic, pin_diagnostic, for consistent behaviour with other functions</li>
+<ul><li>Added function for generating Finnish Business IDs, <code><a href="../reference/rbid.html">rbid()</a></code>
+</li>
+<li>Added new alias to <code><a href="../reference/hetu_diagnostic.html">hetu_diagnostic()</a></code>, <code><a href="../reference/hetu_diagnostic.html">pin_diagnostic()</a></code>, for better consistency with other functions</li>
 <li>New examples in package vignette</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.3.0" id="hetu-030-2020-10-13">hetu 0.3.0 (2020-10-13)<a class="anchor" aria-label="anchor" href="#hetu-030-2020-10-13"></a></h2>
 <ul><li>Optimized functions: generating and handling a large amount of PINs is now much faster (tested with 5.5 million PINs)</li>
-<li>new bid_ctrl function for checking the validity of Finnish Business IDs</li>
-<li>personal.number changed to shorter p.num</li>
+<li>new <code><a href="../reference/bid_ctrl.html">bid_ctrl()</a></code> function for checking the validity of Finnish Business IDs</li>
+<li>
+<code><a href="../reference/hetu.html">hetu()</a></code> table column name personal.number changed to shorter p.num</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.2.4" id="hetu-024-2020-09-10">hetu 0.2.4 (2020-09-10)<a class="anchor" aria-label="anchor" href="#hetu-024-2020-09-10"></a></h2>
 <ul><li>Option to print explicit diagnostics in hetu-function</li>
-<li>hetu_diagnostic function for easier viewing of diagnostic information</li>
+<li>
+<code><a href="../reference/hetu_diagnostic.html">hetu_diagnostic()</a></code> function for easier viewing of diagnostic information</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.2.1-0.2.3" id="hetu-021-023-2020-09-09">hetu 0.2.1-0.2.3 (2020-09-09)<a class="anchor" aria-label="anchor" href="#hetu-021-023-2020-09-09"></a></h2>
@@ -92,10 +106,11 @@
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.2.0" id="hetu-020-2020-09-04">hetu 0.2.0 (2020-09-04)<a class="anchor" aria-label="anchor" href="#hetu-020-2020-09-04"></a></h2>
-<ul><li>Added rpin function for generating random hetu PINs</li>
+<ul><li>Added <code><a href="../reference/rpin.html">rpin()</a></code> function for generating random hetu PINs</li>
 <li>Added ability to handle temporary or artificial hetu PINs (allow.temp, is.temp)</li>
 <li>Added tests to achieve 100 % test coverage</li>
-<li>Deprecation of pin_to_date, addition of pin_date</li>
+<li>Deprecation of pin_to_date, addition of <code><a href="../reference/pin_date.html">pin_date()</a></code>
+</li>
 <li>Numerous minor bugfixes and additions to help files and vignettes</li>
 </ul></div>
     <div class="section level2">
