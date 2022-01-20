@@ -2,6 +2,24 @@
 #'
 #' @description 
 #' A function that generates random \code{hetu}-pins. 
+#' 
+#' @details 
+#' There is a finite number of valid personal identity codes available per day.
+#' More specifically, there are 498 odd personal numbers for males and 498 even
+#' personal numbers for females from range 002-899. Additionally there are 50
+#' odd numbers for males and 50 even numbers for females in the temporary
+#' personal identity code number range 900-999 that is not normally in use.
+#' This function will return an error "too few positive probabilities" in 
+#' sample.int function if you try to generate too many codes in a short enough 
+#' timeframe.
+#' 
+#' The theoretical upper limit of valid PINs is in the millions since there are
+#' 898 PINs available for each day, 327770 for each year. In practice this
+#' number is much lower since same personal number component cannot be 
+#' "recycled" if it has been used in the past. To illustrate, if an identity 
+#' code "010101-0101" has already been assigned to someone born in 1901-01-01, 
+#' a similar code "010101A0101" for someone born in 2001-01-01 could not be 
+#' used.
 #'
 #' @param n number of generated \code{hetu}-pins
 #' @param start.date Lower limit of generated \code{hetu} dates,
@@ -9,8 +27,8 @@
 #'    Default is "1895-01-01".
 #' @param end.date Upper limit of generated \code{hetu}. 
 #'    Default is current date.
-#' @param p.male Proportion of males, between 0.0 and 1.0. Default is 0.4.
-#' @param p.temp Proportion of temporary identification numbers, between
+#' @param p.male Probability of males, between 0.0 and 1.0. Default is 0.4.
+#' @param p.temp Probability of temporary identification numbers, between
 #'    0.0 and 1.0. Default is 0.0.
 #' @param num.cores The number of cores for parallel processing. The number 
 #'    of available cores can be determined with \code{detectCores()}.
@@ -44,36 +62,6 @@ rpin <- function(n,
   assert_double(p.male, 0, 1)
   assert_date(end.date, start.date, Sys.Date())
   assert_date(start.date, as.Date("1860-01-01"), end.date)
-
-  max_p_sex <- max(p.male, (1 - p.male))
-  max_p_temp <- max(p.temp, (1 - p.temp))
-  
-  # available personal numbers per day are 002-899, length(2:899) = 898
-  # if p.temp != 0, then available personal numbers are 002-999; 998 numbers
-  if (isTRUE(all.equal(p.temp, 0))) {
-    max_pins_per_day <- 898
-  } else if (p.temp > 0) {
-    max_pins_per_day <- 998
-  }
-  # available personal numbers per sex per day is 898/2 = 449
-  max_pins_per_sex <- 449
-  # available temp pins per day is length(900:999) = 100
-  max_temp_pins <- 100
-  
-  days_in_time_period <- length(start.date:end.date)
-  
-  if (n > max_pins_per_day * days_in_time_period){
-    stop("You can not generate more random PINs than the maximum number 
-  available: 898 per day")
-  }
-  
-  if (max_p_sex * n > max_pins_per_sex * days_in_time_period){
-    stop("You can generate only 449 PINs per sex per day")
-  }
-  
-  if (p.temp * n > max_temp_pins * days_in_time_period) {
-    stop("You can generate only 100 temporary PINs per day")
-  }
   
   # Oversample a bit to make up for filtered PINs (duplicates, PINs with 
   # inadequate personal numbers) 
@@ -87,21 +75,26 @@ rpin <- function(n,
   # names(dates_table) <- format(as.Date(names(dates_table)), "%d%m%y")
   
   # odd numbers for males
-  x1 <- (2:899)[2:899 %% 2 != 0]
+  mars <- (2:899)[2:899 %% 2 != 0]
+  mars_temp <- (900:999)[900:999 %% 2 != 0]
   # even numbers for females
-  x2 <- (2:899)[2:899 %% 2 == 0]
+  venus <- (2:899)[2:899 %% 2 == 0]
+  venus_temp <- (900:999)[900:999 %% 2 == 0]
   
-  x1 <- formatC(x1, width = 3, format = "d", flag = "0")
-  x2 <- formatC(x2, width = 3, format = "d", flag = "0")
+  mars <- formatC(mars, width = 3, format = "d", flag = "0")
+  venus <- formatC(venus, width = 3, format = "d", flag = "0")
   
-  prob_x1 <- rep(p.male, length(x1))
-  prob_x2 <- rep(1-p.male, length(x2))
+  prob_mars <- rep((p.male * (1 - p.temp)), length(mars))
+  prob_mars_temp <- rep((p.male * p.temp), length(mars_temp))
+  prob_venus <- rep(((1 - p.male) * (1 - p.temp)), length(venus))
+  prob_venus_temp <- rep(((1 - p.male) * p.temp), length(venus_temp))
 
   p_nums <- unlist(
     mclapply(X = dates_table, 
-           FUN = function(x) sample(c(x1, x2), 
+           FUN = function(x) sample(c(mars, venus, mars_temp, venus_temp), 
                                     size = x, 
-                                    prob = c(prob_x1, prob_x2)
+                                    prob = c(prob_mars, prob_venus,
+                                             prob_mars_temp, prob_venus_temp)
                                     ),
            mc.cores = num.cores
            )
@@ -120,7 +113,8 @@ rpin <- function(n,
   
   incomplete_pins <- paste0(ddmmyy, century, p_nums)
   control_chars <- hetu_control_char(pin = incomplete_pins, with.century = TRUE)
-  paste0(incomplete_pins, control_chars)
+  object <- paste0(incomplete_pins, control_chars)
+  return(object)
 
 }
 

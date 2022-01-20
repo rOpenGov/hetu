@@ -13,7 +13,7 @@ satu_control_char(pin, complement = FALSE)
 }
 \value{
 Control character, either a number 0-9 or a letter. If complete
-   is TRUE, then the function returns a complete FINUID.
+   is TRUE, then the function returns a complete FINUID / SATU number.
 }
 \description{
 Calculate a valid control character for an incomplete 
@@ -34,6 +34,11 @@ This method of calculating the control character was devised by
 }
 \examples{
 satu_control_char("10000001")
+}
+\seealso{
+For more detailed information about FINUID, see Finnish Digital and 
+population data services agency website: 
+\url{https://dvv.fi/en/citizen-certificate-and-electronic-identity}
 }
 \author{
 Pyry Kantanen

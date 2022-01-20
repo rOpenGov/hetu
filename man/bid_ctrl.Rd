@@ -14,6 +14,6 @@ A function that checks whether a \code{bid} (Finnish Business ID) is valid.
 Returns \code{TRUE} or \code{FALSE}.
 }
 \examples{
-bid_ctrl(c("0737546-2", "1572860-0")) # TRUE TRUE
+bid_ctrl(c("0000000-0", "0000001-9")) # TRUE TRUE
 bid_ctrl("0737546-1") # FALSE
 }

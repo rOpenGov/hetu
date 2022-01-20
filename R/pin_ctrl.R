@@ -39,7 +39,7 @@ hetu_ctrl <- pin_ctrl
 #' bid a vector of 1 or more business identity numbers
 #' 
 #' @examples 
-#' bid_ctrl(c("0737546-2", "1572860-0")) # TRUE TRUE
+#' bid_ctrl(c("0000000-0", "0000001-9")) # TRUE TRUE
 #' bid_ctrl("0737546-1") # FALSE
 #' @export
 bid_ctrl <- function(bid) {

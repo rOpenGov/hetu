@@ -33,9 +33,9 @@ Default is "1895-01-01".}
 \item{end.date}{Upper limit of generated \code{hetu}. 
 Default is current date.}
 
-\item{p.male}{Proportion of males, between 0.0 and 1.0. Default is 0.4.}
+\item{p.male}{Probability of males, between 0.0 and 1.0. Default is 0.4.}
 
-\item{p.temp}{Proportion of temporary identification numbers, between
+\item{p.temp}{Probability of temporary identification numbers, between
 0.0 and 1.0. Default is 0.0.}
 
 \item{num.cores}{The number of cores for parallel processing. The number 
@@ -47,6 +47,24 @@ a vector of generated \code{hetu}-pins.
 }
 \description{
 A function that generates random \code{hetu}-pins.
+}
+\details{
+There is a finite number of valid personal identity codes available per day.
+More specifically, there are 498 odd personal numbers for males and 498 even
+personal numbers for females from range 002-899. Additionally there are 50
+odd numbers for males and 50 even numbers for females in the temporary
+personal identity code number range 900-999 that is not normally in use.
+This function will return an error "too few positive probabilities" in 
+sample.int function if you try to generate too many codes in a short enough 
+timeframe.
+
+The theoretical upper limit of valid PINs is in the millions since there are
+898 PINs available for each day, 327770 for each year. In practice this
+number is much lower since same personal number component cannot be 
+"recycled" if it has been used in the past. To illustrate, if an identity 
+code "010101-0101" has already been assigned to someone born in 1901-01-01, 
+a similar code "010101A0101" for someone born in 2001-01-01 could not be 
+used.
 }
 \examples{
 x <- rpin(3)
