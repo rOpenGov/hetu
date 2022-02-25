@@ -1,37 +1,77 @@
 % !TeX root = RJwrapper.tex
-\title{Validating and Extracting Information from Finnish National Identification Numbers with hetu Package}
+\title{Validating and Extracting Information from Finnish and Swedish National Identification Numbers with the hetu and sweidnumbr Packages}
 \author{by Pyry Kantanen, Jussi Paananen, Leo Lahti} % Add affiliations?
 
 \maketitle
 
 \abstract{
-National identification numbers (NIN) are a widely used method for uniquely identifying individuals in Finland and many other countries. Their widespread use in both public sector registers and private sector customer data systems prompts the need for openly available methods and tools for NIN analysis and validation. The {\it hetu} R package provides functions for extracting information from Finnish NINs, or personal identity codes (PIC). The package can also generate valid and temporary random codes for testing purposes. PICs contain information about person's birth date and sex as well as a control character that helps to invalidate PICs with common input errors. Our package contains comprehensive documentation and examples to make usage of the package easy for domain experts from non-technical backgrounds. Whereas the new tools are relevant mainly in the Finnish context, this package can also contribute to developing similar tools for other countries. The {\it hetu} R package contributes to the growing toolkit of standardized methods for computational social science and register-based analytics.}
+National identification numbers (NIN) are a widely used method for uniquely identifying individuals and companies in Finland, Sweden, and many other countries. Their widespread use in both public sector registers and private sector customer data systems prompts the need for openly available methods and tools for NIN analysis and validation. The {\it hetu} and {\it sweidnumbr} R packages provide functions for extracting information from Finnish and Swedish NINs. The packages can also generate temporary but structurally valid random numbers for testing purposes. Finnish and Swedish NINs contain information about person's birth date and sex, an individual number and a control character that helps detect most common input errors and structural irregularities. Our packages contains comprehensive documentation and examples to make usage of the package easy for domain experts with non-technical backgrounds. While the new tools are relevant mainly in the Finnish and Swedish context, this package contributes to developing similar tools for other countries. From a wider persepective, both {\it hetu} and {\it sweidnumbr} R packages contribute to the growing toolkit of standardized methods for computational social science and register-based analytics.}
 
 \section{Introduction}
 
-Reliably keeping track of individuals in a given territory has long been seen as an important feature of modern governance. The scope of this tracking has spread from disciplinary institutions, such as prisons, military units and schools to society at large \citep{foucault7778}. We can see the results of this development today in the form of different \emph{national identification number} (NIN) systems implemented around the world.
+Reliably keeping track of individuals in a given territory has long been seen as an important feature of modern governance. Foucault \citeyear[115-120]{foucault7778} observed a historical pattern where practices first implemented in disciplinary institutions, such as prisons, military units and schools have spread to society at large.  We can see the results of this development today in the form of different \emph{national identification number} (NIN) systems implemented around the world.
 
-An ideal personal identification system should strive to be both unique and "self-same" over time. Self-sameness refers to a degree of immutability that allows organizations to identify and reidentify a person over time. A combination of attributes\footnote{Think of SQL's \emph{composite key}} such as name, occupation and address would probably form a unique identifier even in relatively large crowds, but such attributes might not stay the same over time. \citep{brensinger2021}. In everyday life settings, a combination of personal attributes, such as name, occupation and address may be sufficiently \emph{unique} to identify individuals even in large groups of people. Such an approach has its limitations. The problem with such composite keys is, however, that parts that make the composite key might not be permanent, making it impossible to compare different data points in the same dataset or combining data from different datasets. 
+An ideal personal identification system should strive to be both unique and "self-same" over time. Self-sameness refers to a degree of immutability that allows organizations to identify and reidentify a person over time. A combination of attributes\footnote{Think of SQL's \emph{composite key}} such as name, occupation and address would probably form a unique identifier even in relatively large crowds, but such attributes might not stay the same over time. \citep{brensinger2021}. In everyday life settings, a combination of personal attributes, such as name, occupation and address may be sufficiently \emph{unique} to identify individuals even in large groups of people. Such an approach has its limitations. The problem with such composite keys is, however, that parts that make the composite key might not be permanent, making it impossible to compare different data points in the same dataset or combining data from different datasets.
 
 According to Alterman (as cited in \citeauthor{ajana2013}, \citeyear[8]{ajana2013}) a distinction can be made between \emph{biocentric data} and \emph{indexical data}. The former is biometric data connected to the \emph{body} of the individual whereas the latter has no distinguishable relation to the individual, physiologically, psychologically or otherwise. An example of biocentric data could be a fingerprint or an iris scan and an example of indexical data could be a randomly assigned number from which nothing could be deduced.\footnote{\citet{brensinger2021} discuss the concept of \emph{dividuals}, manufactured objects that represent the living individual: address, fingerprints, name and so on. These dividuals need to go through the process of disembedding, standardization and reembedding to be useful. Disembedding means data gathering (taking a fingerprint sample), standardization means making the disembedded transcription into a standardized digital sample that can be easily compared with other similar samples and reembedding means linking these standardized records back to their actual flesh-and-blood counterparts. Without a way to reembed a huge and well standardized archive of fingerprints back to the population it is essentially useless. This is also a reason why biometric samples such as iris scans or fingerprints can never replace a primary keys in databases.}
 
 In casual settings the combination of person's name and physiological characteristics (or \emph{biometric identifiers}) are enough to identify friends, acquaintances and strangers from one another. Names can change over time and even fingerprints and iris pattern samples need to be refreshed from time to time, making them poor from self-sameness perspective. Interestingly, Lauer (2017) and Rule (1973) (as cited in \citeauthor{brensinger2021}, \citeyear[31--32]{brensinger2021}) noted that in the 1960's American credit bureaus and other organizations struggled with this same problem having used a combination of attributes to identify people in their registers and needed to find a better way to identify individuals. In a moment that may be described as \emph{function creep} they settled for using the \emph{social security number} (SSN) as the single identifying number\footnote{Think of SQL's \emph{primary key}}, horizontal and vertical information sharing possible.
 
-For a number of reasons, many identification numbers are not just random strings. The American SSN originally contained information about the person's birth year and where the number was first registered \citep[32]{brensinger2021} whereas Finnish and other Nordic countries' national identification numbers often contain (or used to contain) information about the individual's birth date and sex \citep{watson2010, salste2021}. Therefore they may be seen as biocentric data rather than pure indexical data, making them more sensitive to handle.
+For a number of reasons, many identification numbers are not just random strings. The American SSN originally contained information about the person's birth year and where the number was first registered \citep[32]{brensinger2021} whereas Nordic countries' national identification numbers often contain (or used to contain) information about the individual's birth date and sex \citep{watson2010, salste2021}. Therefore they may be seen as biocentric data rather than pure indexical data, making them more sensitive to handle.
 
-In the Nordic countries comprehensive national identification number systems were developed and implemented from the 1940's to 1960's \citep{watson2010}. Finnish personal identity code has its roots in specialized employment pension number from 1962, which was gradually expanded to cover the whole population in the form of a social security number in 1964-1968. The structure of pension number was designed by mathematician Erkki Pale with punch card machines in mind (probably influenced by the Swedish födelsenummer or birth number). This design has proved to be resilient and with some tweaks it continues to be used, with the modern iteration being called a \emph{personal identity code} (In Finnish: henkilötunnus, or \emph{hetu} for short, hence the name of the package) \citep{salste2021}. Because of this, we will be using the term personal identity code (PIC) when referring to the Finnish national identification number.
+\begin{table}[ht]
+\centering
+\begin{tabular}{lllllll}
+\toprule
+  country & code name & introduced & n characters & birth date & sex & public \\
+  \hline
+  Sweden & personnummer & 1947 & 11 & yes & yes & no \\
+  Iceland & kennitala & 1950 & 10 & yes & no & yes \\
+  Norway & fødselsnummer & 1964 & 11 & yes & yes & no \\
+  Danmark & CPR-nummer & 1968 & 11 & yes & yes & no \\
+  Finland & henkilötunnus & 1968 & 11 & yes & yes & no \\
+\bottomrule
+\end{tabular}
+\caption{Nordic NINs: Inauguration and embedded information}
+\label{tab:nordiccomparison}
+\end{table}
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{lllllll}
+\toprule
+  country & NIN & example code & structure & century \\
+  \hline
+  SE & personnummer & 610321-3499 & YYMMDDCRRRC \\
+  IS & kennitala & 121212-1239 & DDMMYYNNQC \\
+  NO & fødselsnummer & 110779 41012 & DDMMYYNNNQQ \\
+  DK & CPR-nummer & 300280-1178 & DDMMYY-NNNQ \\
+  FI & henkilötunnus & 131052-308T & DDMMYYCNNNQ \\
+\bottomrule
+\end{tabular}
+\caption{DD = days [01-31], MM = months [01-12], YY = years [00-99], N = natural number [0-9], C = a digit or a marker indicating century or age, Q = a check digit or a control character. Swedish century marker is - for people under 100 years old and + for people over 100 years old. Icelandic century marker is 9 for people born in 1900s and 0 for people born in 2000s. Norwegian birth century can be determined by looking at the three natural numbers: 000-499 for people born in 1900s, 500-749 for people born in 1800s and 500-999 again for people born in 2000s. Danish birth century can by looking up four last numbers from a separate table: people born in different centuries have different ranges. Finnish century marker is + (plus) for people born in 1800s, - (dash) for people born in 1900s and letter A for people born in 2000s.}
+\label{tab:nordiccomparison2}
+\end{table}
+
+In the Nordic countries comprehensive national identification number systems were developed and implemented from the 1940's to 1960's \citep{watson2010}. In Sweden, the personal identity number was introduced in 1947 as a way to identify individuals for tax purposes. The personal identity number consisted both of the date of birth and an additional three-digit birth number that together uniquely identified every individual in Sweden. In 1967 a control digit to easier identify incorrect entries was added to finalize the full Swedish personal identity number (or \emph{personnummer}) \citep{johansson2003,scb2016}.
+
+The Finnish personal identity code has its roots in specialized employment pension number from 1962, which was gradually expanded to cover the whole population in the form of a social security number in 1964-1968. The structure of pension number was designed by mathematician Erkki Pale with punch card machines in mind (probably influenced by the Swedish födelsenummer or birth number). This design has proved to be resilient and with some tweaks it continues to be used, with the modern iteration being called a \emph{personal identity code} (In Finnish: henkilötunnus, or \emph{hetu} for short, hence the name of the package) \citep{salste2021}. Because of this, we will be using the term personal identity code (PIC) when referring to the Finnish national identification number.
 
 The use of national identification numbers as widespread both in Finland and in other countries. In Finland the adoption of personal identity codes in 1969 has allowed the widespread use of secondary data sources\footnote{Secondary data: Data that has not been collected primarily for the purpose of a specific research question}. One example of this is the use of Finnish Hospital Discharge Register (FHDR), which contains data on all inpatient hospital discharges that can be linked to other sources with personal identity code. According to \citet{reijosund} the proportion of erroneously inputed PICs or incomplete pseudo-PICs was initially high but fell rapidly as hospitals were specifically instructed to include it in discharge records starting from 1972. When FHDR diagnoses were compared to other sources, their quality was deemed to be at least satisfactory to good when limitations are taken into account.
 
+In Sweden the PIC is currently used extensively in all parts of society, not only for taxation. It is used in education, for military service, in health care and by financial institutions, and insurance companies. The role of the PIC has also made it central to register-based research \citep{scb2016}.
+
 %\section{Background}
 
-Similar R packages include \CRANpkg{sweidnumbr} for Swedish personal numbers and organisation numbers \citep{sweidnumbr}, \CRANpkg{numbersBR} for Brazilian identity numbers for individuals, vehicles and organisations \citep{numbersbr}, and \CRANpkg{generator} for generating various types of Personally Identifiable Information (PII), such as fake e-mail addresses, names and United States Social Security Numbers \citep{generator}. Of these packages \pkg{sweidnumbr}, also part of rOpenGov, has been a significant inspiration, providing a starting point for function and parameter naming for user convenience.
+Similar R packages \CRANpkg{numbersBR} for Brazilian identity numbers for individuals, vehicles and organisations \citep{numbersbr}, and \CRANpkg{generator} for generating various types of Personally Identifiable Information (PII), such as fake e-mail addresses, names and United States Social Security Numbers \citep{generator}.
 
-Finnish personal identity code generators and validators are nothing new. In fact, handling hetu codes seems to be a common entry-level task to familiarize new computer science students with regular expressions, dates, string subsetting and similar concepts. The reasoning behind packaging these functions as an R package is the same as stated in Wickham and Bryan's R Packages Introduction: code sharing, transparency, user manuals, semantic versioning and documenting changes between versions \citep{wickham}. In addition, there is of course intrinsic value in providing a solution to a common problem in R language.
+Personal identity code generators and validators are nothing new. In fact, handling hetu codes seems to be a common entry-level task to familiarize new computer science students with regular expressions, dates, string subsetting and similar concepts. The reasoning behind packaging these functions as an R package is the same as stated in Wickham and Bryan's R Packages Introduction: code sharing, transparency, user manuals, semantic versioning and documenting changes between versions \citep{wickham}. In addition, there is of course intrinsic value in providing a solution to a common problem in the R language.
 
-\section{Extracting information from Finnish personal identity codes}
+\section{Working with personal identity codes}
 
-The method of validating and extracting information from identification numbers is manually doable and simple in principle but in practice becomes unfeasible with datasets larger than a few dozen observations. The hetu package provides easy-to-use tools for programmatic handling of Finnish personal identity codes and Business ID codes.\footnote{In Finnish: Yritys- ja Yhteisötunnus, or Y-tunnus for short} The package utilizes R’s efficient vectorized operations and is able to generate and validate over 5 million Finnish personal identity codes or Business Identity Codes in less than 10 minutes on a regular laptop. This covers the practical upper limit set by the current population of Finland (5.5 million people), providing adequate headroom for handling of relatively large registry datasets.
+The method of validating and extracting information from identification numbers is manually doable and simple in principle but in practice becomes unfeasible with datasets larger than a few dozen observations. The hetu and sweidnumbr packages provides easy-to-use tools for programmatic handling of Finnish and Swedish personal identity codes and Business ID codes.\footnote{In Finnish: Yritys- ja Yhteisötunnus, or Y-tunnus for short, In Swedish: Organisationsnummer} The packages utilizes R’s efficient vectorized operations and is able to generate and validate over 5 million personal identity codes or Business Identity Codes in less than 10 minutes on a regular laptop. This covers the practical upper limit set by the current population of Finland (5.5 million people) and Sweden (10.35 million people), providing adequate headroom for handling of relatively large registry datasets.
+
+\subsection{The \texttt{hetu} package}
 
 Printing a table containing extracted information in a structured form can be done as follows:
 
@@ -40,18 +80,18 @@ Printing a table containing extracted information in a structured form can be do
   hetu(x)
 \end{example}
 
-The results can be seen in Table 1. We can already see that there is a problem with the last personal identity code; 29th of February 2001 is not a valid date as 2001 is not a leap year.
+The results can be seen in Table 2. We can already see that there is a problem with the last personal identity code; 29th of February 2001 is not a valid date as 2001 is not a leap year.
 
 \begin{table}[ht]
 \centering
 \begin{tabular}{rllllllllll}
 \toprule
-    & hetu & sex & p.num & ctrl.char & date & day & month & year & century & valid.pin \\ 
+    & hetu & sex & p.num & ctrl.char & date & day & month & year & century & valid.pin \\
   \hline
-  1 & 010101A0101 & Female & 010 & 1 & 2001-01-01 & 1 & 1 & 2001 & A & TRUE \\ 
+  1 & 010101A0101 & Female & 010 & 1 & 2001-01-01 & 1 & 1 & 2001 & A & TRUE \\
   2 & 111111-111C & Male & 111 & C &  1911-11-11 & 11 & 11 & 1911 & - & TRUE \\
   3 & 290201A010W & Female & 010 & M & <NA> & 29 & 02 & 2001 & A & FALSE \\
-\bottomrule   
+\bottomrule
 \end{tabular}
 \caption{Table printed with \code{hetu(pin = c("010101A0101", "111111-111C", "290201A010W"))}.}
 \label{tab:hetuprintout}
@@ -98,19 +138,19 @@ When data is inputed manually without validity checks, input errors can creep in
 \centering
 \begin{tabular}{rlllll}
 \toprule
-    & hetu & valid.p.num & valid.checksum & correct.checksum & valid.date \\ 
+    & hetu & valid.p.num & valid.checksum & correct.checksum & valid.date \\
   \hline
   1 & 290201A010M & TRUE & TRUE & FALSE & FALSE \\
   2 & 280201A010M & TRUE & TRUE & FALSE & TRUE \\
   3 & 290301A010M & TRUE & TRUE & FALSE & TRUE \\
   4 & 290200A010M & TRUE & TRUE & TRUE & TRUE \\
-\bottomrule   
+\bottomrule
 \end{tabular}
 \caption{A subset of diagnostics of invalid personal identity code "290201A010M", its variations, and finally the correct personal identity code "290200A010M".}
 \label{tab:hetudiagnostics}
 \end{table}
 
-The hetu package can generate a large number of personal identity codes with the \code{rhetu} function. The date range of the generated identity codes can be changed with parameters, but it has a hard coded lower limit at the year 1860 and upper limit in the current date. It has been theorized that the oldest individuals that received a personal identity code in 1960s were born in 1860s. Personal identity codes are never assigned beforehand and therefore it is impossible to have valid personal identity codes that have a future date. 
+The \texttt{hetu} package can generate a large number of personal identity codes with the \code{rhetu} function. The date range of the generated identity codes can be changed with parameters, but it has a hard coded lower limit at the year 1860 and upper limit in the current date. It has been theorized that the oldest individuals that received a personal identity code in 1960s were born in 1860s. Personal identity codes are never assigned beforehand and therefore it is impossible to have valid personal identity codes that have a future date.
 
 The function can also be used to generate so called temporary identity codes. Temporary identity codes are never used as a persistent and unique identifier for a single individual but as a placeholder in institutions such as hospitals when a person does not have a Finnish personal identity code or it is not known. They can be identified by having a personal number in the range of 900-999.
 
@@ -127,24 +167,93 @@ Here is an example of generating 4 temporary PINs and checking their validity wi
 As mentioned earlier, our package also supports similarly generating and checking the validity of Finnish Business ID (BID) numbers. In addition we have added support for the less known Finnish Unique Identification (FINUID) numbers.\footnote{in Finnish: Sähköinen asiointitunniste or SATU for short} As the name implies, BIDs are used as unique identifiers for companies, organizations and other legal persons. Unlike personal identity codes, BIDs do not contain any information about the company. BIDs consist of a random string of 7 numbers followed by a dash and 1 control character, a number between 0 and 9. FINUID numbers are similar in the sense that they do not contain any biocentric data on the individual and are mainly used by government authorities in IT systems. FINUID numbers consist of 8 numbers and 1 control character calculated in the same way as in personal identity codes. Both of these ID numbers are an example of indexical data, as mentioned earlier.
 
 \begin{example}
-  bid_ctrl(c("0000000-0", "0000001-9")
+  bid_ctrl(c("0000000-0", "0000001-9"))
   [1] TRUE TRUE
-  
+
   satu_ctrl("10000001N")
   [1] TRUE
 \end{example}
 
+\subsection{The \texttt{sweidnumbr} package}
+
+ The \texttt{sweidnumbr} R package has similar functionality as the \texttt{hetu} package, but for Swedish PIC and with a slightly different syntax. As of now, the package has been downloaded roughly 30 000 times. The PIC below is an example PIC taken from \citet{sv2007}.
+
+ Unlike the \texttt{hetu} package, the first step in \texttt{sweidnumbr} is to convert strings with different PIC formats or numeric variables into a \texttt{pin} vector using the \texttt{as.pin()} function
+
+ \begin{example}
+   example_pin <- c("640823-3234", "6408233234", "19640823-3230")
+   example_pin <- as.pin(example_pin)
+   example_pin
+
+   [1] "196408233234" "196408233234" "196408233230"
+   Personal identity number(s)
+ \end{example}
+
+ The \texttt{pin} vector is a S3 object and can be checked is the \texttt{is.pin()} function.
+
+ \begin{example}
+   is.pin(example_pin)
+
+   [1] TRUE
+ \end{example}
+
+ This function only check that the vector is a \texttt{pin} object, but not if the actual PIC are valid. To check PIC using the control numbers we simply use the \texttt{pin\_ctrl()} function.
+
+ \begin{example}
+   pin_ctrl(example_pin)
+
+   [1]  TRUE  TRUE FALSE
+ \end{example}
+
+ Just as in the \texttt{hetu} package we can extract informations from the PIC with specialized functions. We can now use pin\_birthplace(), pin\_sex(), and pin\_age() to extract information on birthplace, sex, and age.
+
+ \begin{example}
+   pin_sex(example_pin)
+   [1] Male Male Male
+   Levels: Male
+
+   pin_birthplace(example_pin)
+   [1] Gotlands län Gotlands län Gotlands län
+   28 Levels: Stockholm stad Stockholms län Uppsala län ... Born after 31 december 1989
+
+   pin_age(example_pin)
+   [1] 55 55 55
+   pin_age(example_pin, date = "2000-01-01")
+   [1] 35 35 35
+ \end{example}
+
+ And, as with the \texttt{hetu} R package we can also generate, or simulate, PIC with the \texttt{rpin()} function. The same structure also holds for handling Swedish organizational number (SON), namely \texttt{as.oin()}, \texttt{is.oin()}, and \texttt{oin\_ctrl()}. Unlike PIC, the \texttt{oin} contain information on the type of organization of a given SON.
+
+ \begin{example}
+   oin_group(example\_oin)
+
+   [1] Aktiebolag
+   [2] Stat, landsting, kommuner, församlingar
+   [3] Ideella föreningar och stiftelser
+   3 Levels: Aktiebolag ... Stat, landsting, kommuner, församlingar
+ \end{example}
+
+ And just as in the \texttt{hetu} package and for PIC, we can simulate new SON using the \texttt{roin()} function.
+
+ \begin{example}
+   roin(3)
+
+   [1] "964228-2835" "945463-1814" "736937-8059"
+   Organizational identity number(s)
+ \end{example}
+
+
 \section{Discussion}
 
-The hetu R package provides a free and open source methods for validating and extracting data from a large number of Finnish personal identity codes. While the package's target audience consists mostly of Finnish users and people with particular interest in NIN systems around the world, the package makes a generic contribution in developing methodologies related to NIN handling in R. In the future, a more generic package or class structures could be useful to unify the handling of different NIN systems around the world, and might be worth exploring further.\footnote{Although in Unix philosophy one stated aim is "Write programs that do one thing and do it well" and "Write programs to work together" as opposed to writing one program that aims to do everything. The value in one generic program might mostly be related to sharing information and good coding practices among interested parties around the world.}
+The hetu and sweidnumbr R packages provides a free and open source methods for validating and extracting data from a large number of Finnish and Swedish personal identity codes. While the package's target audience consists mostly of Finnish and Swedish users and people with particular interest in NIN systems around the world, the package makes a generic contribution in developing methodologies related to NIN handling in R. In the future, a more generic package or class structures could be useful to unify the handling of different NIN systems around the world, and might be worth exploring further.\footnote{Although in Unix philosophy one stated aim is "Write programs that do one thing and do it well" and "Write programs to work together" as opposed to writing one program that aims to do everything. The value in one generic program might mostly be related to sharing information and good coding practices among interested parties around the world.}
 
-The origins of this package can be traced to early 2010s when one curious individual wanted to analyze a large number of Finnish personal identity codes that were leaked to the internet by an anonymous hacker. The legality and morality of handling such dataset containing personal information was and is in a grey area at best. As developers of this package we cannot condone such activities, even if they are conducted out of curiousity and not ill intentions, but we acknowledge that we cannot prevent our users from doing that either.\footnote{The use of "Good, not evil" license texts is thought to be problematic and against the ethos of open source software} 
+The origins of these packages can be traced to early 2010s when one curious individual wanted to analyze a large number of Finnish personal identity codes that were leaked to the internet by an anonymous hacker. The legality and morality of handling such dataset containing personal information was and is in a grey area at best. As developers of this package we cannot condone such activities, even if they are conducted out of curiosity and not ill intentions, but we acknowledge that we cannot prevent our users from doing that either.\footnote{The use of "Good, not evil" license texts is thought to be problematic and against the ethos of open source software} 
 
 We have acknowledged beforehand that random personal identity codes generated with the hetu package could theoretically be used for purposes such as synthetic identity fraud.\footnote{see \citet[32]{brensinger2021} for a short description of synthetic fraud related to American SSNs} On the other hand it is important to note that such identity codes could also be created by hand as the same information that we have used in developing our algorithms is available at Finnish authorities' web page \citep{hetudvv}. Our package can be useful for many, and it does not make fraudulent activities significantly easier for malevolent individuals which is essential in judging the pros and cons of releasing this software to the public.
 
-Similar data breaches have made people more wary of digital services. Privacy concerns can push Finland and other Nordic countries towards redesigning their national identification numbers to omit the embedded personal information sometime in the future. There is an ongoing government project led by Ministry of Finance to redesign the system of personal identity codes \citep{hetuvm}. These and other related policy and legislation changes will be closely monitored and, if necessary, the package functions can be adjusted accordingly.
+Similar data breaches have made people more wary of digital services. Privacy concerns can push Finland, Sweden and other Nordic countries towards redesigning their national identification numbers to omit the embedded personal information sometime in the future. There is an ongoing government project led by Ministry of Finance to redesign the system of personal identity codes \citep{hetuvm}. These and other related policy and legislation changes will be closely monitored and, if necessary, the package functions can be adjusted accordingly.
 
-The package is published under permissive GPL-2 license and we encourage users to study the code and modify it for their own use or submit improvements to our code repository on GitHub.\footnote{\url{https://github.com/rOpenGov/hetu}}
+Both packages are published under permissive GPL-2 license. We encourage users to study the source code and modify it for their own use or submit improvements to our code repositories on GitHub.\footnote{\url{https://github.com/rOpenGov/hetu}, \url{https://github.com/rOpenGov/sweidnumbr}}
 
 \section{Acknowledgements}
 
@@ -158,6 +267,13 @@ We are grateful to all contributors, in particular Juuso Parkkinen and Joona Leh
   Finland\\
   ORCiD: 0000-0003-2853-2765\\
   \email{pyry.kantanen@utu.fi}}
+  
+\address{Måns Magnusson\\
+  Department of Statistics\\
+  Uppsala University\\
+  Sweden\\
+  ORCiD: 0000-0002-0296-2719\\
+  \email{mans.magnusson@statistik.uu.se}}
 
 \address{Leo Lahti\\
   Department of Computing\\
