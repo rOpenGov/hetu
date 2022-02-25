@@ -9,7 +9,7 @@ National identification numbers (NIN) are a widely used method for uniquely iden
 
 \section{Introduction}
 
-Reliably keeping track of individuals in a given territory has long been seen as an important feature of modern governance. The scope of this tracking has spread from disciplinary institutions, such as prisons, military units and schools to society at large \citep{foucault7778}. We can see the results of this development today in the form of different \emph{national identification number} (NIN) systems implemented around the world.
+Reliably keeping track of individuals in a given territory has long been seen as an important feature of modern governance. Foucault \citeyear[115-120]{foucault7778} observed a historical pattern where practices first implemented in disciplinary institutions, such as prisons, military units and schools have spread to society at large.  We can see the results of this development today in the form of different \emph{national identification number} (NIN) systems implemented around the world.
 
 An ideal personal identification system should strive to be both unique and "self-same" over time. Self-sameness refers to a degree of immutability that allows organizations to identify and reidentify a person over time. A combination of attributes\footnote{Think of SQL's \emph{composite key}} such as name, occupation and address would probably form a unique identifier even in relatively large crowds, but such attributes might not stay the same over time. \citep{brensinger2021}. In everyday life settings, a combination of personal attributes, such as name, occupation and address may be sufficiently \emph{unique} to identify individuals even in large groups of people. Such an approach has its limitations. The problem with such composite keys is, however, that parts that make the composite key might not be permanent, making it impossible to compare different data points in the same dataset or combining data from different datasets.
 
@@ -18,6 +18,40 @@ According to Alterman (as cited in \citeauthor{ajana2013}, \citeyear[8]{ajana201
 In casual settings the combination of person's name and physiological characteristics (or \emph{biometric identifiers}) are enough to identify friends, acquaintances and strangers from one another. Names can change over time and even fingerprints and iris pattern samples need to be refreshed from time to time, making them poor from self-sameness perspective. Interestingly, Lauer (2017) and Rule (1973) (as cited in \citeauthor{brensinger2021}, \citeyear[31--32]{brensinger2021}) noted that in the 1960's American credit bureaus and other organizations struggled with this same problem having used a combination of attributes to identify people in their registers and needed to find a better way to identify individuals. In a moment that may be described as \emph{function creep} they settled for using the \emph{social security number} (SSN) as the single identifying number\footnote{Think of SQL's \emph{primary key}}, horizontal and vertical information sharing possible.
 
 For a number of reasons, many identification numbers are not just random strings. The American SSN originally contained information about the person's birth year and where the number was first registered \citep[32]{brensinger2021} whereas Nordic countries' national identification numbers often contain (or used to contain) information about the individual's birth date and sex \citep{watson2010, salste2021}. Therefore they may be seen as biocentric data rather than pure indexical data, making them more sensitive to handle.
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{lllllll}
+\toprule
+  country & code name & introduced & n characters & birth date & sex & public \\
+  \hline
+  Sweden & personnummer & 1947 & 11 & yes & yes & no \\
+  Iceland & kennitala & 1950 & 10 & yes & no & yes \\
+  Norway & fødselsnummer & 1964 & 11 & yes & yes & no \\
+  Danmark & CPR-nummer & 1968 & 11 & yes & yes & no \\
+  Finland & henkilötunnus & 1968 & 11 & yes & yes & no \\
+\bottomrule
+\end{tabular}
+\caption{Nordic NINs: Inauguration and embedded information}
+\label{tab:nordiccomparison}
+\end{table}
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{lllllll}
+\toprule
+  country & NIN & example code & structure & century \\
+  \hline
+  SE & personnummer & 610321-3499 & YYMMDDCRRRC \\
+  IS & kennitala & 121212-1239 & DDMMYYNNQC \\
+  NO & fødselsnummer & 110779 41012 & DDMMYYNNNQQ \\
+  DK & CPR-nummer & 300280-1178 & DDMMYY-NNNQ \\
+  FI & henkilötunnus & 131052-308T & DDMMYYCNNNQ \\
+\bottomrule
+\end{tabular}
+\caption{DD = days [01-31], MM = months [01-12], YY = years [00-99], N = natural number [0-9], C = a digit or a marker indicating century or age, Q = a check digit or a control character. Swedish century marker is - for people under 100 years old and + for people over 100 years old. Icelandic century marker is 9 for people born in 1900s and 0 for people born in 2000s. Norwegian birth century can be determined by looking at the three natural numbers: 000-499 for people born in 1900s, 500-749 for people born in 1800s and 500-999 again for people born in 2000s. Danish birth century can by looking up four last numbers from a separate table: people born in different centuries have different ranges. Finnish century marker is + (plus) for people born in 1800s, - (dash) for people born in 1900s and letter A for people born in 2000s.}
+\label{tab:nordiccomparison2}
+\end{table}
 
 In the Nordic countries comprehensive national identification number systems were developed and implemented from the 1940's to 1960's \citep{watson2010}. In Sweden, the personal identity number was introduced in 1947 as a way to identify individuals for tax purposes. The personal identity number consisted both of the date of birth and an additional three-digit birth number that together uniquely identified every individual in Sweden. In 1967 a control digit to easier identify incorrect entries was added to finalize the full Swedish personal identity number (or \emph{personnummer}) \citep{johansson2003,scb2016}.
 
@@ -46,7 +80,7 @@ Printing a table containing extracted information in a structured form can be do
   hetu(x)
 \end{example}
 
-The results can be seen in Table 1. We can already see that there is a problem with the last personal identity code; 29th of February 2001 is not a valid date as 2001 is not a leap year.
+The results can be seen in Table 2. We can already see that there is a problem with the last personal identity code; 29th of February 2001 is not a valid date as 2001 is not a leap year.
 
 \begin{table}[ht]
 \centering
