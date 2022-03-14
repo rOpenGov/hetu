@@ -1,5 +1,6 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+
 <!-- badges: start -->
 
 [![rOG-badge](https://ropengov.github.io/rogtemplate/reference/figures/ropengov-badge.svg)](http://ropengov.org/)
@@ -50,6 +51,18 @@ version from GitHub:
 devtools::install_github("rOpenGov/hetu")
 ```
 
+Development version can be also installed using the
+[r-universe](https://ropengov.r-universe.dev):
+
+``` r
+# Enable this universe
+options(repos = c(
+  ropengov = "https://ropengov.r-universe.dev",
+  CRAN = "https://cloud.r-project.org"
+))
+install.packages("hetu")
+```
+
 ### Loading the package and accessing the tutorial
 
 Load the package:
@@ -90,14 +103,14 @@ vignette("hetu")
 
 ## Contributing
 
--   [Submit suggestions and bug
+  - [Submit suggestions and bug
     reports](https://github.com/ropengov/hetu/issues) (provide the
     output of `sessionInfo()` and `packageVersion("hetu")` and
     preferably provide a [reproducible
     example](http://adv-r.had.co.nz/Reproducibility.html))
--   [Send a pull request](https://github.com/rOpenGov/hetu/pulls)
--   [Star us on the Github page](https://github.com/ropengov/hetu/)
--   [See our website](http://ropengov.org/community/) for additional
+  - [Send a pull request](https://github.com/rOpenGov/hetu/pulls)
+  - [Star us on the Github page](https://github.com/ropengov/hetu/)
+  - [See our website](http://ropengov.org/community/) for additional
     contact information
 
 ## Acknowledgements
@@ -108,5 +121,5 @@ Leo Lahti. hetu: Finnish personal ID number data toolkit for R. URL:
 <http://ropengov.github.io/hetu/>
 
 We are grateful to all
-[contributors](https://github.com/rOpenGov/hetu/graphs/contributors)!
+[contributors](https://github.com/rOpenGov/hetu/graphs/contributors)\!
 This project is part of [rOpenGov](http://ropengov.org).
