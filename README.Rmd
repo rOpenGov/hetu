@@ -49,6 +49,18 @@ Alternatively, use `devtools` package to install the latest development version 
 devtools::install_github("rOpenGov/hetu")
 ```
 
+Development version can be also installed using the
+[r-universe](https://ropengov.r-universe.dev):
+
+```{r, eval=FALSE}
+# Enable this universe
+options(repos = c(
+  ropengov = "https://ropengov.r-universe.dev",
+  CRAN = "https://cloud.r-project.org"
+))
+install.packages("hetu")
+```
+
 ### Loading the package and accessing the tutorial
 
 Load the package:
