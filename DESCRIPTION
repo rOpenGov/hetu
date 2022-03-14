@@ -54,3 +54,7 @@ Suggests:
 RoxygenNote: 7.1.2
 X-schema.org-isPartOf: http://ropengov.org/
 X-schema.org-keywords: ropengov
+Config/Needs/website: 
+    magick,
+    ropengov/rogtemplate
+
