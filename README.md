@@ -63,7 +63,7 @@ install.packages("hetu")
 
 ### Loading the package and accessing the tutorial
 
-Load the package:
+Loading the package in R command line:
 
 ``` r
 library(hetu)
