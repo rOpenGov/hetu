@@ -1,6 +1,6 @@
 % !TeX root = RJwrapper.tex
 \title{Validating and Extracting Information from National Identification Numbers in R: the case of Finland and Sweden}
-\author{by Pyry Kantanen, Jussi Paananen, Erik Bulow, Måns Magnusson, Leo Lahti} % Add affiliations?
+\author{by Pyry Kantanen, Erik Bulow, Måns Magnusson, Leo Lahti} % Add affiliations?
 
 \maketitle
 
@@ -269,7 +269,7 @@ Just as in the \pkg{hetu} package we can extract information from the Swedish NI
   [1] 35 35 35
 \end{example}
 
-And, as with the \pkg{hetu} R package we can also generate, or simulate, PIN with the \code{rpin()} function. The same structure also holds for handling Swedish organizational number (SON), namely \code{as.oin()}, \code{is.oin()}, and \code{oin\_ctrl()}. Unlike the Finnish BID, the \code{oin} contain information on the type of organization of a given SON.
+As with the \pkg{hetu} R package we can also generate, or simulate, NINs with the \code{rpin()} function. Shared functions exist also for Swedish organization identifiers, or Swedish organizational numbers (SON), in the form of \code{as.oin()}, \code{is.oin()}, and \code{oin\_ctrl()} functions. Unlike the Finnish BID, the \code{oin} contain information on the type of organization of a given SON, which can be determined by using the \code{oin\_group()} function.
 
 \begin{example}
   > oin_group(example\_oin)
