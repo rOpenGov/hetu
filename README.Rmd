@@ -15,7 +15,6 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 [![rOG-badge](https://ropengov.github.io/rogtemplate/reference/figures/ropengov-badge.svg)](http://ropengov.org/)
   [![R build status](https://github.com/rOpenGov/hetu/workflows/R-CMD-check/badge.svg)](https://github.com/rOpenGov/hetu/actions)
-  [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/rOpenGov/hetu?branch=master&svg=true)](https://ci.appveyor.com/project/rOpenGov/hetu)
   [![codecov](https://codecov.io/gh/rOpenGov/hetu/branch/master/graph/badge.svg)](https://codecov.io/gh/rOpenGov/hetu)
   [![Downloads](http://cranlogs.r-pkg.org/badges/grand-total/hetu)](https://cran.r-project.org/package=hetu)
   [![Downloads](http://cranlogs.r-pkg.org/badges/hetu)](https://cran.r-project.org/package=hetu)
@@ -49,9 +48,21 @@ Alternatively, use `devtools` package to install the latest development version 
 devtools::install_github("rOpenGov/hetu")
 ```
 
+Development version can be also installed using the
+[r-universe](https://ropengov.r-universe.dev):
+
+```{r, eval=FALSE}
+# Enable this universe
+options(repos = c(
+  ropengov = "https://ropengov.r-universe.dev",
+  CRAN = "https://cloud.r-project.org"
+))
+install.packages("hetu")
+```
+
 ### Loading the package and accessing the tutorial
 
-Load the package:
+Loading the package in R command line:
 
 ```{r load_library, eval = TRUE}
 library(hetu)
