@@ -112,7 +112,7 @@ Printing a data frame containing extracted information in a structured form can 
  > hetu(x)
 \end{example}
 
-The \code{hetu()} function is the workhorse of the \pkg{hetu} package. Without additional parameters it prints out a data frame with all information that can be extracted from Finnish NINs as well as a single column that indicates if the NIN is valid as a whole or if it has problems that make it invalid. For demonstration purposes the 3rd NIN we included has an invalid date part; 29th of February would only be a valid date if the year was a leap year, which 2001 is not.
+The \code{hetu()} function is the workhorse of the \pkg{hetu} package. Without additional parameters it prints out a data frame with all information that can be extracted from Finnish NINs as well as a single column that indicates if the NIN is valid as a whole or if it has any problems that make it invalid. For demonstration purposes the 3rd NIN listed below has an invalid date part; 29th of February would only be a valid date if the year was a leap year, which 2001 is not.
 
 \begin{example}
          hetu    sex p.num ctrl.char       date day month year century valid.pin
@@ -121,7 +121,9 @@ The \code{hetu()} function is the workhorse of the \pkg{hetu} package. Without a
 3 290201A010M Female   010         M       <NA>  29     2 2001       A     FALSE
 \end{example}
 
-The generic way of outputing information found on individual columns is to use the standard \code{hetu()} function with extract-parameter. For example:
+The full birth year is constructed by reading the 2-digit year information and century marker; in the case of the first row example, "01" and "A". "A" means that the person is born in 2000s, "-" means 1900s and "+" means 1800s. A binary sex classification can be constructed simply by calculating if personal number (\code{p.num} column) is an odd or an even number: Even numbers (for example "010") denote a female and odd numbers (for example "111") denote a male.
+
+The generic way of outputing information found on individual columns is to use the standard \code{hetu()} function with extract-parameter.
 
 \begin{example}
   > hetu("010101A0101", extract = "sex")
