@@ -48,9 +48,9 @@
 #' hetu(c("010101-0101", "111111-111C"))
 #' # Process a vector of hetu's and extract sex information from each
 #' hetu(c("010101-0101", "111111-111C"), extract="sex")
-#' 
+#'
 #' @importFrom checkmate assert_choice
-#' 
+#'
 #' @export
 hetu <- function(pin, extract = NULL, allow.temp = FALSE, diagnostic = FALSE) {
 

@@ -198,16 +198,10 @@ Diagnostic information can be examined more closely by using subset or by using 
 tail(hetu_diagnostic(diagnosis_example), 3)
 ```
 
-By using extract, the user can limit the printed columns to only those which have FALSE values.
+By using extract parameter, the user can choose which columns will be printed in the output table. Valid extract values are listed in the function's help file.
 
 ```{r example_diagnostics3, error = TRUE, purl = FALSE, warning = FALSE}
 hetu_diagnostic(diagnosis_example, extract = c("valid.century", "correct.checksum"))
-```
-
-When subsetting is set to TRUE, the function prints only rows with FALSE value in the extracted test.
-
-```{r example_diagnostics4, error = TRUE, purl = FALSE, warning = FALSE}
-hetu_diagnostic(diagnosis_example, subsetting = TRUE, extract = "valid.century")
 ```
 
 Because of the way PINs are handled in inside hetu-function, the diagnostics-function can show unexpected warning messages or introduce NAs by coercion if the date-part of the PIN is too long. This may result in inability to handle the PIN at all!

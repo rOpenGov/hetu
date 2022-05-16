@@ -4,7 +4,7 @@
 #' @return Date of birth as a vector in date format.
 #' @examples
 #' pin_date(c("010101-0101", "111111-111C"))
-#' 
+#'
 #' @export
 pin_date <- function(pin, allow.temp = FALSE) {
   hetu(pin, extract = "date", allow.temp = allow.temp)

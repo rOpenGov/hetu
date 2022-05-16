@@ -13,7 +13,7 @@ hetu_age(pin, date = Sys.Date(), timespan = "years", allow.temp = FALSE)
 \item{pin}{Finnish personal identification number as a character vector,
 or vector of identification numbers as a character vectors}
 
-\item{date}{Date at which age is calculated. If a vector is provided it 
+\item{date}{Date at which age is calculated. If a vector is provided it
 must be of the same length as the \code{pin} argument.}
 
 \item{timespan}{Timespan to use to calculate age. The possible timespans are:
