@@ -10,7 +10,7 @@ satu_ctrl(satu)
 \item{satu}{a vector of 1 or more Unique Identification Numbers}
 }
 \description{
-A function that checks whether a \code{satu} (Finnish Unique Identification 
+A function that checks whether a \code{satu} (Finnish Unique Identification
 Number) is valid. Returns \code{TRUE} or \code{FALSE}.
 }
 \examples{

@@ -24,8 +24,8 @@ Factor with label 'Male' and 'Female'.
 Extract sex from Finnish personal identification number.
 }
 \examples{
-pin_sex("010101-010A") 
-hetu_sex("010101-010A") 
+pin_sex("010101-010A")
+hetu_sex("010101-010A")
 }
 \seealso{
 \code{\link{hetu}} For general information extraction

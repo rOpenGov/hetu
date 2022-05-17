@@ -1,12 +1,17 @@
 # *News*
 ==========
 
+# hetu 1.0.7.9000 (2022-05-16)
+
+* subsetting-parameter (TRUE or FALSE) dropped from `hetu_diagnostic()` function as it was unnecessary syntactic sugar that was difficult to communicate to users. Similar functionalities can be easily achieved with standard subsetting functionalities found in base R and especially in tidyverse.
+* `satu_ctrl_char()` parameter for printing whole SATU/FINUID-numbers is now called "print.full" instead of "complement".
+
 # hetu 1.0.6.9000 (2022-01-18)
 
 * Rewritten `rpin()` function for increased speed
 * Added new function `hetu_control_char()` both for internal use in other functions as well as convenience (sometimes you know the rest of the identity code and just need to determine the control character)
 * Added support for checking the validity of Finnish electronic Unique Identification Numbers (SATU / FINUID). Two new functions: `satu_ctrl()` and `satu_ctrl_char()`, the former works like `hetu_ctrl()` and the latter works like abovementioned `hetu_control_char()`
-* `hetu()` table column name checksum changed to more descriptive ctrl.char. The change also affects related column names in `hetu_diagnostic()`
+* `hetu()` table column name checksum changed to more descriptive ctrl.char. The change also affects related column names in `hetu_diagnostic()`. This is to illustrate the point that Finnish personal identity code has control characters (numbers and letters) instead of check digits.
 
 # hetu 1.0.3 (2021-07-28)
 

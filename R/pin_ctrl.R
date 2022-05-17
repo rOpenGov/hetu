@@ -2,52 +2,57 @@
 #' @description Validate Finnish personal identification numbers (hetu).
 #' @param pin Finnish personal identification number as a character vector, or
 #'    vector of identification numbers as a character vectors.
-#' @param allow.temp If TRUE, temporary PINs (personal numbers 900-999) are 
-#'    handled similarly to regular PINs (personal numbers 002-899), meaning 
-#'    that otherwise valid temporary PIN will return a TRUE. Default 
+#' @param allow.temp If TRUE, temporary PINs (personal numbers 900-999) are
+#'    handled similarly to regular PINs (personal numbers 002-899), meaning
+#'    that otherwise valid temporary PIN will return a TRUE. Default
 #'    is \code{FALSE}.
-#' @return Logical indicating whether the input string is a valid Finnish 
-#'    personal identification number,
+#' @return A logical vector indicating whether the input vector contains valid
+#'  Finnish personal identity codes.
 #' @author Pyry Kantanen
 #' @seealso \code{\link{hetu}} For extracting information from Finnish personal
 #'    identification numbers.
 #' @examples
 #' pin_ctrl("010101-0101") # TRUE
 #' pin_ctrl("010101-010A") # FALSE
+#' pin_ctrl(c("010101-0101", "010101-010A")) # TRUE FALSE
 #' @export
 pin_ctrl <- function(pin, allow.temp = FALSE) {
 
   validity_test <- hetu(pin, extract = "valid.pin", allow.temp = allow.temp)
   validity_test
-  
+
 }
 
 #' @rdname pin_ctrl
 #' @examples
 #' hetu_ctrl("010101-0101") # TRUE
 #' hetu_ctrl("010101-010A") # FALSE
+#' hetu_ctrl(c("010101-0101", "010101-010A")) # TRUE FALSE
 #' @export
 hetu_ctrl <- pin_ctrl
 
 #' @title Check Finnish Business ID (y-tunnus) validity
-#' 
-#' @description 
-#' A function that checks whether a \code{bid} (Finnish Business ID) is valid. 
+#'
+#' @description
+#' A function that checks whether a \code{bid} (Finnish Business ID) is valid.
 #' Returns \code{TRUE} or \code{FALSE}.
-#' 
-#' @param 
+#'
+#' @param
 #' bid a vector of 1 or more business identity numbers
-#' 
-#' @examples 
+#'
+#' @examples
 #' bid_ctrl(c("0000000-0", "0000001-9")) # TRUE TRUE
 #' bid_ctrl("0737546-1") # FALSE
 #' @export
 bid_ctrl <- function(bid) {
 
-  # Try to create Business ID -object from the given bid, check if created 
-  # object is of the correct class 
+  # Try to create Business ID -object from the given bid, check if created
+  # object is of the correct class
   if (length(bid) > 1) {
-    return(vapply(bid, FUN=bid_ctrl, FUN.VALUE = logical(1), USE.NAMES = FALSE))
+    return(vapply(bid,
+                  FUN = bid_ctrl,
+                  FUN.VALUE = logical(1),
+                  USE.NAMES = FALSE))
   }
 
   if (!is.character(bid)) {
@@ -64,7 +69,7 @@ bid_ctrl <- function(bid) {
   }
 
   # Check separator character
-  dash <- substr(bid, start=8, stop=8)
+  dash <- substr(bid, start = 8, stop = 8)
   if (!dash %in% c("-")) {
     warning(paste0("Invalid separator character '",
                    dash,
@@ -72,13 +77,15 @@ bid_ctrl <- function(bid) {
                    bid))
     valid.separator <- FALSE
     return(valid.separator)
-  } else {valid.separator <- TRUE}
+  } else {
+    valid.separator <- TRUE
+  }
 
   # Calculate if BID is correct using Mod 11-2
   x <- substr(bid, start = 1, stop = 7)
   x_control <- substr(bid, start = 9, stop = 9)
-  x <- as.numeric(unlist(strsplit(x, split="")))
-  x <- x * c(7,9,10,5,8,4,2)
+  x <- as.numeric(unlist(strsplit(x, split = "")))
+  x <- x * c(7, 9, 10, 5, 8, 4, 2)
   x <- sum(x)
   check <- x %% 11
   if (check == 0) {
@@ -94,22 +101,22 @@ bid_ctrl <- function(bid) {
 }
 
 #' @title Check Finnish Unique Identification Number validity
-#' 
-#' @description 
-#' A function that checks whether a \code{satu} (Finnish Unique Identification 
+#'
+#' @description
+#' A function that checks whether a \code{satu} (Finnish Unique Identification
 #' Number) is valid. Returns \code{TRUE} or \code{FALSE}.
-#' 
-#' @param 
+#'
+#' @param
 #' satu a vector of 1 or more Unique Identification Numbers
-#' 
-#' @examples 
+#'
+#' @examples
 #' satu_ctrl("10000001N") # TRUE
 #' satu_ctrl(c("10000001N", "20000001B")) # TRUE FALSE
 #' @export
 satu_ctrl <- function(satu) {
-  
-  first_eight <- substr(satu, 1, 8)
-  
-  vector <- satu_control_char(first_eight, complement = TRUE)
+
+  satu_first_eight_chars <- substr(satu, 1, 8)
+
+  vector <- satu_control_char(satu_first_eight_chars, print.full = TRUE)
   satu == vector
 }

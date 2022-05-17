@@ -10,7 +10,7 @@ bid_ctrl(bid)
 \item{bid}{a vector of 1 or more business identity numbers}
 }
 \description{
-A function that checks whether a \code{bid} (Finnish Business ID) is valid. 
+A function that checks whether a \code{bid} (Finnish Business ID) is valid.
 Returns \code{TRUE} or \code{FALSE}.
 }
 \examples{

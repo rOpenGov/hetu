@@ -5,22 +5,19 @@
 \alias{pin_diagnostic}
 \title{Diagnostics Tool for HETU}
 \usage{
-hetu_diagnostic(pin, extract = NULL, subsetting = FALSE)
+hetu_diagnostic(pin, extract = NULL)
 
-pin_diagnostic(pin, extract = NULL, subsetting = FALSE)
+pin_diagnostic(pin, extract = NULL)
 }
 \arguments{
-\item{pin}{Finnish personal identification number as a character vector, 
+\item{pin}{Finnish personal identification number as a character vector,
 or vector of identification numbers as a character vectors}
 
 \item{extract}{Extract only selected part of the diagnostic information.
 Valid values are "\code{hetu}", "\code{is.temp}", "\code{valid.p.num}",
 "\code{valid.ctrl.char}", "\code{correct.ctrl.char}", "\code{valid.date}",
-"\code{valid.day}", "\code{valid.month}", "\code{valid.length}", 
+"\code{valid.day}", "\code{valid.month}", "\code{valid.length}",
 "\code{valid.century}". If \code{NULL} (default), returns all information.}
-
-\item{subsetting}{Print only PINs where the validity check chosen 
-in \code{extract} returns \code{FALSE}.}
 }
 \value{
 A data.frame containing diagnostic checks about PINs.
@@ -29,18 +26,16 @@ A data.frame containing diagnostic checks about PINs.
 Produce a data frame of PINs that may require closer scrutiny.
 }
 \examples{
-diagnosis_example <- c("010101-0102", "111111-111Q", 
-"010101B0101", "320101-0101", "011301-0101", 
+diagnosis_example <- c("010101-0102", "111111-111Q",
+"010101B0101", "320101-0101", "011301-0101",
 "010101-01010", "010101-0011")
-## Print all diagnoses
+## Print all diagnostics for various fake personal identity codes
 hetu_diagnostic(diagnosis_example)
 # Extract century-related checks
 hetu_diagnostic(diagnosis_example, extract = "valid.century")
-# Extract only rows where valid.ctrl.char = FALSE
-hetu_diagnostic(diagnosis_example, subsetting = TRUE, extract = "valid.day") 
 
-diagnosis_example <- c("010101-0102", "111111-111Q", 
-"010101B0101", "320101-0101", "011301-0101", 
+diagnosis_example <- c("010101-0102", "111111-111Q",
+"010101B0101", "320101-0101", "011301-0101",
 "010101-01010", "010101-0011")
 ## Print all diagnoses
 pin_diagnostic(diagnosis_example)
