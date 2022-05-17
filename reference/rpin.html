@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">hetu</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.6.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.7.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -82,7 +82,7 @@
 character string in ISO 8601 standard, for example "2001-02-03".
 Default is "1895-01-01".</p></dd>
 <dt>end.date</dt>
-<dd><p>Upper limit of generated <code>hetu</code>. 
+<dd><p>Upper limit of generated <code>hetu</code>.
 Default is current date.</p></dd>
 <dt>p.male</dt>
 <dd><p>Probability of males, between 0.0 and 1.0. Default is 0.4.</p></dd>
@@ -90,7 +90,7 @@ Default is current date.</p></dd>
 <dd><p>Probability of temporary identification numbers, between
 0.0 and 1.0. Default is 0.0.</p></dd>
 <dt>num.cores</dt>
-<dd><p>The number of cores for parallel processing. The number 
+<dd><p>The number of cores for parallel processing. The number
 of available cores can be determined with <code>detectCores()</code>.
 Default is 1.</p></dd>
 </dl></div>
@@ -105,15 +105,15 @@ More specifically, there are 498 odd personal numbers for males and 498 even
 personal numbers for females from range 002-899. Additionally there are 50
 odd numbers for males and 50 even numbers for females in the temporary
 personal identity code number range 900-999 that is not normally in use.
-This function will return an error "too few positive probabilities" in 
-sample.int function if you try to generate too many codes in a short enough 
+This function will return an error "too few positive probabilities" in
+sample.int function if you try to generate too many codes in a short enough
 timeframe.</p>
 <p>The theoretical upper limit of valid PINs is in the millions since there are
 898 PINs available for each day, 327770 for each year. In practice this
-number is much lower since same personal number component cannot be 
-"recycled" if it has been used in the past. To illustrate, if an identity 
-code "010101-0101" has already been assigned to someone born in 1901-01-01, 
-a similar code "010101A0101" for someone born in 2001-01-01 could not be 
+number is much lower since same personal number component cannot be
+"recycled" if it has been used in the past. To illustrate, if an identity
+code "010101-0101" has already been assigned to someone born in 1901-01-01,
+a similar code "010101A0101" for someone born in 2001-01-01 could not be
 used.</p>
     </div>
     <div class="section level2">
@@ -126,21 +126,21 @@ used.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu">rpin</span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></span>
 <span class="r-in"><span class="fu"><a href="hetu.html">hetu</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>          hetu    sex p.num ctrl.char       date day month year century</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 080249-218E Female   218         E 1949-02-08   8     2 1949       -</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 080350-8862 Female   886         2 1950-03-08   8     3 1950       -</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 140719A679F   Male   679         F 2019-07-14  14     7 2019       A</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 011232-4226 Female   422         6 1932-12-01   1    12 1932       -</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 020276-8918   Male   891         8 1976-02-02   2     2 1976       -</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 200597-0951   Male   095         1 1997-05-20  20     5 1997       -</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   valid.pin</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1      TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2      TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3      TRUE</span>
 <span class="r-in"><span class="fu"><a href="hetu.html">hetu</a></span><span class="op">(</span><span class="va">x</span>, extract <span class="op">=</span> <span class="st">"sex"</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Female" "Female" "Male"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Female" "Male"   "Male"  </span>
 <span class="r-in"><span class="fu"><a href="hetu.html">hetu</a></span><span class="op">(</span><span class="va">x</span>, extract <span class="op">=</span> <span class="st">"ctrl.char"</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "E" "2" "F"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "6" "8" "1"</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu">rhetu</span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></span>
 <span class="r-in"><span class="va">x</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "090940-411M" "301059-163W" "141299-035C"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "040102-540A" "250720-274S" "020582-325Y"</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

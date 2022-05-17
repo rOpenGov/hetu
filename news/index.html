@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">hetu</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.6.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.7.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,14 +48,19 @@
     </div>
 
     <div class="section level2">
+<h2 class="pkg-version" data-toc-text="1.0.7.9000" id="hetu-1079000-2022-05-16">hetu 1.0.7.9000 (2022-05-16)<a class="anchor" aria-label="anchor" href="#hetu-1079000-2022-05-16"></a></h2>
+<ul><li>subsetting-parameter (TRUE or FALSE) dropped from <code><a href="../reference/hetu_diagnostic.html">hetu_diagnostic()</a></code> function as it was unnecessary syntactic sugar that was difficult to communicate to users. Similar functionalities can be easily achieved with standard subsetting functionalities found in base R and especially in tidyverse.</li>
+<li>
+<code>satu_ctrl_char()</code> parameter for printing whole SATU/FINUID-numbers is now called “print.full” instead of “complement”.</li>
+</ul></div>
+    <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.0.6.9000" id="hetu-1069000-2022-01-18">hetu 1.0.6.9000 (2022-01-18)<a class="anchor" aria-label="anchor" href="#hetu-1069000-2022-01-18"></a></h2>
 <ul><li>Rewritten <code><a href="../reference/rpin.html">rpin()</a></code> function for increased speed</li>
 <li>Added new function <code><a href="../reference/hetu_control_char.html">hetu_control_char()</a></code> both for internal use in other functions as well as convenience (sometimes you know the rest of the identity code and just need to determine the control character)</li>
 <li>Added support for checking the validity of Finnish electronic Unique Identification Numbers (SATU / FINUID). Two new functions: <code><a href="../reference/satu_ctrl.html">satu_ctrl()</a></code> and <code>satu_ctrl_char()</code>, the former works like <code><a href="../reference/pin_ctrl.html">hetu_ctrl()</a></code> and the latter works like abovementioned <code><a href="../reference/hetu_control_char.html">hetu_control_char()</a></code>
 </li>
 <li>
-<code><a href="../reference/hetu.html">hetu()</a></code> table column name checksum changed to more descriptive ctrl.char. The change also affects related column names in <code><a href="../reference/hetu_diagnostic.html">hetu_diagnostic()</a></code>
-</li>
+<code><a href="../reference/hetu.html">hetu()</a></code> table column name checksum changed to more descriptive ctrl.char. The change also affects related column names in <code><a href="../reference/hetu_diagnostic.html">hetu_diagnostic()</a></code>. This is to illustrate the point that Finnish personal identity code has control characters (numbers and letters) instead of check digits.</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.0.3" id="hetu-103-2021-07-28">hetu 1.0.3 (2021-07-28)<a class="anchor" aria-label="anchor" href="#hetu-103-2021-07-28"></a></h2>

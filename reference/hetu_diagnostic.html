@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">hetu</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.6.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.7.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -54,25 +54,22 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">hetu_diagnostic</span><span class="op">(</span><span class="va">pin</span>, extract <span class="op">=</span> <span class="cn">NULL</span>, subsetting <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">hetu_diagnostic</span><span class="op">(</span><span class="va">pin</span>, extract <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>
 
-<span class="fu">pin_diagnostic</span><span class="op">(</span><span class="va">pin</span>, extract <span class="op">=</span> <span class="cn">NULL</span>, subsetting <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<span class="fu">pin_diagnostic</span><span class="op">(</span><span class="va">pin</span>, extract <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>pin</dt>
-<dd><p>Finnish personal identification number as a character vector, 
+<dd><p>Finnish personal identification number as a character vector,
 or vector of identification numbers as a character vectors</p></dd>
 <dt>extract</dt>
 <dd><p>Extract only selected part of the diagnostic information.
 Valid values are "<code>hetu</code>", "<code>is.temp</code>", "<code>valid.p.num</code>",
 "<code>valid.ctrl.char</code>", "<code>correct.ctrl.char</code>", "<code>valid.date</code>",
-"<code>valid.day</code>", "<code>valid.month</code>", "<code>valid.length</code>", 
+"<code>valid.day</code>", "<code>valid.month</code>", "<code>valid.length</code>",
 "<code>valid.century</code>". If <code>NULL</code> (default), returns all information.</p></dd>
-<dt>subsetting</dt>
-<dd><p>Print only PINs where the validity check chosen 
-in <code>extract</code> returns <code>FALSE</code>.</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
@@ -81,10 +78,10 @@ in <code>extract</code> returns <code>FALSE</code>.</p></dd>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">diagnosis_example</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"010101-0102"</span>, <span class="st">"111111-111Q"</span>, </span>
-<span class="r-in"><span class="st">"010101B0101"</span>, <span class="st">"320101-0101"</span>, <span class="st">"011301-0101"</span>, </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">diagnosis_example</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"010101-0102"</span>, <span class="st">"111111-111Q"</span>,</span>
+<span class="r-in"><span class="st">"010101B0101"</span>, <span class="st">"320101-0101"</span>, <span class="st">"011301-0101"</span>,</span>
 <span class="r-in"><span class="st">"010101-01010"</span>, <span class="st">"010101-0011"</span><span class="op">)</span></span>
-<span class="r-in"><span class="co">## Print all diagnoses</span></span>
+<span class="r-in"><span class="co">## Print all diagnostics for various fake personal identity codes</span></span>
 <span class="r-in"><span class="fu">hetu_diagnostic</span><span class="op">(</span><span class="va">diagnosis_example</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           hetu is.temp valid.p.num valid.ctrl.char correct.ctrl.char valid.date</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  010101-0102   FALSE        TRUE            TRUE             FALSE       TRUE</span>
@@ -112,17 +109,9 @@ in <code>extract</code> returns <code>FALSE</code>.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5  011301-0101          TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 6 010101-01010          TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 7  010101-0011          TRUE</span>
-<span class="r-in"><span class="co"># Extract only rows where valid.ctrl.char = FALSE</span></span>
-<span class="r-in"><span class="fu">hetu_diagnostic</span><span class="op">(</span><span class="va">diagnosis_example</span>, subsetting <span class="op">=</span> <span class="cn">TRUE</span>, extract <span class="op">=</span> <span class="st">"valid.day"</span><span class="op">)</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          hetu    sex p.num ctrl.char date day month year century valid.pin</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 320101-0101 Female   010         1 &lt;NA&gt;  NA     1 1901       -     FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   valid.p.num valid.ctrl.char correct.ctrl.char valid.date valid.day</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1        TRUE            TRUE              TRUE      FALSE     FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   valid.month valid.year valid.length valid.century is.temp</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1        TRUE       TRUE         TRUE          TRUE   FALSE</span>
 <span class="r-in"></span>
-<span class="r-in"><span class="va">diagnosis_example</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"010101-0102"</span>, <span class="st">"111111-111Q"</span>, </span>
-<span class="r-in"><span class="st">"010101B0101"</span>, <span class="st">"320101-0101"</span>, <span class="st">"011301-0101"</span>, </span>
+<span class="r-in"><span class="va">diagnosis_example</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"010101-0102"</span>, <span class="st">"111111-111Q"</span>,</span>
+<span class="r-in"><span class="st">"010101B0101"</span>, <span class="st">"320101-0101"</span>, <span class="st">"011301-0101"</span>,</span>
 <span class="r-in"><span class="st">"010101-01010"</span>, <span class="st">"010101-0011"</span><span class="op">)</span></span>
 <span class="r-in"><span class="co">## Print all diagnoses</span></span>
 <span class="r-in"><span class="fu">pin_diagnostic</span><span class="op">(</span><span class="va">diagnosis_example</span><span class="op">)</span></span>
