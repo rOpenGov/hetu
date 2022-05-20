@@ -1,5 +1,6 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+
 <!-- badges: start -->
 
 [![rOG-badge](https://ropengov.github.io/rogtemplate/reference/figures/ropengov-badge.svg)](https://ropengov.org/)
@@ -23,15 +24,21 @@ version](http://www.r-pkg.org/badges/version/hetu)](https://CRAN.R-project.org/p
 
 ### Introduction
 
-`hetu` is an R package for structural handling of national
-identification numbers used in Finland, or more specifically Finnish
-personal identity codes (in Finnish: henkilötunnus (hetu), in Swedish:
-personbeteckning). Some functions can also be used with Finnish Business
-ID numbers (y-tunnus).
+`hetu` is an R package for structural handling of identification codes
+used in Finland, most importantly Finnish flavour of national
+identification numbers, the Finnish personal identity codes (in Finnish:
+henkilötunnus (hetu), in Swedish: personbeteckning). Some functions can
+also be used with Finnish Business ID numbers (in Finnish: yritys- ja
+yhteisötunnus (y-tunnus), in Swedish: företags- och organisationsnummer
+(FO-nummer)) and Finnish Unique Identification Numbers (FINUID, in
+Finnish: sähköinen asiointitunnus (SATU), in Swedish: elektronisk
+kommunikationskod).
 
-The syntax in this package is unified with the similar package for
-Swedish ID numbers, the
-[sweidnumbr](https://github.com/rOpenGov/sweidnumbr).
+The syntax in this package aims to be, when convenient, similar with
+another package specializing in national identification numbers: the
+[sweidnumbr](https://github.com/rOpenGov/sweidnumbr) R package for
+working with Swedish personal identity numbers and corporation identity
+numbers.
 
 ### Installation
 
@@ -100,14 +107,14 @@ vignette("hetu")
 
 ## Contributing
 
--   [Submit suggestions and bug
+  - [Submit suggestions and bug
     reports](https://github.com/ropengov/hetu/issues) (provide the
     output of `sessionInfo()` and `packageVersion("hetu")` and
     preferably provide a [reproducible
     example](http://adv-r.had.co.nz/Reproducibility.html))
--   [Send a pull request](https://github.com/rOpenGov/hetu/pulls)
--   [Star us on the Github page](https://github.com/ropengov/hetu/)
--   [See our website](https://ropengov.org/community/) for additional
+  - [Send a pull request](https://github.com/rOpenGov/hetu/pulls)
+  - [Star us on the Github page](https://github.com/ropengov/hetu/)
+  - [See our website](https://ropengov.org/community/) for additional
     contact information
 
 ## Acknowledgements
@@ -118,5 +125,5 @@ Leo Lahti. hetu: Finnish personal ID number data toolkit for R. URL:
 <https://ropengov.github.io/hetu/>
 
 We are grateful to all
-[contributors](https://github.com/rOpenGov/hetu/graphs/contributors)!
+[contributors](https://github.com/rOpenGov/hetu/graphs/contributors)\!
 This project is part of [rOpenGov](https://ropengov.org).
