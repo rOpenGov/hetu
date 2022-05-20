@@ -1,6 +1,6 @@
-#' @title Finnish Personal Identification Number Control Character Calculator
+#' @title Calculate Control Character for Personal Identity Code
 #' @description Calculate a valid control character for an incomplete
-#'    Finnish personal identification numbers (hetu).
+#'    Finnish personal identity codes (hetu).
 #' @param pin An incomplete PIN that ONLY has a date, century marker (optional,
 #'    see parameter with.century) and personal number
 #' @param with.century If TRUE (default), the function assumes that the PIN
@@ -19,7 +19,7 @@
 #' @return Control character, either a number 0-9 or a letter.
 #' @author Pyry Kantanen
 #' @seealso \code{\link{hetu}} For extracting information from Finnish personal
-#'    identification numbers.
+#'    identity codes.
 #' @examples
 #' hetu_control_char("010101-010")
 #' hetu_control_char("010101010", with.century = FALSE)

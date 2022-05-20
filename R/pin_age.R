@@ -1,5 +1,6 @@
-#' @title Age from ID
-#' @description Calculate the age in full years for a given date.
+#' @title Extract Age from Personal Identity Code
+#' @description Calculate age in years, months, weeks or days from 
+#'    personal identity codes.
 #' @inheritParams hetu
 #' @param date Date at which age is calculated. If a vector is provided it
 #'    must be of the same length as the \code{pin} argument.

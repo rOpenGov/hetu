@@ -2,7 +2,7 @@
 % Please edit documentation in R/pin_ctrl.R
 \name{bid_ctrl}
 \alias{bid_ctrl}
-\title{Check Finnish Business ID (y-tunnus) validity}
+\title{Check Validity of Finnish Business ID (Y-tunnus)}
 \usage{
 bid_ctrl(bid)
 }

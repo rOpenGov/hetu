@@ -1,5 +1,5 @@
-#' @title Get Birth date from PIN
-#' @description Calculates the date of birth in date format.
+#' @title Extract Date of Birth from Personal Identity Code
+#' @description Returns the date of birth in date format.
 #' @inheritParams hetu
 #' @return Date of birth as a vector in date format.
 #' @examples

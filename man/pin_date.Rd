@@ -3,15 +3,14 @@
 \name{pin_date}
 \alias{pin_date}
 \alias{hetu_date}
-\title{Get Birth date from PIN}
+\title{Extract Date of Birth from Personal Identity Code}
 \usage{
 pin_date(pin, allow.temp = FALSE)
 
 hetu_date(pin, allow.temp = FALSE)
 }
 \arguments{
-\item{pin}{Finnish personal identification number as a character vector,
-or vector of identification numbers as a character vectors}
+\item{pin}{Finnish personal identity code(s) as a character vector}
 
 \item{allow.temp}{Allow artificial or temporary PINs (personal numbers
 900-999). If \code{FALSE} (default), only PINs intended for official
@@ -21,7 +20,7 @@ use (personal numbers 002-899) are allowed.}
 Date of birth as a vector in date format.
 }
 \description{
-Calculates the date of birth in date format.
+Returns the date of birth in date format.
 }
 \examples{
 pin_date(c("010101-0101", "111111-111C"))

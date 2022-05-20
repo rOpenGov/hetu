@@ -2,7 +2,7 @@
 % Please edit documentation in R/rpin.R
 \name{rbid}
 \alias{rbid}
-\title{Generate a vector of random Finnish Business ID's (y-tunnus)}
+\title{Generate Random Finnish Business ID's (Y-tunnus)}
 \usage{
 rbid(n)
 }

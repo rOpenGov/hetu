@@ -1,8 +1,8 @@
 Package: hetu
 Type: Package
 Title: Structural Handling of Finnish Personal Identity Codes
-Version: 1.0.7.9000
-Date: 2022-05-16
+Version: 1.0.7
+Date: 2022-05-20
 Authors@R: 
     c(
   person(given = "Pyry",
@@ -37,7 +37,7 @@ License: BSD_2_clause + file LICENSE
 VignetteBuilder: knitr
 Encoding: UTF-8
 BugReports: https://github.com/ropengov/hetu/issues
-URL: https://ropengov.github.io/hetu, https://github.com/ropengov/hetu
+URL: https://ropengov.github.io/hetu/, https://github.com/ropengov/hetu
 Depends:
     R (>= 3.6.0)
 Imports:

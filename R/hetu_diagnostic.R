@@ -1,6 +1,7 @@
 ## hetu_diagnostic.R
-#' @title Diagnostics Tool for HETU
-#' @description Produce a data frame of PINs that may require closer scrutiny.
+#' @title Diagnostics Tool for Personal Identity Codes
+#' @description Prints information on the tests that are used 
+#'    to confirm or reject the validity of each personal identity code.
 #' @param pin Finnish personal identification number as a character vector,
 #'    or vector of identification numbers as a character vectors
 #' @param extract Extract only selected part of the diagnostic information.
@@ -17,6 +18,8 @@
 #' hetu_diagnostic(diagnosis_example)
 #' # Extract century-related checks
 #' hetu_diagnostic(diagnosis_example, extract = "valid.century")
+#' @seealso \code{\link{hetu}} for the main function on which 
+#'    \code{hetu_diagnostic} relies on.
 #'
 #' @export
 hetu_diagnostic <- function(pin, extract = NULL) {

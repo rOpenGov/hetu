@@ -3,7 +3,7 @@
 \name{hetu_diagnostic}
 \alias{hetu_diagnostic}
 \alias{pin_diagnostic}
-\title{Diagnostics Tool for HETU}
+\title{Diagnostics Tool for Personal Identity Codes}
 \usage{
 hetu_diagnostic(pin, extract = NULL)
 
@@ -23,7 +23,8 @@ Valid values are "\code{hetu}", "\code{is.temp}", "\code{valid.p.num}",
 A data.frame containing diagnostic checks about PINs.
 }
 \description{
-Produce a data frame of PINs that may require closer scrutiny.
+Prints information on the tests that are used 
+   to confirm or reject the validity of each personal identity code.
 }
 \examples{
 diagnosis_example <- c("010101-0102", "111111-111Q",
@@ -33,10 +34,13 @@ diagnosis_example <- c("010101-0102", "111111-111Q",
 hetu_diagnostic(diagnosis_example)
 # Extract century-related checks
 hetu_diagnostic(diagnosis_example, extract = "valid.century")
-
 diagnosis_example <- c("010101-0102", "111111-111Q",
 "010101B0101", "320101-0101", "011301-0101",
 "010101-01010", "010101-0011")
 ## Print all diagnoses
 pin_diagnostic(diagnosis_example)
+}
+\seealso{
+\code{\link{hetu}} for the main function on which 
+   \code{hetu_diagnostic} relies on.
 }

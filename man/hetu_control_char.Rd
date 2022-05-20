@@ -2,7 +2,7 @@
 % Please edit documentation in R/hetu_control_char.R
 \name{hetu_control_char}
 \alias{hetu_control_char}
-\title{Finnish Personal Identification Number Control Character Calculator}
+\title{Calculate Control Character for Personal Identity Code}
 \usage{
 hetu_control_char(pin, with.century = TRUE)
 }
@@ -19,7 +19,7 @@ Control character, either a number 0-9 or a letter.
 }
 \description{
 Calculate a valid control character for an incomplete
-   Finnish personal identification numbers (hetu).
+   Finnish personal identity codes (hetu).
 }
 \details{
 This method of calculating the control character was devised by
@@ -39,7 +39,7 @@ hetu_control_char("010101010", with.century = FALSE)
 }
 \seealso{
 \code{\link{hetu}} For extracting information from Finnish personal
-   identification numbers.
+   identity codes.
 }
 \author{
 Pyry Kantanen

@@ -1,7 +1,6 @@
-#' @title Finnish Personal Identification Number Validator
-#' @description Validate Finnish personal identification numbers (hetu).
-#' @param pin Finnish personal identification number as a character vector, or
-#'    vector of identification numbers as a character vectors.
+#' @title Check Validity of Personal Identity Code
+#' @description Validate Finnish personal identity codes (hetu).
+#' @param pin Finnish personal identity code(s) as a character vector
 #' @param allow.temp If TRUE, temporary PINs (personal numbers 900-999) are
 #'    handled similarly to regular PINs (personal numbers 002-899), meaning
 #'    that otherwise valid temporary PIN will return a TRUE. Default
@@ -10,7 +9,7 @@
 #'  Finnish personal identity codes.
 #' @author Pyry Kantanen
 #' @seealso \code{\link{hetu}} For extracting information from Finnish personal
-#'    identification numbers.
+#'    identity codes.
 #' @examples
 #' pin_ctrl("010101-0101") # TRUE
 #' pin_ctrl("010101-010A") # FALSE
@@ -31,7 +30,7 @@ pin_ctrl <- function(pin, allow.temp = FALSE) {
 #' @export
 hetu_ctrl <- pin_ctrl
 
-#' @title Check Finnish Business ID (y-tunnus) validity
+#' @title Check Validity of Finnish Business ID (Y-tunnus)
 #'
 #' @description
 #' A function that checks whether a \code{bid} (Finnish Business ID) is valid.
@@ -100,7 +99,7 @@ bid_ctrl <- function(bid) {
   return(check)
 }
 
-#' @title Check Finnish Unique Identification Number validity
+#' @title Check Validity of Finnish Unique Identification Number (SATU)
 #'
 #' @description
 #' A function that checks whether a \code{satu} (Finnish Unique Identification

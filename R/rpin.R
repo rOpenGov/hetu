@@ -1,7 +1,8 @@
-#' @title Generate a vector of random \code{hetu}
+#' @title Generate Random Personal Identity Codes
 #'
 #' @description
-#' A function that generates random \code{hetu}-pins.
+#' A function that generates random Finnish personal identity codes 
+#'    (\code{hetu} codes).
 #'
 #' @details
 #' There is a finite number of valid personal identity codes available per day.
@@ -125,7 +126,7 @@ rpin <- function(n,
 #' @export
 rhetu <- rpin
 
-#' @title Generate a vector of random Finnish Business ID's (y-tunnus)
+#' @title Generate Random Finnish Business ID's (Y-tunnus)
 #'
 #' @description
 #' A function that generates random Finnish Business ID's, \code{bid}-numbers

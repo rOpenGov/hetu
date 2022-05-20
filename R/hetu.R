@@ -1,8 +1,7 @@
-#' @title Finnish personal identification number extraction
-#' @description Extract information from Finnish personal identification
-#'    numbers (hetu).
-#' @param pin Finnish personal identification number as a character vector,
-#'    or vector of identification numbers as a character vectors
+#' @title Generic Extraction Tool for Finnish Personal Identity Codes
+#' @description Extract embedded information from Finnish personal identity
+#'    codes (hetu).
+#' @param pin Finnish personal identity code(s) as a character vector
 #' @param extract Extract only selected part of the information.
 #'    Valid values are "\code{hetu}", "\code{sex}", "\code{p.num}",
 #'    "\code{ctrl.char}", "\code{date}", "\code{day}", "\code{month}",
@@ -16,28 +15,28 @@
 #'    "\code{correct.ctrl.char}", "\code{valid.date}", "\code{valid.day}",
 #'    "\code{valid.month}", "\code{valid.length}", "\code{valid.century}".
 #'    Default is \code{FALSE} which returns no diagnostic information.
-#' @return Finnish personal identification number data.frame,
+#' @return Finnish personal identity code data.frame,
 #'     or if extract parameter is set, the requested part of the
 #'	   information as a vector. Returns an error or \code{NA} if the given
-#'	   character vector is not a valid Finnish personal identification number.
-#' \item{hetu}{Finnish personal identification number as a character vector.
+#'	   character vector is not a valid Finnish personal identity code.
+#' \item{hetu}{Finnish personal identity code as a character vector.
 #'     A correct pin should be in the form DDMMYYCZZZQ, where DDMMYY stands for
 #'     date, C for century sign, ZZZ for personal number and Q for control
 #'     character.}
 #' \item{sex}{sex of the person as a character vector ("Male" or "Female").}
-#' \item{p.num}{Personal number part of the identification number.}
-#' \item{ctrl.char}{Control character for the personal identification number.}
+#' \item{p.num}{Personal number part of the identity code.}
+#' \item{ctrl.char}{Control character for the personal identity code.}
 #' \item{date}{Birthdate.}
 #' \item{day}{Day of the birthdate.}
 #' \item{month}{Month of the birthdate.}
 #' \item{year}{Year of the birthdate.}
 #' \item{century}{Century character of the birthdate: + (1800), - (1900) or
 #'    A (2000).}
-#' \item{valid.pin}{Does the personal identification number pass all validity
+#' \item{valid.pin}{Does the personal identity code pass all validity
 #'    checks: (\code{TRUE} or \code{FALSE})}
 #' @author Pyry Kantanen, Jussi Paananen
 #' @seealso \code{\link{pin_ctrl}} For validating Finnish personal
-#'    identification numbers.
+#'    identity codes.
 #' @examples
 #' hetu("111111-111C")
 #' hetu("111111-111C")$date
@@ -126,7 +125,7 @@ hetu <- function(pin, extract = NULL, allow.temp = FALSE, diagnostic = FALSE) {
   names(checklist) <- 0:30
   valid_ctrl_char_test <- extracted_ctrl_char %in% checklist
 
-  # Get personal identification number
+  # Get personal identity code
   extracted_personal_number <- substr(pin, start = 8, stop = 10)
   extracted_personal_number <- formatC(extracted_personal_number,
                                        width = 3, format = "d", flag = "0")
@@ -143,7 +142,7 @@ hetu <- function(pin, extract = NULL, allow.temp = FALSE, diagnostic = FALSE) {
   extracted_sex <- ifelse(((as.numeric(extracted_personal_number) %% 2) == 0),
                           "Female", "Male")
 
-  # Check if personal identification number is artificial or temporary
+  # Check if personal identity code is artificial or temporary
   is_temp_test <- as.numeric(extracted_personal_number) >= 900
 
   # Check pin number of characters

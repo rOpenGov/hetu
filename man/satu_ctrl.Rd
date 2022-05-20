@@ -2,7 +2,7 @@
 % Please edit documentation in R/pin_ctrl.R
 \name{satu_ctrl}
 \alias{satu_ctrl}
-\title{Check Finnish Unique Identification Number validity}
+\title{Check Validity of Finnish Unique Identification Number (SATU)}
 \usage{
 satu_ctrl(satu)
 }
