@@ -1,0 +1,13 @@
+Initial check results: 
+SUCCESS: Submission contains both RJwrapper.tex and RJwrapper.pdf
+SUCCESS: Submission has consistently named tex, bib, and R files
+SUCCESS: No problematic file found
+SUCCESS: Possible motivation letter found
+SUCCESS: The article title is properly formatted in title case.
+ERROR: Section Working with national identification numbers in R is not in sentence case!
+SUCCESS: Abstract comes before the introduction section
+NOTE: A potential list of spelling to check: validators, reidentify, passcodes, biocentric, indexical, biometric, dividuals, disembedding, disembedded, personnummer, kennitala, fødselsnummer, nummer, henkilötunnus, hetu, favour, onwards, sweidnumbr, vectorized, th, num, ctrl, hardcoded, rpin, asiointitunniste, satu, län, stad, december, oin, landsting, kommuner, församlingar, föreningar, stiftelser, roin
+SUCCESS: CRAN activities have been detected for package hetu
+SUCCESS: All CRAN & Bioconductor packages mentioned are available
+
+ SUCCESSES: 8 | ERRORS: 1 | NOTES: 1 

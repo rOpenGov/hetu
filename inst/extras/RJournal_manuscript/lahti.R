@@ -42,6 +42,7 @@ sweidnumbr::pin_birthplace(example_pin)
 sweidnumbr::pin_age(example_pin)
 sweidnumbr::pin_age(example_pin, date = "2000-01-01")
 
+example_oin <- c("556000-4615", "232100-0156", "802002-4280")
 oin_group(example_oin)
 
 set.seed(125)
