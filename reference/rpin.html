@@ -80,26 +80,39 @@
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>n</dt>
 <dd><p>number of generated <code>hetu</code>-pins</p></dd>
+
+
 <dt>start.date</dt>
 <dd><p>Lower limit of generated <code>hetu</code> dates,
 character string in ISO 8601 standard, for example "2001-02-03".
 Default is "1895-01-01".</p></dd>
+
+
 <dt>end.date</dt>
 <dd><p>Upper limit of generated <code>hetu</code>.
 Default is current date.</p></dd>
+
+
 <dt>p.male</dt>
 <dd><p>Probability of males, between 0.0 and 1.0. Default is 0.4.</p></dd>
+
+
 <dt>p.temp</dt>
 <dd><p>Probability of temporary identification numbers, between
 0.0 and 1.0. Default is 0.0.</p></dd>
+
+
 <dt>num.cores</dt>
 <dd><p>The number of cores for parallel processing. The number
 of available cores can be determined with <code>detectCores()</code>.
 Default is 1.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>a vector of generated <code>hetu</code>-pins.</p>
+    
+
+<p>a vector of generated <code>hetu</code>-pins.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
@@ -129,21 +142,21 @@ used.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu">rpin</span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></span>
 <span class="r-in"><span class="fu"><a href="hetu.html">hetu</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>          hetu    sex p.num ctrl.char       date day month year century</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 060512-8779   Male   877         9 1912-05-06   6     5 1912       -</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 151093-2947 Female   294         7 1993-10-15  15    10 1993       -</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 291009A235N   Male   235         N 2009-10-29  29    10 2009       A</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 040217-4470   Male   447         0 1917-02-04   4     2 1917       -</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 280235-5149 Female   514         9 1935-02-28  28     2 1935       -</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 050165-390C Female   390         C 1965-01-05   5     1 1965       -</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   valid.pin</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1      TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2      TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3      TRUE</span>
 <span class="r-in"><span class="fu"><a href="hetu.html">hetu</a></span><span class="op">(</span><span class="va">x</span>, extract <span class="op">=</span> <span class="st">"sex"</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Male"   "Female" "Male"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Male"   "Female" "Female"</span>
 <span class="r-in"><span class="fu"><a href="hetu.html">hetu</a></span><span class="op">(</span><span class="va">x</span>, extract <span class="op">=</span> <span class="st">"ctrl.char"</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "9" "7" "N"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "0" "9" "C"</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu">rhetu</span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></span>
 <span class="r-in"><span class="va">x</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "151117-4736" "020419-446T" "090835-1814"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "030406-1374" "051155-870B" "070417A3425"</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
@@ -155,7 +168,7 @@ used.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
 </div>
 
     </footer></div>
