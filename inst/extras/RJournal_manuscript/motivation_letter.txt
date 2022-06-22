@@ -1,0 +1,13 @@
+National identification numbers (NIN) and other so-called codes of life (see Dodge and Kitchin 2005) are often overlooked but important to many government and private sector functions. They enable combining register data from different sources for scientific research and solving wicked social problems in multi-professional cooperation, and ensure smooth operation in the financial sector by enabling private companies to check the credit records of individual customers immediately and by acting as an additional safeguard to ensure that salaries, pensions and other benefits are paid to the right person. Interoperability between different sectors is said to be the greatest benefit of NIN and other numbering systems (see Alastalo and Helen 2021). 
+
+Finland and Sweden belong to the group of Nordic countries that all have similar features in their NIN systems. For example, basic demographic variables such as age and sex can be directly deduced from national identification numbers. In addition, most Nordic identity codes contain a check digit or a control character that is used to check against input errors.
+
+The hetu and sweidnumbr packages provide free and open-source tools for this task. In their niche, they are novel additions to the R ecosystem that aim to provide necessary tools for researchers and other R users that work with Finnish and Swedish NINs and other identity codes. The publication of this article in the R journal provides a starting point for a discussion on the need of building an integrated package for handling NINs and other codes around the world.
+
+
+References
+
+Alastalo, Marja and Helen, Ilpo. 2022. A code for care and control: The PIN as an operator
+of interoperability in the Nordic welfare state. History of the Human Sciences, 35(1), 242-265.
+
+Dodge, Martin and Kitchin, Rob. 2005. Codes of life: identification codes and the machine-readable world. Environment and Planning D: Society and Space, 23, 851-881.
