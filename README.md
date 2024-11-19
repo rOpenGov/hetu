@@ -13,7 +13,6 @@ status](https://github.com/rOpenGov/hetu/workflows/R-CMD-check/badge.svg)](https
 GitHub](https://img.shields.io/github/watchers/ropengov/hetu.svg?style=social)](https://github.com/ropengov/hetu/watchers)
 [![Star on
 GitHub](https://img.shields.io/github/stars/ropengov/hetu.svg?style=social)](https://github.com/ropengov/hetu/stargazers)
-[![Follow](https://img.shields.io/twitter/follow/ropengov.svg?style=social)](https://twitter.com/intent/follow?screen_name=ropengov)
 [![cran
 version](http://www.r-pkg.org/badges/version/hetu)](https://CRAN.R-project.org/package=hetu)
 <!-- badges: end -->
@@ -107,15 +106,14 @@ vignette("hetu")
 
 ## Contributing
 
-  - [Submit suggestions and bug
-    reports](https://github.com/ropengov/hetu/issues) (provide the
-    output of `sessionInfo()` and `packageVersion("hetu")` and
-    preferably provide a [reproducible
-    example](http://adv-r.had.co.nz/Reproducibility.html))
-  - [Send a pull request](https://github.com/rOpenGov/hetu/pulls)
-  - [Star us on the Github page](https://github.com/ropengov/hetu/)
-  - [See our website](https://ropengov.org/community/) for additional
-    contact information
+- [Submit suggestions and bug
+  reports](https://github.com/ropengov/hetu/issues) (provide the output
+  of `sessionInfo()` and `packageVersion("hetu")` and preferably provide
+  a [reproducible example](http://adv-r.had.co.nz/Reproducibility.html))
+- [Send a pull request](https://github.com/rOpenGov/hetu/pulls)
+- [Star us on the Github page](https://github.com/ropengov/hetu/)
+- [See our website](https://ropengov.org/community/) for additional
+  contact information
 
 ## Acknowledgements
 
@@ -125,5 +123,5 @@ Leo Lahti. hetu: Finnish personal ID number data toolkit for R. URL:
 <https://ropengov.github.io/hetu/>
 
 We are grateful to all
-[contributors](https://github.com/rOpenGov/hetu/graphs/contributors)\!
+[contributors](https://github.com/rOpenGov/hetu/graphs/contributors)!
 This project is part of [rOpenGov](https://ropengov.org).

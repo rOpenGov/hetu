@@ -20,7 +20,6 @@ knitr::opts_chunk$set(
   [![Downloads](http://cranlogs.r-pkg.org/badges/hetu)](https://cran.r-project.org/package=hetu)
   [![Watch on GitHub][github-watch-badge]][github-watch]
   [![Star on GitHub][github-star-badge]][github-star]
-  [![Follow](https://img.shields.io/twitter/follow/ropengov.svg?style=social)](https://twitter.com/intent/follow?screen_name=ropengov)
   [![cran version](http://www.r-pkg.org/badges/version/hetu)](https://CRAN.R-project.org/package=hetu)
   <!-- badges: end -->
 
