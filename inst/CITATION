@@ -3,11 +3,11 @@ citHeader("Kindly cite the hetu R package as follows:")
 year <- sub(".*(2[[:digit:]]{3})-.*", "\\1", meta$Date, perl = TRUE)
 vers <- paste("R package version", meta$Version)
 
-citEntry(
-  entry="misc",
+bibentry(
+  bibtype="Misc",
   title = "hetu: Structural Handling of Finnish Personal Identity Codes",
   author = 
-    personList(
+    c(
       person(given ="Pyry", family="Kantanen", email = "pyry.kantanen@gmail.com"),
       person(given ="Mans", family="Magnusson"),	   
       person(given ="Jussi", family="Paananen"),

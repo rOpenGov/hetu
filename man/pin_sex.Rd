@@ -20,7 +20,7 @@ use (personal numbers 002-899) are allowed.}
 Factor with label 'Male' and 'Female'.
 }
 \description{
-Extract sex (as binary) from Finnish personal identification 
+Extract sex (as binary) from Finnish personal identification
    code.
 }
 \examples{

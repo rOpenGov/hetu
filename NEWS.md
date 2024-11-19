@@ -1,6 +1,11 @@
 # *News*
 ==========
 
+# hetu 1.1.0 (2024-11-19)
+
+* Add summary method and plot methods for data.frames produced by `hetu_diagnostic()`
+* Add support for new century markers.
+
 # hetu 1.0.7.9000 (2022-05-16)
 
 * subsetting-parameter (TRUE or FALSE) dropped from `hetu_diagnostic()` function as it was unnecessary syntactic sugar that was difficult to communicate to users. Similar functionalities can be easily achieved with standard subsetting functionalities found in base R and especially in tidyverse.

@@ -1,8 +1,8 @@
 Package: hetu
 Type: Package
 Title: Structural Handling of Finnish Personal Identity Codes
-Version: 1.0.7
-Date: 2022-05-20
+Version: 1.1.0.9000
+Date: 2024-11-19
 Authors@R: 
     c(
   person(given = "Pyry",
@@ -43,7 +43,8 @@ Depends:
 Imports:
     lubridate,
     checkmate,
-    parallel
+    parallel,
+    methods
 Suggests:
     Cairo,
     knitr,
@@ -51,7 +52,7 @@ Suggests:
     rmarkdown,
     covr,
     dplyr
-RoxygenNote: 7.2.0
+RoxygenNote: 7.3.2
 X-schema.org-isPartOf: http://ropengov.org/
 X-schema.org-keywords: ropengov
 Config/Needs/website: 

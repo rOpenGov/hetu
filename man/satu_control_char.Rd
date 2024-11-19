@@ -9,11 +9,11 @@ satu_control_char(pin, print.full = FALSE)
 \arguments{
 \item{pin}{An incomplete FINUID that has 8 first numbers.}
 
-\item{print.full}{Should the function print only the whole FINUID-number 
+\item{print.full}{Should the function print only the whole FINUID-number
 (TRUE) or only the control character (FALSE). Default is FALSE.}
 }
 \value{
-Control character, either a number 0-9 or a letter (length 1 
+Control character, either a number 0-9 or a letter (length 1
    character). If parameter print.full is set to TRUE, the function returns
    a complete FINUID / SATU number (length 9 characters).
 }

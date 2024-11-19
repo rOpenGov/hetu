@@ -1,5 +1,5 @@
 #' @title Extract Age from Personal Identity Code
-#' @description Calculate age in years, months, weeks or days from 
+#' @description Calculate age in years, months, weeks or days from
 #'    personal identity codes.
 #' @inheritParams hetu
 #' @param date Date at which age is calculated. If a vector is provided it
@@ -23,7 +23,7 @@
 #'
 #' @export
 pin_age <- function(pin,
-                    date=Sys.Date(),
+                    date = Sys.Date(),
                     timespan = "years",
                     allow.temp = FALSE) {
 
@@ -50,7 +50,7 @@ pin_age <- function(pin,
   all_pins[!hetuframe$valid.pin] <- NA
   if (length(date) > 1) {
     valid_diff <- !is.na(all_pins) & !is.na(date)
-  } else{
+  } else {
     valid_diff <- !is.na(all_pins)
   }
   pin <- all_pins[valid_diff]

@@ -90,7 +90,7 @@ bid_ctrl <- function(bid) {
   if (check == 0) {
     check <- check
   } else if (check %in% c(2:10)) {
-      check <- 11 - check
+    check <- 11 - check
   } else {
     check <- FALSE
     return(check)

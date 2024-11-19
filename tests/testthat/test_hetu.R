@@ -23,7 +23,7 @@ test_that("hetu() works correctly", {
   expect_false(hetu("320101-010A")$valid.pin) # check day
   expect_false(hetu("011301-010P")$valid.pin) # check month
   expect_false(suppressWarnings(hetu("0101-1-0101")$valid.pin)) # check year
-  expect_false(hetu("010101B0101")$valid.pin) # check century marker
+  expect_false(hetu("010101G0101")$valid.pin) # check century marker
   expect_true(is.na(hetu("290201-010A")$date)) #Check if date exists
   expect_equal(as.character(hetu("010199+010A")$century), "+")
   expect_equal(as.character(hetu("010101-0101")$century), "-")
@@ -40,6 +40,30 @@ test_that("hetu() works correctly", {
   expect_true(is.na(hetu(c("010101A900R", "010101A900R"))))
   expect_false(hetu("010101-01013")$valid.pin)
   expect_true(!is.null(hetu("010101-0101", diagnostic = TRUE)))
+  # New personal identity codes
+  # from Koulutusymparisto_Hetun_uusia_valimerkkeja.xlsx
+  new_codes <- c("010594Y9032",
+                 "010594Y9021",
+                 "020594X903P",
+                 "020594X902N",
+                 "030594W903B",
+                 "030694W9024",
+                 "040594V9030",
+                 "040594V902Y",
+                 "050594U903M",
+                 "050594U902L",
+                 "010516B903X",
+                 "010516B902W",
+                 "020516C903K",
+                 "020516C902J",
+                 "030516D9037",
+                 "030516D9026",
+                 "010501E9032",
+                 "020502E902X",
+                 "020503F9037",
+                 "020504A902E",
+                 "020504B904H")
+  expect_true(all(hetu(new_codes, allow.temp = TRUE, extract = "valid.pin")))
 })
 
 test_that("pin_ctrl() works correctly", {
@@ -57,7 +81,7 @@ test_that("bid_ctrl() works correctly", {
   #this is intentionally wrong, no infix operator error
   expect_warning(bid_ctrl(0737546-1))
 })
-  
+
 test_that("pin_to_date() works correctly and produces deprecation warning", {
   expect_warning(all((pin_to_date(c("010101-0101", "111111-111C")) ==
                         c("1901-01-01", "1911-11-11"))))
@@ -71,7 +95,7 @@ test_that("pin_date() works correctly", {
   expect_true(all((pin_date(c("010101A0101", "111111A111C")) ==
                      c("2001-01-01", "2011-11-11"))))
 })
- 
+
 test_that("pin_age() works correctly", {
   expect_true(pin_age("010101-0101", date = Sys.Date()) > 100)
   expect_true(all(pin_age(c("010101-0101", "111111-111C"),
@@ -112,6 +136,6 @@ test_that("hetu_control_char works correctly", {
   expect_visible(hetu_control_char("010101010", with.century = FALSE))
   expect_visible(hetu_control_char(c("010101-010", "111111-111")))
   expect_error(hetu_control_char("010101-0101", with.century = TRUE))
-  expect_error(hetu_control_char("010101B010", with.century = TRUE))
+  expect_error(hetu_control_char("010101Q010", with.century = TRUE))
   expect_error(hetu_control_char("0101010101", with.century = FALSE))
 })
