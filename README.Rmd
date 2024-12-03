@@ -14,14 +14,14 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 [![rOG-badge](https://ropengov.github.io/rogtemplate/reference/figures/ropengov-badge.svg)](https://ropengov.org/)
-  [![R build status](https://github.com/rOpenGov/hetu/workflows/R-CMD-check/badge.svg)](https://github.com/rOpenGov/hetu/actions)
-  [![codecov](https://codecov.io/gh/rOpenGov/hetu/branch/master/graph/badge.svg)](https://app.codecov.io/gh/rOpenGov/hetu)
-  [![Downloads](http://cranlogs.r-pkg.org/badges/grand-total/hetu)](https://cran.r-project.org/package=hetu)
-  [![Downloads](http://cranlogs.r-pkg.org/badges/hetu)](https://cran.r-project.org/package=hetu)
-  [![Watch on GitHub][github-watch-badge]][github-watch]
-  [![Star on GitHub][github-star-badge]][github-star]
-  [![cran version](http://www.r-pkg.org/badges/version/hetu)](https://CRAN.R-project.org/package=hetu)
-  <!-- badges: end -->
+[![R build status](https://github.com/rOpenGov/hetu/workflows/R-CMD-check/badge.svg)](https://github.com/rOpenGov/hetu/actions)
+[![codecov](https://codecov.io/gh/rOpenGov/hetu/branch/master/graph/badge.svg)](https://app.codecov.io/gh/rOpenGov/hetu)
+[![Downloads](http://cranlogs.r-pkg.org/badges/grand-total/hetu)](https://cran.r-project.org/package=hetu)
+[![Downloads](http://cranlogs.r-pkg.org/badges/hetu)](https://cran.r-project.org/package=hetu)
+[![Watch on GitHub][github-watch-badge]][github-watch]
+[![Star on GitHub][github-star-badge]][github-star]
+[![cran version](http://www.r-pkg.org/badges/version/hetu)](https://CRAN.R-project.org/package=hetu)
+<!-- badges: end -->
 
 <!--[![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/grand-total/hetu)](https://github.com/metacran/cranlogs.app)-->
 
@@ -96,7 +96,9 @@ vignette("hetu")
 
 ## Acknowledgements
 
-**Kindly cite this work** as follows: [Pyry Kantanen](https://github.com/pitkant/), Måns Magnusson, Jussi Paananen, Leo Lahti. hetu: Finnish personal ID number data toolkit for R. URL: [https://ropengov.github.io/hetu/](https://ropengov.github.io/hetu/)
+**Kindly cite this work** as follows: [Pyry Kantanen](https://github.com/pitkant/), Måns Magnusson, Jussi Paananen, Leo Lahti. Pyry Kantanen, Mans Magnusson, Jussi Paananen and Leo Lahti (2024). hetu: Structural Handling of Finnish
+  Personal Identity Codes [Computer software]. R package version 1.1.0. DOI:
+  https://doi.org/10.32614/CRAN.package.hetu
 
 We are grateful to all [contributors](https://github.com/rOpenGov/hetu/graphs/contributors)! This project is part of [rOpenGov](https://ropengov.org). 
 
