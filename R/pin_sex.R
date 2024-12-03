@@ -1,5 +1,5 @@
 #' @title Extract Sex from Personal Identity Code
-#' @description Extract sex (as binary) from Finnish personal identification 
+#' @description Extract sex (as binary) from Finnish personal identification
 #'    code.
 #' @inheritParams hetu
 #' @return Factor with label 'Male' and 'Female'.

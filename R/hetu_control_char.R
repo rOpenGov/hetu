@@ -45,9 +45,12 @@ hetu_control_char <- function(pin, with.century = TRUE) {
       stop("Input PINs that only have 10 characters: birthdate, century marker
 and personal numbers (DDMMYYQZZZ)")
     }
-    if (!(substr(pin, start = 7, stop = 7) %in% c("-", "+", "A"))) {
-      stop("7th character of your PIN needs to be a century marker (-, + or A).
-If your PIN does not have it use parameter with.century == FALSE")
+    if (!(substr(pin, start = 7, stop = 7) %in% c("-", "+", "A", "B", "C", "D",
+                                                  "E", "F", "Y", "X", "W", "V",
+                                                  "U"))) {
+      stop("7th character of your PIN needs to be a valid century marker 
+           (-, +, A or one of the new markers). If your PIN does not have it 
+           use parameter with.century == FALSE")
     }
     pin_ddmmyy <- substr(pin, 1, 6)
     pin_zzz <- substr(pin, 8, 10)
@@ -72,7 +75,7 @@ numbers (DDMMYYZZZ)")
 #'    Finnish Unique Identification Number (FINUID, or sähköinen asiointitunnus
 #'    SATU).
 #' @param pin An incomplete FINUID that has 8 first numbers.
-#' @param print.full Should the function print only the whole FINUID-number 
+#' @param print.full Should the function print only the whole FINUID-number
 #' (TRUE) or only the control character (FALSE). Default is FALSE.
 #' @details This method of calculating the control character was devised by
 #'    mathematician Erkki Pale (1962) to detect input errors but also to
@@ -84,7 +87,7 @@ numbers (DDMMYYZZZ)")
 #'
 #'    The method of calculating the control character does not need century
 #'    character and therefore the function has an option to omit it.
-#' @return Control character, either a number 0-9 or a letter (length 1 
+#' @return Control character, either a number 0-9 or a letter (length 1
 #'    character). If parameter print.full is set to TRUE, the function returns
 #'    a complete FINUID / SATU number (length 9 characters).
 #' @seealso

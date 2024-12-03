@@ -31,7 +31,7 @@ use (personal numbers 002-899) are allowed.}
 Age as an integer vector.
 }
 \description{
-Calculate age in years, months, weeks or days from 
+Calculate age in years, months, weeks or days from
    personal identity codes.
 }
 \examples{

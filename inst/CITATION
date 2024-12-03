@@ -1,28 +1,29 @@
 citHeader("Kindly cite the hetu R package as follows:")
 
-year <- sub(".*(2[[:digit:]]{3})-.*", "\\1", meta$Date, perl = TRUE)
+year <- sub("-.*", "", meta$Date)
 vers <- paste("R package version", meta$Version)
 
-citEntry(
-  entry="misc",
+bibentry(
+  bibtype="Misc",
   title = "hetu: Structural Handling of Finnish Personal Identity Codes",
   author = 
-    personList(
+    c(
       person(given ="Pyry", family="Kantanen", email = "pyry.kantanen@gmail.com"),
       person(given ="Mans", family="Magnusson"),	   
       person(given ="Jussi", family="Paananen"),
       person(given ="Leo", family="Lahti")),
-  doi = "",
+  doi = "10.32614/CRAN.package.hetu",
   journal = "",
   URL = "https://github.com/rOpenGov/hetu",
   year = year,
   note = vers,
   textVersion = 
-    paste(
-      "Pyry Kantanen, Mans Magnusson, Jussi Paananen and Leo Lahti (rOpenGov ",year,"). ",
-      "hetu: Structural Handling of Finnish Personal Identity Codes. ",
+    paste0(
+      "Pyry Kantanen, Mans Magnusson, Jussi Paananen and Leo Lahti (",year,"). ",
+      "hetu: Structural Handling of Finnish Personal Identity Codes [Computer software]. ",
       vers,
-      " URL: http://github.com/rOpenGov/hetu",
-      sep=""))
+      ". DOI: https://doi.org/10.32614/CRAN.package.hetu"
+      )
+    )
 
 citFooter("\nMany thanks for all contributors!")

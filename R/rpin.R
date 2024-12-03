@@ -1,26 +1,44 @@
 #' @title Generate Random Personal Identity Codes
 #'
 #' @description
-#' A function that generates random Finnish personal identity codes 
+#' A function that generates random Finnish personal identity codes
 #'    (\code{hetu} codes).
 #'
 #' @details
-#' There is a finite number of valid personal identity codes available per day.
-#' More specifically, there are 498 odd personal numbers for males and 498 even
-#' personal numbers for females from range 002-899. Additionally there are 50
-#' odd numbers for males and 50 even numbers for females in the temporary
-#' personal identity code number range 900-999 that is not normally in use.
 #' This function will return an error "too few positive probabilities" in
-#' sample.int function if you try to generate too many codes in a short enough
-#' timeframe.
+#' \code{\link{sample.int}} function if you try to generate too many codes
+#' in a short enough timeframe. The theoretical upper limit of valid PINs is
+#' in the millions, but the number of valid PINs per day used to be 898 PINs
+#' at maximum, meaning 327770 for each year. Attempting to generate e.g.
+#' a 1000 pins for a timespan of one day would result in an error.
 #'
-#' The theoretical upper limit of valid PINs is in the millions since there are
-#' 898 PINs available for each day, 327770 for each year. In practice this
-#' number is much lower since same personal number component cannot be
-#' "recycled" if it has been used in the past. To illustrate, if an identity
-#' code "010101-0101" has already been assigned to someone born in 1901-01-01,
-#' a similar code "010101A0101" for someone born in 2001-01-01 could not be
-#' used.
+#' In practice this theoretical upper limit number was
+#' much lower since the old practice was that the same personal number
+#' component cannot be "recycled" if it has been used in the past.
+#' To illustrate, if an identity code "010101-0101" has already been assigned
+#' to someone born in 1901-01-01, a similar code "010101A0101" for someone
+#' born in 2001-01-01 could not be used.
+#'
+#' In hetu package version 1.1.0 we have taken into account a new government
+#' decree that increased the amount of valid century markers and therefore
+#' increased the amount of valid personal codes per day. Additionally, the
+#' decree has made it possible to recycle individual codes, as the century
+#' marker is now thought to be a distinguishing character of the personal
+#' identity code.
+#'
+#' However, the current implementation still keeps the old 898 codes per day
+#' limit intact, and assigns new century markers with a low probability: old
+#' markers "-" and "A" are given a 95 % probability of appearing and the new
+#' markers are given a 1 % probability each.
+#'
+#' In the future this may be altered
+#' into a waterfall pattern so that the initial 898 codes for each date
+#' get "-" as the century marker, the next 898 get "Y", and so on.
+#' This would mean that each day would have 5388 valid codes and the
+#' distribution of century markers would be more
+#' realistic in the sense that additional century markers are taken into use
+#' only after the previous range has been exhausted. However, this would
+#' require generating rather large datasets even for basic testing purposes.
 #'
 #' @param n number of generated \code{hetu}-pins
 #' @param start.date Lower limit of generated \code{hetu} dates,
@@ -56,17 +74,17 @@ rpin <- function(n,
                  p.temp = 0.0,
                  num.cores = 1) {
 
-  start.date <- as.Date(start.date)
-  end.date <- as.Date(end.date)
+  start_date <- as.Date(start.date)
+  end_date <- as.Date(end.date)
 
   assert_double(p.temp, 0, 1)
   assert_double(p.male, 0, 1)
-  assert_date(end.date, start.date, Sys.Date())
-  assert_date(start.date, as.Date("1860-01-01"), end.date)
+  assert_date(end_date, start_date, Sys.Date())
+  assert_date(start_date, as.Date("1860-01-01"), end_date)
 
   # Oversample a bit to make up for filtered PINs (duplicates, PINs with
   # inadequate personal numbers)
-  rdates <- sample(start.date:end.date,
+  rdates <- sample(start_date:end_date,
                    size = n,
                    replace = TRUE)
 
@@ -89,26 +107,39 @@ rpin <- function(n,
   prob_female <- rep(((1 - p.male) * (1 - p.temp)), length(female_nums))
   prob_female_temp <- rep(((1 - p.male) * p.temp), length(female_temp))
 
-  p_nums <- unlist(
-    mclapply(X = dates_table,
-             FUN = function(x) sample(c(male_nums, female_nums,
-                                        male_temp, female_temp),
-                                      size = x,
-                                      prob = c(prob_male, prob_female,
-                                               prob_male_temp, prob_female_temp)
-                                      ),
-           mc.cores = num.cores
-           )
+  p_nums <-
+    unlist(
+      mclapply(
+        X = dates_table,
+        FUN = function(x) {
+          sample(
+            c(male_nums, female_nums, male_temp, female_temp),
+            size = x,
+            prob = c(prob_male, prob_female, prob_male_temp, prob_female_temp)
+          )
+        },
+        mc.cores = num.cores
+      )
     )
 
   ddmmyyyy <- rep(names(dates_table), times = dates_table)
 
   century <- lapply(X = ddmmyyyy,
-                    FUN = function(y) switch(substr(y, 1, 2),
-                                             "20" = "A",
-                                             "19" = "-",
-                                             "18" = "+",
-                                             stop("Invalid input")))
+                    FUN = function(y) {
+                      switch(substr(y, 1, 2),
+                             "20" = sample(
+                               c("A", "B", "C", "D", "E", "F"),
+                               size = 1,
+                               prob = c(0.95, 0.01, 0.01, 0.01, 0.01, 0.01)
+                             ),
+                             "19" = sample(
+                               c("-", "Y", "X", "W", "V", "U"),
+                               size = 1,
+                               prob = c(0.95, 0.01, 0.01, 0.01, 0.01, 0.01)
+                             ),
+                             "18" = "+",
+                             stop("Invalid input"))
+                    })
 
   ddmmyy <- format(as.Date(ddmmyyyy), "%d%m%y")
 

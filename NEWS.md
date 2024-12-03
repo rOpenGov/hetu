@@ -1,7 +1,12 @@
 # *News*
 ==========
 
-# hetu 1.0.7.9000 (2022-05-16)
+# hetu 1.1.0 (2024-12-03)
+
+* Add summary method and plot methods for data.frames produced by `hetu_diagnostic()`
+* Add support for the new century markers that were added in a Finnish government decree 8.7.2022/690 that amended another government decree 25.2.2010/128 ("Government Decree on the Population Information System").
+
+# hetu 1.0.7 (2022-05-16)
 
 * subsetting-parameter (TRUE or FALSE) dropped from `hetu_diagnostic()` function as it was unnecessary syntactic sugar that was difficult to communicate to users. Similar functionalities can be easily achieved with standard subsetting functionalities found in base R and especially in tidyverse.
 * `satu_ctrl_char()` parameter for printing whole SATU/FINUID-numbers is now called "print.full" instead of "complement".

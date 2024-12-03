@@ -46,26 +46,44 @@ Default is 1.}
 a vector of generated \code{hetu}-pins.
 }
 \description{
-A function that generates random Finnish personal identity codes 
+A function that generates random Finnish personal identity codes
    (\code{hetu} codes).
 }
 \details{
-There is a finite number of valid personal identity codes available per day.
-More specifically, there are 498 odd personal numbers for males and 498 even
-personal numbers for females from range 002-899. Additionally there are 50
-odd numbers for males and 50 even numbers for females in the temporary
-personal identity code number range 900-999 that is not normally in use.
 This function will return an error "too few positive probabilities" in
-sample.int function if you try to generate too many codes in a short enough
-timeframe.
+\code{\link{sample.int}} function if you try to generate too many codes
+in a short enough timeframe. The theoretical upper limit of valid PINs is
+in the millions, but the number of valid PINs per day used to be 898 PINs
+at maximum, meaning 327770 for each year. Attempting to generate e.g.
+a 1000 pins for a timespan of one day would result in an error.
 
-The theoretical upper limit of valid PINs is in the millions since there are
-898 PINs available for each day, 327770 for each year. In practice this
-number is much lower since same personal number component cannot be
-"recycled" if it has been used in the past. To illustrate, if an identity
-code "010101-0101" has already been assigned to someone born in 1901-01-01,
-a similar code "010101A0101" for someone born in 2001-01-01 could not be
-used.
+In practice this theoretical upper limit number was
+much lower since the old practice was that the same personal number
+component cannot be "recycled" if it has been used in the past.
+To illustrate, if an identity code "010101-0101" has already been assigned
+to someone born in 1901-01-01, a similar code "010101A0101" for someone
+born in 2001-01-01 could not be used.
+
+In hetu package version 1.1.0 we have taken into account a new government
+decree that increased the amount of valid century markers and therefore
+increased the amount of valid personal codes per day. Additionally, the
+decree has made it possible to recycle individual codes, as the century
+marker is now thought to be a distinguishing character of the personal
+identity code.
+
+However, the current implementation still keeps the old 898 codes per day
+limit intact, and assigns new century markers with a low probability: old
+markers "-" and "A" are given a 95 % probability of appearing and the new
+markers are given a 1 % probability each.
+
+In the future this may be altered
+into a waterfall pattern so that the initial 898 codes for each date
+get "-" as the century marker, the next 898 get "Y", and so on.
+This would mean that each day would have 5388 valid codes and the
+distribution of century markers would be more
+realistic in the sense that additional century markers are taken into use
+only after the previous range has been exhausted. However, this would
+require generating rather large datasets even for basic testing purposes.
 }
 \examples{
 x <- rpin(3)
