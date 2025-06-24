@@ -1,15 +1,37 @@
-citHeader("Kindly cite the hetu R package as follows:")
-
 year <- sub("-.*", "", meta$Date)
 vers <- paste("R package version", meta$Version)
 
 bibentry(
+  bibtype="article",
+  header="To cite package ‘hetu’ in publications use:",
+  key="RJ-2024-023",
+  title="Validating and Extracting Information from National Identification Numbers in R: The Case of Finland and Sweden",
+  author=
+    c(
+      person(given="Pyry", family="Kantanen"),
+      person(given="Erik", family="B{\\\"u}low"),
+      person(given="Aleksi", family="Lahtinen"),
+      person(given="M{\\aa}ns", family="Magnusson"),
+      person(given="Jussi", family="Paananen"),
+      person(given="Leo", family="Lahti")
+    ),
+  year=2025,
+  doi="10.32614/RJ-2024-023",
+  journal="The R Journal",
+  volume="16",
+  issue="3",
+  issn="2073-4859",
+  pages="4-14"
+)
+
+bibentry(
   bibtype="Misc",
+  header = "We strongly recommend citing the software used in research, as per FORCE11 Software citation principles:",
   title = "hetu: Structural Handling of Finnish Personal Identity Codes",
   author = 
     c(
       person(given ="Pyry", family="Kantanen", email = "pyry.kantanen@gmail.com"),
-      person(given ="Mans", family="Magnusson"),	   
+      person(given ="M{\\aa}ns", family="Magnusson"),	   
       person(given ="Jussi", family="Paananen"),
       person(given ="Leo", family="Lahti")),
   doi = "10.32614/CRAN.package.hetu",
@@ -19,11 +41,9 @@ bibentry(
   note = vers,
   textVersion = 
     paste0(
-      "Pyry Kantanen, Mans Magnusson, Jussi Paananen and Leo Lahti (",year,"). ",
+      "Pyry Kantanen, Måns Magnusson, Jussi Paananen and Leo Lahti (",year,"). ",
       "hetu: Structural Handling of Finnish Personal Identity Codes [Computer software]. ",
       vers,
       ". DOI: https://doi.org/10.32614/CRAN.package.hetu"
       )
     )
-
-citFooter("\nMany thanks for all contributors!")

@@ -1,6 +1,10 @@
 # *News*
 ==========
 
+# hetu 1.2.0 (2025-06-24)
+
+* Edit package citation to include a reference to the joint article in R Journal describing the `hetu` and `sweidnumbr` packages
+
 # hetu 1.1.0 (2024-12-03)
 
 * Add summary method and plot methods for data.frames produced by `hetu_diagnostic()`
