@@ -140,13 +140,13 @@ function:
 
 ``` r
 hetu_age(example_pins)
-#> The age in years has been calculated at 2026-02-17.
+#> The age in years has been calculated at 2026-02-26.
 #> [1] 125 114
 hetu_age(example_pins, date = "2012-01-01")
 #> The age in years has been calculated at 2012-01-01.
 #> [1] 111 100
 hetu_age(example_pins, timespan = "months")
-#> The age in months has been calculated at 2026-02-17.
+#> The age in months has been calculated at 2026-02-26.
 #> [1] 1501 1371
 ```
 
