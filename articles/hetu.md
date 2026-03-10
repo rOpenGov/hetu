@@ -140,14 +140,14 @@ function:
 
 ``` r
 hetu_age(example_pins)
-#> The age in years has been calculated at 2026-02-26.
+#> The age in years has been calculated at 2026-03-10.
 #> [1] 125 114
 hetu_age(example_pins, date = "2012-01-01")
 #> The age in years has been calculated at 2012-01-01.
 #> [1] 111 100
 hetu_age(example_pins, timespan = "months")
-#> The age in months has been calculated at 2026-02-26.
-#> [1] 1501 1371
+#> The age in months has been calculated at 2026-03-10.
+#> [1] 1502 1371
 ```
 
 Dates (birth dates) also have their own function, hetu_date.
@@ -471,11 +471,11 @@ sessionInfo()
 #> 
 #> loaded via a namespace (and not attached):
 #>  [1] vctrs_0.7.1       cli_3.6.5         knitr_1.51        rlang_1.1.7      
-#>  [5] xfun_0.56         generics_0.1.4    textshaping_1.0.4 jsonlite_2.0.0   
-#>  [9] glue_1.8.0        backports_1.5.0   htmltools_0.5.9   ragg_1.5.0       
+#>  [5] xfun_0.56         generics_0.1.4    textshaping_1.0.5 jsonlite_2.0.0   
+#>  [9] glue_1.8.0        backports_1.5.0   htmltools_0.5.9   ragg_1.5.1       
 #> [13] sass_0.4.10       rmarkdown_2.30    evaluate_1.0.5    jquerylib_0.1.4  
 #> [17] fastmap_1.2.0     yaml_2.3.12       lifecycle_1.0.5   compiler_4.5.2   
-#> [21] fs_1.6.6          timechange_0.4.0  htmlwidgets_1.6.4 systemfonts_1.3.1
+#> [21] fs_1.6.7          timechange_0.4.0  htmlwidgets_1.6.4 systemfonts_1.3.2
 #> [25] digest_0.6.39     R6_2.6.1          pillar_1.11.1     parallel_4.5.2   
 #> [29] bslib_0.10.0      checkmate_2.3.4   tools_4.5.2       lubridate_1.9.5  
 #> [33] pkgdown_2.2.0     cachem_1.1.0      desc_1.4.3

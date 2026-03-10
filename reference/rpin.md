@@ -106,19 +106,19 @@ Pyry Kantanen, Jussi Paananen
 x <- rpin(3)
 hetu(x)
 #>          hetu    sex p.num ctrl.char       date day month year century
-#> 1 020433-2215   Male   221         5 1933-04-02   2     4 1933       -
-#> 2 170147-462T Female   462         T 1947-01-17  17     1 1947       -
-#> 3 101002A0333   Male   033         3 2002-10-10  10    10 2002       A
+#> 1 200992-248W Female   248         W 1992-09-20  20     9 1992       -
+#> 2 140497-5844 Female   584         4 1997-04-14  14     4 1997       -
+#> 3 271201A808D Female   808         D 2001-12-27  27    12 2001       A
 #>   valid.pin
 #> 1      TRUE
 #> 2      TRUE
 #> 3      TRUE
 hetu(x, extract = "sex")
-#> [1] "Male"   "Female" "Male"  
+#> [1] "Female" "Female" "Female"
 hetu(x, extract = "ctrl.char")
-#> [1] "5" "T" "3"
+#> [1] "W" "4" "D"
 
 x <- rhetu(3)
 x
-#> [1] "130334-674A" "200438-883D" "230379-412X"
+#> [1] "251141-180C" "230862-4881" "220989-599R"
 ```
