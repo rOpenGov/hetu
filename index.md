@@ -23,6 +23,7 @@ numbers.
 Install stable version from CRAN:
 
 ``` r
+
 install.packages(hetu)
 ```
 
@@ -30,6 +31,7 @@ Alternatively, use `devtools` package to install the latest development
 version from GitHub:
 
 ``` r
+
 devtools::install_github("rOpenGov/hetu")
 ```
 
@@ -37,6 +39,7 @@ Development version can be also installed using the
 [r-universe](https://ropengov.r-universe.dev):
 
 ``` r
+
 # Enable this universe
 options(repos = c(
   ropengov = "https://ropengov.r-universe.dev",
@@ -50,6 +53,7 @@ install.packages("hetu")
 Loading the package in R command line:
 
 ``` r
+
 library(hetu)
 ```
 
@@ -57,6 +61,7 @@ A simple example of printing a table containing data from 2 imaginary
 personal identity codes:
 
 ``` r
+
 example_hetu <- c("010101-0101", "111111-111C")
 hetu(example_hetu)
 #>          hetu    sex p.num ctrl.char       date day month year century
@@ -71,6 +76,7 @@ The package can also be used to check the validity of Finnish Business
 IDs (Yritys- ja Yhteisötunnus, or Y-tunnus for short):
 
 ``` r
+
 example_ytunnus <- c("5996039-9", "5619117-6", "6095515-9")
 bid_ctrl(example_ytunnus)
 #> [1] TRUE TRUE TRUE
@@ -80,6 +86,7 @@ A tutorial is included with the package and can be viewed with
 vignette-function:
 
 ``` r
+
 vignette("hetu")
 ```
 

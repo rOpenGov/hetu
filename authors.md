@@ -25,7 +25,7 @@ Source:
 Kantanen P, Bülow E, Lahtinen A, Magnusson M, Paananen J, Lahti L
 (2025). “Validating and Extracting Information from National
 Identification Numbers in R: The Case of Finland and Sweden.” *The R
-Journal*, **16**, 4-14. ISSN 2073-4859,
+Journal*, **16**, 4-14. ISSN 2073-4859.
 [doi:10.32614/RJ-2024-023](https://doi.org/10.32614/RJ-2024-023).
 
     @Article{RJ-2024-023,

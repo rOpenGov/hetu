@@ -13,18 +13,21 @@ Where possible, we have unified the syntax with
 Install the current devel version in R:
 
 ``` r
+
 devtools::install_github("ropengov/hetu")
 ```
 
 Test the installation by loading the library:
 
 ``` r
+
 library(hetu)
 ```
 
 We also recommend setting the UTF-8 encoding:
 
 ``` r
+
 Sys.setlocale(locale = "UTF-8")
 ```
 
@@ -64,6 +67,7 @@ Finnish personal identification number. The data is outputted as a data
 frame.
 
 ``` r
+
 example_pin <- "111111-111C"
 hetu(example_pin)
 #>          hetu  sex p.num ctrl.char       date day month year century valid.pin
@@ -73,6 +77,7 @@ hetu(example_pin)
 The output can be made prettier, for example by using knitr:
 
 ``` r
+
 knitr::kable(hetu(example_pin))
 ```
 
@@ -84,6 +89,7 @@ The hetu function also accepts vectors with several identification
 numbers as input:
 
 ``` r
+
 example_pins <- c("010101-0101", "111111-111C")
 knitr::kable(hetu(example_pins))
 ```
@@ -98,6 +104,7 @@ vector contains invalid PINs. Validity of specific PINs can be
 determined by looking at the valid.pin column.
 
 ``` r
+
 hetu(c("010101-0102", "111311-111C", "010101-0101"))
 #>          hetu    sex p.num ctrl.char       date day month year century
 #> 1 010101-0102 Female   010         2 1901-01-01   1     1 1901       -
@@ -121,6 +128,7 @@ allow.temp is set to FALSE (default), temporary PINs are filtered from
 the output and information provided by *is.temp* would be meaningless.
 
 ``` r
+
 hetu(example_pins, extract = "sex")
 #> [1] "Female" "Male"
 hetu(example_pins, extract = "ctrl.char")
@@ -131,6 +139,7 @@ Some fields can be extracted with specialized functions. Extracting sex
 with hetu_sex function:
 
 ``` r
+
 hetu_sex(example_pins)
 #> [1] "Female" "Male"
 ```
@@ -139,20 +148,22 @@ Extracting age at current date and at a given date with hetu_age
 function:
 
 ``` r
+
 hetu_age(example_pins)
-#> The age in years has been calculated at 2026-03-10.
+#> The age in years has been calculated at 2026-07-17.
 #> [1] 125 114
 hetu_age(example_pins, date = "2012-01-01")
 #> The age in years has been calculated at 2012-01-01.
 #> [1] 111 100
 hetu_age(example_pins, timespan = "months")
-#> The age in months has been calculated at 2026-03-10.
-#> [1] 1502 1371
+#> The age in months has been calculated at 2026-07-17.
+#> [1] 1506 1376
 ```
 
 Dates (birth dates) also have their own function, hetu_date.
 
 ``` r
+
 hetu_date(example_pins)
 #> [1] "1901-01-01" "1911-11-11"
 ```
@@ -167,6 +178,7 @@ The validity of the PINs can also be determined by using the hetu_ctrl
 function, which produces a vector:
 
 ``` r
+
 hetu_ctrl(c("010101-0101", "111111-111C")) # TRUE TRUE
 #> [1] TRUE TRUE
 hetu_ctrl("010101-1010") # FALSE
@@ -180,13 +192,14 @@ personal identification numbers. Artificial and temporary PINs can be
 used normally by allowing them through allow.temp parameter.
 
 ``` r
+
 example_temp_pin <- "010101A900R"
 knitr::kable(hetu(example_temp_pin, allow.temp = TRUE))
 ```
 
-| hetu        | sex    | p.num | ctrl.char | date       | day | month | year | century | valid.pin | is.temp |
-|:------------|:-------|:------|:----------|:-----------|----:|------:|-----:|:--------|:----------|:--------|
-| 010101A900R | Female | 900   | R         | 2001-01-01 |   1 |     1 | 2001 | A       | TRUE      | TRUE    |
+| hetu | sex | p.num | ctrl.char | date | day | month | year | century | valid.pin | is.temp |
+|:---|:---|:---|:---|:---|---:|---:|---:|:---|:---|:---|
+| 010101A900R | Female | 900 | R | 2001-01-01 | 1 | 1 | 2001 | A | TRUE | TRUE |
 
 A vector with regular and temporary PINs mixed together prints only
 regular PINs, if allow.temp is not set to TRUE. Automatic omitting of
@@ -197,6 +210,7 @@ If temporary PINs are not explicitly allowed and the input vector
 consists of temporary PINs only, the function will return an error.
 
 ``` r
+
 example_temp_pins <- c("010101A900R", "010101-0101")
 hetu_ctrl("010101A900R", allow.temp = FALSE)
 #> [1] NA
@@ -211,15 +225,17 @@ When allow.temp is set to TRUE, all PINs are handled as if they were
 regular PINs.
 
 ``` r
+
 knitr::kable(hetu(example_temp_pins, allow.temp = TRUE))
 ```
 
-| hetu        | sex    | p.num | ctrl.char | date       | day | month | year | century | valid.pin | is.temp |
-|:------------|:-------|:------|:----------|:-----------|----:|------:|-----:|:--------|:----------|:--------|
-| 010101A900R | Female | 900   | R         | 2001-01-01 |   1 |     1 | 2001 | A       | TRUE      | TRUE    |
-| 010101-0101 | Female | 010   | 1         | 1901-01-01 |   1 |     1 | 1901 | \-      | TRUE      | FALSE   |
+| hetu | sex | p.num | ctrl.char | date | day | month | year | century | valid.pin | is.temp |
+|:---|:---|:---|:---|:---|---:|---:|---:|:---|:---|:---|
+| 010101A900R | Female | 900 | R | 2001-01-01 | 1 | 1 | 2001 | A | TRUE | TRUE |
+| 010101-0101 | Female | 010 | 1 | 1901-01-01 | 1 | 1 | 1901 | \- | TRUE | FALSE |
 
 ``` r
+
 hetu_ctrl("010101A900R", allow.temp = TRUE)
 #> [1] TRUE
 ```
@@ -228,6 +244,7 @@ Validation function hetu_ctrl produces a FALSE for every artificial /
 temporary PIN, if they are not explicitly allowed.
 
 ``` r
+
 knitr::kable(hetu(example_temp_pins)) #FALSE TRUE
 ```
 
@@ -236,19 +253,21 @@ knitr::kable(hetu(example_temp_pins)) #FALSE TRUE
 | 2   | 010101-0101 | Female | 010   | 1         | 1901-01-01 |   1 |     1 | 1901 | \-      | TRUE      |
 
 ``` r
+
 knitr::kable(hetu(example_temp_pins, allow.temp = TRUE)) #TRUE TRUE
 ```
 
-| hetu        | sex    | p.num | ctrl.char | date       | day | month | year | century | valid.pin | is.temp |
-|:------------|:-------|:------|:----------|:-----------|----:|------:|-----:|:--------|:----------|:--------|
-| 010101A900R | Female | 900   | R         | 2001-01-01 |   1 |     1 | 2001 | A       | TRUE      | TRUE    |
-| 010101-0101 | Female | 010   | 1         | 1901-01-01 |   1 |     1 | 1901 | \-      | TRUE      | FALSE   |
+| hetu | sex | p.num | ctrl.char | date | day | month | year | century | valid.pin | is.temp |
+|:---|:---|:---|:---|:---|---:|---:|---:|:---|:---|:---|
+| 010101A900R | Female | 900 | R | 2001-01-01 | 1 | 1 | 2001 | A | TRUE | TRUE |
+| 010101-0101 | Female | 010 | 1 | 1901-01-01 | 1 | 1 | 1901 | \- | TRUE | FALSE |
 
 ### Generating random PINs
 
 Random PINs can be generated by using the rpin function.
 
 ``` r
+
 rhetu(n = 4)
 #> [1] "180323-144L" "230526-034N" "301246-7226" "080978V740D"
 rhetu(n = 4, start.date = "1990-01-01", end.date = "2005-01-01")
@@ -259,6 +278,7 @@ The number of males in the generated sample can be changed with
 parameter p.male. Default is 0.4.
 
 ``` r
+
 random_sample <- rhetu(n = 4, p.male = 0.8)
 table(random_sample)
 #> random_sample
@@ -270,6 +290,7 @@ The default proportion of artificial / temporary PINs is 0.0, meaning
 that no artificial / temporary PINs are generated by default.
 
 ``` r
+
 temp_sample <- rhetu(n = 4, p.temp = 0.5)
 table(hetu(temp_sample, allow.temp = TRUE, extract = "is.temp"))
 #> 
@@ -288,6 +309,7 @@ categories: *valid.p.num*, *valid.checksum*, *correct.checksum*,
 and *valid.century*, FALSE meaning that hetu is somehow incorrect.
 
 ``` r
+
 diagnosis_example <- c("010101-0102", "111111-111Q",
                        "010101B0101", "320101-0101", "011301-0101",
                        "010101-01010", "010101-0011")
@@ -311,6 +333,7 @@ by using a separate hetu_diagnostics function. The user can print all
 diagnostic information for all PINs in the dataset:
 
 ``` r
+
 tail(hetu_diagnostic(diagnosis_example), 3)
 #>           hetu is.temp valid.p.num valid.ctrl.char correct.ctrl.char valid.date
 #> 5  011301-0101   FALSE        TRUE            TRUE             FALSE      FALSE
@@ -327,6 +350,7 @@ printed in the output table. Valid extract values are listed in the
 function’s help file.
 
 ``` r
+
 hetu_diagnostic(diagnosis_example, extract = c("valid.century",
                                                "correct.checksum"))
 #> Error in `hetu_diagnostic()`:
@@ -339,6 +363,7 @@ NAs by coercion if the date-part of the PIN is too long. This may result
 in inability to handle the PIN at all!
 
 ``` r
+
 # Faulty example
 hetu_diagnostic(c("01011901-01010"))
 ```
@@ -355,6 +380,7 @@ Similar to hetu PINs, random Finnish Business IDs (y-tunnus) can be
 generated by using rbid function.
 
 ``` r
+
 bid_sample <- rbid(3)
 bid_sample
 #> [1] "2817006-0" "5891569-2" "5462040-8"
@@ -366,6 +392,7 @@ The validity of Finnish Business Identity Codes can be checked with a
 similar function to hetu_ctrl: bid_ctrl.
 
 ``` r
+
 bid_ctrl(c("0737546-2", "1572860-0")) # TRUE TRUE
 #> [1] TRUE TRUE
 bid_ctrl("0737546-1") # FALSE
@@ -378,6 +405,7 @@ Data frames generated by hetu function work well with tidyverse/dplyr
 workflows as well.
 
 ``` r
+
 library(hetu)
 library(tidyverse)
 library(dplyr)
@@ -403,13 +431,14 @@ file](https://github.com/rOpenGov/hetu/blob/master/DESCRIPTION).
 Kindly cite the work as follows
 
 ``` r
+
 citation("hetu")
 #> To cite package ‘hetu’ in publications use:
 #> 
 #>   Kantanen P, Bülow E, Lahtinen A, Magnusson M, Paananen J, Lahti L
 #>   (2025). "Validating and Extracting Information from National
 #>   Identification Numbers in R: The Case of Finland and Sweden." _The R
-#>   Journal_, *16*, 4-14. ISSN 2073-4859, doi:10.32614/RJ-2024-023
+#>   Journal_, *16*, 4-14. ISSN 2073-4859. doi:10.32614/RJ-2024-023
 #>   <https://doi.org/10.32614/RJ-2024-023>.
 #> 
 #> We strongly recommend citing the software used in research, as per
@@ -445,10 +474,11 @@ citation("hetu")
 This vignette was created with
 
 ``` r
+
 sessionInfo()
-#> R version 4.5.2 (2025-10-31)
+#> R version 4.6.1 (2026-06-24)
 #> Platform: x86_64-pc-linux-gnu
-#> Running under: Ubuntu 24.04.3 LTS
+#> Running under: Ubuntu 24.04.4 LTS
 #> 
 #> Matrix products: default
 #> BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 
@@ -470,13 +500,13 @@ sessionInfo()
 #> [1] hetu_1.2.0
 #> 
 #> loaded via a namespace (and not attached):
-#>  [1] vctrs_0.7.1       cli_3.6.5         knitr_1.51        rlang_1.1.7      
-#>  [5] xfun_0.56         generics_0.1.4    textshaping_1.0.5 jsonlite_2.0.0   
-#>  [9] glue_1.8.0        backports_1.5.0   htmltools_0.5.9   ragg_1.5.1       
-#> [13] sass_0.4.10       rmarkdown_2.30    evaluate_1.0.5    jquerylib_0.1.4  
-#> [17] fastmap_1.2.0     yaml_2.3.12       lifecycle_1.0.5   compiler_4.5.2   
-#> [21] fs_1.6.7          timechange_0.4.0  htmlwidgets_1.6.4 systemfonts_1.3.2
-#> [25] digest_0.6.39     R6_2.6.1          pillar_1.11.1     parallel_4.5.2   
-#> [29] bslib_0.10.0      checkmate_2.3.4   tools_4.5.2       lubridate_1.9.5  
-#> [33] pkgdown_2.2.0     cachem_1.1.0      desc_1.4.3
+#>  [1] vctrs_0.7.3       cli_3.6.6         knitr_1.51        rlang_1.3.0      
+#>  [5] xfun_0.60         otel_0.2.0        generics_0.1.4    textshaping_1.0.5
+#>  [9] jsonlite_2.0.0    glue_1.8.1        backports_1.5.1   htmltools_0.5.9  
+#> [13] ragg_1.5.2        sass_0.4.10       rmarkdown_2.31    evaluate_1.0.5   
+#> [17] jquerylib_0.1.4   fastmap_1.2.0     yaml_2.3.12       lifecycle_1.0.5  
+#> [21] compiler_4.6.1    fs_2.1.0          timechange_0.4.0  htmlwidgets_1.6.4
+#> [25] systemfonts_1.3.2 digest_0.6.39     R6_2.6.1          pillar_1.11.1    
+#> [29] parallel_4.6.1    bslib_0.11.0      checkmate_2.3.4   tools_4.6.1      
+#> [33] lubridate_1.9.5   pkgdown_2.2.1     cachem_1.1.0      desc_1.4.3
 ```
